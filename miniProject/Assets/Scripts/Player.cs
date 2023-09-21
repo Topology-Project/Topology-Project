@@ -33,7 +33,7 @@ public class Player : Character
         dir = new Vector3(0, 0, 0);
         dashCooltimer = 3;
         rig = GetComponent<Rigidbody>();
-        stateModifire = new();
+        stateModifier = new();
         weapon.OnWeapon(this);
     }
 
@@ -103,6 +103,6 @@ public class Player : Character
     public void AddInventory(Scroll scroll)
     {
         inventory.Add(scroll);
-        stateModifire.AddHandler(scroll.state);
+        stateModifier.AddHandler(scroll.state);
     }
 }

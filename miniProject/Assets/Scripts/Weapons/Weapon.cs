@@ -57,44 +57,44 @@ public class Weapon : MonoBehaviour
     {
         this.character = character;
         parent = character.gameObject;
-        StateModifire stateModifire = character.stateModifire;
+        StateModifier stateModifier = character.stateModifier;
 
-        stateModifire.AddHandler(baseDamage);
-        stateModifire.AddHandler(criticalX);
-        stateModifire.AddHandler(luckyShot);
-        stateModifire.AddHandler(magazine);
-        stateModifire.AddHandler(projectiles);
-        stateModifire.AddHandler(projectileSpeed);
-        stateModifire.AddHandler(rateOfFire);
-        stateModifire.AddHandler(reloadTime);
-        stateModifire.AddHandler(upgrade);
-        stateModifire.AddHandler(accuracy);
-        stateModifire.AddHandler(stability);
-        stateModifire.AddHandler(baseDMGIncrease);
-        stateModifire.AddHandler(ExplosionDMGIncrease);;
-        stateModifire.AddHandler(ElementalDMGIncrease);
+        stateModifier.AddHandler(baseDamage);
+        stateModifier.AddHandler(criticalX);
+        stateModifier.AddHandler(luckyShot);
+        stateModifier.AddHandler(magazine);
+        stateModifier.AddHandler(projectiles);
+        stateModifier.AddHandler(projectileSpeed);
+        stateModifier.AddHandler(rateOfFire);
+        stateModifier.AddHandler(reloadTime);
+        stateModifier.AddHandler(upgrade);
+        stateModifier.AddHandler(accuracy);
+        stateModifier.AddHandler(stability);
+        stateModifier.AddHandler(baseDMGIncrease);
+        stateModifier.AddHandler(ExplosionDMGIncrease);;
+        stateModifier.AddHandler(ElementalDMGIncrease);
 
-        stateModifire.AddHandler(movementSpeed);
+        stateModifier.AddHandler(movementSpeed);
     }
     public void OffWeapon(Character character)
     {
-        StateModifire stateModifire = character.stateModifire;
-        stateModifire.DelHandler(baseDamage);
-        stateModifire.DelHandler(criticalX);
-        stateModifire.DelHandler(luckyShot);
-        stateModifire.DelHandler(magazine);
-        stateModifire.DelHandler(projectiles);
-        stateModifire.DelHandler(projectileSpeed);
-        stateModifire.DelHandler(rateOfFire);
-        stateModifire.DelHandler(reloadTime);
-        stateModifire.DelHandler(upgrade);
-        stateModifire.DelHandler(accuracy);
-        stateModifire.DelHandler(stability);
-        stateModifire.DelHandler(baseDMGIncrease);
-        stateModifire.DelHandler(ExplosionDMGIncrease);;
-        stateModifire.DelHandler(ElementalDMGIncrease);
+        StateModifier stateModifier = character.stateModifier;
+        stateModifier.DelHandler(baseDamage);
+        stateModifier.DelHandler(criticalX);
+        stateModifier.DelHandler(luckyShot);
+        stateModifier.DelHandler(magazine);
+        stateModifier.DelHandler(projectiles);
+        stateModifier.DelHandler(projectileSpeed);
+        stateModifier.DelHandler(rateOfFire);
+        stateModifier.DelHandler(reloadTime);
+        stateModifier.DelHandler(upgrade);
+        stateModifier.DelHandler(accuracy);
+        stateModifier.DelHandler(stability);
+        stateModifier.DelHandler(baseDMGIncrease);
+        stateModifier.DelHandler(ExplosionDMGIncrease);;
+        stateModifier.DelHandler(ElementalDMGIncrease);
 
-        stateModifire.DelHandler(movementSpeed);
+        stateModifier.DelHandler(movementSpeed);
 
         this.character = null;
         parent = null;
@@ -106,11 +106,11 @@ public class Weapon : MonoBehaviour
         if(!isFire && residualAmmunition > 0) 
         {
             GameObject b = Instantiate(bullet, transform.position, transform.rotation);
-            b.GetComponent<Bullet>().Set(parent, character.stateModifire.GetState(StateType.ProjectileSpeed));
+            b.GetComponent<Bullet>().Set(parent, character.stateModifier.GetState(StateType.ProjectileSpeed));
             isFire = true;
             StartCoroutine(FireReady());
             residualAmmunition--;
-            Debug.Log(residualAmmunition + "/" + character.stateModifire.GetState(StateType.Magazine));
+            Debug.Log(residualAmmunition + "/" + character.stateModifier.GetState(StateType.Magazine));
         }
         if(residualAmmunition <= 0) 
         {
@@ -122,7 +122,7 @@ public class Weapon : MonoBehaviour
     IEnumerator FireReady()
     {
         yield return new WaitForSeconds(0);
-        float time = 1f / character.stateModifire.GetState(StateType.RateOfFire);
+        float time = 1f / character.stateModifier.GetState(StateType.RateOfFire);
         yield return new WaitForSeconds(time);
         isFire = false;
     }
@@ -135,7 +135,7 @@ public class Weapon : MonoBehaviour
     IEnumerator Reloading()
     {
         yield return new WaitForSeconds(0);
-        yield return new WaitForSeconds( character.stateModifire.GetState(StateType.ReloadTime));
-        residualAmmunition = (int)character.stateModifire.GetState(StateType.Magazine);
+        yield return new WaitForSeconds( character.stateModifier.GetState(StateType.ReloadTime));
+        residualAmmunition = (int)character.stateModifier.GetState(StateType.Magazine);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface CharacterInterface
 {
-    public StateModifire Get();
+    public StateModifier Get();
 }
 
 public class Character : MonoBehaviour, CharacterInterface
@@ -17,7 +17,7 @@ public class Character : MonoBehaviour, CharacterInterface
     [SerializeField] protected float healthPoint;
     [SerializeField] protected float armorPoint;
 
-    public StateModifire stateModifire { get; protected set; }
+    public StateModifier stateModifier { get; protected set; }
     public Weapon weapon;
 
     protected void Move(Vector3 dir)
@@ -30,24 +30,24 @@ public class Character : MonoBehaviour, CharacterInterface
         transform.localEulerAngles += new Vector3(0, dir.y, 0);
     }
 
-    public StateModifire Get()
+    public StateModifier Get()
     {
-        return this.stateModifire;
+        return this.stateModifier;
     }
 
-    public float DamageCalc(StateModifire stateModifire)
+    public float DamageCalc(StateModifier stateModifier)
     {
-        float damage = stateModifire.GetState(StateType.BaseDamage)
-                    * (1+stateModifire.GetState(StateType.WPNUpgrade)*0.15f)
-                    * (1+stateModifire.GetState(StateType.baseDMGIncrease)*0.01f)
-                    * (1+stateModifire.GetState(StateType.ExplosionDMGIncrease)*0.01f)
-                    * (1+stateModifire.GetState(StateType.ElementalDMGIncrease)*0.01f);
+        float damage = stateModifier.GetState(StateType.BaseDamage)
+                    * (1+stateModifier.GetState(StateType.WPNUpgrade)*0.15f)
+                    * (1+stateModifier.GetState(StateType.baseDMGIncrease)*0.01f)
+                    * (1+stateModifier.GetState(StateType.ExplosionDMGIncrease)*0.01f)
+                    * (1+stateModifier.GetState(StateType.ElementalDMGIncrease)*0.01f);
         
-        Debug.Log("Damage : " + stateModifire.GetState(StateType.BaseDamage)
-                    + "*" + (1+stateModifire.GetState(StateType.WPNUpgrade)*0.15f)
-                    + "*" + (1+stateModifire.GetState(StateType.baseDMGIncrease)*0.01f)
-                    + "*" + (1+stateModifire.GetState(StateType.ExplosionDMGIncrease)*0.01f)
-                    + "*" + (1+stateModifire.GetState(StateType.ElementalDMGIncrease)*0.01f)
+        Debug.Log("Damage : " + stateModifier.GetState(StateType.BaseDamage)
+                    + "*" + (1+stateModifier.GetState(StateType.WPNUpgrade)*0.15f)
+                    + "*" + (1+stateModifier.GetState(StateType.baseDMGIncrease)*0.01f)
+                    + "*" + (1+stateModifier.GetState(StateType.ExplosionDMGIncrease)*0.01f)
+                    + "*" + (1+stateModifier.GetState(StateType.ElementalDMGIncrease)*0.01f)
                     + "=" + damage);
 
         return damage;
