@@ -4,33 +4,87 @@ using UnityEngine;
 
 public interface CharacterInterface
 {
-    public StateModifier Get();
+    public StateModifier GetModifier();
 }
 
 public class Character : MonoBehaviour, CharacterInterface
 {
-    [SerializeField] protected float maxHealthPoint;
-    [SerializeField] protected ProtectionType armorType;
-    [SerializeField] protected float maxArmorPoint;
-    [SerializeField] protected float defaultSpeed;
 
-    [SerializeField] protected float healthPoint;
-    [SerializeField] protected float armorPoint;
+    protected ProtectionType armorType;
+    protected State maxHealthPoint;
+    protected State maxProtectionPoint;
 
-    public StateModifier stateModifier { get; protected set; }
+    protected State movement;
+    protected State dashSpeed;
+    protected State dashDuration;
+    protected State dashCooltime;
+
+
+    protected float healthPoint;
+    protected float armorPoint;
+
+    protected StateModifier stateModifier = new();
     public Weapon weapon;
+    protected int equippedWeapon;
 
-    protected void Move(Vector3 dir)
+    protected virtual void Awake()
     {
-        transform.Translate(dir * defaultSpeed * Time.deltaTime);
+        armorType = ProtectionType.Shield;
+        maxHealthPoint = new State(StateType.MaxHealthPoint, 80);
+        maxProtectionPoint = new State(StateType.MaxProtectionPoint, 80);
+
+        movement = new State(StateType.MovementSpeed, 10);
+        dashSpeed = new State(StateType.DashSpeed, 2);
+        dashDuration = new State(StateType.DashDuration, 0.5f);
+        dashCooltime = new State(StateType.DashCooltime, 3);
+
+        stateModifier.AddHandler(maxHealthPoint);
+        stateModifier.AddHandler(maxProtectionPoint);
+
+        stateModifier.AddHandler(movement);
+        stateModifier.AddHandler(dashSpeed);
+        stateModifier.AddHandler(dashDuration);
+        stateModifier.AddHandler(dashCooltime);
+
+        equippedWeapon = 2;
+        isDashReady = true;
     }
 
-    protected void Angle(Vector3 dir)
+    public void Move(Vector3 dir)
+    {
+        if(isDash) dir *= stateModifier.GetState(StateType.DashSpeed);
+        transform.Translate(dir * stateModifier.GetState(StateType.MovementSpeed) * Time.deltaTime);
+    }
+    private bool isDash;
+    private bool isDashReady;
+    public void Dash()
+    {
+        if(!isDashReady) return;
+        isDash = true;
+        isDashReady = false;
+        StartCoroutine(Dashing());
+    }
+    IEnumerator Dashing()
+    {
+        yield return new WaitForSeconds(stateModifier.GetState(StateType.DashDuration));
+        isDash = false;
+        StartCoroutine(DashCooltimer());
+    }
+    IEnumerator DashCooltimer()
+    {
+        yield return new WaitForSeconds(stateModifier.GetState(StateType.DashCooltime));
+        isDashReady = true;
+    }
+
+    public void Angle(Vector3 dir)
     {
         transform.localEulerAngles += new Vector3(0, dir.y, 0);
     }
 
-    public StateModifier Get()
+    public virtual void Fire(Transform transfrom) => weapon.Fire(transform);
+    public void Reload() => weapon.Reload();
+
+    public StateModifier GetModifier()
     {
         return this.stateModifier;
     }
@@ -58,7 +112,7 @@ public class Character : MonoBehaviour, CharacterInterface
         if(other.gameObject.tag.Equals("Bullet"))
         {
             GameObject parent = other.GetComponent<Bullet>().parent;
-            if(!parent.tag.Equals(gameObject.tag)) DamageCalc(parent.GetComponent<CharacterInterface>().Get());
+            if(!parent.tag.Equals(gameObject.tag)) DamageCalc(parent.GetComponent<CharacterInterface>().GetModifier());
         }
     }
 }

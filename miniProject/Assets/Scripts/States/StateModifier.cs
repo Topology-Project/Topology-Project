@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public delegate void StateHandler<State>(State modifire);
+public delegate void StateHandler<State>(State modifier);
 
 public class StateModifier
 {
-    private Dictionary<StateType, StateHandler<State>> modifire;
+    private Dictionary<StateType, StateHandler<State>> modifier = new();
 
     private event StateHandler<State> baseDamage;
     private event StateHandler<State> criticalX;
@@ -23,43 +23,57 @@ public class StateModifier
     private event StateHandler<State> baseDMGIncrease;
     private event StateHandler<State> ExplosionDMGIncrease;
     private event StateHandler<State> ElementalDMGIncrease;
+    private event StateHandler<State> range;
+
+    private event StateHandler<State> maxHealthPoint;
+    private event StateHandler<State> maxProtectionPoint;
+
     private event StateHandler<State> movementSpeed;
+    private event StateHandler<State> dashSpeed;
+    private event StateHandler<State> dashDuration;
+    private event StateHandler<State> DashCooltime;
 
     public StateModifier()
     {
-        modifire = new Dictionary<StateType, StateHandler<State>>();
+        modifier.Add(StateType.BaseDamage, baseDamage);
+        modifier.Add(StateType.CriticalX, criticalX);
+        modifier.Add(StateType.LuckyShot, luckyShot);
+        modifier.Add(StateType.Magazine, magazine);
+        modifier.Add(StateType.Projectiles, projectiles);
+        modifier.Add(StateType.ProjectileSpeed, projectileSpeed);
+        modifier.Add(StateType.RateOfFire, rateOfFire);
+        modifier.Add(StateType.ReloadTime, reloadTime);
+        modifier.Add(StateType.WPNUpgrade, upgrade);
+        modifier.Add(StateType.Accuracy, accuracy);
+        modifier.Add(StateType.Stability, stability);
+        modifier.Add(StateType.baseDMGIncrease, baseDMGIncrease);
+        modifier.Add(StateType.ExplosionDMGIncrease, ExplosionDMGIncrease);
+        modifier.Add(StateType.ElementalDMGIncrease, ElementalDMGIncrease);
+        modifier.Add(StateType.Range, range);
 
-        modifire.Add(StateType.BaseDamage, baseDamage);
-        modifire.Add(StateType.CriticalX, criticalX);
-        modifire.Add(StateType.LuckyShot, luckyShot);
-        modifire.Add(StateType.Magazine, magazine);
-        modifire.Add(StateType.Projectiles, projectiles);
-        modifire.Add(StateType.ProjectileSpeed, projectileSpeed);
-        modifire.Add(StateType.RateOfFire, rateOfFire);
-        modifire.Add(StateType.ReloadTime, reloadTime);
-        modifire.Add(StateType.WPNUpgrade, upgrade);
-        modifire.Add(StateType.Accuracy, accuracy);
-        modifire.Add(StateType.Stability, stability);
-        modifire.Add(StateType.baseDMGIncrease, baseDMGIncrease);
-        modifire.Add(StateType.ExplosionDMGIncrease, ExplosionDMGIncrease);
-        modifire.Add(StateType.ElementalDMGIncrease, ElementalDMGIncrease);
-        modifire.Add(StateType.MovementSpeed, movementSpeed);
+        modifier.Add(StateType.MaxHealthPoint, maxHealthPoint);
+        modifier.Add(StateType.MaxProtectionPoint, maxProtectionPoint);
+
+        modifier.Add(StateType.MovementSpeed, movementSpeed);
+        modifier.Add(StateType.DashSpeed, dashSpeed);
+        modifier.Add(StateType.DashDuration, dashDuration);
+        modifier.Add(StateType.DashCooltime, DashCooltime);
     }
 
 
     public State GetState(StateType stateType)
     {
         State temp = new State(stateType, 0);
-        modifire[stateType](temp);
+        modifier[stateType](temp);
         
         return temp;
     }
     public void AddHandler(State state)
     {
-        modifire[state.stateType] += state.AddState;
+        modifier[state.stateType] += state.AddState;
     }
     public void DelHandler(State state)
     {
-        modifire[state.stateType] += state.AddState;
+        modifier[state.stateType] += state.AddState;
     }
 }

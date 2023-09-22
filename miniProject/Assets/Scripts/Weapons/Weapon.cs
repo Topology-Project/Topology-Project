@@ -5,28 +5,29 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public State baseDamage { private set; get; }
-    public State criticalX { private set; get; }
-    public State luckyShot { private set; get; }
-    public State magazine { private set; get; }
-    public State projectiles { private set; get; }
-    public State projectileSpeed { private set; get; }
-    public State rateOfFire { private set; get; }
-    public State reloadTime { private set; get; }
-    public State upgrade { private set; get; }
-    public State accuracy { private set; get; }
-    public State stability { private set; get; }
-    public AmmunitionType ammunitionType { private set; get; }
-    public State baseDMGIncrease { private set; get; }
-    public State ExplosionDMGIncrease { private set; get; }
-    public State ElementalDMGIncrease { private set; get; }
+    private AmmunitionType ammunitionType;
+    private State baseDamage;
+    private State criticalX;
+    private State luckyShot;
+    private State magazine;
+    private State projectiles;
+    private State projectileSpeed;
+    private State rateOfFire;
+    private State reloadTime;
+    private State upgrade;
+    private State accuracy;
+    private State stability;
+    private State baseDMGIncrease;
+    private State ExplosionDMGIncrease;
+    private State ElementalDMGIncrease;
+    private State range;
 
-    public State movementSpeed { private set; get; }
+    private State movementSpeed;
 
 
-    Character character;
-    GameObject parent;
-    int residualAmmunition;
+    private Character character;
+    private GameObject parent;
+    private int residualAmmunition;
     public GameObject bullet;
 
     void Awake()
@@ -46,9 +47,10 @@ public class Weapon : MonoBehaviour
         baseDMGIncrease = new State(StateType.baseDMGIncrease, 0);
         ExplosionDMGIncrease = new State(StateType.ExplosionDMGIncrease, 0);
         ElementalDMGIncrease = new State(StateType.ElementalDMGIncrease, 0);
+        range = new State(StateType.Range, 40);
         ammunitionType = AmmunitionType.Infinite;
 
-        movementSpeed  = new State(StateType.MovementSpeed, 0);
+        movementSpeed  = new State(StateType.MovementSpeed, 10);
 
         residualAmmunition = (int)magazine.value;
     }
@@ -57,7 +59,7 @@ public class Weapon : MonoBehaviour
     {
         this.character = character;
         parent = character.gameObject;
-        StateModifier stateModifier = character.stateModifier;
+        StateModifier stateModifier = character.GetModifier();
 
         stateModifier.AddHandler(baseDamage);
         stateModifier.AddHandler(criticalX);
@@ -71,14 +73,15 @@ public class Weapon : MonoBehaviour
         stateModifier.AddHandler(accuracy);
         stateModifier.AddHandler(stability);
         stateModifier.AddHandler(baseDMGIncrease);
-        stateModifier.AddHandler(ExplosionDMGIncrease);;
+        stateModifier.AddHandler(ExplosionDMGIncrease);
         stateModifier.AddHandler(ElementalDMGIncrease);
+        stateModifier.AddHandler(range);
 
         stateModifier.AddHandler(movementSpeed);
     }
     public void OffWeapon(Character character)
     {
-        StateModifier stateModifier = character.stateModifier;
+        StateModifier stateModifier = character.GetModifier();
         stateModifier.DelHandler(baseDamage);
         stateModifier.DelHandler(criticalX);
         stateModifier.DelHandler(luckyShot);
@@ -91,8 +94,9 @@ public class Weapon : MonoBehaviour
         stateModifier.DelHandler(accuracy);
         stateModifier.DelHandler(stability);
         stateModifier.DelHandler(baseDMGIncrease);
-        stateModifier.DelHandler(ExplosionDMGIncrease);;
+        stateModifier.DelHandler(ExplosionDMGIncrease);
         stateModifier.DelHandler(ElementalDMGIncrease);
+        stateModifier.DelHandler(range);
 
         stateModifier.DelHandler(movementSpeed);
 
@@ -106,11 +110,13 @@ public class Weapon : MonoBehaviour
         if(!isFire && residualAmmunition > 0) 
         {
             GameObject b = Instantiate(bullet, transform.position, transform.rotation);
-            b.GetComponent<Bullet>().Set(parent, character.stateModifier.GetState(StateType.ProjectileSpeed));
+            b.GetComponent<Bullet>().Set(parent,
+                character.GetModifier().GetState(StateType.ProjectileSpeed),
+                character.GetModifier().GetState(StateType.Range));
             isFire = true;
             StartCoroutine(FireReady());
             residualAmmunition--;
-            Debug.Log(residualAmmunition + "/" + character.stateModifier.GetState(StateType.Magazine));
+            Debug.Log(residualAmmunition + "/" + character.GetModifier().GetState(StateType.Magazine));
         }
         if(residualAmmunition <= 0) 
         {
@@ -121,8 +127,7 @@ public class Weapon : MonoBehaviour
     }
     IEnumerator FireReady()
     {
-        yield return new WaitForSeconds(0);
-        float time = 1f / character.stateModifier.GetState(StateType.RateOfFire);
+        float time = 1f / character.GetModifier().GetState(StateType.RateOfFire);
         yield return new WaitForSeconds(time);
         isFire = false;
     }
@@ -130,12 +135,12 @@ public class Weapon : MonoBehaviour
     public void Reload()
     {
         Debug.Log("reloading");
+        isFire = false;
         StartCoroutine(Reloading());
     }
     IEnumerator Reloading()
     {
-        yield return new WaitForSeconds(0);
-        yield return new WaitForSeconds( character.stateModifier.GetState(StateType.ReloadTime));
-        residualAmmunition = (int)character.stateModifier.GetState(StateType.Magazine);
+        yield return new WaitForSeconds( character.GetModifier().GetState(StateType.ReloadTime));
+        residualAmmunition = (int)character.GetModifier().GetState(StateType.Magazine);
     }
 }

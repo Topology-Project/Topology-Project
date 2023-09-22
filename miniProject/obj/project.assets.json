@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\dhk_1\\Documents\\GitHub\\Unity-miniProject\\miniProject\\Assembly-CSharp.csproj",
+      "projectUniqueName": "c:\\Users\\dhk_1\\Documents\\GitHub\\Topology-Project\\miniProject\\Assembly-CSharp.csproj",
       "projectName": "Assembly-CSharp",
-      "projectPath": "c:\\Users\\dhk_1\\Documents\\GitHub\\Unity-miniProject\\miniProject\\Assembly-CSharp.csproj",
+      "projectPath": "c:\\Users\\dhk_1\\Documents\\GitHub\\Topology-Project\\miniProject\\Assembly-CSharp.csproj",
       "packagesPath": "C:\\Users\\dhk_1\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\dhk_1\\Documents\\GitHub\\Unity-miniProject\\miniProject\\obj\\",
+      "outputPath": "c:\\Users\\dhk_1\\Documents\\GitHub\\Topology-Project\\miniProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

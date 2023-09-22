@@ -21,10 +21,10 @@ public class InputManager : MonoBehaviour
         Vector3 dir = new Vector3(
             Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         Vector3 mouseDir = new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"));
-        player.dir = dir.normalized;
+        player.Move(dir.normalized);
+        player.Angle(mouseDir);
         playerCamera.dir = mouseDir;
-        player.mouseDir = mouseDir;
-        if(Input.GetButtonDown("Dash")) player.DashOn();
+        if(Input.GetButtonDown("Dash")) player.Dash();
         if(Input.GetButtonDown("Jump")) player.JumpOn();
         if(Input.GetButtonDown("Fire1")) weapon.Fire(playerCamera.transform);
         if(Input.GetButtonDown("Reload")) weapon.Reload();
