@@ -1,4 +1,4 @@
 public enum ProtectionType
 {
-    None, Shield, Armor
+    Shield, Armor
 }
