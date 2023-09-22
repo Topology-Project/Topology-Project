@@ -25,12 +25,9 @@ public class State
         SetState(state.stateType, state.value);
     }
 
-    public void AddState(State modifire)
+    public void AddState(State modifier)
     {
-        if(stateType == modifire.stateType)
-        {
-            modifire.value += value;
-        }
+        modifier.value += value;
     }
 
     public static State Clone(State state)

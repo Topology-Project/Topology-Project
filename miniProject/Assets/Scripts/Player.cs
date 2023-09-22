@@ -14,27 +14,19 @@ public class Player : Character
     public Vector3 mouseDir;
     Rigidbody rig;
     ArrayList inventory = new();
-    private void Awake()
-    {
-        // 임시
-        maxHealthPoint = 100;
-        armorType = ProtectionType.Shield;
-        maxArmorPoint = 100;
-        defaultSpeed = 10;
-        dashSpeed = 4f;
-        dashDuration = 0.5f;
-        dashCooltime = 3;
-    }
+    // private void Awake()
+    // {
+    //     // 임시
+    //     dashSpeed = 4f;
+    //     dashDuration = 0.5f;
+    //     dashCooltime = 3;
+    // }
     // Start is called before the first frame update
     private void Start()
     {
-        healthPoint = maxHealthPoint;
-        armorPoint = maxArmorPoint;
         dir = new Vector3(0, 0, 0);
         dashCooltimer = 3;
         rig = GetComponent<Rigidbody>();
-        stateModifier = new();
-        weapon.OnWeapon(this);
     }
 
     // Update is called once per frame
