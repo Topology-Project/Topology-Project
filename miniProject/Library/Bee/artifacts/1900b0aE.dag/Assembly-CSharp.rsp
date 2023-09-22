@@ -368,6 +368,7 @@
 "Assets/Scripts/States/StateModifier.cs"
 "Assets/Scripts/States/StateType.cs"
 "Assets/Scripts/Weapons/Weapon.cs"
+"Assets/Scripts/Weapons/WeaponType.cs"
 -langversion:9.0
 
 /deterministic

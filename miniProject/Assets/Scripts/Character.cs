@@ -91,17 +91,23 @@ public class Character : MonoBehaviour, CharacterInterface
 
     public float DamageCalc(StateModifier stateModifier)
     {
+        int lsh = (int)(stateModifier.GetState(StateType.LuckyShot)%100 > Random.Range(0f, 100f) ?
+                    stateModifier.GetState(StateType.LuckyShot)+1 : stateModifier.GetState(StateType.LuckyShot));
         float damage = stateModifier.GetState(StateType.BaseDamage)
                     * (1+stateModifier.GetState(StateType.WPNUpgrade)*0.15f)
-                    * (1+stateModifier.GetState(StateType.baseDMGIncrease)*0.01f)
+                    * (1+stateModifier.GetState(StateType.BaseDMGIncrease)*0.01f)
                     * (1+stateModifier.GetState(StateType.ExplosionDMGIncrease)*0.01f)
-                    * (1+stateModifier.GetState(StateType.ElementalDMGIncrease)*0.01f);
+                    * (1+stateModifier.GetState(StateType.ElementalDMGIncrease)*0.01f)
+                    * (1+lsh*0.01f)
+                    * stateModifier.GetState(StateType.CriticalX);
         
         Debug.Log("Damage : " + stateModifier.GetState(StateType.BaseDamage)
                     + "*" + (1+stateModifier.GetState(StateType.WPNUpgrade)*0.15f)
-                    + "*" + (1+stateModifier.GetState(StateType.baseDMGIncrease)*0.01f)
+                    + "*" + (1+stateModifier.GetState(StateType.BaseDMGIncrease)*0.01f)
                     + "*" + (1+stateModifier.GetState(StateType.ExplosionDMGIncrease)*0.01f)
                     + "*" + (1+stateModifier.GetState(StateType.ElementalDMGIncrease)*0.01f)
+                    + "*" + (1+lsh*0.01f)
+                    + "*" + stateModifier.GetState(StateType.CriticalX)
                     + "=" + damage);
 
         return damage;

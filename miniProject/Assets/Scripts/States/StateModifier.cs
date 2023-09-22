@@ -21,8 +21,9 @@ public class StateModifier
     private event StateHandler<State> accuracy;
     private event StateHandler<State> stability;
     private event StateHandler<State> baseDMGIncrease;
-    private event StateHandler<State> ExplosionDMGIncrease;
-    private event StateHandler<State> ElementalDMGIncrease;
+    private event StateHandler<State> explosionRange;
+    private event StateHandler<State> explosionDMGIncrease;
+    private event StateHandler<State> elementalDMGIncrease;
     private event StateHandler<State> range;
 
     private event StateHandler<State> maxHealthPoint;
@@ -46,9 +47,10 @@ public class StateModifier
         modifier.Add(StateType.WPNUpgrade, upgrade);
         modifier.Add(StateType.Accuracy, accuracy);
         modifier.Add(StateType.Stability, stability);
-        modifier.Add(StateType.baseDMGIncrease, baseDMGIncrease);
-        modifier.Add(StateType.ExplosionDMGIncrease, ExplosionDMGIncrease);
-        modifier.Add(StateType.ElementalDMGIncrease, ElementalDMGIncrease);
+        modifier.Add(StateType.BaseDMGIncrease, baseDMGIncrease);
+        modifier.Add(StateType.ExplosionRange, explosionRange);
+        modifier.Add(StateType.ExplosionDMGIncrease, explosionDMGIncrease);
+        modifier.Add(StateType.ElementalDMGIncrease, elementalDMGIncrease);
         modifier.Add(StateType.Range, range);
 
         modifier.Add(StateType.MaxHealthPoint, maxHealthPoint);

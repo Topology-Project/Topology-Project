@@ -6,6 +6,10 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     private AmmunitionType ammunitionType;
+    private WeaponType weaponType;
+    private ElementalEffectType elementalEffectType;
+    private bool isExplosion;
+
     private State baseDamage;
     private State criticalX;
     private State luckyShot;
@@ -18,8 +22,9 @@ public class Weapon : MonoBehaviour
     private State accuracy;
     private State stability;
     private State baseDMGIncrease;
-    private State ExplosionDMGIncrease;
-    private State ElementalDMGIncrease;
+    private State explosionRange;
+    private State explosionDMGIncrease;
+    private State elementalDMGIncrease;
     private State range;
 
     private State movementSpeed;
@@ -33,6 +38,11 @@ public class Weapon : MonoBehaviour
     void Awake()
     {
         //bullet = Resources.Load("Bullet") as GameObject;
+        ammunitionType = AmmunitionType.Infinite;
+        weaponType = WeaponType.Pistol;
+        elementalEffectType = ElementalEffectType.None;
+        isExplosion = false;
+
         baseDamage = new State(StateType.BaseDamage, 145);
         criticalX = new State(StateType.CriticalX, 2);
         luckyShot = new State(StateType.LuckyShot, 0);
@@ -44,11 +54,11 @@ public class Weapon : MonoBehaviour
         upgrade = new State(StateType.WPNUpgrade, 1);
         accuracy = new State(StateType.Accuracy, 10);
         stability = new State(StateType.Stability, 10);
-        baseDMGIncrease = new State(StateType.baseDMGIncrease, 0);
-        ExplosionDMGIncrease = new State(StateType.ExplosionDMGIncrease, 0);
-        ElementalDMGIncrease = new State(StateType.ElementalDMGIncrease, 0);
+        baseDMGIncrease = new State(StateType.BaseDMGIncrease, 0);
+        explosionRange = new State(StateType.ExplosionRange, 0);
+        explosionDMGIncrease = new State(StateType.ExplosionDMGIncrease, 0);
+        elementalDMGIncrease = new State(StateType.ElementalDMGIncrease, 0);
         range = new State(StateType.Range, 40);
-        ammunitionType = AmmunitionType.Infinite;
 
         movementSpeed  = new State(StateType.MovementSpeed, 10);
 
@@ -73,8 +83,9 @@ public class Weapon : MonoBehaviour
         stateModifier.AddHandler(accuracy);
         stateModifier.AddHandler(stability);
         stateModifier.AddHandler(baseDMGIncrease);
-        stateModifier.AddHandler(ExplosionDMGIncrease);
-        stateModifier.AddHandler(ElementalDMGIncrease);
+        stateModifier.AddHandler(explosionRange);
+        stateModifier.AddHandler(explosionDMGIncrease);
+        stateModifier.AddHandler(elementalDMGIncrease);
         stateModifier.AddHandler(range);
 
         stateModifier.AddHandler(movementSpeed);
@@ -94,8 +105,9 @@ public class Weapon : MonoBehaviour
         stateModifier.DelHandler(accuracy);
         stateModifier.DelHandler(stability);
         stateModifier.DelHandler(baseDMGIncrease);
-        stateModifier.DelHandler(ExplosionDMGIncrease);
-        stateModifier.DelHandler(ElementalDMGIncrease);
+        stateModifier.DelHandler(explosionRange);
+        stateModifier.DelHandler(explosionDMGIncrease);
+        stateModifier.DelHandler(elementalDMGIncrease);
         stateModifier.DelHandler(range);
 
         stateModifier.DelHandler(movementSpeed);
@@ -109,10 +121,15 @@ public class Weapon : MonoBehaviour
     {
         if(!isFire && residualAmmunition > 0) 
         {
-            GameObject b = Instantiate(bullet, transform.position, transform.rotation);
-            b.GetComponent<Bullet>().Set(parent,
-                character.GetModifier().GetState(StateType.ProjectileSpeed),
-                character.GetModifier().GetState(StateType.Range));
+            int pj = (int)(character.GetModifier().GetState(StateType.Projectiles)%1 > Random.Range(0f, 1f) ? 
+                        character.GetModifier().GetState(StateType.Projectiles)+1 : character.GetModifier().GetState(StateType.Projectiles));
+            for(int i=0; i<pj; i++)
+            {
+                GameObject b = Instantiate(bullet, transform.position, transform.rotation);
+                b.GetComponent<Bullet>().Set(parent,
+                    character.GetModifier().GetState(StateType.ProjectileSpeed),
+                    character.GetModifier().GetState(StateType.Range));
+            }
             isFire = true;
             StartCoroutine(FireReady());
             residualAmmunition--;
