@@ -4,25 +4,44 @@ using UnityEngine;
 
 public interface CharacterInterface
 {
-    public StateModifier Get();
+    public StateModifier GetModifier();
 }
 
 public class Character : MonoBehaviour, CharacterInterface
 {
-    [SerializeField] protected float maxHealthPoint;
-    [SerializeField] protected ProtectionType armorType;
-    [SerializeField] protected float maxArmorPoint;
-    [SerializeField] protected float defaultSpeed;
+    protected State movementSpeed;
+    protected State maxHealthPoint;
+    protected State maxArmorPoint;
 
-    [SerializeField] protected float healthPoint;
-    [SerializeField] protected float armorPoint;
+    protected ProtectionType protectionType;
+    protected float healthPoint;
+    protected float armorPoint;
 
-    public StateModifier stateModifier { get; protected set; }
+    protected StateModifier stateModifier = new();
     public Weapon weapon;
+    // private int[] maxAmmuniitionsAmount = new int[3];
+    // private int[] remainingAmmunitionsAmount = new int[3];
+
+    void Start()
+    {
+        movementSpeed = new State(StateType.MovementSpeed, 10);
+        maxHealthPoint = new State(StateType.MaxHealthPoint, 80);
+        maxArmorPoint = new State(StateType.MaxArmorPoint, 80);
+        
+        stateModifier.AddHandler(movementSpeed);
+        stateModifier.AddHandler(maxHealthPoint);
+        stateModifier.AddHandler(maxArmorPoint);
+
+        protectionType = ProtectionType.Shield;
+        healthPoint = maxHealthPoint;
+        armorPoint = maxArmorPoint;
+
+        //weapon.OnWeapon(this);
+    }
 
     protected void Move(Vector3 dir)
     {
-        transform.Translate(dir * defaultSpeed * Time.deltaTime);
+        transform.Translate(dir * stateModifier.GetState(StateType.MovementSpeed) * Time.deltaTime);
     }
 
     protected void Angle(Vector3 dir)
@@ -30,7 +49,10 @@ public class Character : MonoBehaviour, CharacterInterface
         transform.localEulerAngles += new Vector3(0, dir.y, 0);
     }
 
-    public StateModifier Get()
+    public void Fire(Transform transform) => weapon.Fire(transform);
+    public void Reload() => weapon.Reload();
+
+    public StateModifier GetModifier()
     {
         return this.stateModifier;
     }
@@ -58,7 +80,8 @@ public class Character : MonoBehaviour, CharacterInterface
         if(other.gameObject.tag.Equals("Bullet"))
         {
             GameObject parent = other.GetComponent<Bullet>().parent;
-            if(!parent.tag.Equals(gameObject.tag)) DamageCalc(parent.GetComponent<CharacterInterface>().Get());
+            if(!parent.tag.Equals(gameObject.tag))
+                DamageCalc(parent.GetComponent<CharacterInterface>().GetModifier());
         }
     }
 }
