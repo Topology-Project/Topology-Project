@@ -23,6 +23,7 @@ public class StateModifier
     private event StateHandler<State> baseDMGIncrease;
     private event StateHandler<State> explosionRange;
     private event StateHandler<State> explosionDMGIncrease;
+    private event StateHandler<State> elementalRate;
     private event StateHandler<State> elementalDMGIncrease;
     private event StateHandler<State> range;
 
@@ -50,6 +51,7 @@ public class StateModifier
         modifier.Add(StateType.BaseDMGIncrease, baseDMGIncrease);
         modifier.Add(StateType.ExplosionRange, explosionRange);
         modifier.Add(StateType.ExplosionDMGIncrease, explosionDMGIncrease);
+        modifier.Add(StateType.ElementalRate, elementalRate);
         modifier.Add(StateType.ElementalDMGIncrease, elementalDMGIncrease);
         modifier.Add(StateType.Range, range);
 
@@ -72,10 +74,10 @@ public class StateModifier
     }
     public void AddHandler(State state)
     {
-        modifier[state.stateType] += state.AddState;
+        modifier[state.stateType] = state.operatorHandler(state, modifier[state.stateType]); // 이게되네 ㅋㅋㅋㅋ
     }
     public void DelHandler(State state)
     {
-        modifier[state.stateType] += state.AddState;
+        modifier[state.stateType] = state.operatorHandler(state);
     }
 }

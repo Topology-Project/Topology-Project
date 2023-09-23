@@ -9,6 +9,7 @@ public interface CharacterInterface
 
 public class Character : MonoBehaviour, CharacterInterface
 {
+    protected float defaultSpeed;
 
     protected ProtectionType armorType;
     protected State maxHealthPoint;
@@ -33,7 +34,7 @@ public class Character : MonoBehaviour, CharacterInterface
         maxHealthPoint = new State(StateType.MaxHealthPoint, 80);
         maxProtectionPoint = new State(StateType.MaxProtectionPoint, 80);
 
-        movement = new State(StateType.MovementSpeed, 10);
+        movement = new State(StateType.MovementSpeed, 100);
         dashSpeed = new State(StateType.DashSpeed, 2);
         dashDuration = new State(StateType.DashDuration, 0.5f);
         dashCooltime = new State(StateType.DashCooltime, 3);
@@ -46,6 +47,7 @@ public class Character : MonoBehaviour, CharacterInterface
         stateModifier.AddHandler(dashDuration);
         stateModifier.AddHandler(dashCooltime);
 
+        defaultSpeed = 5;
         equippedWeapon = 2;
         isDashReady = true;
     }
@@ -53,7 +55,7 @@ public class Character : MonoBehaviour, CharacterInterface
     public void Move(Vector3 dir)
     {
         if(isDash) dir *= stateModifier.GetState(StateType.DashSpeed);
-        transform.Translate(dir * stateModifier.GetState(StateType.MovementSpeed) * Time.deltaTime);
+        transform.Translate(dir * defaultSpeed * (stateModifier.GetState(StateType.MovementSpeed)*0.01f) * Time.deltaTime);
     }
     private bool isDash;
     private bool isDashReady;

@@ -24,6 +24,7 @@ public class Weapon : MonoBehaviour
     private State baseDMGIncrease;
     private State explosionRange;
     private State explosionDMGIncrease;
+    private State elementalRate;
     private State elementalDMGIncrease;
     private State range;
 
@@ -57,10 +58,11 @@ public class Weapon : MonoBehaviour
         baseDMGIncrease = new State(StateType.BaseDMGIncrease, 0);
         explosionRange = new State(StateType.ExplosionRange, 0);
         explosionDMGIncrease = new State(StateType.ExplosionDMGIncrease, 0);
+        elementalRate = new State(StateType.ElementalRate, 0);
         elementalDMGIncrease = new State(StateType.ElementalDMGIncrease, 0);
         range = new State(StateType.Range, 40);
 
-        movementSpeed  = new State(StateType.MovementSpeed, 10);
+        movementSpeed  = new State(StateType.MovementSpeed, 0.5f, State.MulOper);
 
         residualAmmunition = (int)magazine.value;
     }
@@ -85,6 +87,7 @@ public class Weapon : MonoBehaviour
         stateModifier.AddHandler(baseDMGIncrease);
         stateModifier.AddHandler(explosionRange);
         stateModifier.AddHandler(explosionDMGIncrease);
+        stateModifier.AddHandler(elementalRate);
         stateModifier.AddHandler(elementalDMGIncrease);
         stateModifier.AddHandler(range);
 
@@ -107,6 +110,7 @@ public class Weapon : MonoBehaviour
         stateModifier.DelHandler(baseDMGIncrease);
         stateModifier.DelHandler(explosionRange);
         stateModifier.DelHandler(explosionDMGIncrease);
+        stateModifier.DelHandler(elementalRate);
         stateModifier.DelHandler(elementalDMGIncrease);
         stateModifier.DelHandler(range);
 
