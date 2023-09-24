@@ -69,6 +69,9 @@ public class Weapon : MonoBehaviour
 
     public void OnWeapon(Character character)
     {
+        isFire = false;
+        isReroad = false;
+
         this.character = character;
         parent = character.gameObject;
         StateModifier stateModifier = character.GetModifier();
@@ -121,9 +124,10 @@ public class Weapon : MonoBehaviour
     }
 
     private bool isFire = false;
-    public void Fire(Transform transform)
+    private bool isReroad = false;
+    public void Fire1(Transform transform)
     {
-        if(!isFire && residualAmmunition > 0) 
+        if(!isReroad && !isFire && residualAmmunition > 0) 
         {
             int pj = (int)(character.GetModifier().GetState(StateType.Projectiles)%1 > Random.Range(0f, 1f) ? 
                         character.GetModifier().GetState(StateType.Projectiles)+1 : character.GetModifier().GetState(StateType.Projectiles));
@@ -156,12 +160,13 @@ public class Weapon : MonoBehaviour
     public void Reload()
     {
         Debug.Log("reloading");
-        isFire = false;
+        isReroad = true;
         StartCoroutine(Reloading());
     }
     IEnumerator Reloading()
     {
         yield return new WaitForSeconds( character.GetModifier().GetState(StateType.ReloadTime));
         residualAmmunition = (int)character.GetModifier().GetState(StateType.Magazine);
+        isReroad = false;
     }
 }

@@ -353,6 +353,7 @@
 "Assets/Scripts/Effects/ElementalEffects/Fire.cs"
 "Assets/Scripts/Effects/ElementalEffects/Lightning.cs"
 "Assets/Scripts/Enemy.cs"
+"Assets/Scripts/GameManager.cs"
 "Assets/Scripts/InputManager.cs"
 "Assets/Scripts/Item.cs"
 "Assets/Scripts/Player.cs"

@@ -25,6 +25,7 @@ public class Character : MonoBehaviour, CharacterInterface
     protected float armorPoint;
 
     protected StateModifier stateModifier = new();
+    protected ArrayList effects = new();
     public Weapon weapon;
     protected int equippedWeapon;
 
@@ -83,7 +84,7 @@ public class Character : MonoBehaviour, CharacterInterface
         transform.localEulerAngles += new Vector3(0, dir.y, 0);
     }
 
-    public virtual void Fire(Transform transfrom) => weapon.Fire(transform);
+    public virtual void Fire1(Transform transfrom) => weapon.Fire1(transform);
     public void Reload() => weapon.Reload();
 
     public StateModifier GetModifier()

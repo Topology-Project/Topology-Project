@@ -8,7 +8,7 @@ public class State
 {
     public const int WEAPON_LENGTH = 11;
 
-    public delegate StateHandler<State> OperatorHandler( State state, StateHandler<State> del=null);
+    public delegate StateHandler<State> OperatorHandler(State state, StateHandler<State> del=null);
     public OperatorHandler operatorHandler { get; private set;}
 
     public StateType stateType { private set; get; }
