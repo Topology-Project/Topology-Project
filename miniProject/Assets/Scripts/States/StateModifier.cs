@@ -67,7 +67,7 @@ public class StateModifier
 
     public State GetState(StateType stateType)
     {
-        State temp = new State(stateType, 0);
+        State temp = new State(stateType, 1);
         modifier[stateType](temp);
         
         return temp;

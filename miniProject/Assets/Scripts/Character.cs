@@ -9,8 +9,6 @@ public interface CharacterInterface
 
 public class Character : MonoBehaviour, CharacterInterface
 {
-    protected float defaultSpeed;
-
     protected ProtectionType armorType;
     protected State maxHealthPoint;
     protected State maxProtectionPoint;
@@ -32,13 +30,13 @@ public class Character : MonoBehaviour, CharacterInterface
     protected virtual void Awake()
     {
         armorType = ProtectionType.Shield;
-        maxHealthPoint = new State(StateType.MaxHealthPoint, 80);
-        maxProtectionPoint = new State(StateType.MaxProtectionPoint, 80);
+        maxHealthPoint = new State(StateType.MaxHealthPoint, 80, State.MulOper);
+        maxProtectionPoint = new State(StateType.MaxProtectionPoint, 80, State.MulOper);
 
-        movement = new State(StateType.MovementSpeed, 100);
-        dashSpeed = new State(StateType.DashSpeed, 2);
-        dashDuration = new State(StateType.DashDuration, 0.5f);
-        dashCooltime = new State(StateType.DashCooltime, 3);
+        movement = new State(StateType.MovementSpeed, 8, State.MulOper);
+        dashSpeed = new State(StateType.DashSpeed, 2, State.MulOper);
+        dashDuration = new State(StateType.DashDuration, 0.5f, State.MulOper);
+        dashCooltime = new State(StateType.DashCooltime, 3, State.MulOper);
 
         stateModifier.AddHandler(maxHealthPoint);
         stateModifier.AddHandler(maxProtectionPoint);
@@ -48,7 +46,6 @@ public class Character : MonoBehaviour, CharacterInterface
         stateModifier.AddHandler(dashDuration);
         stateModifier.AddHandler(dashCooltime);
 
-        defaultSpeed = 5;
         equippedWeapon = 2;
         isDashReady = true;
     }
@@ -56,7 +53,7 @@ public class Character : MonoBehaviour, CharacterInterface
     public void Move(Vector3 dir)
     {
         if(isDash) dir *= stateModifier.GetState(StateType.DashSpeed);
-        transform.Translate(dir * defaultSpeed * (stateModifier.GetState(StateType.MovementSpeed)*0.01f) * Time.deltaTime);
+        transform.Translate(dir * stateModifier.GetState(StateType.MovementSpeed) * Time.deltaTime);
     }
     private bool isDash;
     private bool isDashReady;
@@ -97,19 +94,19 @@ public class Character : MonoBehaviour, CharacterInterface
         int lsh = (int)(stateModifier.GetState(StateType.LuckyShot)%100 > Random.Range(0f, 100f) ?
                     stateModifier.GetState(StateType.LuckyShot)+1 : stateModifier.GetState(StateType.LuckyShot));
         float damage = stateModifier.GetState(StateType.BaseDamage)
-                    * (1+stateModifier.GetState(StateType.WPNUpgrade)*0.15f)
-                    * (1+stateModifier.GetState(StateType.BaseDMGIncrease)*0.01f)
-                    * (1+stateModifier.GetState(StateType.ExplosionDMGIncrease)*0.01f)
-                    * (1+stateModifier.GetState(StateType.ElementalDMGIncrease)*0.01f)
-                    * (1+lsh*0.01f)
+                    * stateModifier.GetState(StateType.WPNUpgrade)
+                    * stateModifier.GetState(StateType.BaseDMGIncrease)
+                    * stateModifier.GetState(StateType.ExplosionDMGIncrease)
+                    * stateModifier.GetState(StateType.ElementalDMGIncrease)
+                    * lsh
                     * stateModifier.GetState(StateType.CriticalX);
         
         Debug.Log("Damage : " + stateModifier.GetState(StateType.BaseDamage)
-                    + "*" + (1+stateModifier.GetState(StateType.WPNUpgrade)*0.15f)
-                    + "*" + (1+stateModifier.GetState(StateType.BaseDMGIncrease)*0.01f)
-                    + "*" + (1+stateModifier.GetState(StateType.ExplosionDMGIncrease)*0.01f)
-                    + "*" + (1+stateModifier.GetState(StateType.ElementalDMGIncrease)*0.01f)
-                    + "*" + (1+lsh*0.01f)
+                    + "*" + stateModifier.GetState(StateType.WPNUpgrade)
+                    + "*" + stateModifier.GetState(StateType.BaseDMGIncrease)
+                    + "*" + stateModifier.GetState(StateType.ExplosionDMGIncrease)
+                    + "*" + stateModifier.GetState(StateType.ElementalDMGIncrease)
+                    + "*" + lsh
                     + "*" + stateModifier.GetState(StateType.CriticalX)
                     + "=" + damage);
 

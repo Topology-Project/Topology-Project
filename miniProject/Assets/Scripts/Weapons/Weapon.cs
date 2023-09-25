@@ -44,25 +44,25 @@ public class Weapon : MonoBehaviour
         elementalEffectType = ElementalEffectType.None;
         isExplosion = false;
 
-        baseDamage = new State(StateType.BaseDamage, 145);
-        criticalX = new State(StateType.CriticalX, 2);
-        luckyShot = new State(StateType.LuckyShot, 0);
-        magazine = new State(StateType.Magazine, 9);
-        projectiles = new State(StateType.Projectiles, 1);
-        projectileSpeed = new State(StateType.ProjectileSpeed, 10);
-        rateOfFire = new State(StateType.RateOfFire, 3);
-        reloadTime = new State(StateType.ReloadTime, 1.35f);
-        upgrade = new State(StateType.WPNUpgrade, 1);
-        accuracy = new State(StateType.Accuracy, 10);
-        stability = new State(StateType.Stability, 10);
-        baseDMGIncrease = new State(StateType.BaseDMGIncrease, 0);
-        explosionRange = new State(StateType.ExplosionRange, 0);
-        explosionDMGIncrease = new State(StateType.ExplosionDMGIncrease, 0);
-        elementalRate = new State(StateType.ElementalRate, 0);
-        elementalDMGIncrease = new State(StateType.ElementalDMGIncrease, 0);
-        range = new State(StateType.Range, 40);
+        baseDamage = new State(StateType.BaseDamage, 145, State.MulOper);
+        criticalX = new State(StateType.CriticalX, 2, State.MulOper);
+        luckyShot = new State(StateType.LuckyShot, 0, State.MulOper);
+        magazine = new State(StateType.Magazine, 9, State.MulOper);
+        projectiles = new State(StateType.Projectiles, 1, State.MulOper);
+        projectileSpeed = new State(StateType.ProjectileSpeed, 10, State.MulOper);
+        rateOfFire = new State(StateType.RateOfFire, 3, State.MulOper);
+        reloadTime = new State(StateType.ReloadTime, 1.35f, State.MulOper);
+        upgrade = new State(StateType.WPNUpgrade, 1, State.MulOper);
+        accuracy = new State(StateType.Accuracy, 0.1f, State.MulOper);
+        stability = new State(StateType.Stability, 10, State.MulOper);
+        baseDMGIncrease = new State(StateType.BaseDMGIncrease, 0, State.MulOper);
+        explosionRange = new State(StateType.ExplosionRange, 0, State.MulOper);
+        explosionDMGIncrease = new State(StateType.ExplosionDMGIncrease, 0, State.MulOper);
+        elementalRate = new State(StateType.ElementalRate, 0, State.MulOper);
+        elementalDMGIncrease = new State(StateType.ElementalDMGIncrease, 0, State.MulOper);
+        range = new State(StateType.Range, 40, State.MulOper);
 
-        movementSpeed  = new State(StateType.MovementSpeed, 0.5f, State.MulOper);
+        movementSpeed  = new State(StateType.MovementSpeed, 0.9f, State.MulOper);
 
         residualAmmunition = (int)magazine.value;
     }

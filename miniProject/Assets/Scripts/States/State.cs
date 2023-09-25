@@ -9,7 +9,7 @@ public class State
     public const int WEAPON_LENGTH = 11;
 
     public delegate StateHandler<State> OperatorHandler(State state, StateHandler<State> del=null);
-    public OperatorHandler operatorHandler { get; private set;}
+    public OperatorHandler operatorHandler { get; private set; }
 
     public StateType stateType { private set; get; }
     public float value { private set; get; }
@@ -44,12 +44,12 @@ public class State
     public static StateHandler<State> AddOper(State state, StateHandler<State> del=null)
     {
         StateHandler<State> temp = state.AddState;
-        return (StateHandler<State>)Delegate.Combine(temp, del);
+        return (StateHandler<State>)Delegate.Combine(del, temp);
     }
     public static StateHandler<State> MulOper(State state, StateHandler<State> del=null)
     {
         StateHandler<State> temp = state.MulState;
-        return (StateHandler<State>)Delegate.Combine(del, temp);
+        return (StateHandler<State>)Delegate.Combine(temp, del);
     }
 
     // public static State Clone(State state)
