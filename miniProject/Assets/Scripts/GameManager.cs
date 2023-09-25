@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour
             if(go == null)
             {
             	go = new GameObject { name = "Player" };
+                player.transform.position = new Vector3(0, 1, 0);
+                player.transform.localEulerAngles = new Vector3(0, 180, 0);
             }
             if(go.GetComponent<Player>() == null)
             {

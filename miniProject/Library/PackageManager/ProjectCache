@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638309912170181908
+      ticks: 638312363987075621
     m_Hash: 1619118379
   m_LockFileStatus:
     m_FilePath: C:/Users/dhk_1/Documents/GitHub/Topology-Project/miniProject/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638309912170181908
+      ticks: 638312363987095634
     m_Hash: 2560085757
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
@@ -2949,7 +2949,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: 
+  type: asset
   description: 'The editor coroutines package allows developers to start constructs
     similar to Unity''s monobehaviour based coroutines within the editor using abitrary
     objects. '

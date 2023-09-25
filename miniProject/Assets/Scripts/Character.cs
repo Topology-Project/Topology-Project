@@ -25,18 +25,17 @@ public class Character : MonoBehaviour, CharacterInterface
     protected StateModifier stateModifier = new();
     protected ArrayList effects = new();
     public Weapon weapon;
-    protected int equippedWeapon;
 
     protected virtual void Awake()
     {
         armorType = ProtectionType.Shield;
-        maxHealthPoint = new State(StateType.MaxHealthPoint, 80, State.MulOper);
-        maxProtectionPoint = new State(StateType.MaxProtectionPoint, 80, State.MulOper);
+        maxHealthPoint = new State(StateType.MaxHealthPoint, 80, State.BaseOper);
+        maxProtectionPoint = new State(StateType.MaxProtectionPoint, 80, State.BaseOper);
 
-        movement = new State(StateType.MovementSpeed, 8, State.MulOper);
-        dashSpeed = new State(StateType.DashSpeed, 2, State.MulOper);
-        dashDuration = new State(StateType.DashDuration, 0.5f, State.MulOper);
-        dashCooltime = new State(StateType.DashCooltime, 3, State.MulOper);
+        movement = new State(StateType.MovementSpeed, 8);
+        dashSpeed = new State(StateType.DashSpeed, 2, State.BaseOper);
+        dashDuration = new State(StateType.DashDuration, 0.5f, State.BaseOper);
+        dashCooltime = new State(StateType.DashCooltime, 3, State.BaseOper);
 
         stateModifier.AddHandler(maxHealthPoint);
         stateModifier.AddHandler(maxProtectionPoint);
@@ -45,8 +44,11 @@ public class Character : MonoBehaviour, CharacterInterface
         stateModifier.AddHandler(dashSpeed);
         stateModifier.AddHandler(dashDuration);
         stateModifier.AddHandler(dashCooltime);
+    }
 
-        equippedWeapon = 2;
+    protected virtual void Start()
+    {
+        weapon.OnWeapon(this);
         isDashReady = true;
     }
 
@@ -91,7 +93,7 @@ public class Character : MonoBehaviour, CharacterInterface
 
     public float DamageCalc(StateModifier stateModifier)
     {
-        int lsh = (int)(stateModifier.GetState(StateType.LuckyShot)%100 > Random.Range(0f, 100f) ?
+        int lsh = (int)(stateModifier.GetState(StateType.LuckyShot)%1 > Random.Range(0f, 1f) ?
                     stateModifier.GetState(StateType.LuckyShot)+1 : stateModifier.GetState(StateType.LuckyShot));
         float damage = stateModifier.GetState(StateType.BaseDamage)
                     * stateModifier.GetState(StateType.WPNUpgrade)

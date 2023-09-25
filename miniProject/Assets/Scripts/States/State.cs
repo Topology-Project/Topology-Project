@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void StateHandler<State>(ref float baseVar, ref float sum, ref float mul);
+
 
 public class State
 {
-    public const int WEAPON_LENGTH = 11;
-
-    public delegate StateHandler<State> OperatorHandler(State state, StateHandler<State> del=null);
+    public delegate StateHandler<State> OperatorHandler(State state);
     public OperatorHandler operatorHandler { get; private set; }
 
     public StateType stateType { private set; get; }
@@ -32,24 +32,30 @@ public class State
         SetState(state.stateType, state.value);
     }
 
-    private void AddState(State modifier)
+    private void BaseState(ref float baseVar, ref float sum, ref float mul)
     {
-        modifier.value += value;
+        baseVar = value;
     }
-    private void MulState(State modifier)
+    private void AddState(ref float baseVar, ref float sum, ref float mul)
     {
-        modifier.value *= value;
+        sum += value;
+    }
+    private void MulState(ref float baseVar, ref float sum, ref float mul)
+    {
+        mul *= value;
     }
 
-    public static StateHandler<State> AddOper(State state, StateHandler<State> del=null)
+    public static StateHandler<State> BaseOper(State state)
     {
-        StateHandler<State> temp = state.AddState;
-        return (StateHandler<State>)Delegate.Combine(del, temp);
+        return state.BaseState;
     }
-    public static StateHandler<State> MulOper(State state, StateHandler<State> del=null)
+    public static StateHandler<State> AddOper(State state)
     {
-        StateHandler<State> temp = state.MulState;
-        return (StateHandler<State>)Delegate.Combine(temp, del);
+        return state.AddState;
+    }
+    public static StateHandler<State> MulOper(State state)
+    {
+        return state.MulState;
     }
 
     // public static State Clone(State state)

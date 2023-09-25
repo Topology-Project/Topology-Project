@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public delegate void StateHandler<State>(State modifier);
-
 public class StateModifier
 {
     private Dictionary<StateType, StateHandler<State>> modifier = new();
@@ -67,14 +65,16 @@ public class StateModifier
 
     public State GetState(StateType stateType)
     {
-        State temp = new State(stateType, 1);
-        modifier[stateType](temp);
+        float baseVar = 0;
+        float sum = 0;
+        float mul = 1;
+        modifier[stateType](ref baseVar, ref sum, ref mul);
         
-        return temp;
+        return new State(stateType, (baseVar + ((baseVar==0 ? 1 : baseVar) * sum)) * mul);
     }
     public void AddHandler(State state)
     {
-        modifier[state.stateType] = state.operatorHandler(state, modifier[state.stateType]); // 이게되네 ㅋㅋㅋㅋ
+        modifier[state.stateType] = state.operatorHandler(state);
     }
     public void DelHandler(State state)
     {
