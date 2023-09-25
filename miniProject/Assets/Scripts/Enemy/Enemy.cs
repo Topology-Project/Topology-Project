@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
 
     private bool isFind = false;
 
-    void Move()
+    void MoveEnemy()
     {
         if (isFind == true)
         {
@@ -41,10 +41,10 @@ public class Enemy : MonoBehaviour
         Vector3 RandomDirection = Random.insideUnitSphere * UpdateRange;
         RandomDirection += transform.position;
 
-        NavMeshHit NMHit;
-        if (NavMesh.SamplePosition(RandomDirection, out NMHit, UpdateRange, NavMesh.AllAreas))
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(RandomDirection, out hit, UpdateRange, NavMesh.AllAreas))
         {
-            return NMHit.position;
+            return hit.position;
         }
         else
         {
@@ -55,17 +55,54 @@ public class Enemy : MonoBehaviour
     // 플레이어 찾기
     void FindTarget()
     {
-        // 레이저 쏴보기(씬에서만 보임)
-        Debug.DrawRay(transform.position + (Vector3.up / 2), transform.forward * 30f, Color.red);
+        Vector3 rayStart = transform.position;
+        Vector3 rayDir = transform.forward;
+        float sphereRadius = 10f;
+        float findRange = 45f;
 
-        // 레이저 맞추고 맞춘 오브젝트 뭔지말하기
-        RaycastHit RCHit;
-        if (Physics.Raycast(this.transform.position, this.transform.forward, out RCHit, 30f))
+        Quaternion leftRot = Quaternion.Euler(0, -findRange * 0.5f, 0);
+        Vector3 leftDir = leftRot * rayDir;
+        float leftRad = Mathf.Acos(Vector3.Dot(rayDir, leftDir));
+        float leftDeg = -(Mathf.Rad2Deg * leftRad);
+
+        Quaternion rightRot = Quaternion.Euler(0, findRange * 0.5f, 0);
+        Vector3 rightDir = rightRot * rayDir;
+        float rightRad = Mathf.Acos(Vector3.Dot(rayDir, rightDir));
+        float rightDeg = Mathf.Rad2Deg * rightRad;
+
+
+
+        // 레이저 쏴보기(씬에서만 보임)
+        Debug.DrawRay(rayStart, rayDir * sphereRadius, Color.red);
+        Debug.DrawRay(rayStart, leftDir * sphereRadius, Color.green);
+        Debug.DrawRay(rayStart, rightDir * sphereRadius, Color.blue);
+
+        // 에너미 중심 원형 범위 전개
+        RaycastHit[] hits = Physics.SphereCastAll(rayStart, sphereRadius, rayDir, 0f);
+
+        foreach (RaycastHit hit in hits)
         {
-            if (RCHit.transform.CompareTag("Player"))
+            if (hit.transform.CompareTag("Player"))
             {
-                Debug.Log("플레이어 찾았다 ^^");
-                isFind = true;
+                // hit의 방향벡터값 계산
+                Vector3 hitDir = (hit.transform.position - rayStart).normalized;
+                float hitRad = Mathf.Acos(Vector3.Dot(rayDir, hitDir));
+                float hitDeg = Mathf.Rad2Deg * hitRad;
+
+                // Debug.Log(hitDeg + ", " + leftDeg + ", " + rightDeg);
+
+                // 시야각 계산
+                if (hitDeg >= leftDeg && hitDeg <= rightDeg)
+                {
+                    Debug.Log("플레이어 찾았다 ^^");
+                    isFind = true;
+                    break;
+                }
+                else
+                {
+                    Debug.Log("플레이어 범위 안엔 있는데 눈앞이 아님");
+                    break;
+                }
             }
             else
             {
@@ -86,7 +123,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
+        // MoveEnemy();
         FindTarget();
     }
 }
