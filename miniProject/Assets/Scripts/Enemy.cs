@@ -18,12 +18,12 @@ public class Enemy : Character
     {
         if (isFind == true)
         {
-            Debug.Log("나 거기로 간다 플레이어야");
+            // Debug.Log("나 거기로 간다 플레이어야");
             nma.SetDestination(target.position);
         }
         else
         {
-            Debug.Log("나 딴데로 간다");
+            // Debug.Log("나 딴데로 간다");
             LastUpdate += Time.deltaTime;
             if (LastUpdate >= UpdateTime)
             {
@@ -94,19 +94,19 @@ public class Enemy : Character
                 // 시야각 계산
                 if (hitDeg >= leftDeg && hitDeg <= rightDeg)
                 {
-                    Debug.Log("플레이어 찾았다 ^^");
+                    //Debug.Log("플레이어 찾았다 ^^");
                     isFind = true;
                     break;
                 }
                 else
                 {
-                    Debug.Log("플레이어 범위 안엔 있는데 눈앞이 아님");
+                    //Debug.Log("플레이어 범위 안엔 있는데 눈앞이 아님");
                     break;
                 }
             }
             else
             {
-                Debug.Log("플레이어 어딨노");
+                //Debug.Log("플레이어 어딨노");
                 // isFind = false;
             }
         }

@@ -20,10 +20,6 @@ public class Scroll : MonoBehaviour
         }
     }
 
-    public void SetStack(int stack)  { Stack = stack; }
-    public void AddStack(int addnum) { SetStack(Stack+addnum); }
-    public void SubStack(int subnum) { SetStack(Stack+subnum); }
-
     void Start()
     {
         state = new(stateType, value);

@@ -49,22 +49,27 @@ public class Weapon : MonoBehaviour
         luckyShot = new State(StateType.LuckyShot, 1, State.BaseOper);
         magazine = new State(StateType.Magazine, 9, State.BaseOper);
         projectiles = new State(StateType.Projectiles, 1, State.BaseOper);
-        projectileSpeed = new State(StateType.ProjectileSpeed, 10, State.BaseOper);
+        projectileSpeed = new State(StateType.ProjectileSpeed, 20, State.BaseOper);
         rateOfFire = new State(StateType.RateOfFire, 3, State.BaseOper);
         reloadTime = new State(StateType.ReloadTime, 1.35f, State.BaseOper);
         upgrade = new State(StateType.WPNUpgrade, 1, State.BaseOper);
-        accuracy = new State(StateType.Accuracy, 10, State.BaseOper);
+        accuracy = new State(StateType.Accuracy, 0.2f, State.BaseOper);
         stability = new State(StateType.Stability, 10, State.BaseOper);
         baseDMGIncrease = new State(StateType.BaseDMGIncrease, 1, State.BaseOper);
         explosionRange = new State(StateType.ExplosionRange, 0, State.BaseOper);
         explosionDMGIncrease = new State(StateType.ExplosionDMGIncrease, 1, State.BaseOper);
         elementalRate = new State(StateType.ElementalRate, 0, State.BaseOper);
         elementalDMGIncrease = new State(StateType.ElementalDMGIncrease, 1, State.BaseOper);
-        range = new State(StateType.Range, 40, State.BaseOper);
+        range = new State(StateType.Range, 20, State.BaseOper);
 
         movementSpeed  = new State(StateType.MovementSpeed, -0.1f);
 
         residualAmmunition = (int)magazine.value;
+    }
+
+    private void Update()
+    {
+        if(sumAccuracy > 0) sumAccuracy -= accuracy * 0.1f * Time.deltaTime;
     }
 
     public void OnWeapon(Character character)
@@ -125,6 +130,7 @@ public class Weapon : MonoBehaviour
 
     private bool isFire = false;
     private bool isReroad = false;
+    private float sumAccuracy = 0;
     public void Fire1(Transform transform)
     {
         if(!isReroad && !isFire && residualAmmunition > 0) 
@@ -133,7 +139,16 @@ public class Weapon : MonoBehaviour
                         character.GetModifier().GetState(StateType.Projectiles)+1 : character.GetModifier().GetState(StateType.Projectiles));
             for(int i=0; i<pj; i++)
             {
-                GameObject b = Instantiate(bullet, transform.position, transform.rotation);
+                var xError = GetRandomNormalDistribution(0f, accuracy+sumAccuracy);
+                var yError = GetRandomNormalDistribution(0f, accuracy+sumAccuracy);
+                var fireDirection = transform.rotation;
+
+                sumAccuracy += accuracy+sumAccuracy > accuracy*2 ? 0 : accuracy*0.1f;
+
+                fireDirection = Quaternion.AngleAxis(yError, Vector3.up) * fireDirection;
+                fireDirection = Quaternion.AngleAxis(xError, Vector3.right) * fireDirection;
+
+                GameObject b = Instantiate(bullet, transform.position, fireDirection);
                 b.GetComponent<Bullet>().Set(parent,
                     character.GetModifier().GetState(StateType.ProjectileSpeed),
                     character.GetModifier().GetState(StateType.Range));
@@ -168,5 +183,12 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds( character.GetModifier().GetState(StateType.ReloadTime));
         residualAmmunition = (int)character.GetModifier().GetState(StateType.Magazine);
         isReroad = false;
+    }
+
+    public static float GetRandomNormalDistribution(float mean, float standard)  // 정규 분포로 부터 랜덤값을 가져오는 함수 
+    {
+        var x1 = Random.Range(0f, 1f);
+        var x2 = Random.Range(0f, 1f);
+        return mean + standard * (Mathf.Sqrt(-2.0f * Mathf.Log(x1)) * Mathf.Sin(2.0f * Mathf.PI * x2));
     }
 }
