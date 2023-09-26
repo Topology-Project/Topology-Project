@@ -83,6 +83,7 @@ public class Enemy : Character
         {
             if (hit.transform.CompareTag("Player"))
             {
+
                 // hit의 방향벡터값 계산
                 Vector3 hitDir = (hit.transform.position - rayStart).normalized;
                 float hitRad = Mathf.Acos(Vector3.Dot(rayDir, hitDir));
@@ -106,7 +107,7 @@ public class Enemy : Character
             else
             {
                 Debug.Log("플레이어 어딨노");
-                isFind = false;
+                // isFind = false;
             }
         }
     }
@@ -122,7 +123,7 @@ public class Enemy : Character
     // Update is called once per frame
     void Update()
     {
-        // MoveEnemy();
+        MoveEnemy();
         FindTarget();
-    }  
+    }
 }
