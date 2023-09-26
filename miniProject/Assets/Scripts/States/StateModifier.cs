@@ -69,15 +69,15 @@ public class StateModifier
         float sum = 0;
         float mul = 1;
         modifier[stateType](ref baseVar, ref sum, ref mul);
-        
+        //Debug.Log(baseVar+","+sum+","+mul+","+(baseVar + ((baseVar==0 ? 1 : baseVar) * sum)) * mul);
         return new State(stateType, (baseVar + ((baseVar==0 ? 1 : baseVar) * sum)) * mul);
     }
     public void AddHandler(State state)
     {
-        modifier[state.stateType] = state.operatorHandler(state);
+        modifier[state.stateType] += state.operatorHandler(state);
     }
     public void DelHandler(State state)
     {
-        modifier[state.stateType] = state.operatorHandler(state);
+        modifier[state.stateType] -= state.operatorHandler(state);
     }
 }

@@ -25,6 +25,8 @@ public class Character : MonoBehaviour, CharacterInterface
     protected StateModifier stateModifier = new();
     protected ArrayList effects = new();
     public Weapon weapon;
+    
+    protected Rigidbody rig;
 
     protected virtual void Awake()
     {
@@ -32,7 +34,7 @@ public class Character : MonoBehaviour, CharacterInterface
         maxHealthPoint = new State(StateType.MaxHealthPoint, 80, State.BaseOper);
         maxProtectionPoint = new State(StateType.MaxProtectionPoint, 80, State.BaseOper);
 
-        movement = new State(StateType.MovementSpeed, 8);
+        movement = new State(StateType.MovementSpeed, 8, State.BaseOper);
         dashSpeed = new State(StateType.DashSpeed, 2, State.BaseOper);
         dashDuration = new State(StateType.DashDuration, 0.5f, State.BaseOper);
         dashCooltime = new State(StateType.DashCooltime, 3, State.BaseOper);
@@ -48,6 +50,7 @@ public class Character : MonoBehaviour, CharacterInterface
 
     protected virtual void Start()
     {
+        rig = gameObject.GetComponent<Rigidbody>();
         weapon.OnWeapon(this);
         isDashReady = true;
     }
@@ -55,7 +58,8 @@ public class Character : MonoBehaviour, CharacterInterface
     public void Move(Vector3 dir)
     {
         if(isDash) dir *= stateModifier.GetState(StateType.DashSpeed);
-        transform.Translate(dir * stateModifier.GetState(StateType.MovementSpeed) * Time.deltaTime);
+        Vector3 temp = transform.position + transform.TransformDirection(dir) * stateModifier.GetState(StateType.MovementSpeed) * Time.deltaTime;
+        rig.MovePosition(temp);
     }
     private bool isDash;
     private bool isDashReady;
