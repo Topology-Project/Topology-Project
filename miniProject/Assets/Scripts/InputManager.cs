@@ -4,30 +4,37 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public Player player;
-    public Weapon weapon;
-    public Camera mainCamera;
+    private GameManager gameManager;
+
+    private Player player;
     private PlayerCamera playerCamera;
 
     // Start is called before the first frame update
     private void Start()
     {
-        playerCamera = mainCamera.GetComponent<PlayerCamera>();
-    }
+        gameManager = GameManager.Instance;
 
+        player = GameManager.Player;
+        playerCamera = GameManager.MainCamera;
+    }
+    private Vector3 dir;
     // Update is called once per frame
     private void Update()
     {
-        Vector3 dir = new Vector3(
-            Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         Vector3 mouseDir = new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"));
-        player.Move(dir.normalized);
+
         player.Angle(mouseDir);
-        playerCamera.dir = mouseDir;
+        playerCamera.SetDir(mouseDir);
+
         if(Input.GetButtonDown("Dash")) player.Dash();
         if(Input.GetButtonDown("Jump")) player.JumpOn();
-        if(Input.GetButtonDown("Fire1")) weapon.Fire(playerCamera.transform);
-        if(Input.GetButtonDown("Reload")) weapon.Reload();
+        if(Input.GetButtonDown("Fire1")) player.Fire1(playerCamera.transform);
+        if(Input.GetButtonDown("Reload")) player.Reload();
         if(Input.GetKeyDown(KeyCode.F)) {}
+    }
+    private void FixedUpdate()
+    {
+        player.Move(dir.normalized);
     }
 }

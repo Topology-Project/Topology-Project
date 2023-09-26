@@ -6,19 +6,17 @@ using UnityEngine;
 public class Player : Character
 {
     [SerializeField] private bool isJump;
-    Rigidbody rig;
     ArrayList inventory = new();
     protected override void Awake()
     {
         base.Awake();
     }
     // Start is called before the first frame update
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         healthPoint = maxHealthPoint;
         armorPoint = maxProtectionPoint;
-        rig = GetComponent<Rigidbody>();
-        weapon.OnWeapon(this);
     }
 
     public void JumpOn()
@@ -29,7 +27,7 @@ public class Player : Character
     private void Jump()
     {
         isJump = true;
-        rig.AddForce(Vector3.up * 4, ForceMode.Impulse);
+        rig.AddForce(Vector3.up * 4, ForceMode.VelocityChange);
     }
 
     void OnCollisionEnter(Collision collision)

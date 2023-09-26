@@ -44,31 +44,34 @@ public class Weapon : MonoBehaviour
         elementalEffectType = ElementalEffectType.None;
         isExplosion = false;
 
-        baseDamage = new State(StateType.BaseDamage, 145);
-        criticalX = new State(StateType.CriticalX, 2);
-        luckyShot = new State(StateType.LuckyShot, 0);
-        magazine = new State(StateType.Magazine, 9);
-        projectiles = new State(StateType.Projectiles, 1);
-        projectileSpeed = new State(StateType.ProjectileSpeed, 10);
-        rateOfFire = new State(StateType.RateOfFire, 3);
-        reloadTime = new State(StateType.ReloadTime, 1.35f);
-        upgrade = new State(StateType.WPNUpgrade, 1);
-        accuracy = new State(StateType.Accuracy, 10);
-        stability = new State(StateType.Stability, 10);
-        baseDMGIncrease = new State(StateType.BaseDMGIncrease, 0);
-        explosionRange = new State(StateType.ExplosionRange, 0);
-        explosionDMGIncrease = new State(StateType.ExplosionDMGIncrease, 0);
-        elementalRate = new State(StateType.ElementalRate, 0);
-        elementalDMGIncrease = new State(StateType.ElementalDMGIncrease, 0);
-        range = new State(StateType.Range, 40);
+        baseDamage = new State(StateType.BaseDamage, 145, State.BaseOper);
+        criticalX = new State(StateType.CriticalX, 2, State.BaseOper);
+        luckyShot = new State(StateType.LuckyShot, 1, State.BaseOper);
+        magazine = new State(StateType.Magazine, 9, State.BaseOper);
+        projectiles = new State(StateType.Projectiles, 1, State.BaseOper);
+        projectileSpeed = new State(StateType.ProjectileSpeed, 10, State.BaseOper);
+        rateOfFire = new State(StateType.RateOfFire, 3, State.BaseOper);
+        reloadTime = new State(StateType.ReloadTime, 1.35f, State.BaseOper);
+        upgrade = new State(StateType.WPNUpgrade, 1, State.BaseOper);
+        accuracy = new State(StateType.Accuracy, 10, State.BaseOper);
+        stability = new State(StateType.Stability, 10, State.BaseOper);
+        baseDMGIncrease = new State(StateType.BaseDMGIncrease, 1, State.BaseOper);
+        explosionRange = new State(StateType.ExplosionRange, 0, State.BaseOper);
+        explosionDMGIncrease = new State(StateType.ExplosionDMGIncrease, 1, State.BaseOper);
+        elementalRate = new State(StateType.ElementalRate, 0, State.BaseOper);
+        elementalDMGIncrease = new State(StateType.ElementalDMGIncrease, 1, State.BaseOper);
+        range = new State(StateType.Range, 40, State.BaseOper);
 
-        movementSpeed  = new State(StateType.MovementSpeed, 0.5f, State.MulOper);
+        movementSpeed  = new State(StateType.MovementSpeed, -0.1f);
 
         residualAmmunition = (int)magazine.value;
     }
 
     public void OnWeapon(Character character)
     {
+        isFire = false;
+        isReroad = false;
+
         this.character = character;
         parent = character.gameObject;
         StateModifier stateModifier = character.GetModifier();
@@ -121,9 +124,10 @@ public class Weapon : MonoBehaviour
     }
 
     private bool isFire = false;
-    public void Fire(Transform transform)
+    private bool isReroad = false;
+    public void Fire1(Transform transform)
     {
-        if(!isFire && residualAmmunition > 0) 
+        if(!isReroad && !isFire && residualAmmunition > 0) 
         {
             int pj = (int)(character.GetModifier().GetState(StateType.Projectiles)%1 > Random.Range(0f, 1f) ? 
                         character.GetModifier().GetState(StateType.Projectiles)+1 : character.GetModifier().GetState(StateType.Projectiles));
@@ -156,12 +160,13 @@ public class Weapon : MonoBehaviour
     public void Reload()
     {
         Debug.Log("reloading");
-        isFire = false;
+        isReroad = true;
         StartCoroutine(Reloading());
     }
     IEnumerator Reloading()
     {
         yield return new WaitForSeconds( character.GetModifier().GetState(StateType.ReloadTime));
         residualAmmunition = (int)character.GetModifier().GetState(StateType.Magazine);
+        isReroad = false;
     }
 }
