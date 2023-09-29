@@ -29,7 +29,8 @@ public class InputManager : MonoBehaviour
 
         if(Input.GetButtonDown("Dash")) player.Dash();
         if(Input.GetButtonDown("Jump")) player.JumpOn();
-        if(Input.GetButtonDown("Fire1")) player.Fire1(playerCamera.transform);
+        if(Input.GetButton("Fire1")) player.Fire1(playerCamera.transform);
+        if(Input.GetButtonUp("Fire1")) player.Fire1(playerCamera.transform);
         if(Input.GetButtonDown("Reload")) player.Reload();
         if(Input.GetKeyDown(KeyCode.F)) {}
     }

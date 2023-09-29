@@ -31,13 +31,13 @@ public class Character : MonoBehaviour, CharacterInterface
     protected virtual void Awake()
     {
         armorType = ProtectionType.Shield;
-        maxHealthPoint = new State(StateType.MaxHealthPoint, 80, State.BaseOper);
-        maxProtectionPoint = new State(StateType.MaxProtectionPoint, 80, State.BaseOper);
+        maxHealthPoint = new State(StateType.MaxHealthPoint, 80);
+        maxProtectionPoint = new State(StateType.MaxProtectionPoint, 80);
 
-        movement = new State(StateType.MovementSpeed, 8, State.BaseOper);
-        dashSpeed = new State(StateType.DashSpeed, 2, State.BaseOper);
-        dashDuration = new State(StateType.DashDuration, 0.5f, State.BaseOper);
-        dashCooltime = new State(StateType.DashCooltime, 3, State.BaseOper);
+        movement = new State(StateType.MovementSpeed, 8);
+        dashSpeed = new State(StateType.DashSpeed, 2);
+        dashDuration = new State(StateType.DashDuration, 0.5f);
+        dashCooltime = new State(StateType.DashCooltime, 3);
 
         stateModifier.AddHandler(maxHealthPoint);
         stateModifier.AddHandler(maxProtectionPoint);

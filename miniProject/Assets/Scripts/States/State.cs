@@ -16,7 +16,7 @@ public class State
 
     public State(StateType stateType=StateType.BaseDamage, float value=0f, OperatorHandler operatorHandler=null)
     {
-        if(operatorHandler == null) operatorHandler = AddOper;
+        if(operatorHandler == null) operatorHandler = State.BaseOper;
         this.operatorHandler = operatorHandler;
         SetState(stateType, value);
     }
@@ -34,7 +34,7 @@ public class State
 
     private void BaseState(ref float baseVar, ref float sum, ref float mul)
     {
-        baseVar = value;
+        baseVar += value;
     }
     private void AddState(ref float baseVar, ref float sum, ref float mul)
     {
