@@ -57,7 +57,7 @@ public class Weapon : MonoBehaviour
         reloadTime = new State(StateType.ReloadTime, 1.35f);
         upgrade = new State(StateType.WPNUpgrade, 1);
         accuracy = new State(StateType.Accuracy, 1.2f);
-        stability = new State(StateType.Stability, 0.2f);
+        stability = new State(StateType.Stability, 3f);
         baseDMGIncrease = new State(StateType.BaseDMGIncrease, 1);
         explosionRange = new State(StateType.ExplosionRange, 0);
         explosionDMGIncrease = new State(StateType.ExplosionDMGIncrease, 1);
