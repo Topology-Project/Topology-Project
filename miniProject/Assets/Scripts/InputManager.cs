@@ -22,7 +22,7 @@ public class InputManager : MonoBehaviour
         moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         lookDir = new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"));
 
-        player.Angle(lookDir);
+        player.Angle(playerCamera.transform.localEulerAngles);
         playerCamera.SetDir(lookDir);
 
         if(Input.GetButtonDown("Dash")) player.Dash();

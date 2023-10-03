@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Player : Character
 {
-    [SerializeField] private bool isJump;
+    private Camera playerCamera;
+    private bool isJump;
     ArrayList inventory = new();
     protected override void Awake()
     {
@@ -15,8 +16,21 @@ public class Player : Character
     protected override void Start()
     {
         base.Start();
+        playerCamera = GameManager.MainCamera.GetComponent<Camera>();
         healthPoint = maxHealthPoint;
         armorPoint = maxProtectionPoint;
+    }
+
+    public override void Move(Vector3 dir)
+    {
+        if(isDash) dir *= stateModifier.GetState(StateType.DashSpeed);
+        Vector3 temp = transform.position + playerCamera.transform.TransformDirection(dir) * stateModifier.GetState(StateType.MovementSpeed) * Time.deltaTime;
+        rig.MovePosition(temp);
+    }
+
+    public override void Angle(Vector3 dir)
+    {
+        transform.localEulerAngles = new Vector3(0, dir.y, 0);
     }
 
     public void JumpOn()

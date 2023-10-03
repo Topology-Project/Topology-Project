@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEditor;
 
 public class Scroll : MonoBehaviour
 {
     public State state { get; private set; }
     public StateType stateType;
+    public OperatorHandler operatorHandler;
     public float value;
 
     private int stack;

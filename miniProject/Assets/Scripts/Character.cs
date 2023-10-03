@@ -55,13 +55,13 @@ public class Character : MonoBehaviour, CharacterInterface
         isDashReady = true;
     }
 
-    public void Move(Vector3 dir)
+    public virtual void Move(Vector3 dir)
     {
         if(isDash) dir *= stateModifier.GetState(StateType.DashSpeed);
         Vector3 temp = transform.position + transform.TransformDirection(dir) * stateModifier.GetState(StateType.MovementSpeed) * Time.deltaTime;
         rig.MovePosition(temp);
     }
-    private bool isDash;
+    protected bool isDash;
     private bool isDashReady;
     public void Dash()
     {
@@ -82,7 +82,7 @@ public class Character : MonoBehaviour, CharacterInterface
         isDashReady = true;
     }
 
-    public void Angle(Vector3 dir)
+    public virtual void Angle(Vector3 dir)
     {
         transform.localEulerAngles += new Vector3(0, dir.y, 0);
     }
