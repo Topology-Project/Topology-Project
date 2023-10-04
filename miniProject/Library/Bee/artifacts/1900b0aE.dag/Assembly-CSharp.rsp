@@ -370,6 +370,7 @@
 "Assets/Scripts/States/State.cs"
 "Assets/Scripts/States/StateModifier.cs"
 "Assets/Scripts/States/StateType.cs"
+"Assets/Scripts/WarpPoint.cs"
 "Assets/Scripts/Weapons/FireType.cs"
 "Assets/Scripts/Weapons/Weapon.cs"
 "Assets/Scripts/Weapons/WeaponType.cs"

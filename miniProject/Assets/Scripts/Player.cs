@@ -7,7 +7,8 @@ public class Player : Character
 {
     private Camera playerCamera;
     private bool isJump;
-    ArrayList inventory = new();
+    private ArrayList inventory = new();
+    private Ray interactionRay = new();
     protected override void Awake()
     {
         base.Awake();
@@ -19,6 +20,18 @@ public class Player : Character
         playerCamera = GameManager.MainCamera.GetComponent<Camera>();
         healthPoint = maxHealthPoint;
         armorPoint = maxProtectionPoint;
+    }
+
+    void Update()
+    {
+        interactionRay = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        isJump = false;
+
     }
 
     public override void Move(Vector3 dir)
@@ -42,12 +55,6 @@ public class Player : Character
     {
         isJump = true;
         rig.AddForce(Vector3.up * 4, ForceMode.VelocityChange);
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        isJump = false;
-
     }
 
     public void AddInventory(Scroll scroll)
