@@ -43,17 +43,17 @@ public class Weapon : MonoBehaviour
         //bullet = Resources.Load("Bullet") as GameObject;
         ammunitionType = AmmunitionType.Infinite;
         weaponType = WeaponType.Pistol;
-        fireType = FireType.Single;
+        fireType = FireType.Auto;
         elementalEffectType = ElementalEffectType.None;
         isExplosion = false;
 
         baseDamage = new State(StateType.BaseDamage, 145);
         criticalX = new State(StateType.CriticalX, 2);
         luckyShot = new State(StateType.LuckyShot, 1);
-        magazine = new State(StateType.Magazine, 9);
+        magazine = new State(StateType.Magazine, 90);
         projectiles = new State(StateType.Projectiles, 1);
         projectileSpeed = new State(StateType.ProjectileSpeed, 60);
-        rateOfFire = new State(StateType.RateOfFire, 3);
+        rateOfFire = new State(StateType.RateOfFire, 30);
         reloadTime = new State(StateType.ReloadTime, 1.35f);
         upgrade = new State(StateType.WPNUpgrade, 1);
         accuracy = new State(StateType.Accuracy, 1.2f);
