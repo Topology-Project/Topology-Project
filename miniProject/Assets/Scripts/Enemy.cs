@@ -115,15 +115,23 @@ public class Enemy : Character
     // Start is called before the first frame update
     protected override void Start()
     {
+        base.Start();
+        
         nma = GetComponent<NavMeshAgent>();
         LastUpdate += UpdateTime;
     }
 
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         MoveEnemy();
         FindTarget();
+
+        if(healthPoint <= 0)
+        {
+            MapManager.Instance.EnemyDeath();
+            Destroy(gameObject);
+        }
     }
 }

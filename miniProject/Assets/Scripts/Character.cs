@@ -20,7 +20,7 @@ public class Character : MonoBehaviour, CharacterInterface
 
 
     protected float healthPoint;
-    protected float armorPoint;
+    protected float protectionPoint;
 
     protected StateModifier stateModifier = new();
     protected ArrayList effects = new();
@@ -31,7 +31,7 @@ public class Character : MonoBehaviour, CharacterInterface
     protected virtual void Awake()
     {
         armorType = ProtectionType.Shield;
-        maxHealthPoint = new State(StateType.MaxHealthPoint, 80);
+        maxHealthPoint = new State(StateType.MaxHealthPoint, 8000);
         maxProtectionPoint = new State(StateType.MaxProtectionPoint, 80);
 
         movement = new State(StateType.MovementSpeed, 8);
@@ -53,6 +53,14 @@ public class Character : MonoBehaviour, CharacterInterface
         rig = gameObject.GetComponent<Rigidbody>();
         weapon.OnWeapon(this);
         isDashReady = true;
+
+        healthPoint = maxHealthPoint;
+        protectionPoint = maxProtectionPoint;
+    }
+
+    protected virtual void Update()
+    {
+
     }
 
     public virtual void Move(Vector3 dir)
@@ -95,6 +103,9 @@ public class Character : MonoBehaviour, CharacterInterface
         return this.stateModifier;
     }
 
+    private void HPCalc(float hp) => healthPoint = hp;
+    private void Damage(float hp) => HPCalc(healthPoint-hp);
+    private void Heal(float hp) => HPCalc(healthPoint+hp);
     public float DamageCalc(StateModifier stateModifier)
     {
         int lsh = (int)(stateModifier.GetState(StateType.LuckyShot)%1 > Random.Range(0f, 1f) ?
@@ -115,7 +126,7 @@ public class Character : MonoBehaviour, CharacterInterface
                     + "*" + lsh
                     + "*" + stateModifier.GetState(StateType.CriticalX)
                     + "=" + damage);
-
+        Damage(damage);
         return damage;
     }
 

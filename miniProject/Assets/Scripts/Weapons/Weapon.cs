@@ -149,7 +149,7 @@ public class Weapon : MonoBehaviour
                 Quaternion fireDirection = new();
                 if(parent.tag.Equals("Player"))
                 {
-                    PlayerCamera playerCamera = GameManager.MainCamera.GetComponent<PlayerCamera>();
+                    PlayerCamera playerCamera = GameManager.Instance.MainCamera.GetComponent<PlayerCamera>();
                     fireDirection = playerCamera.transform.rotation;
                     playerCamera.SetStability(stability);     
                 }

@@ -24,7 +24,9 @@ public class PlayerCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameManager.Player;
+        player = GameManager.Instance.Player;
+        transform.position = player.transform.position;
+        transform.rotation = player.transform.rotation;
     }
 
     private Vector3 tempVector;
@@ -37,17 +39,17 @@ public class PlayerCamera : MonoBehaviour
         if(stability.x >= 0.01f || stability.y >= 0.01f)
         {
             stability -= dir;
-            tempVector -= dir;
             temp = Vector3.Slerp(Vector3.zero, stability, 30f*Time.deltaTime);
             transform.localEulerAngles -= temp;
             tempVector -= temp;
             stability -= temp;
         }
-        else tempVector += dir;
+        tempVector += dir;
         tempVector = Rotation(tempVector);
         
-        temp = Vector3.Lerp(Vector3.zero, Over180(Rotation(transform.localEulerAngles-tempVector)), 3f*Time.deltaTime);
+        temp = Vector3.Slerp(Vector3.zero, Over180(Rotation(transform.localEulerAngles-tempVector)), 3f*Time.deltaTime);
         transform.localEulerAngles -= temp;
+        tempVector += temp * 0.2f;
 
         float x = transform.localEulerAngles.x>180 ? transform.localEulerAngles.x- 360 : transform.localEulerAngles.x;
         transform.localEulerAngles = new Vector3(Math.Clamp(x, -85, 85), transform.localEulerAngles.y, transform.localEulerAngles.z);

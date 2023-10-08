@@ -13,8 +13,8 @@ public class InputManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        player = GameManager.Player;
-        playerCamera = GameManager.MainCamera;
+        player = GameManager.Instance.Player;
+        playerCamera = GameManager.Instance.MainCamera;
     }
     // Update is called once per frame
     private void Update()

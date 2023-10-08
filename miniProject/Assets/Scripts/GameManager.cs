@@ -5,21 +5,21 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 	private static GameManager instance;
-    public static  GameManager Instance
+    public static GameManager Instance
     {
         get { if(instance == null) Init(); return instance; }
         private set { instance = value; }
     }
 
-    private static Player player;
-    public static Player Player
+    private Player player;
+    public Player Player
     {
         get { if(player == null) Init(); return player; }
         private set { player = value; }
     }
 
-    private static PlayerCamera mainCamera;
-    public static PlayerCamera MainCamera
+    private PlayerCamera mainCamera;
+    public PlayerCamera MainCamera
     {
         get { if(mainCamera == null) Init(); return mainCamera; }
         private set { mainCamera = value; }
@@ -46,24 +46,24 @@ public class GameManager : MonoBehaviour
 
             instance = go.GetComponent<GameManager>();
         }
-    	if(player == null)
+    	if(instance.player == null)
         {
         	GameObject go = GameObject.Find("Player");
 
             if(go == null)
             {
             	go = new GameObject { name = "Player" };
-                player.transform.position = new Vector3(0, 1, 0);
-                player.transform.localEulerAngles = new Vector3(0, 180, 0);
+                instance.player.transform.position = new Vector3(0, 1, 0);
+                instance.player.transform.localEulerAngles = new Vector3(0, 180, 0);
             }
             if(go.GetComponent<Player>() == null)
             {
             	go.AddComponent<Player>();
             }
 
-            player = go.GetComponent<Player>();
+            instance.player = go.GetComponent<Player>();
         }
-    	if(mainCamera == null)
+    	if(instance.mainCamera == null)
         {
         	GameObject go = GameObject.Find("Main Camera");
             
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
                 go.AddComponent<PlayerCamera>();
             }
 
-            mainCamera = go.GetComponent<PlayerCamera>();
+            instance.mainCamera = go.GetComponent<PlayerCamera>();
         }
     }       
 }
