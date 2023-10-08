@@ -34,11 +34,16 @@ public class Map : MonoBehaviour
         }
     }
 
+    private bool isRoomSet = false;
     public void RoomSet()
     {
-        foreach(Transform sp in enemySpawnPoints)
+        if(!isRoomSet)
         {
-            Instantiate(MapManager.Instance.enemy, sp);
+            isRoomSet = true;
+            foreach(Transform sp in enemySpawnPoints)
+            {
+                Instantiate(MapManager.Instance.enemy, sp);
+            }
         }
     }
 

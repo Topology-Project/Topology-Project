@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\dhk_1\\Documents\\GitHub\\Topology-Project\\miniProject\\Assembly-CSharp.csproj": {}
+    "C:\\Users\\dhk_1\\Documents\\GitHub\\Topology-Project\\miniProject\\Assembly-CSharp.csproj": {}
   },
   "projects": {
-    "c:\\Users\\dhk_1\\Documents\\GitHub\\Topology-Project\\miniProject\\Assembly-CSharp.csproj": {
+    "C:\\Users\\dhk_1\\Documents\\GitHub\\Topology-Project\\miniProject\\Assembly-CSharp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\dhk_1\\Documents\\GitHub\\Topology-Project\\miniProject\\Assembly-CSharp.csproj",
+        "projectUniqueName": "C:\\Users\\dhk_1\\Documents\\GitHub\\Topology-Project\\miniProject\\Assembly-CSharp.csproj",
         "projectName": "Assembly-CSharp",
-        "projectPath": "c:\\Users\\dhk_1\\Documents\\GitHub\\Topology-Project\\miniProject\\Assembly-CSharp.csproj",
+        "projectPath": "C:\\Users\\dhk_1\\Documents\\GitHub\\Topology-Project\\miniProject\\Assembly-CSharp.csproj",
         "packagesPath": "C:\\Users\\dhk_1\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\dhk_1\\Documents\\GitHub\\Topology-Project\\miniProject\\obj\\",
+        "outputPath": "C:\\Users\\dhk_1\\Documents\\GitHub\\Topology-Project\\miniProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dhk_1\\AppData\\Roaming\\NuGet\\NuGet.Config",
