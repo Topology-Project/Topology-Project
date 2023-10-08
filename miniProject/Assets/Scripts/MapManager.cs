@@ -45,12 +45,10 @@ public class MapManager : MonoBehaviour
             {
                 keyValuePairs[peek]++;
                 random = Random.Range(0, peek.doors.Length);
-                peek.nextMap = peek.nextMaps[random];
-                Map prev = peek;
+
                 peek = peek.nextMaps[random];
                 if(peek != null && !mapStack.Contains(peek)) 
                 {
-                    peek.prevMap = prev;
                     mapStack.Push(peek);
                 }
             }
@@ -60,9 +58,14 @@ public class MapManager : MonoBehaviour
                 else if(mapStack.Count == 1) keyValuePairs.Clear();
             }
         }
-        for(int i=0; i<activeMap.Length; i++)
+
+        Map next = null;
+        for(int i=activeMap.Length-1; i>=0; i--)
         {
             activeMap[i] = mapStack.Pop();
+            activeMap[i].nextMap = next;
+            next = activeMap[i];
+            if(mapStack.Count > 0) activeMap[i].prevMap = mapStack.Peek();
             activeMap[i].gameObject.SetActive(true);
         }
 
