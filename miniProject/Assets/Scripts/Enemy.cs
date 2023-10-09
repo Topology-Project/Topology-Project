@@ -78,12 +78,10 @@ public class Enemy : Character
 
         // 에너미 중심 원형 범위 전개
         RaycastHit[] hits = Physics.SphereCastAll(rayStart, sphereRadius, rayDir, 0f);
-
         foreach (RaycastHit hit in hits)
         {
             if (hit.transform.CompareTag("Player"))
             {
-
                 // hit의 방향벡터값 계산
                 Vector3 hitDir = (hit.transform.position - rayStart).normalized;
                 float hitRad = Mathf.Acos(Vector3.Dot(rayDir, hitDir));
@@ -96,12 +94,27 @@ public class Enemy : Character
                 {
                     Debug.Log("플레이어 발견");
                     isFind = true;
-                    break;
+
+                    RaycastHit hitObj;
+                    if (Physics.Raycast(rayStart, hitDir, out hitObj, 10f))
+                    {
+                        if (!hitObj.transform.CompareTag("Player"))
+                        {
+                            Debug.Log("오브젝트에 가려짐, 플레이어에게 근접 접근 시도");
+                            nma.stoppingDistance = 0f;
+                            transform.Rotate(hitDir);
+                        }
+                        else
+                        {
+                            Debug.Log("플레이어가 바로 보임");
+                            nma.stoppingDistance = 2f;
+                        }
+                    }
                 }
                 else
                 {
                     Debug.Log("플레이어가 범위 안엔 있으나 눈 앞에 없음");
-                    break;
+                    // isFind = false;
                 }
             }
             else
@@ -116,6 +129,7 @@ public class Enemy : Character
     protected override void Start()
     {
         nma = GetComponent<NavMeshAgent>();
+        nma.stoppingDistance = 2f;
         LastUpdate += UpdateTime;
     }
 
