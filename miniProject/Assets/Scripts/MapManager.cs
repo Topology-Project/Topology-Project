@@ -69,11 +69,8 @@ public class MapManager : MonoBehaviour
         player = GameManager.Instance.Player.gameObject;
         playerCamera = GameManager.Instance.MainCamera.gameObject;
 
-        player.transform.position = activeMap[activeMapIdx].playerSpawnPoint.position;
-        player.transform.rotation = activeMap[activeMapIdx].playerSpawnPoint.rotation;
-        playerCamera.transform.position = activeMap[activeMapIdx].playerSpawnPoint.position;
-        playerCamera.transform.rotation = activeMap[activeMapIdx].playerSpawnPoint.rotation;
     }
+
 
     // Update is called once per frame
     private void Update()
@@ -85,13 +82,22 @@ public class MapManager : MonoBehaviour
         }
     }
 
+    public void PlayerSpawn()
+    {
+        player.transform.position = activeMap[activeMapIdx].playerSpawnPoint.position;
+        player.transform.rotation = activeMap[activeMapIdx].playerSpawnPoint.rotation;
+        playerCamera.transform.position = activeMap[activeMapIdx].playerSpawnPoint.position;
+        playerCamera.transform.rotation = activeMap[activeMapIdx].playerSpawnPoint.rotation;
+    } 
+    private bool isSet = false;
     public void EnterRoom(Map map)
     {
-        if(activeMap[activeMapIdx] == map) 
+        if(!isSet && activeMap[activeMapIdx] == map) 
         {
             activeMap[activeMapIdx].RoomSet();
             activeMap[activeMapIdx-1].DoorClose(MapType.Next);
             activeMap[activeMapIdx].DoorClose(MapType.Prev);
+            isSet = true;
         }
     }
 

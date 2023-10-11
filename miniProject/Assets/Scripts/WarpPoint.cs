@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class WarpPoint : MonoBehaviour
 {
+    public void Warp()
+    {
+        MapManager.Instance.PlayerSpawn();
+    }
     // Start is called before the first frame update
     void Start()
     {

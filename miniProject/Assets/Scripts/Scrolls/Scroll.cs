@@ -27,14 +27,9 @@ public class Scroll : MonoBehaviour
         state = new(stateType, value);
     }
 
-    void OnTriggerEnter(Collider other)
+    public void GetState(Player player)
     {
-        if(other.transform.tag.Equals("Player"))
-        {
-            Player player = other.transform.GetComponent<Player>();
             player.AddInventory(this);
             Debug.Log(stateType.ToString() + " +" + value);
-            //Destroy(this.gameObject);
-        }
     }
 }

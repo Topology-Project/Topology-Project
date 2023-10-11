@@ -8,7 +8,6 @@ public class Player : Character
     private Camera playerCamera;
     private bool isJump;
     private ArrayList inventory = new();
-    private Ray interactionRay = new();
     protected override void Awake()
     {
         base.Awake();
@@ -22,7 +21,6 @@ public class Player : Character
 
     protected override void Update()
     {
-        interactionRay = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         
     }
 
