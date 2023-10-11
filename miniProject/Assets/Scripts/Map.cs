@@ -21,6 +21,7 @@ public class Map : MonoBehaviour
     private void Start()
     {
         enemyCount = enemySpawnPoints.Length;
+        y = doors[0].transform.position.y;
     }
 
     private bool temp = true;
@@ -33,36 +34,40 @@ public class Map : MonoBehaviour
         }
     }
 
+    private bool isRoomSet = false;
     public void RoomSet()
     {
-        foreach(Transform sp in enemySpawnPoints)
+        if(!isRoomSet)
         {
-            Instantiate(MapManager.Instance.enemy, sp);
+            isRoomSet = true;
+            foreach(Transform sp in enemySpawnPoints)
+            {
+                Instantiate(MapManager.Instance.enemy, sp);
+            }
         }
     }
 
-    private int GetIdx(Map map)
+    private int GetIdx(MapType mapType)
     {
         int i=0;
-        for( ; i<nextMaps.Length; i++)
-        {
-            if(nextMaps[i] == map) break;
-        }
+        if(mapType == MapType.Prev) while(nextMaps[i] != prevMap) i++;
+        else if(mapType == MapType.Next) while(nextMaps[i] != nextMap) i++;
+        // Debug.Log(i);
         return i;
     }
 
+    float y = 0;
+
     public void DoorOpen(MapType mapType)
     {
-        GameObject door = doors[GetIdx(nextMap)];
-        if(mapType == MapType.Next) door = doors[GetIdx(prevMap)];
-        door.transform.position += Vector3.up * 5f;
+        GameObject door = doors[GetIdx(mapType)];
+        door.transform.position = new Vector3(door.transform.position.x, y+5, door.transform.position.z);
         // door.transform.Translate(door.transform.position + (Vector3.up * 3f), Space.Self);
     }
     public void DoorClose(MapType mapType)
     {
-        GameObject door = doors[GetIdx(nextMap)];
-        if(mapType == MapType.Next) door = doors[GetIdx(prevMap)];
-        door.transform.position += Vector3.down * 5f;
+        GameObject door = doors[GetIdx(mapType)];
+        door.transform.position = new Vector3(door.transform.position.x, y, door.transform.position.z);
         // door.transform.Translate(door.transform.position + (Vector3.down * 3f), Space.Self);
     }
 }

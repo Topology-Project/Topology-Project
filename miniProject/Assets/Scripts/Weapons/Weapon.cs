@@ -168,11 +168,11 @@ public class Weapon : MonoBehaviour
             if(fireType == FireType.Single || fireType == FireType.Bust) isFireready = false;
             StartCoroutine(FireReady());
             residualAmmunition--;
-            Debug.Log(residualAmmunition + "/" + character.GetModifier().GetState(StateType.Magazine));
+            // Debug.Log(residualAmmunition + "/" + character.GetModifier().GetState(StateType.Magazine));
         }
         if(residualAmmunition <= 0) 
         {
-            Debug.Log("need load");
+            // Debug.Log("need load");
             Reload();
         }
         if(Input.GetButtonUp("Fire1")) isFireready = true;
@@ -186,7 +186,7 @@ public class Weapon : MonoBehaviour
 
     public void Reload()
     {
-        Debug.Log("reloading");
+        // Debug.Log("reloading");
         isReload = true;
         StartCoroutine(Reloading());
     }

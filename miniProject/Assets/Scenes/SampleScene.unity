@@ -1933,14 +1933,14 @@ MonoBehaviour:
   - {fileID: 775392222}
   nextMaps:
   - {fileID: 0}
-  - {fileID: 1118130547}
+  - {fileID: 52781154}
   - {fileID: 0}
   - {fileID: 348480892}
   nextMap: {fileID: 0}
   prevMap: {fileID: 0}
   nextRoomName:
   - 
-  - MainMap_4
+  - MainMap_3
   - 
   - MainMap_7
   playerSpawnPoint: {fileID: 2096578895}
@@ -13066,15 +13066,15 @@ MonoBehaviour:
   nextMaps:
   - {fileID: 52781154}
   - {fileID: 0}
-  - {fileID: 1275302349}
   - {fileID: 0}
+  - {fileID: 1275302349}
   nextMap: {fileID: 0}
   prevMap: {fileID: 0}
   nextRoomName:
   - MainMap_3
   - 
-  - MainMap_1
   - 
+  - MainMap_1
   playerSpawnPoint: {fileID: 447968643}
   enemySpawnPoints:
   - {fileID: 1635372506}
