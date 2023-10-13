@@ -50,13 +50,15 @@
     <UnityVersion>2021.3.30f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Users\dhk_1\.vscode\extensions\visualstudiotoolsforunity.vstuc-0.9.1\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Users\dhk_1\.vscode\extensions\visualstudiotoolsforunity.vstuc-0.9.2\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Character.cs" />
+    <Compile Include="Assets\Scripts\Map\Door.cs" />
+    <Compile Include="Assets\Scripts\StageManager.cs" />
     <Compile Include="Assets\Scripts\States\Protection\Protection.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
     <Compile Include="Assets\Scripts\InputManager.cs" />
@@ -74,7 +76,7 @@
     <Compile Include="Assets\Scripts\Effects\ElementalEffects\Corrosion.cs" />
     <Compile Include="Assets\Scripts\Effects\Effect.cs" />
     <Compile Include="Assets\Scripts\States\StateModifier.cs" />
-    <Compile Include="Assets\Scripts\Map.cs" />
+    <Compile Include="Assets\Scripts\Map\Map.cs" />
     <Compile Include="Assets\Scripts\Statemanager.cs" />
     <Compile Include="Assets\Scripts\WarpPoint.cs" />
     <Compile Include="Assets\Scripts\States\AmmunitionType.cs" />

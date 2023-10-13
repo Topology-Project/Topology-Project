@@ -5,21 +5,33 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 	private static GameManager instance;
-    public static  GameManager Instance
+    public static GameManager Instance
     {
         get { if(instance == null) Init(); return instance; }
         private set { instance = value; }
     }
+    private static InputManager inputManager;
+    public static InputManager InpuManager
+    {
+        get { if(inputManager == null) Init(); return inputManager; }
+        private set { inputManager = value; }
+    }
+    private static StageManager stageManager;
+    public static StageManager StageManager
+    {
+        get { if(stageManager == null) Init(); return stageManager; }
+        private set { stageManager = value; }
+    }
 
-    private static Player player;
-    public static Player Player
+    private Player player;
+    public Player Player
     {
         get { if(player == null) Init(); return player; }
         private set { player = value; }
     }
 
-    private static PlayerCamera mainCamera;
-    public static PlayerCamera MainCamera
+    private PlayerCamera mainCamera;
+    public PlayerCamera MainCamera
     {
         get { if(mainCamera == null) Init(); return mainCamera; }
         private set { mainCamera = value; }
@@ -43,27 +55,37 @@ public class GameManager : MonoBehaviour
             {
             	go.AddComponent<GameManager>();
             }
+            if(go.GetComponent<InputManager>() == null)
+            {
+            	go.AddComponent<InputManager>();
+            }
+            if(go.GetComponent<StageManager>() == null)
+            {
+            	go.AddComponent<StageManager>();
+            }
 
             instance = go.GetComponent<GameManager>();
+            DontDestroyOnLoad(go.gameObject);
+            inputManager = go.GetComponent<InputManager>();
+            stageManager = go.GetComponent<StageManager>();
         }
-    	if(player == null)
+    	if(instance.player == null)
         {
         	GameObject go = GameObject.Find("Player");
 
             if(go == null)
             {
-            	go = new GameObject { name = "Player" };
-                player.transform.position = new Vector3(0, 1, 0);
-                player.transform.localEulerAngles = new Vector3(0, 180, 0);
+            	go = (GameObject)Resources.Load("Player/Player");
             }
             if(go.GetComponent<Player>() == null)
             {
             	go.AddComponent<Player>();
             }
 
-            player = go.GetComponent<Player>();
+            instance.player = go.GetComponent<Player>();
+            DontDestroyOnLoad(go.gameObject);
         }
-    	if(mainCamera == null)
+    	if(instance.mainCamera == null)
         {
         	GameObject go = GameObject.Find("Main Camera");
             
@@ -76,7 +98,8 @@ public class GameManager : MonoBehaviour
                 go.AddComponent<PlayerCamera>();
             }
 
-            mainCamera = go.GetComponent<PlayerCamera>();
+            instance.mainCamera = go.GetComponent<PlayerCamera>();
+            DontDestroyOnLoad(go.gameObject);
         }
     }       
 }

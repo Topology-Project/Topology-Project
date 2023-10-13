@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class WarpPoint : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Warp()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameManager.StageManager.NextStageLoad();
     }
 }

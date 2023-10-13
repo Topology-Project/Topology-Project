@@ -8,7 +8,6 @@ public class Player : Character
     private Camera playerCamera;
     private bool isJump;
     private ArrayList inventory = new();
-    private Ray interactionRay = new();
     protected override void Awake()
     {
         base.Awake();
@@ -17,14 +16,11 @@ public class Player : Character
     protected override void Start()
     {
         base.Start();
-        playerCamera = GameManager.MainCamera.GetComponent<Camera>();
-        healthPoint = maxHealthPoint;
-        armorPoint = maxProtectionPoint;
+        playerCamera = GameManager.Instance.MainCamera.GetComponent<Camera>();
     }
 
-    void Update()
+    protected override void Update()
     {
-        interactionRay = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         
     }
 
@@ -37,7 +33,8 @@ public class Player : Character
     public override void Move(Vector3 dir)
     {
         if(isDash) dir *= stateModifier.GetState(StateType.DashSpeed);
-        Vector3 temp = transform.position + playerCamera.transform.TransformDirection(dir) * stateModifier.GetState(StateType.MovementSpeed) * Time.deltaTime;
+        Vector3 temp = transform.position + transform.TransformDirection(dir) * stateModifier.GetState(StateType.MovementSpeed) * Time.deltaTime;
+        temp = new Vector3(temp.x, transform.position.y, temp.z);
         rig.MovePosition(temp);
     }
 
