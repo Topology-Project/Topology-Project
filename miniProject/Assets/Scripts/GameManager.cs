@@ -10,6 +10,18 @@ public class GameManager : MonoBehaviour
         get { if(instance == null) Init(); return instance; }
         private set { instance = value; }
     }
+    private static InputManager inputManager;
+    public static InputManager InpuManager
+    {
+        get { if(inputManager == null) Init(); return inputManager; }
+        private set { inputManager = value; }
+    }
+    private static StageManager stageManager;
+    public static StageManager StageManager
+    {
+        get { if(stageManager == null) Init(); return stageManager; }
+        private set { stageManager = value; }
+    }
 
     private Player player;
     public Player Player
@@ -43,8 +55,19 @@ public class GameManager : MonoBehaviour
             {
             	go.AddComponent<GameManager>();
             }
+            if(go.GetComponent<InputManager>() == null)
+            {
+            	go.AddComponent<InputManager>();
+            }
+            if(go.GetComponent<StageManager>() == null)
+            {
+            	go.AddComponent<StageManager>();
+            }
 
             instance = go.GetComponent<GameManager>();
+            DontDestroyOnLoad(go.gameObject);
+            inputManager = go.GetComponent<InputManager>();
+            stageManager = go.GetComponent<StageManager>();
         }
     	if(instance.player == null)
         {
@@ -52,9 +75,7 @@ public class GameManager : MonoBehaviour
 
             if(go == null)
             {
-            	go = new GameObject { name = "Player" };
-                instance.player.transform.position = new Vector3(0, 1, 0);
-                instance.player.transform.localEulerAngles = new Vector3(0, 180, 0);
+            	go = (GameObject)Resources.Load("Player/Player");
             }
             if(go.GetComponent<Player>() == null)
             {
@@ -62,6 +83,7 @@ public class GameManager : MonoBehaviour
             }
 
             instance.player = go.GetComponent<Player>();
+            DontDestroyOnLoad(go.gameObject);
         }
     	if(instance.mainCamera == null)
         {
@@ -77,6 +99,7 @@ public class GameManager : MonoBehaviour
             }
 
             instance.mainCamera = go.GetComponent<PlayerCamera>();
+            DontDestroyOnLoad(go.gameObject);
         }
     }       
 }

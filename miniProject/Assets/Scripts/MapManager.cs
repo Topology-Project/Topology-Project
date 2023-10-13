@@ -2,17 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MapManager : MonoBehaviour
 {
-    private static MapManager instance;
-    public static MapManager Instance
-    {
-        get { if(instance == null) Init(); return instance; }
-        private set { instance = value; }
-    }
-
     public Map[] maps;
 
     public int round;
@@ -27,7 +19,6 @@ public class MapManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Init();
         activeMap = new Map[round];
         Stack<Map> mapStack = new();
         Dictionary<Map, int?> keyValuePairs = new();
@@ -72,6 +63,7 @@ public class MapManager : MonoBehaviour
         player = GameManager.Instance.Player.gameObject;
         playerCamera = GameManager.Instance.MainCamera.gameObject;
 
+        PlayerSpawn();
     }
 
 
@@ -85,7 +77,7 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    public void PlayerSpawn()
+    private void PlayerSpawn()
     {
         player.transform.position = activeMap[activeMapIdx].playerSpawnPoint.position;
         player.transform.rotation = activeMap[activeMapIdx].playerSpawnPoint.rotation;
@@ -107,24 +99,5 @@ public class MapManager : MonoBehaviour
     public void EnemyDeath()
     {
         activeMap[activeMapIdx].enemyCount--;
-    }
-
-    private static void Init()
-    {
-        if(instance == null)
-        {
-        	GameObject go = GameObject.Find("Manager");
-
-            if(go == null)
-            {
-            	go = new GameObject { name = "Manager" };
-            }
-            if(go.GetComponent<MapManager>() == null)
-            {
-            	go.AddComponent<MapManager>();
-            }
-
-            instance = go.GetComponent<MapManager>();
-        }
     }
 }

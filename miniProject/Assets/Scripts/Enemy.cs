@@ -130,7 +130,7 @@ public class Enemy : Character
 
         if(healthPoint <= 0)
         {
-            MapManager.Instance.EnemyDeath();
+            GameManager.StageManager.mapManager.EnemyDeath();
             Destroy(gameObject);
         }
     }
