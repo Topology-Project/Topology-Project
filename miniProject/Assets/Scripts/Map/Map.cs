@@ -28,7 +28,6 @@ public class Map : MonoBehaviour
             {
                 GameObject go = Resources.Load("prefabs/Enemy/Enemy") as GameObject;
                 Instantiate(go, sp);
-                enemyCount++;
             }
             foreach(Door door in doors) door.DTSet();
             DoorCon(false);

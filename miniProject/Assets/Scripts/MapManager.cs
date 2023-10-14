@@ -26,7 +26,7 @@ public class MapManager : MonoBehaviour
         int random = Random.Range(0, maps.Length);
         mapStack.Push(maps[random]);
         
-        while(mapStack.Count <= round)
+        while(mapStack.Count < round)
         {
             Map peek = mapStack.Peek();
             if(!keyValuePairs.ContainsKey(peek))
@@ -62,9 +62,10 @@ public class MapManager : MonoBehaviour
             activeMap[i] = mapStack.Pop();
             activeMap[i].nextMap = next;
             next = activeMap[i];
-            if(mapStack.Count > 1) activeMap[i].prevMap = mapStack.Peek();
+            if(mapStack.Count > 0) activeMap[i].prevMap = mapStack.Peek();
+            if(i == activeMap.Length-1) activeMap[i].WarpSet();
             activeMap[i].DoorCon(true);
-            activeMap[i].WarpSet();
+            Debug.Log(activeMap[i].name);
         }
 
         player = GameManager.Instance.Player.gameObject;
@@ -78,6 +79,7 @@ public class MapManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        Debug.Log(activeMap[activeMapIdx].enemyCount);
         if(activeMap[activeMapIdx].enemyCount <= 0)
         {
             activeMap[activeMapIdx++].RoomClear();
