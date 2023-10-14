@@ -7,9 +7,9 @@ TagManager:
   - Object
   - Bullet
   - Enemy
-  - Warp
   - Scroll
   - Weapon
+  - Warp
   layers:
   - Default
   - TransparentFX

@@ -19,13 +19,14 @@ public class MapManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        round += 1;
         activeMap = new Map[round];
         Stack<Map> mapStack = new();
         Dictionary<Map, int?> keyValuePairs = new();
         int random = Random.Range(0, maps.Length);
         mapStack.Push(maps[random]);
         
-        while(mapStack.Count < round)
+        while(mapStack.Count <= round)
         {
             Map peek = mapStack.Peek();
             if(!keyValuePairs.ContainsKey(peek))
@@ -45,8 +46,13 @@ public class MapManager : MonoBehaviour
             }
             else
             {
-                if(mapStack.Count > 1) mapStack.Pop();
-                else if(mapStack.Count == 1) keyValuePairs.Clear();
+                if(mapStack.Count > 0) mapStack.Pop();
+                if(mapStack.Count == 0) 
+                {
+                    random = Random.Range(0, maps.Length);
+                    mapStack.Push(maps[random]);
+                    keyValuePairs.Clear();
+                }
             }
         }
 
@@ -56,15 +62,16 @@ public class MapManager : MonoBehaviour
             activeMap[i] = mapStack.Pop();
             activeMap[i].nextMap = next;
             next = activeMap[i];
-            if(mapStack.Count > 0) activeMap[i].prevMap = mapStack.Peek();
-            activeMap[i].gameObject.SetActive(true);
+            if(mapStack.Count > 1) activeMap[i].prevMap = mapStack.Peek();
+            activeMap[i].DoorCon(true);
+            activeMap[i].WarpSet();
         }
 
         player = GameManager.Instance.Player.gameObject;
         playerCamera = GameManager.Instance.MainCamera.gameObject;
 
         PlayerSpawn();
-        EnterRoom(activeMap[0]);
+        EnterRoom();
     }
 
 
@@ -73,8 +80,7 @@ public class MapManager : MonoBehaviour
     {
         if(activeMap[activeMapIdx].enemyCount <= 0)
         {
-            // activeMap[activeMapIdx].DoorOpen(MapType.Next);
-            // activeMap[++activeMapIdx].DoorOpen(MapType.Prev);
+            activeMap[activeMapIdx++].RoomClear();
         }
     }
 
@@ -85,16 +91,10 @@ public class MapManager : MonoBehaviour
         playerCamera.transform.position = activeMap[activeMapIdx].playerSpawnPoint.position;
         playerCamera.transform.rotation = activeMap[activeMapIdx].playerSpawnPoint.rotation;
     } 
-    private bool isSet = false;
-    public void EnterRoom(Map map)
+
+    public void EnterRoom()
     {
-        if(!isSet && activeMap[activeMapIdx] == map) 
-        {
-            activeMap[activeMapIdx].RoomSet();
-            // activeMap[activeMapIdx-1].DoorClose(MapType.Next);
-            // activeMap[activeMapIdx].DoorClose(MapType.Prev);
-            isSet = true;
-        }
+        activeMap[activeMapIdx].RoomSet();
     }
 
     public void EnemyDeath()

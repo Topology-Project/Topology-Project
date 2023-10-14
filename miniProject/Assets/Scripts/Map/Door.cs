@@ -7,12 +7,9 @@ public class Door : MonoBehaviour
 {
     public GameObject open;
     public GameObject close;
-
-    public Map map0;
-    public Map map1;
-
-    public Transform wp0;
-    public Transform wp1;
+    public GameObject trig;
+    public GameObject warp;
+    public DoorTrig doorTrig;
 
     private bool isOpen;
     public bool IsOpen
@@ -29,8 +26,10 @@ public class Door : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider other)
+    public void DTSet() => doorTrig.isSet = true;
+    public void WarpSet()
     {
-        
+        trig.SetActive(false);
+        warp.SetActive(true);
     }
 }

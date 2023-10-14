@@ -4545,6 +4545,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c21bf78bde42948966ac4b4022352b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  warpType: 1
+  stageName: 
+  warpTransform: {fileID: 0}
 --- !u!1 &568982236
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,17 +3,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public enum MapType
-{
-    Next, Prev
-}
 public class Map : MonoBehaviour
 {
-    public GameObject[] doors;
+    public Door[] doors;
     public Map[] nextMaps;
     public Map nextMap;
     public Map prevMap;
-    public string[] nextRoomName;
     public Transform playerSpawnPoint;
     public Transform[] enemySpawnPoints;
 
@@ -21,17 +16,6 @@ public class Map : MonoBehaviour
     private void Start()
     {
         enemyCount = enemySpawnPoints.Length;
-        y = doors[0].transform.position.y;
-    }
-
-    private bool temp = true;
-    public void OnCollisionEnter(Collision other)
-    {
-        if(temp && other.transform.tag.Equals("Player"))
-        {
-            GameManager.StageManager.mapManager.EnterRoom(this);
-            temp = false;
-        }
     }
 
     private bool isRoomSet = false;
@@ -44,31 +28,42 @@ public class Map : MonoBehaviour
             {
                 GameObject go = Resources.Load("prefabs/Enemy/Enemy") as GameObject;
                 Instantiate(go, sp);
+                enemyCount++;
             }
+            foreach(Door door in doors) door.DTSet();
+            DoorCon(false);
         }
     }
-
-    private int GetIdx(MapType mapType)
+    public void RoomClear()
     {
-        int i=0;
-        if(mapType == MapType.Prev) while(nextMaps[i] != prevMap) i++;
-        else if(mapType == MapType.Next) while(nextMaps[i] != nextMap) i++;
-        // Debug.Log(i);
-        return i;
+        if(isRoomSet) DoorCon(true);
     }
 
-    float y = 0;
+    public void DoorCon(bool b)
+    {
+        int i = 0;
+        if(GetIdx(prevMap, out i)) doors[i].IsOpen = b;
+        if(GetIdx(nextMap, out i)) doors[i].IsOpen = b;
+    }
 
-    // public void DoorOpen(MapType mapType)
-    // {
-    //     GameObject door = doors[GetIdx(mapType)];
-    //     door.transform.position = new Vector3(door.transform.position.x, y+5, door.transform.position.z);
-    //     // door.transform.Translate(door.transform.position + (Vector3.up * 3f), Space.Self);
-    // }
-    // public void DoorClose(MapType mapType)
-    // {
-    //     GameObject door = doors[GetIdx(mapType)];
-    //     door.transform.position = new Vector3(door.transform.position.x, y, door.transform.position.z);
-    //     // door.transform.Translate(door.transform.position + (Vector3.down * 3f), Space.Self);
-    // }
+    public void WarpSet()
+    {
+        int i = 0;
+        if(GetIdx(prevMap, out i)) doors[i].WarpSet();
+    }
+
+    public bool GetIdx(Map map, out int idx) 
+    {
+        int i;
+        for(i=0; i<nextMaps.Length; i++)
+        {
+            if(nextMaps[i] == map) 
+            {
+                idx = i;
+                return true;
+            }
+        }
+        idx = 0;
+        return false;
+    }
 }
