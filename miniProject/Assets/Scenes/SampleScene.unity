@@ -14840,7 +14840,6 @@ GameObject:
   - component: {fileID: 2019004091}
   - component: {fileID: 2019004089}
   - component: {fileID: 2019004093}
-  - component: {fileID: 2019004092}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -14887,30 +14886,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6140511bf099dd428c79b876953ac1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2019004092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2019004088}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef7be6bed9a0a364492defd165d1d0e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maps:
-  - {fileID: 1690237891}
-  - {fileID: 1275302349}
-  - {fileID: 1454569719}
-  - {fileID: 52781154}
-  - {fileID: 1118130547}
-  - {fileID: 1614067339}
-  - {fileID: 244835575}
-  - {fileID: 348480892}
-  - {fileID: 990854382}
-  round: 7
-  enemy: {fileID: 971894089389239956, guid: be02141f82da992469ea6bc5ca1c1b91, type: 3}
 --- !u!114 &2019004093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14923,7 +14898,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db2bce92d77c5a54a9593e4d1679943d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapManager: {fileID: 0}
 --- !u!1 &2023340686
 GameObject:
   m_ObjectHideFlags: 0
@@ -15704,7 +15678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 971894089389239967, guid: be02141f82da992469ea6bc5ca1c1b91, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.69
+      value: -16.439999
       objectReference: {fileID: 0}
     - target: {fileID: 971894089389239967, guid: be02141f82da992469ea6bc5ca1c1b91, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15757,7 +15731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2976464717570720172, guid: 2478895df193a6645833cadd8f55a63f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15
+      value: -17.75
       objectReference: {fileID: 0}
     - target: {fileID: 2976464717570720172, guid: 2478895df193a6645833cadd8f55a63f, type: 3}
       propertyPath: m_LocalRotation.w

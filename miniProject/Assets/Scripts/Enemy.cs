@@ -117,6 +117,7 @@ public class Enemy : Character
     {
         base.Start();
         
+        target = GameManager.Instance.Player.transform;
         nma = GetComponent<NavMeshAgent>();
         LastUpdate += UpdateTime;
     }

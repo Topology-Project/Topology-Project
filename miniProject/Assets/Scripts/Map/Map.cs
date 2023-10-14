@@ -42,7 +42,8 @@ public class Map : MonoBehaviour
             isRoomSet = true;
             foreach(Transform sp in enemySpawnPoints)
             {
-                Instantiate(GameManager.StageManager.mapManager.enemy, sp);
+                GameObject go = Resources.Load("prefabs/Enemy/Enemy") as GameObject;
+                Instantiate(go, sp);
             }
         }
     }
@@ -58,16 +59,16 @@ public class Map : MonoBehaviour
 
     float y = 0;
 
-    public void DoorOpen(MapType mapType)
-    {
-        GameObject door = doors[GetIdx(mapType)];
-        door.transform.position = new Vector3(door.transform.position.x, y+5, door.transform.position.z);
-        // door.transform.Translate(door.transform.position + (Vector3.up * 3f), Space.Self);
-    }
-    public void DoorClose(MapType mapType)
-    {
-        GameObject door = doors[GetIdx(mapType)];
-        door.transform.position = new Vector3(door.transform.position.x, y, door.transform.position.z);
-        // door.transform.Translate(door.transform.position + (Vector3.down * 3f), Space.Self);
-    }
+    // public void DoorOpen(MapType mapType)
+    // {
+    //     GameObject door = doors[GetIdx(mapType)];
+    //     door.transform.position = new Vector3(door.transform.position.x, y+5, door.transform.position.z);
+    //     // door.transform.Translate(door.transform.position + (Vector3.up * 3f), Space.Self);
+    // }
+    // public void DoorClose(MapType mapType)
+    // {
+    //     GameObject door = doors[GetIdx(mapType)];
+    //     door.transform.position = new Vector3(door.transform.position.x, y, door.transform.position.z);
+    //     // door.transform.Translate(door.transform.position + (Vector3.down * 3f), Space.Self);
+    // }
 }

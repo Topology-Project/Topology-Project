@@ -64,6 +64,7 @@ public class MapManager : MonoBehaviour
         playerCamera = GameManager.Instance.MainCamera.gameObject;
 
         PlayerSpawn();
+        EnterRoom(activeMap[0]);
     }
 
 
@@ -72,8 +73,8 @@ public class MapManager : MonoBehaviour
     {
         if(activeMap[activeMapIdx].enemyCount <= 0)
         {
-            activeMap[activeMapIdx].DoorOpen(MapType.Next);
-            activeMap[++activeMapIdx].DoorOpen(MapType.Prev);
+            // activeMap[activeMapIdx].DoorOpen(MapType.Next);
+            // activeMap[++activeMapIdx].DoorOpen(MapType.Prev);
         }
     }
 
@@ -90,8 +91,8 @@ public class MapManager : MonoBehaviour
         if(!isSet && activeMap[activeMapIdx] == map) 
         {
             activeMap[activeMapIdx].RoomSet();
-            activeMap[activeMapIdx-1].DoorClose(MapType.Next);
-            activeMap[activeMapIdx].DoorClose(MapType.Prev);
+            // activeMap[activeMapIdx-1].DoorClose(MapType.Next);
+            // activeMap[activeMapIdx].DoorClose(MapType.Prev);
             isSet = true;
         }
     }
