@@ -65,7 +65,6 @@ public class MapManager : MonoBehaviour
             if(mapStack.Count > 0) activeMap[i].prevMap = mapStack.Peek();
             if(i == activeMap.Length-1) activeMap[i].WarpSet();
             activeMap[i].DoorCon(true);
-            Debug.Log(activeMap[i].name);
         }
 
         player = GameManager.Instance.Player.gameObject;
@@ -79,7 +78,6 @@ public class MapManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        Debug.Log(activeMap[activeMapIdx].enemyCount);
         if(activeMap[activeMapIdx].enemyCount <= 0)
         {
             activeMap[activeMapIdx++].RoomClear();

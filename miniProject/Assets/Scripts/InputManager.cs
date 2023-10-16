@@ -25,10 +25,6 @@ public class InputManager : MonoBehaviour
     {
         Vector3 rayOrigin = camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
         Vector3 rayDir = camera.transform.forward;
-        RaycastHit raycastHit;
-
-        Debug.DrawRay(interactionRay.origin, interactionRay.direction * 100f, Color.green);
-        Physics.Raycast(rayOrigin, rayDir, out raycastHit, 100f, layerMask);
 
         moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         lookDir = new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"));
@@ -41,7 +37,9 @@ public class InputManager : MonoBehaviour
         if(Input.GetButton("Fire1")) player.Fire1(playerCamera.transform);
         if(Input.GetButtonUp("Fire1")) player.Fire1(playerCamera.transform);
         if(Input.GetButtonDown("Reload")) player.Reload();
-        if(Input.GetButtonDown("Interaction"))
+
+        RaycastHit raycastHit;
+        if(Input.GetButtonDown("Interaction") && Physics.Raycast(rayOrigin, rayDir, out raycastHit, 5f, layerMask))
         {
             if(raycastHit.collider.transform.tag.Equals("Scroll"))
             {

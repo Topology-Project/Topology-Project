@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 4758959355780086730}
   - component: {fileID: 1720294064228241527}
   - component: {fileID: 4731228782506777849}
+  - component: {fileID: 2351058450684026041}
   m_Layer: 0
   m_Name: Outer
   m_TagString: Untagged
@@ -241,6 +242,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   warpType: 0
   warpTransform: {fileID: 297320962485957818}
+--- !u!114 &2351058450684026041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6771569272346343280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31aa22700e13e1b4ab44434a7241c155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  warpPoint: {fileID: 4731228782506777849}
 --- !u!1 &7131870707477352456
 GameObject:
   m_ObjectHideFlags: 0

@@ -79,12 +79,13 @@
     <Compile Include="Assets\Scripts\States\StateModifier.cs" />
     <Compile Include="Assets\Scripts\Map\Map.cs" />
     <Compile Include="Assets\Scripts\Statemanager.cs" />
-    <Compile Include="Assets\Scripts\WarpPoint.cs" />
+    <Compile Include="Assets\Scripts\Map\WarpPoint.cs" />
     <Compile Include="Assets\Scripts\States\AmmunitionType.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\MapManager.cs" />
     <Compile Include="Assets\Scripts\Scrolls\Scroll.cs" />
     <Compile Include="Assets\Scripts\PlayerCamera.cs" />
+    <Compile Include="Assets\Scripts\Map\TriggerWarp.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -652,11 +652,6 @@ MonoBehaviour:
   - {fileID: 1118130547}
   nextMap: {fileID: 0}
   prevMap: {fileID: 0}
-  nextRoomName:
-  - MainMap_6
-  - MainMap_0
-  - 
-  - MainMap_4
   playerSpawnPoint: {fileID: 600048080}
   enemySpawnPoints:
   - {fileID: 38222412}
@@ -1938,11 +1933,6 @@ MonoBehaviour:
   - {fileID: 348480892}
   nextMap: {fileID: 0}
   prevMap: {fileID: 0}
-  nextRoomName:
-  - 
-  - MainMap_3
-  - 
-  - MainMap_7
   playerSpawnPoint: {fileID: 2096578895}
   enemySpawnPoints:
   - {fileID: 568982237}
@@ -2873,11 +2863,6 @@ MonoBehaviour:
   - {fileID: 990854382}
   nextMap: {fileID: 0}
   prevMap: {fileID: 0}
-  nextRoomName:
-  - 
-  - MainMap_4
-  - MainMap_6
-  - MainMap_8
   playerSpawnPoint: {fileID: 1581514249}
   enemySpawnPoints:
   - {fileID: 1479759412}
@@ -4488,7 +4473,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b0fc3c970d3c22a4eab365e028860156, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4546,7 +4531,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   warpType: 1
-  stageName: 
   warpTransform: {fileID: 0}
 --- !u!1 &568982236
 GameObject:
@@ -7849,11 +7833,6 @@ MonoBehaviour:
   - {fileID: 0}
   nextMap: {fileID: 0}
   prevMap: {fileID: 0}
-  nextRoomName:
-  - 
-  - MainMap_5
-  - MainMap_7
-  - 
   playerSpawnPoint: {fileID: 919427191}
   enemySpawnPoints:
   - {fileID: 1260953777}
@@ -8722,11 +8701,6 @@ MonoBehaviour:
   - {fileID: 1614067339}
   nextMap: {fileID: 0}
   prevMap: {fileID: 0}
-  nextRoomName:
-  - MainMap_7
-  - MainMap_1
-  - MainMap_3
-  - MainMap_5
   playerSpawnPoint: {fileID: 1475996913}
   enemySpawnPoints:
   - {fileID: 1425083951}
@@ -9854,11 +9828,6 @@ MonoBehaviour:
   - {fileID: 1454569719}
   nextMap: {fileID: 0}
   prevMap: {fileID: 0}
-  nextRoomName:
-  - MainMap_4
-  - 
-  - MainMap_0
-  - MainMap_2
   playerSpawnPoint: {fileID: 134358937}
   enemySpawnPoints:
   - {fileID: 334500092}
@@ -10708,11 +10677,6 @@ MonoBehaviour:
   - {fileID: 0}
   nextMap: {fileID: 0}
   prevMap: {fileID: 0}
-  nextRoomName:
-  - MainMap_5
-  - 
-  - MainMap_1
-  - 
   playerSpawnPoint: {fileID: 254566420}
   enemySpawnPoints:
   - {fileID: 1306107965}
@@ -12259,11 +12223,6 @@ MonoBehaviour:
   - {fileID: 0}
   nextMap: {fileID: 0}
   prevMap: {fileID: 0}
-  nextRoomName:
-  - MainMap_8
-  - MainMap_2
-  - MainMap_4
-  - 
   playerSpawnPoint: {fileID: 1682668116}
   enemySpawnPoints:
   - {fileID: 1272768992}
@@ -12903,11 +12862,6 @@ MonoBehaviour:
   - {fileID: 1275302349}
   nextMap: {fileID: 0}
   prevMap: {fileID: 0}
-  nextRoomName:
-  - MainMap_3
-  - 
-  - 
-  - MainMap_1
   playerSpawnPoint: {fileID: 447968643}
   enemySpawnPoints:
   - {fileID: 1635372506}
