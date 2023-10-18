@@ -7,7 +7,6 @@ public class InputManager : MonoBehaviour
     private Player player;
     private Camera m_camera;
     private PlayerCamera playerCamera;
-    private Ray interactionRay = new();
     private LayerMask layerMask;
 
     public Vector3 moveDir { get; private set; }

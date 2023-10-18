@@ -51,7 +51,7 @@ public class Character : MonoBehaviour, CharacterInterface
     protected virtual void Start()
     {
         rig = gameObject.GetComponent<Rigidbody>();
-        // stateModifier.AddHandler(weapon.GetState());
+        stateModifier.AddHandler(weapon.GetModifier());
         weapon.OnWeapon(this);
         isDashReady = true;
 

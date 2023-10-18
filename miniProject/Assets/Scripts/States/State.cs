@@ -6,7 +6,6 @@ using UnityEngine;
 public delegate void StateHandler<State>(ref float baseVar, ref float sum, ref float mul);
 public delegate StateHandler<State> OperatorHandler(State state);
 
-
 public class State
 {
     public OperatorHandler operatorHandler { get; private set; }

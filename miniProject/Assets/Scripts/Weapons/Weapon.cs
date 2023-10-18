@@ -97,7 +97,7 @@ public class Weapon : MonoBehaviour
         sumAccuracy = Math.Clamp(sumAccuracy, 0, accuracy);
     }
 
-    public StateModifier GetState()
+    public StateModifier GetModifier()
     {
         return stateModifier;
     }
@@ -109,51 +109,9 @@ public class Weapon : MonoBehaviour
 
         this.character = character;
         parent = character.gameObject;
-        StateModifier stateModifier = character.GetModifier();
-
-        stateModifier.AddHandler(baseDamage);
-        stateModifier.AddHandler(criticalX);
-        stateModifier.AddHandler(luckyShot);
-        stateModifier.AddHandler(magazine);
-        stateModifier.AddHandler(projectiles);
-        stateModifier.AddHandler(projectileSpeed);
-        stateModifier.AddHandler(rateOfFire);
-        stateModifier.AddHandler(reloadTime);
-        stateModifier.AddHandler(upgrade);
-        stateModifier.AddHandler(accuracy);
-        stateModifier.AddHandler(stability);
-        stateModifier.AddHandler(baseDMGIncrease);
-        stateModifier.AddHandler(explosionRange);
-        stateModifier.AddHandler(explosionDMGIncrease);
-        stateModifier.AddHandler(elementalRate);
-        stateModifier.AddHandler(elementalDMGIncrease);
-        stateModifier.AddHandler(range);
-
-        stateModifier.AddHandler(movementSpeed);
     }
-    public void OffWeapon(Character character)
+    public void OffWeapon()
     {
-        StateModifier stateModifier = character.GetModifier();
-        stateModifier.DelHandler(baseDamage);
-        stateModifier.DelHandler(criticalX);
-        stateModifier.DelHandler(luckyShot);
-        stateModifier.DelHandler(magazine);
-        stateModifier.DelHandler(projectiles);
-        stateModifier.DelHandler(projectileSpeed);
-        stateModifier.DelHandler(rateOfFire);
-        stateModifier.DelHandler(reloadTime);
-        stateModifier.DelHandler(upgrade);
-        stateModifier.DelHandler(accuracy);
-        stateModifier.DelHandler(stability);
-        stateModifier.DelHandler(baseDMGIncrease);
-        stateModifier.DelHandler(explosionRange);
-        stateModifier.DelHandler(explosionDMGIncrease);
-        stateModifier.DelHandler(elementalRate);
-        stateModifier.DelHandler(elementalDMGIncrease);
-        stateModifier.DelHandler(range);
-
-        stateModifier.DelHandler(movementSpeed);
-
         this.character = null;
         parent = null;
     }
