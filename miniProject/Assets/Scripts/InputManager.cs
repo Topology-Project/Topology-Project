@@ -5,10 +5,10 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     private Player player;
-    private Camera camera;
+    private Camera m_camera;
     private PlayerCamera playerCamera;
     private Ray interactionRay = new();
-    private LayerMask layerMask = (1<<6)|(1<<7)|(1<<8);
+    private LayerMask layerMask;
 
     public Vector3 moveDir { get; private set; }
     public Vector3 lookDir { get; private set; }
@@ -18,13 +18,18 @@ public class InputManager : MonoBehaviour
     {
         player = GameManager.Instance.Player;
         playerCamera = GameManager.Instance.MainCamera;
-        camera = playerCamera.GetComponent<Camera>();
+        m_camera = playerCamera.GetComponent<Camera>();
+
+        layerMask = (1<<LayerMask.NameToLayer("Wall"))|
+                    (1<<LayerMask.NameToLayer("WarpPoint"))|
+                    (1<<LayerMask.NameToLayer("Enemy"))|
+                    (1<<LayerMask.NameToLayer("Item"));
     }
     // Update is called once per frame
     private void Update()
     {
-        Vector3 rayOrigin = camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
-        Vector3 rayDir = camera.transform.forward;
+        Vector3 rayOrigin = m_camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
+        Vector3 rayDir = m_camera.transform.forward;
 
         moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         lookDir = new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"));

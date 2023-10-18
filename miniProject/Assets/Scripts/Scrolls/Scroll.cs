@@ -8,28 +8,17 @@ public class Scroll : MonoBehaviour
 {
     public State state { get; private set; }
     public StateType stateType;
-    public OperatorHandler operatorHandler;
     public float value;
-
-    private int stack;
-    public int Stack
-    {
-        get { return stack; }
-        set
-        {
-            stack = value;
-            state.SetState(stateType, stack*value);
-        }
-    }
+    public int stack;
+    public OperatorHandler operatorHandler = State.BaseOper;
 
     void Start()
     {
-        state = new(stateType, value);
+        state = new(stateType, value, stack, operatorHandler);
     }
 
     public void GetState(Player player)
     {
-            player.AddInventory(this);
-            Debug.Log(stateType.ToString() + " +" + value);
+        player.AddInventory(this);
     }
 }

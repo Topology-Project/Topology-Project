@@ -4,45 +4,62 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public delegate void StateHandler<State>(ref float baseVar, ref float sum, ref float mul);
+public delegate StateHandler<State> OperatorHandler(State state);
 
 
 public class State
 {
-    public delegate StateHandler<State> OperatorHandler(State state);
     public OperatorHandler operatorHandler { get; private set; }
 
     public StateType stateType { private set; get; }
-    public float value { private set; get; }
-
-    public State(StateType stateType=StateType.BaseDamage, float value=0f, OperatorHandler operatorHandler=null)
-    {
-        if(operatorHandler == null) operatorHandler = State.BaseOper;
-        this.operatorHandler = operatorHandler;
-        SetState(stateType, value);
+    private float stateValue;
+    public float Value 
+    { 
+        private set
+        {
+            stateValue = value;
+        }
+        get
+        {
+            return stateValue * stack;
+        } 
     }
+    public int stack { private set; get; }
 
-    public void SetState(StateType stateType, float value)
+    public State(StateType stateType=StateType.BaseDamage, float Value=0f, int stack=1, OperatorHandler operatorHandler=null)
     {
         this.stateType = stateType;
-        this.value = value;
+        this.Value = Value;
+        this.stack = stack;
+        if(operatorHandler == null) operatorHandler = State.BaseOper;
+        this.operatorHandler = operatorHandler;
+    }
+
+    public void SetState(StateType stateType=StateType.BaseDamage, float Value=0f, int stack=1, OperatorHandler operatorHandler=null)
+    {
+        this.stateType = stateType;
+        this.Value = Value;
+        this.stack = stack;
+        if(operatorHandler == null) operatorHandler = State.BaseOper;
+        this.operatorHandler = operatorHandler;
     }
 
     public void SetState(State state)
     {
-        SetState(state.stateType, state.value);
+        SetState(state.stateType, state.Value, state.stack, state.operatorHandler);
     }
 
     private void BaseState(ref float baseVar, ref float sum, ref float mul)
     {
-        baseVar += value;
+        baseVar += Value;
     }
     private void AddState(ref float baseVar, ref float sum, ref float mul)
     {
-        sum += value;
+        sum += Value;
     }
     private void MulState(ref float baseVar, ref float sum, ref float mul)
     {
-        mul *= value;
+        mul *= Value;
     }
 
     public static StateHandler<State> BaseOper(State state)
@@ -60,7 +77,7 @@ public class State
 
     // public static State Clone(State state)
     // {
-    //     return new State(state.stateType, state.value);
+    //     return new State(state.stateType, state.Value);
     // }
     // public static bool isTypeEquals(State s1, State s2)
     // {
@@ -69,26 +86,26 @@ public class State
     // }
     public static float operator +(State s1, State s2)
     {
-        return s1.value + s2.value;
+        return s1.Value + s2.Value;
     }
     public static float operator *(State s1, State s2)
     {
-        return s1.value * s2.value;
+        return s1.Value * s2.Value;
     }
     public static float operator +(int i, State s2)
     {
-        return i + s2.value;
+        return i + s2.Value;
     }
     public static float operator *(State s1, float f)
     {
-        return s1.value * f;
+        return s1.Value * f;
     }
     public static string operator +(string s, State s1)
     {
-        return s + s1.value;
+        return s + s1.Value;
     }
     public static implicit operator float(State s1)
     {
-        return s1.value;
+        return s1.Value;
     }
 }

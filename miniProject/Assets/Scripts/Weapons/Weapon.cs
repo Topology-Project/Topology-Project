@@ -37,6 +37,7 @@ public class Weapon : MonoBehaviour
     private GameObject parent;
     private int residualAmmunition;
     public GameObject bullet;
+    private StateModifier stateModifier = new();
 
     void Awake()
     {
@@ -65,15 +66,40 @@ public class Weapon : MonoBehaviour
         elementalDMGIncrease = new State(StateType.ElementalDMGIncrease, 1);
         range = new State(StateType.Range, 20);
 
-        movementSpeed  = new State(StateType.MovementSpeed, -0.1f, State.AddOper);
+        movementSpeed  = new State(StateType.MovementSpeed, -0.1f, 1, State.AddOper);
 
-        residualAmmunition = (int)magazine.value;
+        residualAmmunition = (int)magazine.Value;
+
+        stateModifier.AddHandler(baseDamage);
+        stateModifier.AddHandler(criticalX);
+        stateModifier.AddHandler(luckyShot);
+        stateModifier.AddHandler(magazine);
+        stateModifier.AddHandler(projectiles);
+        stateModifier.AddHandler(projectileSpeed);
+        stateModifier.AddHandler(rateOfFire);
+        stateModifier.AddHandler(reloadTime);
+        stateModifier.AddHandler(upgrade);
+        stateModifier.AddHandler(accuracy);
+        stateModifier.AddHandler(stability);
+        stateModifier.AddHandler(baseDMGIncrease);
+        stateModifier.AddHandler(explosionRange);
+        stateModifier.AddHandler(explosionDMGIncrease);
+        stateModifier.AddHandler(elementalRate);
+        stateModifier.AddHandler(elementalDMGIncrease);
+        stateModifier.AddHandler(range);
+
+        stateModifier.AddHandler(movementSpeed);
     }
 
     private void Update()
     {
         if(sumAccuracy > 0) sumAccuracy -= accuracy * 0.1f * Time.deltaTime;
         sumAccuracy = Math.Clamp(sumAccuracy, 0, accuracy);
+    }
+
+    public StateModifier GetState()
+    {
+        return stateModifier;
     }
 
     public void OnWeapon(Character character)

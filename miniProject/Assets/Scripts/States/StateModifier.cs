@@ -62,7 +62,6 @@ public class StateModifier
         modifier.Add(StateType.DashCooltime, DashCooltime);
     }
 
-
     public State GetState(StateType stateType)
     {
         float baseVar = 0;
@@ -76,8 +75,22 @@ public class StateModifier
     {
         modifier[state.stateType] += state.operatorHandler(state);
     }
+    public void AddHandler(StateModifier stateModifier)
+    {
+        foreach(var handler in stateModifier.modifier)
+        {
+            modifier[handler.Key] += handler.Value;
+        }
+    }
     public void DelHandler(State state)
     {
         modifier[state.stateType] -= state.operatorHandler(state);
+    }
+    public void DelHandler(StateModifier stateModifier)
+    {
+        foreach(var handler in stateModifier.modifier)
+        {
+            modifier[handler.Key] -= handler.Value;
+        }
     }
 }
