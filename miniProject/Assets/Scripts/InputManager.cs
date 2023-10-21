@@ -22,7 +22,8 @@ public class InputManager : MonoBehaviour
         layerMask = (1<<LayerMask.NameToLayer("Wall"))|
                     (1<<LayerMask.NameToLayer("WarpPoint"))|
                     (1<<LayerMask.NameToLayer("Enemy"))|
-                    (1<<LayerMask.NameToLayer("Item"));
+                    (1<<LayerMask.NameToLayer("Item"))|
+                    (1<<LayerMask.NameToLayer("Chest"));
     }
     // Update is called once per frame
     private void Update()
@@ -56,6 +57,10 @@ public class InputManager : MonoBehaviour
             else if(raycastHit.collider.transform.tag.Equals("Warp"))
             {
                 raycastHit.collider.GetComponent<WarpPoint>().Warp();
+            }
+            else if(raycastHit.collider.transform.tag.Equals("Chest"))
+            {
+                raycastHit.collider.GetComponent<Chest>().BoxOpen();
             }
         }
     }

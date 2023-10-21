@@ -170,14 +170,24 @@ public class Weapon : MonoBehaviour
 
     public void Reload()
     {
-        // Debug.Log("reloading");
+        if(isReload || 
+        (int)character.GetModifier().GetState(StateType.Magazine) == residualAmmunition || 
+        parent.GetComponent<CharacterInterface>().GetAmmo(ammunitionType) <= 0) return;
+
         isReload = true;
         StartCoroutine(Reloading());
     }
     IEnumerator Reloading()
     {
-        yield return new WaitForSeconds( character.GetModifier().GetState(StateType.ReloadTime));
-        residualAmmunition = (int)character.GetModifier().GetState(StateType.Magazine);
+        yield return new WaitForSeconds(character.GetModifier().GetState(StateType.ReloadTime));
+        CharacterInterface characterInterface = parent.GetComponent<CharacterInterface>();
+        int maxAmmo = characterInterface.GetAmmo(ammunitionType);
+        int magazineAmmo = (int)character.GetModifier().GetState(StateType.Magazine) - residualAmmunition;
+        int temp = 0;
+        if(magazineAmmo > maxAmmo) temp = maxAmmo;
+        else temp = magazineAmmo;
+        residualAmmunition += temp;
+        characterInterface.SetAmmo(ammunitionType, -temp);
         isReload = false;
     }
 

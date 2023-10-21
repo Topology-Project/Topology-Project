@@ -10,17 +10,18 @@ TagManager:
   - Scroll
   - Weapon
   - Warp
+  - Chest
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Wall
+  - 
   - Water
   - UI
   - WarpPoint
   - Enemy
   - Item
-  - 
+  - Chest
   - 
   - 
   - 

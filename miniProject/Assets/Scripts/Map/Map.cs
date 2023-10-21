@@ -30,19 +30,25 @@ public class Map : MonoBehaviour
                 Instantiate(go, sp);
             }
             foreach(Door door in doors) door.DTSet();
-            DoorCon(false);
+            DoorActive(false);
         }
     }
     public void RoomClear()
     {
-        if(isRoomSet) DoorCon(true);
+        if(isRoomSet) DoorActive(true);
     }
 
-    public void DoorCon(bool b)
+    public void DoorActive(bool b)
     {
         int i = 0;
         if(GetIdx(prevMap, out i)) doors[i].IsOpen = b;
         if(GetIdx(nextMap, out i)) doors[i].IsOpen = b;
+    }
+
+    public void ChestUnlock()
+    {
+        int i = 0;
+        if(GetIdx(prevMap, out i)) doors[i].ChestSet();
     }
 
     public void WarpSet()

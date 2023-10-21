@@ -20,5 +20,6 @@ public class Scroll : MonoBehaviour
     public void GetState(Player player)
     {
         player.AddInventory(this);
+        Destroy(gameObject);
     }
 }

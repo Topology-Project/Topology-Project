@@ -24,6 +24,7 @@ public class StateModifier
     private event StateHandler<State> elementalRate;
     private event StateHandler<State> elementalDMGIncrease;
     private event StateHandler<State> range;
+    private event StateHandler<State> ammoRate;
 
     private event StateHandler<State> maxHealthPoint;
     private event StateHandler<State> maxProtectionPoint;
@@ -52,6 +53,7 @@ public class StateModifier
         modifier.Add(StateType.ElementalRate, elementalRate);
         modifier.Add(StateType.ElementalDMGIncrease, elementalDMGIncrease);
         modifier.Add(StateType.Range, range);
+        modifier.Add(StateType.AmmoRate, ammoRate);
 
         modifier.Add(StateType.MaxHealthPoint, maxHealthPoint);
         modifier.Add(StateType.MaxProtectionPoint, maxProtectionPoint);

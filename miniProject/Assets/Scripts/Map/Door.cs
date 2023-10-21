@@ -9,6 +9,7 @@ public class Door : MonoBehaviour
     public GameObject close;
     public GameObject trig;
     public GameObject warp;
+    public GameObject chest;
     public DoorTrig doorTrig;
 
     private bool isOpen;
@@ -27,9 +28,12 @@ public class Door : MonoBehaviour
     }
 
     public void DTSet() => doorTrig.isSet = true;
+    public void ChestSet() => chest.GetComponent<Chest>().isOpen = true;
     public void WarpSet()
     {
         trig.SetActive(false);
         warp.SetActive(true);
+        chest.SetActive(true);
+        chest.GetComponent<Chest>().isOpen = false;
     }
 }

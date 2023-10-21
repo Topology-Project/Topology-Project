@@ -64,10 +64,10 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Map\TriggerWarp.cs" />
     <Compile Include="Assets\Scripts\Map\DoorTrig.cs" />
-    <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Character\Enemy.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Character.cs" />
+    <Compile Include="Assets\Scripts\Character\Character.cs" />
     <Compile Include="Assets\Scripts\Map\Door.cs" />
     <Compile Include="Assets\Scripts\StageManager.cs" />
     <Compile Include="Assets\Scripts\States\Protection\Protection.cs" />
@@ -87,14 +87,18 @@
     <Compile Include="Assets\Scripts\Effects\ElementalEffects\Corrosion.cs" />
     <Compile Include="Assets\Scripts\Effects\Effect.cs" />
     <Compile Include="Assets\Scripts\States\StateModifier.cs" />
+    <Compile Include="Assets\Scripts\Chest\Chest.cs" />
     <Compile Include="Assets\Scripts\Map\Map.cs" />
     <Compile Include="Assets\Scripts\Statemanager.cs" />
     <Compile Include="Assets\Scripts\Map\WarpPoint.cs" />
     <Compile Include="Assets\Scripts\States\AmmunitionType.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\Character\Player.cs" />
     <Compile Include="Assets\Scripts\MapManager.cs" />
     <Compile Include="Assets\Scripts\Scrolls\Scroll.cs" />
     <Compile Include="Assets\Scripts\PlayerCamera.cs" />
+    <Compile Include="Assets\Scripts\States\Ammunition.cs" />
+    <Compile Include="Assets\Scripts\Chest\ChestType.cs" />
+    <Compile Include="Assets\Scripts\Character\CharacterInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
