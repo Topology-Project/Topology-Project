@@ -7,6 +7,17 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     private AmmunitionType ammunitionType;
+    public AmmunitionType AmmunitionType
+    {
+        get
+        {
+            return ammunitionType;
+        }
+        private set
+        {
+            ammunitionType = value;
+        }
+    }
     private WeaponType weaponType;
     private FireType fireType;
     private ElementalEffectType elementalEffectType;
@@ -15,7 +26,7 @@ public class Weapon : MonoBehaviour
     private State baseDamage;
     private State criticalX;
     private State luckyShot;
-    private State magazine;
+    private State magazine; //
     private State projectiles;
     private State projectileSpeed;
     private State rateOfFire;
@@ -35,23 +46,34 @@ public class Weapon : MonoBehaviour
 
     private Character character;
     private GameObject parent;
-    private int residualAmmunition;
+    private int residualAmmunition;// 현재 탄창(좌)
+    public int ResidualAmmunition
+    {
+        get
+        {
+            return residualAmmunition;
+        }
+        private set
+        {
+            residualAmmunition = value;
+        }
+    }
     public GameObject bullet;
     private StateModifier stateModifier = new();
 
     void Awake()
     {
         //bullet = Resources.Load("Bullet") as GameObject;
-        ammunitionType = AmmunitionType.Infinite;
+        ammunitionType = AmmunitionType.Nomal;
         weaponType = WeaponType.Pistol;
-        fireType = FireType.Auto;
+        fireType = FireType.Single;
         elementalEffectType = ElementalEffectType.None;
         isExplosion = false;
 
         baseDamage = new State(StateType.BaseDamage, 145);
         criticalX = new State(StateType.CriticalX, 2);
         luckyShot = new State(StateType.LuckyShot, 1);
-        magazine = new State(StateType.Magazine, 90);
+        magazine = new State(StateType.Magazine, 9);
         projectiles = new State(StateType.Projectiles, 1);
         projectileSpeed = new State(StateType.ProjectileSpeed, 60);
         rateOfFire = new State(StateType.RateOfFire, 30);
@@ -66,7 +88,7 @@ public class Weapon : MonoBehaviour
         elementalDMGIncrease = new State(StateType.ElementalDMGIncrease, 1);
         range = new State(StateType.Range, 20);
 
-        movementSpeed  = new State(StateType.MovementSpeed, -0.1f, 1, State.AddOper);
+        movementSpeed = new State(StateType.MovementSpeed, -0.1f, 1, State.AddOper);
 
         residualAmmunition = (int)magazine.Value;
 
@@ -93,7 +115,7 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        if(sumAccuracy > 0) sumAccuracy -= accuracy * 0.1f * Time.deltaTime;
+        if (sumAccuracy > 0) sumAccuracy -= accuracy * 0.1f * Time.deltaTime;
         sumAccuracy = Math.Clamp(sumAccuracy, 0, accuracy);
     }
 
@@ -122,23 +144,23 @@ public class Weapon : MonoBehaviour
     private float sumAccuracy = 0;
     public void Fire1(Transform transform)
     {
-        if(!isReload && !isFire && isFireready && residualAmmunition > 0) 
+        if (!isReload && !isFire && isFireready && residualAmmunition > 0)
         {
-            int pj = (int)(character.GetModifier().GetState(StateType.Projectiles)%1 > UnityEngine.Random.Range(0f, 1f) ? 
-                        character.GetModifier().GetState(StateType.Projectiles)+1 : character.GetModifier().GetState(StateType.Projectiles));
-            for(int i=0; i<pj; i++)
+            int pj = (int)(character.GetModifier().GetState(StateType.Projectiles) % 1 > UnityEngine.Random.Range(0f, 1f) ?
+                        character.GetModifier().GetState(StateType.Projectiles) + 1 : character.GetModifier().GetState(StateType.Projectiles));
+            for (int i = 0; i < pj; i++)
             {
                 var xError = GetRandomNormalDistribution(0f, sumAccuracy);
                 var yError = GetRandomNormalDistribution(0f, sumAccuracy);
                 Quaternion fireDirection = new();
-                if(parent.tag.Equals("Player"))
+                if (parent.tag.Equals("Player"))
                 {
                     PlayerCamera playerCamera = GameManager.Instance.MainCamera.GetComponent<PlayerCamera>();
                     fireDirection = playerCamera.transform.rotation;
-                    playerCamera.SetStability(stability);     
+                    playerCamera.SetStability(stability);
                 }
 
-                sumAccuracy += sumAccuracy > accuracy ? 0 : accuracy*0.1f;
+                sumAccuracy += sumAccuracy > accuracy ? 0 : accuracy * 0.1f;
 
                 fireDirection = Quaternion.AngleAxis(yError, Vector3.up) * fireDirection;
                 fireDirection = Quaternion.AngleAxis(xError, Vector3.right) * fireDirection;
@@ -149,17 +171,17 @@ public class Weapon : MonoBehaviour
                     character.GetModifier().GetState(StateType.Range));
             }
             isFire = true;
-            if(fireType == FireType.Single || fireType == FireType.Bust) isFireready = false;
+            if (fireType == FireType.Single || fireType == FireType.Bust) isFireready = false;
             StartCoroutine(FireReady());
             residualAmmunition--;
             // Debug.Log(residualAmmunition + "/" + character.GetModifier().GetState(StateType.Magazine));
         }
-        if(residualAmmunition <= 0) 
+        if (residualAmmunition <= 0)
         {
             // Debug.Log("need load");
             Reload();
         }
-        if(Input.GetButtonUp("Fire1")) isFireready = true;
+        if (Input.GetButtonUp("Fire1")) isFireready = true;
     }
     IEnumerator FireReady()
     {
@@ -170,8 +192,8 @@ public class Weapon : MonoBehaviour
 
     public void Reload()
     {
-        if(isReload || 
-        (int)character.GetModifier().GetState(StateType.Magazine) == residualAmmunition || 
+        if (isReload ||
+        (int)character.GetModifier().GetState(StateType.Magazine) == residualAmmunition ||
         parent.GetComponent<CharacterInterface>().GetAmmo(ammunitionType) <= 0) return;
 
         isReload = true;
@@ -184,7 +206,7 @@ public class Weapon : MonoBehaviour
         int maxAmmo = characterInterface.GetAmmo(ammunitionType);
         int magazineAmmo = (int)character.GetModifier().GetState(StateType.Magazine) - residualAmmunition;
         int temp = 0;
-        if(magazineAmmo > maxAmmo) temp = maxAmmo;
+        if (magazineAmmo > maxAmmo) temp = maxAmmo;
         else temp = magazineAmmo;
         residualAmmunition += temp;
         characterInterface.SetAmmo(ammunitionType, -temp);

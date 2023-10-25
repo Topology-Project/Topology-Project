@@ -14,7 +14,7 @@ public class Character : MonoBehaviour, CharacterInterface
     protected State dashCooltime;
 
     protected State ammoRate;
-    protected Ammunition maxInfiniteAmmo;
+    protected Ammunition maxInfiniteAmmo; // 탄창(우)
     protected Ammunition maxNomalAmmo;
     protected Ammunition maxLargeAmmo;
     protected Ammunition maxSpecialAmmo;
@@ -29,7 +29,7 @@ public class Character : MonoBehaviour, CharacterInterface
     protected StateModifier stateModifier = new();
     protected ArrayList effects = new();
     public Weapon weapon;
-    
+
     protected Rigidbody rig;
 
     protected virtual void Awake()
@@ -84,7 +84,7 @@ public class Character : MonoBehaviour, CharacterInterface
 
     public virtual void Move(Vector3 dir)
     {
-        if(isDash) dir *= stateModifier.GetState(StateType.DashSpeed);
+        if (isDash) dir *= stateModifier.GetState(StateType.DashSpeed);
         Vector3 temp = transform.position + transform.TransformDirection(dir) * stateModifier.GetState(StateType.MovementSpeed) * Time.deltaTime;
         rig.MovePosition(temp);
     }
@@ -92,7 +92,7 @@ public class Character : MonoBehaviour, CharacterInterface
     private bool isDashReady;
     public void Dash()
     {
-        if(!isDashReady) return;
+        if (!isDashReady) return;
         isDash = true;
         isDashReady = false;
         StartCoroutine(Dashing());
@@ -123,27 +123,27 @@ public class Character : MonoBehaviour, CharacterInterface
     }
     public int GetAmmo(AmmunitionType ammunitionType)
     {
-        if(ammunitionType == AmmunitionType.Infinite) return infiniteAmmo;
-        else if(ammunitionType == AmmunitionType.Nomal) return nomalAmmo;
-        else if(ammunitionType == AmmunitionType.Large) return largeAmmo;
-        else if(ammunitionType == AmmunitionType.Special) return specialAmmo;
+        if (ammunitionType == AmmunitionType.Infinite) return infiniteAmmo;
+        else if (ammunitionType == AmmunitionType.Nomal) return nomalAmmo;
+        else if (ammunitionType == AmmunitionType.Large) return largeAmmo;
+        else if (ammunitionType == AmmunitionType.Special) return specialAmmo;
         return 0;
     }
     public void SetAmmo(AmmunitionType ammunitionType, int ammo)
     {
-        if(ammunitionType == AmmunitionType.Infinite) return;
-        else if(ammunitionType == AmmunitionType.Nomal) nomalAmmo += ammo;
-        else if(ammunitionType == AmmunitionType.Large) largeAmmo += ammo;
-        else if(ammunitionType == AmmunitionType.Special) specialAmmo += ammo;
+        if (ammunitionType == AmmunitionType.Infinite) return;
+        else if (ammunitionType == AmmunitionType.Nomal) nomalAmmo += ammo;
+        else if (ammunitionType == AmmunitionType.Large) largeAmmo += ammo;
+        else if (ammunitionType == AmmunitionType.Special) specialAmmo += ammo;
     }
 
     private void HPCalc(float hp) => healthPoint = hp;
-    private void Damage(float hp) => HPCalc(healthPoint-hp);
-    private void Heal(float hp) => HPCalc(healthPoint+hp);
+    private void Damage(float hp) => HPCalc(healthPoint - hp);
+    private void Heal(float hp) => HPCalc(healthPoint + hp);
     public float DamageCalc(StateModifier stateModifier)
     {
-        int lsh = (int)(stateModifier.GetState(StateType.LuckyShot)%1 > Random.Range(0f, 1f) ?
-                    stateModifier.GetState(StateType.LuckyShot)+1 : stateModifier.GetState(StateType.LuckyShot));
+        int lsh = (int)(stateModifier.GetState(StateType.LuckyShot) % 1 > Random.Range(0f, 1f) ?
+                    stateModifier.GetState(StateType.LuckyShot) + 1 : stateModifier.GetState(StateType.LuckyShot));
         float damage = stateModifier.GetState(StateType.BaseDamage)
                     * stateModifier.GetState(StateType.WPNUpgrade)
                     * stateModifier.GetState(StateType.BaseDMGIncrease)
@@ -151,7 +151,7 @@ public class Character : MonoBehaviour, CharacterInterface
                     * stateModifier.GetState(StateType.ElementalDMGIncrease)
                     * lsh
                     * stateModifier.GetState(StateType.CriticalX);
-        
+
         // Debug.Log("Damage : " + stateModifier.GetState(StateType.BaseDamage)
         //             + "*" + stateModifier.GetState(StateType.WPNUpgrade)
         //             + "*" + stateModifier.GetState(StateType.BaseDMGIncrease)
@@ -166,10 +166,10 @@ public class Character : MonoBehaviour, CharacterInterface
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag.Equals("Bullet"))
+        if (other.gameObject.tag.Equals("Bullet"))
         {
             GameObject parent = other.GetComponent<Bullet>().parent;
-            if(!parent.tag.Equals(gameObject.tag)) DamageCalc(parent.GetComponent<CharacterInterface>().GetModifier());
+            if (!parent.tag.Equals(gameObject.tag)) DamageCalc(parent.GetComponent<CharacterInterface>().GetModifier());
         }
     }
 }
