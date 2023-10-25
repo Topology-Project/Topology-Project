@@ -48,7 +48,13 @@ public class Map : MonoBehaviour
     public void ChestUnlock()
     {
         int i = 0;
-        if(GetIdx(prevMap, out i)) doors[i].ChestSet();
+        if(GetIdx(nextMap, out i)) doors[i].ChestUnlock();
+    }
+
+    public void ChestSet()
+    {
+        int i = 0;
+        if(GetIdx(nextMap, out i)) doors[i].ChestSet();
     }
 
     public void WarpSet()

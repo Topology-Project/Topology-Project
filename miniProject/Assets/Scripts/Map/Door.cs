@@ -28,12 +28,15 @@ public class Door : MonoBehaviour
     }
 
     public void DTSet() => doorTrig.isSet = true;
-    public void ChestSet() => chest.GetComponent<Chest>().isOpen = true;
+    public void ChestUnlock() => chest.GetComponent<Chest>().isOpen = true;
+    public void ChestSet()
+    {
+        chest.SetActive(true);
+        chest.GetComponent<Chest>().isOpen = false;
+    }
     public void WarpSet()
     {
         trig.SetActive(false);
         warp.SetActive(true);
-        chest.SetActive(true);
-        chest.GetComponent<Chest>().isOpen = false;
     }
 }

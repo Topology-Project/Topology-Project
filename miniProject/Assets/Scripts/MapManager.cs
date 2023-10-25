@@ -64,6 +64,7 @@ public class MapManager : MonoBehaviour
             next = activeMap[i];
             if(mapStack.Count > 0) activeMap[i].prevMap = mapStack.Peek();
             if(i == activeMap.Length-1) activeMap[i].WarpSet();
+            if(i == activeMap.Length-2) activeMap[i].ChestSet();
         }
 
         player = GameManager.Instance.Player.gameObject;
@@ -79,9 +80,9 @@ public class MapManager : MonoBehaviour
     {
         if(activeMap[activeMapIdx].enemyCount <= 0)
         {
+            activeMap[activeMapIdx].ChestUnlock();
             activeMap[activeMapIdx++].RoomClear();
             activeMap[activeMapIdx].DoorActive(true);
-            activeMap[activeMapIdx].ChestUnlock();
         }
     }
 
