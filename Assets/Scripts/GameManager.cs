@@ -11,17 +11,25 @@ public class GameManager : MonoBehaviour
         private set { instance = value; }
     }
     private static InputManager inputManager;
-    public static InputManager InpuManager
+    public InputManager InpuManager
     {
         get { if (inputManager == null) Init(); return inputManager; }
         private set { inputManager = value; }
     }
     private static StageManager stageManager;
-    public static StageManager StageManager
+    public StageManager StageManager
     {
         get { if (stageManager == null) Init(); return stageManager; }
         private set { stageManager = value; }
     }
+    
+    private static TriggerManager triggerManager;
+    public TriggerManager TriggerManager
+    {
+        get { if (triggerManager == null) Init(); return triggerManager; }
+        private set { triggerManager = value; }
+    }
+    
 
     private Player player;
     public Player Player
@@ -63,11 +71,16 @@ public class GameManager : MonoBehaviour
             {
                 go.AddComponent<StageManager>();
             }
+            if (go.GetComponent<TriggerManager>() == null)
+            {
+                go.AddComponent<TriggerManager>();
+            }
 
             instance = go.GetComponent<GameManager>();
             DontDestroyOnLoad(go.gameObject);
             inputManager = go.GetComponent<InputManager>();
             stageManager = go.GetComponent<StageManager>();
+            triggerManager = go.GetComponent<TriggerManager>();
         }
         if (instance.player == null)
         {

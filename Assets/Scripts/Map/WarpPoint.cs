@@ -25,7 +25,7 @@ public class WarpPoint : MonoBehaviour
 
     private void WarpStage()
     {
-        GameManager.StageManager.NextStageLoad();
+        GameManager.Instance.StageManager.NextStageLoad();
     }
     private void WarpTransform()
     {

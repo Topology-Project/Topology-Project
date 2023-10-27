@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -131,8 +132,16 @@ public class Enemy : Character
 
         if(healthPoint <= 0)
         {
-            GameManager.StageManager.mapManager.EnemyDeath();
+            GameManager.Instance.StageManager.mapManager.EnemyDeath();
             Destroy(gameObject);
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.tag.Equals("Bullet"))
+        {
+            GameManager.Instance.TriggerManager.onTrigger(PlayTriggerType.EnemyHit);
         }
     }
 }

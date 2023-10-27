@@ -10,7 +10,7 @@ public class DoorTrig : MonoBehaviour
     {
         if(other.tag.Equals("Player") && !isSet)
         {
-            GameManager.StageManager.mapManager.EnterRoom();
+            GameManager.Instance.StageManager.mapManager.EnterRoom();
         }
     }
 }

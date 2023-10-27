@@ -30,12 +30,20 @@ public class Map : MonoBehaviour
                 Instantiate(go, sp);
             }
             foreach(Door door in doors) door.DTSet();
+            GameManager.Instance.TriggerManager.AddTrigger(PlayTriggerType.EnemyDie, EnemyDecount);
             DoorActive(false);
         }
     }
+
+    private void EnemyDecount() => enemyCount--;
+
     public void RoomClear()
     {
-        if(isRoomSet) DoorActive(true);
+        if(isRoomSet)
+        {
+            DoorActive(true);
+            GameManager.Instance.TriggerManager.DelTrigger(PlayTriggerType.EnemyDie, EnemyDecount);
+        }
     }
 
     public void DoorActive(bool b)
