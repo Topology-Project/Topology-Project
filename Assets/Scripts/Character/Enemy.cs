@@ -137,8 +137,9 @@ public class Enemy : Character
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
+        base.OnTriggerEnter(other);
         if(other.tag.Equals("Bullet"))
         {
             GameManager.Instance.TriggerManager.onTrigger(PlayTriggerType.EnemyHit);

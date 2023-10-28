@@ -30,7 +30,16 @@ public class TriggerManager : MonoBehaviour
         
     }
 
-    public void onTrigger(PlayTriggerType playTriggerType) => keyValuePairs[playTriggerType]();
-    public void AddTrigger(PlayTriggerType playTriggerType, PlayTrigger playTrigger) => keyValuePairs[playTriggerType] += playTrigger;
-    public void DelTrigger(PlayTriggerType playTriggerType, PlayTrigger playTrigger) => keyValuePairs[playTriggerType] -= playTrigger;
+    public void onTrigger(PlayTriggerType playTriggerType)
+    {
+        if(keyValuePairs[playTriggerType] != null) keyValuePairs[playTriggerType]();
+    }
+    public void AddTrigger(PlayTriggerType playTriggerType, PlayTrigger playTrigger)
+    {
+        if(keyValuePairs[playTriggerType] != null) keyValuePairs[playTriggerType] += playTrigger;
+    }
+    public void DelTrigger(PlayTriggerType playTriggerType, PlayTrigger playTrigger)
+    {
+        if(keyValuePairs[playTriggerType] != null) keyValuePairs[playTriggerType] -= playTrigger;
+    }
 }
