@@ -27,13 +27,20 @@ public class Door : MonoBehaviour
         }
     }
 
+    // 도어트리거 셋팅
     public void DTSet() => doorTrig.isSet = true;
+
+    // 상자 언락
     public void ChestUnlock() => chest.GetComponent<Chest>().isOpen = true;
+
+    // 상자 셋팅 메서드
     public void ChestSet()
     {
         chest.SetActive(true);
         chest.GetComponent<Chest>().isOpen = false;
     }
+
+    // 워프용 게이트로 전환
     public void WarpSet()
     {
         trig.SetActive(false);

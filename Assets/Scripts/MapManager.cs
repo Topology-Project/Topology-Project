@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
-    public Map[] maps;
+    public Map[] maps; // 스테이지 내 방 목록
 
-    public int round;
-    private Map[] activeMap;
-    private int activeMapIdx = 0;
+    public int round; // 스테이지 진행 방 갯수(방 갯수 -1 까지만)
+    private Map[] activeMap; // 현재 스테이지에서 사용할 방 목록
+    private int activeMapIdx = 0; // 현재 진행 중인 방 인덱스
 
     private GameObject player;
     private GameObject playerCamera;
@@ -17,6 +17,7 @@ public class MapManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // 스테이지 방 루트 설정
         round += 1;
         activeMap = new Map[round];
         Stack<Map> mapStack = new();
@@ -61,15 +62,15 @@ public class MapManager : MonoBehaviour
             activeMap[i].nextMap = next;
             next = activeMap[i];
             if(mapStack.Count > 0) activeMap[i].prevMap = mapStack.Peek();
-            if(i == activeMap.Length-1) activeMap[i].WarpSet();
-            if(i == activeMap.Length-2) activeMap[i].ChestSet();
+            if(i == activeMap.Length-1) activeMap[i].WarpSet(); // 마지막 방 문 워프 설정
+            if(i == activeMap.Length-2) activeMap[i].ChestSet(); // 마지막 방 클리어 보상 상자 설정
         }
 
         player = GameManager.Instance.Player.gameObject;
         playerCamera = GameManager.Instance.MainCamera.gameObject;
 
-        PlayerSpawn();
-        EnterRoom();
+        PlayerSpawn(); // 플레이어 워프
+        EnterRoom(); // 방 셋팅
     }
 
 
@@ -78,12 +79,14 @@ public class MapManager : MonoBehaviour
     {
         if(activeMap[activeMapIdx].enemyCount <= 0)
         {
+            // 방 클릭어 시 셋팅 (임시)
             activeMap[activeMapIdx].ChestUnlock();
             activeMap[activeMapIdx++].RoomClear();
             activeMap[activeMapIdx].DoorActive(true);
         }
     }
 
+    // 플레이어 워프
     private void PlayerSpawn()
     {
         player.transform.position = activeMap[activeMapIdx].playerSpawnPoint.position;
@@ -92,13 +95,9 @@ public class MapManager : MonoBehaviour
         playerCamera.transform.rotation = activeMap[activeMapIdx].playerSpawnPoint.rotation;
     } 
 
+    // 방 셋팅 용 메서드
     public void EnterRoom()
     {
         activeMap[activeMapIdx].RoomSet();
-    }
-
-    public void EnemyDeath()
-    {
-        activeMap[activeMapIdx].enemyCount--;
     }
 }

@@ -19,6 +19,7 @@ public class StageManager : MonoBehaviour
         };
     }
 
+    // 다음 스테이지 로드 및 맵메니저 탐색
     public void NextStageLoad()
     {
         // if(stageIdx < stageNames.Length) SceneManager.LoadScene(stageNames[stageIdx++]);

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager instance;
-    public static GameManager Instance
+    private static GameManager instance; // 게임매니저 인스턴스
+    public static GameManager Instance // 게임매니저의 모든 객체 접근 시
+                                       // GameManager.Instance로 접근 권장
     {
         get { if (instance == null) Init(); return instance; }
         private set { instance = value; }
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
     }
     
 
-    private Player player;
+    private Player player; // GameManager.Instance.Player로 플레이어 객체 접근 가능
     public Player Player
     {
         get { if (player == null) Init(); return player; }
@@ -49,7 +50,7 @@ public class GameManager : MonoBehaviour
     {
         Init();
     }
-    static void Init()
+    static void Init() // 매니저 객체 초기화 메서드
     {
         if (instance == null)
         {
