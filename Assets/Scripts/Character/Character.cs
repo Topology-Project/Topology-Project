@@ -35,7 +35,7 @@ public class Character : MonoBehaviour, CharacterInterface
     protected virtual void Awake()
     {
         armorType = ProtectionType.Shield;
-        maxHealthPoint = new State(StateType.MaxHealthPoint, 8000);
+        maxHealthPoint = new State(StateType.MaxHealthPoint, 30);
         maxProtectionPoint = new State(StateType.MaxProtectionPoint, 80);
 
         movement = new State(StateType.MovementSpeed, 8);
@@ -164,7 +164,7 @@ public class Character : MonoBehaviour, CharacterInterface
         return damage;
     }
 
-    void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Bullet"))
         {

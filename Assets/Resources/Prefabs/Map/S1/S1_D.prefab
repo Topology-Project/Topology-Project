@@ -75,7 +75,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3411488988694572700}
-  m_Mesh: {fileID: -6382672474699200910, guid: 6bf0da14fbeeb9f4f816ad967e014e7c, type: 3}
+  m_Mesh: {fileID: -745755460256663465, guid: d21e1b393aebdde468022cab37173d4c, type: 3}
 --- !u!23 &1751524718755002136
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: -6382672474699200910, guid: 6bf0da14fbeeb9f4f816ad967e014e7c, type: 3}
+  m_Mesh: {fileID: -745755460256663465, guid: d21e1b393aebdde468022cab37173d4c, type: 3}
 --- !u!114 &6400548685842512321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,7 +227,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: -6382672474699200910, guid: 6bf0da14fbeeb9f4f816ad967e014e7c, type: 3}
+  m_Mesh: {fileID: -745755460256663465, guid: d21e1b393aebdde468022cab37173d4c, type: 3}
 --- !u!114 &4731228782506777849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,7 +327,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8050544729441402565}
-  m_Mesh: {fileID: -6382672474699200910, guid: 6bf0da14fbeeb9f4f816ad967e014e7c, type: 3}
+  m_Mesh: {fileID: -745755460256663465, guid: d21e1b393aebdde468022cab37173d4c, type: 3}
 --- !u!23 &3533232614460308409
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -430,7 +430,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: -6382672474699200910, guid: 6bf0da14fbeeb9f4f816ad967e014e7c, type: 3}
+  m_Mesh: {fileID: -745755460256663465, guid: d21e1b393aebdde468022cab37173d4c, type: 3}
 --- !u!114 &4762721714297179422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,7 +526,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5118402653131320496, guid: b169310c6c3f1d54f8174791a8f52fbd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.5
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 5118402653131320496, guid: b169310c6c3f1d54f8174791a8f52fbd, type: 3}
       propertyPath: m_LocalRotation.w

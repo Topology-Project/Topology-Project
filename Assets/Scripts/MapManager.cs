@@ -11,8 +11,6 @@ public class MapManager : MonoBehaviour
     private Map[] activeMap;
     private int activeMapIdx = 0;
 
-    public  GameObject enemy;
-
     private GameObject player;
     private GameObject playerCamera;
 

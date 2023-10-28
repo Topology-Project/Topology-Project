@@ -20,6 +20,7 @@ public class InventoryUI : MonoBehaviour
         int a = player.GetAmmo(weapon.AmmunitionType);
         int b = weapon.ResidualAmmunition;
         BulletText.text = b + " / " + a;
+        DontDestroyOnLoad(gameObject);
     }
     private void Update()
     {
