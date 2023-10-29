@@ -23,7 +23,7 @@ public class InventoryUI : MonoBehaviour
     }
     private void Update()
     {
-        // InventoryOnOff();
+        InventoryOnOff();
         weapon = player.weapon;
         int a = player.GetAmmo(weapon.AmmunitionType);
         int b = weapon.ResidualAmmunition;
