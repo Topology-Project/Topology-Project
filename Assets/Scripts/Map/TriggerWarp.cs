@@ -8,6 +8,7 @@ public class TriggerWarp : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        // 플레이어 워프
         if(other.tag.Equals("Player")) warpPoint.Warp();
     }
 }

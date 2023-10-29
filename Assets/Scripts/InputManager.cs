@@ -38,7 +38,7 @@ public class InputManager : MonoBehaviour
         playerCamera.SetDir(lookDir);
 
         if(Input.GetButtonDown("Dash")) player.Dash();
-        if(Input.GetButtonDown("Jump")) player.JumpOn();
+        if(Input.GetButtonDown("Jump")) player.Jump();
         if(Input.GetButton("Fire1")) player.Fire1(playerCamera.transform);
         if(Input.GetButtonUp("Fire1")) player.Fire1(playerCamera.transform);
         if(Input.GetButtonDown("Reload")) player.Reload();

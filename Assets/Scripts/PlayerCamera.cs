@@ -9,10 +9,12 @@ public class PlayerCamera : MonoBehaviour
     private Vector3 dir;
     private Vector3 stability;
 
+    // 카메라 rotation 설정 메서드
     public void SetDir(Vector3 dir)
     {
         this.dir = dir;
     }
+    // 카메라 반동값 설정 메서드
     public void SetStability(float stability)
     {
         float random = UnityEngine.Random.Range(-stability, stability);
@@ -38,8 +40,10 @@ public class PlayerCamera : MonoBehaviour
         Vector3 temp;
         if(stability.x >= 0.01f || stability.y >= 0.01f)
         {
+            // 반동값 반영
             stability -= dir;
             temp = Vector3.Slerp(Vector3.zero, stability, 30f*Time.deltaTime);
+            // 반동값 회복
             transform.localEulerAngles -= temp;
             tempVector -= temp;
             stability -= temp;
@@ -47,6 +51,7 @@ public class PlayerCamera : MonoBehaviour
         tempVector += dir;
         tempVector = Rotation(tempVector);
         
+        // 카메라 rotation 보정
         temp = Vector3.Slerp(Vector3.zero, Over180(Rotation(transform.localEulerAngles-tempVector)), 3f*Time.deltaTime);
         transform.localEulerAngles -= temp;
         tempVector += temp * 0.2f;
@@ -60,6 +65,8 @@ public class PlayerCamera : MonoBehaviour
         transform.position = player.transform.position;
     }
 
+    // rotation 값 보정 용 메서드
+    // 범위 밖의 값을 보정해줌
     private Vector3 Over180(Vector3 vector)
     {
         float x = vector.x > 180 ? vector.x - 360 : vector.x;

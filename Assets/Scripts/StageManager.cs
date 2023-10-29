@@ -15,10 +15,11 @@ public class StageManager : MonoBehaviour
         stageIdx = 0;
         stageNames = new string[]
         {
-            "s1_map", "s1_map", "s1_map"
+            "s1_map", "s1_map", "s1_map","Boss_map"
         };
     }
 
+    // 다음 스테이지 로드 및 맵메니저 탐색
     public void NextStageLoad()
     {
         // if(stageIdx < stageNames.Length) SceneManager.LoadScene(stageNames[stageIdx++]);

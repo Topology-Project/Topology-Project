@@ -64,6 +64,7 @@ public class StateModifier
         modifier.Add(StateType.DashCooltime, DashCooltime);
     }
 
+    // 스텟 연산 결과값 반환 메서드
     public State GetState(StateType stateType)
     {
         float baseVar = 0;
@@ -73,6 +74,8 @@ public class StateModifier
         // Debug.Log(baseVar+","+sum+","+mul+","+(baseVar + ((baseVar==0 ? 1 : baseVar) * sum)) * mul);
         return new State(stateType, (baseVar + ((baseVar==0 ? 1 : baseVar) * sum)) * mul);
     }
+
+    // 스탯 핸들러 추가 메서드
     public void AddHandler(State state)
     {
         modifier[state.stateType] += state.operatorHandler(state);
@@ -84,6 +87,8 @@ public class StateModifier
             modifier[handler.Key] += handler.Value;
         }
     }
+
+    // 스탯 핸들러 제거 메서드
     public void DelHandler(State state)
     {
         modifier[state.stateType] -= state.operatorHandler(state);

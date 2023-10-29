@@ -115,6 +115,7 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
+        // 총기 안정성 회복
         if (sumAccuracy > 0) sumAccuracy -= accuracy * 0.1f * Time.deltaTime;
         sumAccuracy = Math.Clamp(sumAccuracy, 0, accuracy);
     }
@@ -124,6 +125,7 @@ public class Weapon : MonoBehaviour
         return stateModifier;
     }
 
+    // 총기 장착(임시)
     public void OnWeapon(Character character)
     {
         isFire = false;
@@ -132,6 +134,8 @@ public class Weapon : MonoBehaviour
         this.character = character;
         parent = character.gameObject;
     }
+
+    // 총기 해제(임시)
     public void OffWeapon()
     {
         this.character = null;
@@ -142,29 +146,35 @@ public class Weapon : MonoBehaviour
     private bool isFireready = true;
     private bool isReload = false;
     private float sumAccuracy = 0;
+
+    // 좌클릭 메서드
     public void Fire1(Transform transform)
     {
         if (!isReload && !isFire && isFireready && residualAmmunition > 0)
         {
+            // 투사체 갯수 설정
+            // ex) 1.3 = 1 (70%) or 2 (30%)
             int pj = (int)(character.GetModifier().GetState(StateType.Projectiles) % 1 > UnityEngine.Random.Range(0f, 1f) ?
                         character.GetModifier().GetState(StateType.Projectiles) + 1 : character.GetModifier().GetState(StateType.Projectiles));
-            for (int i = 0; i < pj; i++)
+            for (int i = 0; i < pj; i++) // 투사체 개수만큼 반복
             {
-                var xError = GetRandomNormalDistribution(0f, sumAccuracy);
-                var yError = GetRandomNormalDistribution(0f, sumAccuracy);
+                var xError = GetRandomNormalDistribution(0f, sumAccuracy); // 탄퍼짐
+                var yError = GetRandomNormalDistribution(0f, sumAccuracy); // 탄퍼짐
                 Quaternion fireDirection = new();
                 if (parent.tag.Equals("Player"))
                 {
+                    // 플레이어 카메라 반동
                     PlayerCamera playerCamera = GameManager.Instance.MainCamera.GetComponent<PlayerCamera>();
                     fireDirection = playerCamera.transform.rotation;
                     playerCamera.SetStability(stability);
                 }
 
-                sumAccuracy += sumAccuracy > accuracy ? 0 : accuracy * 0.1f;
+                sumAccuracy += sumAccuracy > accuracy ? 0 : accuracy * 0.1f; // 안정성 감소 (탄퍼짐 증가)
 
                 fireDirection = Quaternion.AngleAxis(yError, Vector3.up) * fireDirection;
                 fireDirection = Quaternion.AngleAxis(xError, Vector3.right) * fireDirection;
 
+                // bullet인스턴스 생성 및 초기화 (임시)
                 GameObject b = Instantiate(bullet, transform.position, fireDirection);
                 b.GetComponent<Bullet>().Set(parent,
                     character.GetModifier().GetState(StateType.ProjectileSpeed),
@@ -178,11 +188,14 @@ public class Weapon : MonoBehaviour
         }
         if (residualAmmunition <= 0)
         {
+            // 잔탄 소진 시 재장전
             // Debug.Log("need load");
             Reload();
         }
         if (Input.GetButtonUp("Fire1")) isFireready = true;
     }
+
+    // 차탄 사격 딜레이 용
     IEnumerator FireReady()
     {
         float time = 1f / character.GetModifier().GetState(StateType.RateOfFire);
@@ -190,6 +203,7 @@ public class Weapon : MonoBehaviour
         isFire = false;
     }
 
+    // 재장전 메서드
     public void Reload()
     {
         if (isReload ||
@@ -199,6 +213,7 @@ public class Weapon : MonoBehaviour
         isReload = true;
         StartCoroutine(Reloading());
     }
+    // 장전 딜레이 용 코루틴
     IEnumerator Reloading()
     {
         yield return new WaitForSeconds(character.GetModifier().GetState(StateType.ReloadTime));
