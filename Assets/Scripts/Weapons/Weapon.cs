@@ -88,7 +88,7 @@ public class Weapon : MonoBehaviour
         elementalDMGIncrease = new State(StateType.ElementalDMGIncrease, 1);
         range = new State(StateType.Range, 20);
 
-        movementSpeed = new State(StateType.MovementSpeed, -0.1f, 1, State.AddOper);
+        movementSpeed = new State(StateType.MovementSpeed,-0.1f);
 
         residualAmmunition = (int)magazine.Value;
 

@@ -10,11 +10,12 @@ public class Scroll : MonoBehaviour
     public StateType stateType;
     public float value;
     public int stack;
+    public float rate;
     public OperatorHandler operatorHandler = State.BaseOper;
 
     void Start()
     {
-        state = new(stateType, value, stack, operatorHandler);
+        state = new(stateType, value, operatorHandler, stack, rate);
     }
 
     public void GetState(Player player)

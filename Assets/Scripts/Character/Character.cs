@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,7 +48,7 @@ public class Character : MonoBehaviour, CharacterInterface
 
         ammoRate = new State(StateType.AmmoRate, 1);
 
-        maxInfiniteAmmo = new Ammunition(AmmunitionType.Infinite, 999999);
+        maxInfiniteAmmo = new Ammunition(AmmunitionType.Infinite, 999999999);
         maxNomalAmmo = new Ammunition(AmmunitionType.Nomal, 300);
         maxLargeAmmo = new Ammunition(AmmunitionType.Large, 200);
         maxSpecialAmmo = new Ammunition(AmmunitionType.Special, 100);
@@ -156,7 +157,7 @@ public class Character : MonoBehaviour, CharacterInterface
     // 대미지 계산 메서드
     public float DamageCalc(StateModifier stateModifier)
     {
-        int lsh = (int)(stateModifier.GetState(StateType.LuckyShot) % 1 > Random.Range(0f, 1f) ?
+        int lsh = (int)(stateModifier.GetState(StateType.LuckyShot) % 1 > UnityEngine.Random.Range(0f, 1f) ?
                     stateModifier.GetState(StateType.LuckyShot) + 1 : stateModifier.GetState(StateType.LuckyShot));
         float damage = stateModifier.GetState(StateType.BaseDamage)
                     * stateModifier.GetState(StateType.WPNUpgrade)
