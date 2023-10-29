@@ -11,6 +11,7 @@ TagManager:
   - Weapon
   - Warp
   - Chest
+  - Warning
   layers:
   - Default
   - TransparentFX

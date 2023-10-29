@@ -117,7 +117,7 @@ public class Enemy : Character
     protected override void Start()
     {
         base.Start();
-        
+
         target = GameManager.Instance.Player.transform;
         nma = GetComponent<NavMeshAgent>();
         LastUpdate += UpdateTime;
@@ -130,9 +130,9 @@ public class Enemy : Character
         MoveEnemy();
         FindTarget();
 
-        if(healthPoint <= 0)
+        if (healthPoint <= 0)
         {
-            GameManager.Instance.StageManager.mapManager.EnemyDeath();
+            // GameManager.Instance.StageManager.mapManager.EnemyDeath();
             Destroy(gameObject);
         }
     }
@@ -140,7 +140,7 @@ public class Enemy : Character
     protected override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
-        if(other.tag.Equals("Bullet"))
+        if (other.tag.Equals("Bullet"))
         {
             GameManager.Instance.TriggerManager.onTrigger(PlayTriggerType.EnemyHit);
         }
