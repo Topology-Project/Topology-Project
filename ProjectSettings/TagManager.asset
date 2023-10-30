@@ -12,6 +12,7 @@ TagManager:
   - Warp
   - Chest
   - Warning
+  - Rocket_Punch
   layers:
   - Default
   - TransparentFX

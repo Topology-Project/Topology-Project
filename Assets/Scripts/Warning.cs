@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Warning : MonoBehaviour
@@ -13,4 +12,12 @@ public class Warning : MonoBehaviour
         Debug.Log(isDestroy);
         // if ()
     }
+
+    // private void OnCollisionEnter(Collision obj)
+    // {
+    //     if (obj.gameObject.CompareTag("Rocket_Punch"))
+    //     {
+    //         Destroy(gameObject);
+    //     }
+    // }
 }
