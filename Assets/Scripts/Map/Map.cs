@@ -37,7 +37,6 @@ public class Map : MonoBehaviour
                 enemyCount++;
             }
             foreach(Door door in doors) door.DTSet();
-            Debug.Log("c");
             GameManager.Instance.TriggerManager.AddTrigger(PlayTriggerType.EnemyDie, EnemyDecount); // 적이 죽을 때마다 작동되도록 트리거 설정
             GameManager.Instance.TriggerManager.AddTrigger(PlayTriggerType.EnemyDie, RoomClear); // 적이 죽을 때마다 작동되도록 트리거 설정
             DoorActive(false);

@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Init();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
     static void Init() // 매니저 객체 초기화 메서드
     {
