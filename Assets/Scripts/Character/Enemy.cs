@@ -117,7 +117,7 @@ public class Enemy : Character
     protected override void Start()
     {
         base.Start();
-        
+
         target = GameManager.Instance.Player.transform;
         nma = GetComponent<NavMeshAgent>();
         LastUpdate += UpdateTime;
@@ -134,7 +134,7 @@ public class Enemy : Character
     protected override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
-        if(other.tag.Equals("Bullet"))
+        if (other.tag.Equals("Bullet"))
         {
             // 부모의 모디파이어 객체를 가져옴
             GameObject parent = other.GetComponent<Bullet>().parent;
