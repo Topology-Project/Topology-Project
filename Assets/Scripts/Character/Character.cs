@@ -181,11 +181,14 @@ public class Character : MonoBehaviour, CharacterInterface
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Bullet"))
+        if (other.tag.Equals("Bullet"))
         {
             // 부모의 모디파이어 객체를 가져옴
             GameObject parent = other.GetComponent<Bullet>().parent;
-            if (!parent.tag.Equals(gameObject.tag)) DamageCalc(parent.GetComponent<CharacterInterface>().GetModifier());
+            if (!parent.tag.Equals(gameObject.tag))
+            {
+                DamageCalc(parent.GetComponent<CharacterInterface>().GetModifier());
+            }
         }
     }
 }

@@ -37,7 +37,9 @@ public class Map : MonoBehaviour
                 enemyCount++;
             }
             foreach(Door door in doors) door.DTSet();
+            Debug.Log("c");
             GameManager.Instance.TriggerManager.AddTrigger(PlayTriggerType.EnemyDie, EnemyDecount); // 적이 죽을 때마다 작동되도록 트리거 설정
+            GameManager.Instance.TriggerManager.AddTrigger(PlayTriggerType.EnemyDie, RoomClear); // 적이 죽을 때마다 작동되도록 트리거 설정
             DoorActive(false);
         }
     }
@@ -48,10 +50,12 @@ public class Map : MonoBehaviour
     // 방 클리어 시 작동
     public void RoomClear()
     {
-        if(isRoomSet)
+        if(isRoomSet && enemyCount <= 0)
         {
             DoorActive(true);
+            GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.RoomClear); // 클리어 트리거
             GameManager.Instance.TriggerManager.DelTrigger(PlayTriggerType.EnemyDie, EnemyDecount); // 트리거 설정해제
+            GameManager.Instance.TriggerManager.DelTrigger(PlayTriggerType.EnemyDie, RoomClear); // 트리거 설정해제
         }
     }
 
@@ -81,7 +85,7 @@ public class Map : MonoBehaviour
     public void WarpSet()
     {
         int i = 0;
-        if(GetIdx(prevMap, out i)) doors[i].WarpSet();
+        if(GetIdx(nextMap, out i)) doors[i].WarpSet();
     }
 
     // 방 문 찾기용 메서드 (임시)

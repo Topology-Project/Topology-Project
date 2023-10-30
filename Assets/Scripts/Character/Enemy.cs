@@ -129,11 +129,6 @@ public class Enemy : Character
     {
         MoveEnemy();
         FindTarget();
-
-        if(healthPoint <= 0)
-        {
-            Destroy(gameObject);
-        }
     }
 
     protected override void OnTriggerEnter(Collider other)
@@ -141,7 +136,17 @@ public class Enemy : Character
         base.OnTriggerEnter(other);
         if(other.tag.Equals("Bullet"))
         {
-            GameManager.Instance.TriggerManager.onTrigger(PlayTriggerType.EnemyHit);
+            // 부모의 모디파이어 객체를 가져옴
+            GameObject parent = other.GetComponent<Bullet>().parent;
+            if (!parent.tag.Equals(gameObject.tag))
+            {
+                GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyHit);
+                if(healthPoint <= 0)
+                {
+                    GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyDie);
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 }
