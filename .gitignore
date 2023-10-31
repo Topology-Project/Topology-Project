@@ -10,6 +10,22 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
+/Assets/Model/
+/Assets/Texture/
+/Assets/Images/
+/Assets/Room/
+/Assets/S1_Map/
+/Assets/Material/
+/Assets/Model/
+/Assets/Boss_Map/
+/Assets/Font/
+/Assets/Material/
+/Assets/Plugins/
+/Assets/Resources/
+/Assets/Boss_Golem/
+/Assets/TextMesh Pro/
+/Assets/UI/
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
@@ -51,6 +67,11 @@ ExportedObj/
 *.pidb.meta
 *.pdb.meta
 *.mdb.meta
+*.fnt.meta
+*.png.meta
+*.ttf.meta
+*.fbx.meta
+*.mat.meta
 
 # Unity3D generated file on crash reports
 sysinfo.txt
