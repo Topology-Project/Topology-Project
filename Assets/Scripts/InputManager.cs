@@ -19,8 +19,7 @@ public class InputManager : MonoBehaviour
         playerCamera = GameManager.Instance.MainCamera;
         m_camera = playerCamera.GetComponent<Camera>();
 
-        layerMask = (1<<LayerMask.NameToLayer("Wall"))|
-                    (1<<LayerMask.NameToLayer("WarpPoint"))|
+        layerMask = (1<<LayerMask.NameToLayer("WarpPoint"))|
                     (1<<LayerMask.NameToLayer("Enemy"))|
                     (1<<LayerMask.NameToLayer("Item"))|
                     (1<<LayerMask.NameToLayer("Chest"));

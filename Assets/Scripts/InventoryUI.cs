@@ -13,8 +13,6 @@ public class InventoryUI : MonoBehaviour
     Player player;
     Weapon weapon;
 
-    public bool active;
-
     private void Start()
     {
         player = GameManager.Instance.Player;
@@ -23,7 +21,6 @@ public class InventoryUI : MonoBehaviour
         int b = weapon.ResidualAmmunition;
         BulletText.text = b + " / " + a;
         DontDestroyOnLoad(gameObject);
-        if(!active) gameObject.SetActive(false);
     }
     private void Update()
     {

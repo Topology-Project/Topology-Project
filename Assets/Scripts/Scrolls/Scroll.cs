@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEditor;
 
 public class Scroll : MonoBehaviour
 {
@@ -16,6 +14,11 @@ public class Scroll : MonoBehaviour
     void Start()
     {
         state = new(stateType, value, operatorHandler, stack, rate);
+    }
+
+    protected virtual void SetTrigger()
+    {
+
     }
 
     public void GetState(Player player)
