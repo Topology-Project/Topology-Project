@@ -8020,7 +8020,6 @@ MonoBehaviour:
   inventoryPanel: {fileID: 1209700379}
   AimUI: {fileID: 762699214}
   BulletText: {fileID: 23210399}
-  active: 1
 --- !u!114 &762699216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12378,7 +12377,6 @@ MonoBehaviour:
   inventoryPanel: {fileID: 1025350272}
   AimUI: {fileID: 762699214}
   BulletText: {fileID: 23210399}
-  active: 0
 --- !u!114 &1209700381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20074,6 +20072,7 @@ GameObject:
   - component: {fileID: 2019004089}
   - component: {fileID: 2019004093}
   - component: {fileID: 2019004094}
+  - component: {fileID: 2019004095}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -20144,6 +20143,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eae0d3dfd9aaec4aa4486e99a4bd9ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2019004095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019004088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e8a6b9be6975f948a3cdc2577f82df4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inscription: {fileID: 0}
 --- !u!1 &2023340686
 GameObject:
   m_ObjectHideFlags: 0

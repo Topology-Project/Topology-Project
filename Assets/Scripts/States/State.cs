@@ -6,14 +6,16 @@ using UnityEngine;
 // 스텟 연산용 델리게이트
 public delegate void StateHandler<State>(ref float baseVar, ref float sum, ref float mul);
 // 스텟 연산 종류 설정용 델리게이트
+[System.Serializable]
 public delegate StateHandler<State> OperatorHandler(State state);
 
+[System.Serializable]
 public class State
 {
-    public OperatorHandler operatorHandler { get; private set; }
+    public OperatorHandler operatorHandler;
 
-    public StateType stateType { private set; get; } // 스텟 종류
-    private float stateValue; // 스텟 값
+    public StateType stateType; // 스텟 종류
+    public float stateValue; // 스텟 값
     public float Value 
     { 
         private set
@@ -35,8 +37,8 @@ public class State
             }
         } 
     }
-    public int stack { private set; get; }
-    public float rate { private set; get; }
+    public int stack;
+    public float rate;
 
     public State(StateType stateType=StateType.BaseDamage, float Value=0f, OperatorHandler operatorHandler=null, int stack=1, float rate=1)
     {
@@ -62,6 +64,11 @@ public class State
     {
         SetState(state.stateType, state.Value, state.operatorHandler, state.stack, state.rate);
     }
+
+    public void StackUp() => ++stack;
+    public void StackDown() => --stack;
+    public void RateUp() => ++rate;
+    public void RateDown() => --rate;
 
     // 수치 합연산
     private void BaseState(ref float baseVar, ref float sum, ref float mul)
