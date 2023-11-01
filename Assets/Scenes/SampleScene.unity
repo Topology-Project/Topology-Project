@@ -1490,6 +1490,10 @@ PrefabInstance:
       propertyPath: m_Interpolate
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5247670096519213119, guid: de430488dcfbdb84a90fc5e6aa02fdf7, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: f726e3f83c9309c4189d85047ae55169, type: 2}
     - target: {fileID: 5717813798629140281, guid: de430488dcfbdb84a90fc5e6aa02fdf7, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -1537,6 +1541,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 0}
+    - {fileID: 5247670096519213119, guid: de430488dcfbdb84a90fc5e6aa02fdf7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: de430488dcfbdb84a90fc5e6aa02fdf7, type: 3}
 --- !u!1 &166254371
 GameObject:
