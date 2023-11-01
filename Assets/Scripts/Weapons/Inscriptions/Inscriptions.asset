@@ -17,11 +17,19 @@ MonoBehaviour:
     info: "\uCE58\uBA85\uD0C0 \uD53C\uD574 40% \uC99D\uAC00"
     stackTrigger: 0
     rateTrigger: 0
-    states: []
+    states:
+    - stateType: 1
+      stateValue: 0.4
+      stack: 1
+      rate: 1
     operType: 1
   - inscriptionType: 0
     info: "\uC7A5\uD0C4 \uC218 60% \uC99D\uAC00"
     stackTrigger: 0
     rateTrigger: 0
-    states: []
+    states:
+    - stateType: 4
+      stateValue: 0.6
+      stack: 1
+      rate: 1
     operType: 1

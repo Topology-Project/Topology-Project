@@ -64,38 +64,24 @@ public class Weapon : MonoBehaviour
 
     void Awake()
     {
-        //bullet = Resources.Load("Bullet") as GameObject;
-        ammunitionType = AmmunitionType.Nomal;
-        weaponType = WeaponType.Pistol;
-        fireType = FireType.Single;
-        elementalEffectType = ElementalEffectType.None;
-        isExplosion = false;
-
-        baseDamage = new State(StateType.BaseDamage, 145);
-        criticalX = new State(StateType.CriticalX, 2);
-        luckyShot = new State(StateType.LuckyShot, 1);
-        magazine = new State(StateType.Magazine, 9);
-        projectiles = new State(StateType.Projectiles, 1);
-        projectileSpeed = new State(StateType.ProjectileSpeed, 60);
-        rateOfFire = new State(StateType.RateOfFire, 30);
-        reloadTime = new State(StateType.ReloadTime, 1.35f);
-        upgrade = new State(StateType.WPNUpgrade, 1);
-        accuracy = new State(StateType.Accuracy, 1.2f);
-        stability = new State(StateType.Stability, 5f);
-        baseDMGIncrease = new State(StateType.BaseDMGIncrease, 1);
-        explosionRange = new State(StateType.ExplosionRange, 0);
-        explosionDMGIncrease = new State(StateType.ExplosionDMGIncrease, 1);
-        elementalRate = new State(StateType.ElementalRate, 0);
-        elementalDMGIncrease = new State(StateType.ElementalDMGIncrease, 1);
-        range = new State(StateType.Range, 20);
-
-        movementSpeed = new State(StateType.MovementSpeed,-0.1f);
-
-        inscriptions = GameManager.Instance.Inscriptions.GetRandomDatas(2);
-        foreach(Inscription.Data data in inscriptions) SetInscriprion(data);
-        foreach(Inscription.Data data in inscriptions) Debug.Log(data.info);
-
-        residualAmmunition = (int)magazine.Value;
+        baseDamage = new State(StateType.BaseDamage);
+        criticalX = new State(StateType.CriticalX);
+        luckyShot = new State(StateType.LuckyShot);
+        magazine = new State(StateType.Magazine);
+        projectiles = new State(StateType.Projectiles);
+        projectileSpeed = new State(StateType.ProjectileSpeed);
+        rateOfFire = new State(StateType.RateOfFire);
+        reloadTime = new State(StateType.ReloadTime);
+        upgrade = new State(StateType.WPNUpgrade);
+        accuracy = new State(StateType.Accuracy);
+        stability = new State(StateType.Stability);
+        baseDMGIncrease = new State(StateType.BaseDMGIncrease);
+        explosionRange = new State(StateType.ExplosionRange);
+        explosionDMGIncrease = new State(StateType.ExplosionDMGIncrease);
+        elementalRate = new State(StateType.ElementalRate);
+        elementalDMGIncrease = new State(StateType.ElementalDMGIncrease);
+        range = new State(StateType.Range);
+        movementSpeed = new State(StateType.Range);
 
         stateModifier.AddHandler(baseDamage);
         stateModifier.AddHandler(criticalX);
@@ -118,6 +104,43 @@ public class Weapon : MonoBehaviour
         stateModifier.AddHandler(movementSpeed);
     }
 
+    void Start()
+    {
+        //bullet = Resources.Load("Bullet") as GameObject;
+        ammunitionType = AmmunitionType.Nomal;
+        weaponType = WeaponType.Pistol;
+        fireType = FireType.Single;
+        elementalEffectType = ElementalEffectType.None;
+        isExplosion = false;
+
+        baseDamage.ResetState(145);
+        criticalX.ResetState(2);
+        luckyShot.ResetState(1);
+        magazine.ResetState(9);
+        projectiles.ResetState(1);
+        projectileSpeed.ResetState(60);
+        rateOfFire.ResetState(30);
+        reloadTime.ResetState(1.35f);
+        upgrade.ResetState(1);
+        accuracy.ResetState(1.2f);
+        stability.ResetState(5f);
+        baseDMGIncrease.ResetState(1);
+        explosionRange.ResetState(0);
+        explosionDMGIncrease.ResetState(1);
+        elementalRate.ResetState(0);
+        elementalDMGIncrease.ResetState(1);
+        range.ResetState(20);
+
+        movementSpeed.ResetState(-0.1f, State.AddOper);
+
+        inscriptions = GameManager.Instance.Inscriptions.GetRandomDatas(2);
+        foreach(Inscription.Data data in inscriptions) SetInscriprion(data);
+        foreach(Inscription.Data data in inscriptions) if(parent.tag.Equals("Player")) Debug.Log(data.info);
+
+
+        residualAmmunition = (int)magazine.Value;
+    }
+
     private void Update()
     {
         // 총기 안정성 회복
@@ -130,27 +153,15 @@ public class Weapon : MonoBehaviour
         return stateModifier;
     }
 
+    // 인장적용 (임시)
     private void SetInscriprion(Inscription.Data data)
     {
-        OperatorHandler operatorHandler = null;
-        switch(data.operType)
-        {
-            case OperType.BaseOper:
-            operatorHandler = State.BaseOper;
-            break;
-            case OperType.AddOper:
-            operatorHandler = State.AddOper;
-            break;
-            case OperType.MulOper:
-            operatorHandler = State.MulOper;
-            break;
-        }
         foreach(State state in data.states) 
         {
-            state.operatorHandler = operatorHandler;
             stateModifier.AddHandler(state);
             GameManager.Instance.TriggerManager.AddTrigger(data.stackTrigger, state.StackUp);
             GameManager.Instance.TriggerManager.AddTrigger(data.rateTrigger, state.RateUp);
+            parent.GetComponent<CharacterInterface>().GetModifier().AddHandler(stateModifier);
         }
     }
 

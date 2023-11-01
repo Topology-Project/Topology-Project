@@ -58,6 +58,14 @@ public class State
         if(operatorHandler == null) operatorHandler = State.BaseOper;
         this.operatorHandler = operatorHandler;
     }
+    public void ResetState(float Value=0f, OperatorHandler operatorHandler=null, int stack=1, float rate=1)
+    {
+        this.Value = Value;
+        this.stack = stack;
+        this.rate = rate;
+        if(operatorHandler == null) operatorHandler = State.BaseOper;
+        this.operatorHandler = operatorHandler;
+    }
 
     public void SetState(State state)
     {

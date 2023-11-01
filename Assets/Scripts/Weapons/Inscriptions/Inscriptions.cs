@@ -7,11 +7,27 @@ public class Inscriptions : MonoBehaviour
     [SerializeField]
     private Inscription inscription;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         foreach(Inscription.Data data in inscription.datas)
         {
-            Debug.Log(data);
+            OperatorHandler operatorHandler = null;
+            switch(data.operType)
+            {
+                case OperType.BaseOper:
+                operatorHandler = State.BaseOper;
+                break;
+                case OperType.AddOper:
+                operatorHandler = State.AddOper;
+                break;
+                case OperType.MulOper:
+                operatorHandler = State.MulOper;
+                break;
+            }
+            foreach(State state in data.states) 
+            {
+                state.operatorHandler = operatorHandler;
+            }
         }
     }
 

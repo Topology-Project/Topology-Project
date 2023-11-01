@@ -37,26 +37,15 @@ public class Character : MonoBehaviour, CharacterInterface
 
     protected virtual void Awake()
     {
-        armorType = ProtectionType.Shield;
-        maxHealthPoint = new State(StateType.MaxHealthPoint, 30);
-        maxProtectionPoint = new State(StateType.MaxProtectionPoint, 80);
+        maxHealthPoint = new State(StateType.MaxHealthPoint);
+        maxProtectionPoint = new State(StateType.MaxProtectionPoint);
 
-        movement = new State(StateType.MovementSpeed, 8);
-        dashSpeed = new State(StateType.DashSpeed, 2);
-        dashDuration = new State(StateType.DashDuration, 0.5f);
-        dashCooltime = new State(StateType.DashCooltime, 3);
+        movement = new State(StateType.MovementSpeed);
+        dashSpeed = new State(StateType.DashSpeed);
+        dashDuration = new State(StateType.DashDuration);
+        dashCooltime = new State(StateType.DashCooltime);
 
-        ammoRate = new State(StateType.AmmoRate, 1);
-
-        maxInfiniteAmmo = new Ammunition(AmmunitionType.Infinite, 999999999);
-        maxNomalAmmo = new Ammunition(AmmunitionType.Nomal, 300);
-        maxLargeAmmo = new Ammunition(AmmunitionType.Large, 200);
-        maxSpecialAmmo = new Ammunition(AmmunitionType.Special, 100);
-
-        infiniteAmmo = maxInfiniteAmmo.Ammo;
-        nomalAmmo = maxNomalAmmo.Ammo;
-        largeAmmo = maxLargeAmmo.Ammo;
-        specialAmmo = maxSpecialAmmo.Ammo;
+        ammoRate = new State(StateType.AmmoRate);
 
         stateModifier.AddHandler(maxHealthPoint);
         stateModifier.AddHandler(maxProtectionPoint);
@@ -72,6 +61,29 @@ public class Character : MonoBehaviour, CharacterInterface
     protected virtual void Start()
     {
         rig = gameObject.GetComponent<Rigidbody>();
+
+        armorType = ProtectionType.Shield;
+
+        maxHealthPoint.ResetState(30);
+        maxProtectionPoint.ResetState( 80);
+
+        movement.ResetState(8);
+        dashSpeed.ResetState(2);
+        dashDuration.ResetState(0.5f);
+        dashCooltime.ResetState(3);
+
+        ammoRate.ResetState(1);
+
+        maxInfiniteAmmo = new Ammunition(AmmunitionType.Infinite, 999999999);
+        maxNomalAmmo = new Ammunition(AmmunitionType.Nomal, 300);
+        maxLargeAmmo = new Ammunition(AmmunitionType.Large, 200);
+        maxSpecialAmmo = new Ammunition(AmmunitionType.Special, 100);
+
+        infiniteAmmo = maxInfiniteAmmo.Ammo;
+        nomalAmmo = maxNomalAmmo.Ammo;
+        largeAmmo = maxLargeAmmo.Ammo;
+        specialAmmo = maxSpecialAmmo.Ammo;
+
         stateModifier.AddHandler(weapon.GetModifier());
         weapon.OnWeapon(this);
         isDashReady = true;
@@ -167,14 +179,14 @@ public class Character : MonoBehaviour, CharacterInterface
                     * lsh
                     * stateModifier.GetState(StateType.CriticalX);
 
-        // Debug.Log("Damage : " + stateModifier.GetState(StateType.BaseDamage)
-        //             + "*" + stateModifier.GetState(StateType.WPNUpgrade)
-        //             + "*" + stateModifier.GetState(StateType.BaseDMGIncrease)
-        //             + "*" + stateModifier.GetState(StateType.ExplosionDMGIncrease)
-        //             + "*" + stateModifier.GetState(StateType.ElementalDMGIncrease)
-        //             + "*" + lsh
-        //             + "*" + stateModifier.GetState(StateType.CriticalX)
-        //             + "=" + damage);
+        Debug.Log("Damage : " + stateModifier.GetState(StateType.BaseDamage)
+                    + "*" + stateModifier.GetState(StateType.WPNUpgrade)
+                    + "*" + stateModifier.GetState(StateType.BaseDMGIncrease)
+                    + "*" + stateModifier.GetState(StateType.ExplosionDMGIncrease)
+                    + "*" + stateModifier.GetState(StateType.ElementalDMGIncrease)
+                    + "*" + lsh
+                    + "*" + stateModifier.GetState(StateType.CriticalX)
+                    + "=" + damage);
         Damage(damage);
         return damage;
     }
