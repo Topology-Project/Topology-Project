@@ -114,10 +114,10 @@ public class State
     }
     /* ---------------------------------------- */
 
-    // public static State Clone(State state)
-    // {
-    //     return new State(state.stateType, state.Value);
-    // }
+    public static State Clone(State state)
+    {
+        return new State(state.stateType, state.Value);
+    }
     // public static bool isTypeEquals(State s1, State s2)
     // {
     //     if(s1.stateType == s2.stateType) return true;
