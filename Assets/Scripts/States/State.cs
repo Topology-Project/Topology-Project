@@ -6,7 +6,6 @@ using UnityEngine;
 // 스텟 연산용 델리게이트
 public delegate void StateHandler<State>(ref float baseVar, ref float sum, ref float mul);
 // 스텟 연산 종류 설정용 델리게이트
-[System.Serializable]
 public delegate StateHandler<State> OperatorHandler(State state);
 
 [System.Serializable]

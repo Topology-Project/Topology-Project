@@ -60,6 +60,7 @@ public class Weapon : MonoBehaviour
     }
     public GameObject bullet;
     private StateModifier stateModifier = new();
+    Inscription.Data[] inscriptions = new Inscription.Data[2];
 
     void Awake()
     {
@@ -89,6 +90,10 @@ public class Weapon : MonoBehaviour
         range = new State(StateType.Range, 20);
 
         movementSpeed = new State(StateType.MovementSpeed,-0.1f);
+
+        inscriptions = GameManager.Instance.Inscriptions.GetRandomDatas(2);
+        foreach(Inscription.Data data in inscriptions) SetInscriprion(data);
+        foreach(Inscription.Data data in inscriptions) Debug.Log(data.info);
 
         residualAmmunition = (int)magazine.Value;
 
@@ -123,6 +128,30 @@ public class Weapon : MonoBehaviour
     public StateModifier GetModifier()
     {
         return stateModifier;
+    }
+
+    private void SetInscriprion(Inscription.Data data)
+    {
+        OperatorHandler operatorHandler = null;
+        switch(data.operType)
+        {
+            case OperType.BaseOper:
+            operatorHandler = State.BaseOper;
+            break;
+            case OperType.AddOper:
+            operatorHandler = State.AddOper;
+            break;
+            case OperType.MulOper:
+            operatorHandler = State.MulOper;
+            break;
+        }
+        foreach(State state in data.states) 
+        {
+            state.operatorHandler = operatorHandler;
+            stateModifier.AddHandler(state);
+            GameManager.Instance.TriggerManager.AddTrigger(data.stackTrigger, state.StackUp);
+            GameManager.Instance.TriggerManager.AddTrigger(data.rateTrigger, state.RateUp);
+        }
     }
 
     // 총기 장착(임시)

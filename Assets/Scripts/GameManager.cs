@@ -46,6 +46,13 @@ public class GameManager : MonoBehaviour
         private set { mainCamera = value; }
     }
 
+    private Inscriptions inscriptions;
+    public Inscriptions Inscriptions
+    {
+        get { if (inscriptions == null) Init(); return inscriptions; }
+        private set { inscriptions = value; }
+    }
+
     void Start()
     {
         Init();
@@ -115,6 +122,22 @@ public class GameManager : MonoBehaviour
             }
 
             instance.mainCamera = go.GetComponent<PlayerCamera>();
+            DontDestroyOnLoad(go.gameObject);
+        }
+        if (instance.inscriptions == null)
+        {
+            GameObject go = GameObject.Find("Inscriptions");
+
+            if (go == null)
+            {
+                go = new GameObject { name = "Inscriptions" };
+            }
+            if (go.GetComponent<Inscriptions>() == null)
+            {
+                go.AddComponent<Inscriptions>();
+            }
+
+            instance.inscriptions = go.GetComponent<Inscriptions>();
             DontDestroyOnLoad(go.gameObject);
         }
     }

@@ -11,13 +11,18 @@ public class Inscriptions : MonoBehaviour
     {
         foreach(Inscription.Data data in inscription.datas)
         {
-            
+            Debug.Log(data);
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public Inscription.Data[] GetRandomDatas(int amount)
     {
-        
+        Inscription.Data[] datas = new Inscription.Data[amount];
+        for(int i=0; i<amount; i++)
+        {
+            int rnd = UnityEngine.Random.Range(0, inscription.datas.Length);
+            datas[i] = inscription.datas[rnd];
+        }
+        return datas;
     }
 }

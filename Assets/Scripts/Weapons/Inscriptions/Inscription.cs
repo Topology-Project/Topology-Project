@@ -18,6 +18,7 @@ public class Inscription : ScriptableObject
         public OperatorHandler operatorHandler;
 
         public List<State> states;
+        public OperType operType;
     }
     
     public Data[] datas;
