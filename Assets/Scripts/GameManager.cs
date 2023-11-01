@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         private set { inscriptions = value; }
     }
 
-    void Start()
+    void Awake()
     {
         Init();
         Cursor.visible = false;

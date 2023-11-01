@@ -135,10 +135,9 @@ public class Weapon : MonoBehaviour
 
         inscriptions = GameManager.Instance.Inscriptions.GetRandomDatas(2);
         foreach(Inscription.Data data in inscriptions) SetInscriprion(data);
-        foreach(Inscription.Data data in inscriptions) if(parent.tag.Equals("Player")) Debug.Log(data.info);
 
 
-        residualAmmunition = (int)magazine.Value;
+        residualAmmunition = (int)stateModifier.GetState(StateType.Magazine);
     }
 
     private void Update()
@@ -161,7 +160,6 @@ public class Weapon : MonoBehaviour
             stateModifier.AddHandler(state);
             GameManager.Instance.TriggerManager.AddTrigger(data.stackTrigger, state.StackUp);
             GameManager.Instance.TriggerManager.AddTrigger(data.rateTrigger, state.RateUp);
-            parent.GetComponent<CharacterInterface>().GetModifier().AddHandler(stateModifier);
         }
     }
 

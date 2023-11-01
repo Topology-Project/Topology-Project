@@ -14,7 +14,7 @@ public class State
     public OperatorHandler operatorHandler;
 
     public StateType stateType; // 스텟 종류
-    public float stateValue; // 스텟 값
+    [SerializeField] private float stateValue; // 스텟 값
     public float Value 
     { 
         private set

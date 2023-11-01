@@ -84,8 +84,8 @@ public class Character : MonoBehaviour, CharacterInterface
         largeAmmo = maxLargeAmmo.Ammo;
         specialAmmo = maxSpecialAmmo.Ammo;
 
-        stateModifier.AddHandler(weapon.GetModifier());
         weapon.OnWeapon(this);
+        stateModifier.AddHandler(weapon.GetModifier());
         isDashReady = true;
 
         healthPoint = maxHealthPoint;
