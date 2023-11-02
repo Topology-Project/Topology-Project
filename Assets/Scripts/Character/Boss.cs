@@ -21,21 +21,18 @@ public class Boss : MonoBehaviour
 
     Animator animator;
 
-    public bool isAtk = false;
+    // 임시 보스 대기시간 추가
+    float WaitT = 0f;
+    float MaxWaitT = 6f;
 
-    // 대기 모션 코루틴
-    IEnumerator Waiting()
-    {
-        Debug.Log("Wait Boss");
-        yield return new WaitForSeconds(0.5f);
-        if (isAtk == true) isAtk = false;
-    }
+    bool isAtk = true;
 
     // 공격 시작 메소드
     void Attack()
     {
-        if (!isAtk)
+        if (isAtk == false)
         {
+            Debug.Log("Run Attack()");
             switch (GetRandomPattern())
             {
                 case "Razer":
@@ -51,6 +48,25 @@ public class Boss : MonoBehaviour
                     StartCoroutine(Rocket_Punch());
                     break;
             }
+        }
+        else
+        {
+            Debug.Log("Run Waiting()");
+            Waiting();
+        }
+    }
+
+    // 대기 모션 메소드
+    public void Waiting()
+    {
+        if (WaitT < MaxWaitT)
+        {
+            WaitT += Time.deltaTime;
+        }
+        else
+        {
+            if (isAtk == true) isAtk = false;
+            WaitT = 0f;
         }
     }
 
@@ -68,7 +84,6 @@ public class Boss : MonoBehaviour
         isAtk = true;
         Debug.Log("Razer Pattern");
         yield return new WaitForSecondsRealtime(3.0f);
-        StartCoroutine(Waiting());
     }
 
     // 돌기둥 패턴
@@ -88,7 +103,6 @@ public class Boss : MonoBehaviour
         Build_Pillar();
         yield return new WaitForSeconds(2.0f);
         animator.SetBool("isSummon", false);
-        StartCoroutine(Waiting());
     }
 
     void Warning_Build_Pillar()
@@ -146,6 +160,27 @@ public class Boss : MonoBehaviour
         warning_list.Clear();
     }
 
+    void Start_Pillar()
+    {
+        for (float x = 0; x <= 75; x += 7.5f)
+        {
+            for (float z = 0; z <= 20; z += 10)
+            {
+                float randomX = Random.Range(-3.0f, 3.0f) - 32.5f;
+                float randomZ = Random.Range(-3.0f, 3.0f) - 35;
+
+                if (x % 15 == 0 && z != 10)
+                {
+                    pillar_list.Add(Instantiate(pillar, new Vector3(x + randomX, 0, z + randomZ), transform.rotation));
+                }
+                else if (x % 15 == 7.5f && z == 10)
+                {
+                    pillar_list.Add(Instantiate(pillar, new Vector3(x + randomX, 0, z + randomZ), transform.rotation));
+                }
+            }
+        }
+    }
+
     // 메테오 패턴
     IEnumerator Meteor()
     {
@@ -157,8 +192,6 @@ public class Boss : MonoBehaviour
         StartCoroutine(Drop_Meteor());
         yield return new WaitForSecondsRealtime(0.5f);
         animator.SetBool("isMeteor", false);
-        yield return new WaitForSecondsRealtime(1.5f);
-        StartCoroutine(Waiting());
     }
     void Spawn_Meteor()
     {
@@ -191,7 +224,6 @@ public class Boss : MonoBehaviour
         yield return new WaitForSecondsRealtime(2.0f);
         StartCoroutine(Shot_Punch());
         yield return new WaitForSecondsRealtime(2.0f);
-        StartCoroutine(Waiting());
     }
     void Ready_Punch()
     {
@@ -230,14 +262,12 @@ public class Boss : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        Start_Pillar();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isAtk == false)
-        {
-            Attack();
-        }
+        Attack();
     }
 }
