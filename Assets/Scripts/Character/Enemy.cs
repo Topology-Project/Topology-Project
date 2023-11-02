@@ -144,6 +144,12 @@ public class Enemy : Character
     {
         MoveEnemy();
         FindTarget();
+
+        if (healthPoint <= 0)
+        {
+            // GameManager.Instance.StageManager.mapManager.EnemyDeath();
+            Destroy(gameObject);
+        }
     }
 
     protected override void OnTriggerEnter(Collider other)
