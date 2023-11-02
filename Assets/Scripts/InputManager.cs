@@ -47,7 +47,7 @@ public class InputManager : MonoBehaviour
         {
             if(raycastHit.collider.transform.tag.Equals("Scroll"))
             {
-                raycastHit.collider.GetComponent<Scroll>().GetState(player);
+                // raycastHit.collider.GetComponent<Scroll>().GetState(player);
             }
             else if(raycastHit.collider.transform.tag.Equals("Weapon"))
             {

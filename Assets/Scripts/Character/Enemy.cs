@@ -15,12 +15,15 @@ public class Enemy : Character
 
     private bool isFind = false;
 
+    private Animator animator;
+
     void MoveEnemy()
     {
+        bool isMove = false;
         if (isFind == true)
         {
             // Debug.Log("나 거기로 간다 플레이어야");
-            nma.SetDestination(target.position);
+            isMove = nma.SetDestination(target.position);
         }
         else
         {
@@ -30,10 +33,16 @@ public class Enemy : Character
             {
                 nma.SetDestination(transform.position);
                 Vector3 RandomPos = GetRandomPosOnNM();
-                nma.SetDestination(RandomPos);
+                isMove = nma.SetDestination(RandomPos);
                 LastUpdate = 0;
             }
         }
+
+
+        //---------임시---------
+        if(isMove) animator.SetBool("isMove", true);
+        else animator.SetBool("isMove", false);
+        //---------------------
     }
 
     Vector3 GetRandomPosOnNM()
@@ -97,6 +106,10 @@ public class Enemy : Character
                 {
                     //Debug.Log("플레이어 찾았다 ^^");
                     isFind = true;
+
+                    //---------임시---------
+                    animator.SetTrigger("Player");
+                    //---------------------
                     break;
                 }
                 else
@@ -121,6 +134,8 @@ public class Enemy : Character
         target = GameManager.Instance.Player.transform;
         nma = GetComponent<NavMeshAgent>();
         LastUpdate += UpdateTime;
+
+        animator = GetComponent<Animator>();
     }
 
 

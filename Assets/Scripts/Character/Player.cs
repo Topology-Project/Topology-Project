@@ -56,6 +56,6 @@ public class Player : Character
     public void AddInventory(Scroll scroll)
     {
         inventory.Add(scroll);
-        stateModifier.AddHandler(scroll.state);
+        // stateModifier.AddHandler(scroll.state);
     }
 }

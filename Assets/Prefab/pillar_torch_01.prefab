@@ -4886,10 +4886,9 @@ GameObject:
   - component: {fileID: 5386969732364393887}
   - component: {fileID: 2593241912851482845}
   - component: {fileID: 7230844465216278928}
-  - component: {fileID: 1845644180792320199}
   m_Layer: 0
   m_Name: pillar_torch_01
-  m_TagString: Bullet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4961,19 +4960,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1845644180792320199
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3978423812278871825}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.1887608, y: 4.0032706, z: 1.1909292}
-  m_Center: {x: -0.00000002980233, y: 2.0016353, z: 0.00000038743028}
 --- !u!1 &5765428603105878334
 GameObject:
   m_ObjectHideFlags: 0
