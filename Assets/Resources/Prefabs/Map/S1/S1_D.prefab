@@ -504,10 +504,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8573617695751490427}
     m_Modifications:
-    - target: {fileID: 907774468999436816, guid: b169310c6c3f1d54f8174791a8f52fbd, type: 3}
-      propertyPath: rate
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5118402653131320491, guid: b169310c6c3f1d54f8174791a8f52fbd, type: 3}
       propertyPath: m_Name
       value: blueChest
