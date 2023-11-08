@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 12851221354757127}
   - component: {fileID: 3999886461603722146}
   - component: {fileID: 1181777923403171688}
+  - component: {fileID: 5207968812303457342}
   m_Layer: 0
   m_Name: molding_corner_ceiling_01_SM
   m_TagString: Untagged
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6ad512237107b7a48b0a8063e82530c0, type: 2}
+  - {fileID: 2100000, guid: 2ad01abc26d688e42bbad5334f73a190, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5207968812303457342
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821476691052848829}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7535757358778122628, guid: bc9148bffb9b05a429f397c4f32026a7, type: 3}

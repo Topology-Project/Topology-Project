@@ -8,14 +8,14 @@ public class StageManager : MonoBehaviour
     private string[] stageNames;
     private int stageIdx;
 
-    public MapManager mapManager { get; private set;}
+    public MapManager mapManager { get; private set; }
 
     private void Awake()
     {
         stageIdx = 0;
         stageNames = new string[]
         {
-            "s1_1105map", "s1_1105map", "s1_1105map","Boss_1030map"
+            "s1_1105map", "s1_1105map", "s1_1105map", "Boss_1030map"
         };
     }
 
@@ -24,10 +24,11 @@ public class StageManager : MonoBehaviour
     {
         // if(stageIdx < stageNames.Length) SceneManager.LoadScene(stageNames[stageIdx++]);
         // GameObject go = GameObject.Find("MapManager");
-        if(stageIdx < stageNames.Length) 
+        if (stageIdx < stageNames.Length)
         {
             var op = SceneManager.LoadSceneAsync(stageNames[stageIdx++]);
-            op.completed += (x) => {
+            op.completed += (x) =>
+            {
                 mapManager = FindObjectOfType<MapManager>();
             };
         }

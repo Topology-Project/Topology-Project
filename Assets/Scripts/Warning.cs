@@ -13,11 +13,11 @@ public class Warning : MonoBehaviour
         // if ()
     }
 
-    // private void OnCollisionEnter(Collision obj)
-    // {
-    //     if (obj.gameObject.CompareTag("Rocket_Punch"))
-    //     {
-    //         Destroy(gameObject);
-    //     }
-    // }
+    void OnTriggerEnter(Collider obj)
+    {
+        if (obj.gameObject.CompareTag("Rocket_Punch"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
