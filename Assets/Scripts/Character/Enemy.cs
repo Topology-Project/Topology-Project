@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Enemy : Character
 {
@@ -11,7 +13,23 @@ public class Enemy : Character
     public float UpdateTime = 3f;
     private float LastUpdate;
     public float UpdateRange = 10f;
+    public string enemyName;
+    public int maxHp;
+    public int nowHp;
+    public int atkDmg;
+    public int atkSpeed;
 
+    private void SetEnemyStatus(string _enemyName, int _maxHp, int _atkDmg, int _atkSpeed)
+    {
+        enemyName = _enemyName;
+        maxHp = _maxHp;
+        nowHp = _maxHp;
+        atkDmg = _atkDmg;
+        atkSpeed = _atkSpeed;
+    }
+
+    public Bullet shoot;
+    Image nowHpBar;
     private bool isFind = false;
 
     void MoveEnemy()
@@ -116,9 +134,13 @@ public class Enemy : Character
     protected override void Start()
     {
         base.Start();
-        
         target = GameManager.Instance.Player.transform;
         nma = GetComponent<NavMeshAgent>();
+        if (name.Equals("monster"))
+        {
+            SetEnemyStatus("monster", 100, 10, 1);
+        }
+
         LastUpdate += UpdateTime;
     }
 
@@ -129,8 +151,9 @@ public class Enemy : Character
         MoveEnemy();
         FindTarget();
 
-        if(healthPoint <= 0)
+        if (healthPoint <= 0)
         {
+            nowHpBar.fillAmount = (float)nowHp / (float)maxHp;
             GameManager.StageManager.mapManager.EnemyDeath();
             Destroy(gameObject);
         }
