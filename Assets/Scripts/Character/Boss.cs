@@ -9,30 +9,29 @@ public class Boss : MonoBehaviour
     public GameObject player;
 
     public GameObject warning;
-    public GameObject pillar;
     List<GameObject> warning_list = new List<GameObject>();
+
+    public GameObject pillar;
     List<GameObject> pillar_list = new List<GameObject>();
 
     public GameObject meteor;
     List<GameObject> meteor_list = new List<GameObject>();
 
-    public GameObject rocket_punch;
+    public GameObject punch;
     List<GameObject> punch_list = new List<GameObject>();
 
     Animator animator;
 
-    // 임시 보스 대기시간 추가
     float WaitT = 0f;
-    float MaxWaitT = 6f;
+    float MaxWaitT = 8f;
 
-    bool isAtk = true;
+    public bool isAtk = true;
 
     // 공격 시작 메소드
     void Attack()
     {
-        if (isAtk == false)
+        if (!isAtk && animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f)
         {
-            Debug.Log("Run Attack()");
             switch (GetRandomPattern())
             {
                 case "Razer":
@@ -51,22 +50,23 @@ public class Boss : MonoBehaviour
         }
         else
         {
-            Debug.Log("Run Waiting()");
             Waiting();
         }
     }
-
-    // 대기 모션 메소드
+    // 대기 메소드
     public void Waiting()
     {
+        Debug.Log("Wait Boss");
+
+
         if (WaitT < MaxWaitT)
         {
             WaitT += Time.deltaTime;
         }
         else
         {
-            if (isAtk == true) isAtk = false;
             WaitT = 0f;
+            isAtk = false;
         }
     }
 
@@ -83,7 +83,7 @@ public class Boss : MonoBehaviour
     {
         isAtk = true;
         Debug.Log("Razer Pattern");
-        yield return new WaitForSecondsRealtime(3.0f);
+        yield return new WaitForSeconds(3.0f);
     }
 
     // 돌기둥 패턴
@@ -159,7 +159,6 @@ public class Boss : MonoBehaviour
         pillar_list.Clear();
         warning_list.Clear();
     }
-
     void Start_Pillar()
     {
         for (float x = 0; x <= 75; x += 7.5f)
@@ -188,10 +187,11 @@ public class Boss : MonoBehaviour
         Debug.Log("Meteor Pattern");
         animator.SetBool("isMeteor", true);
         Spawn_Meteor();
-        yield return new WaitForSecondsRealtime(1.0f);
+        yield return new WaitForSeconds(1.0f);
         StartCoroutine(Drop_Meteor());
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSeconds(0.5f);
         animator.SetBool("isMeteor", false);
+        yield return new WaitForSeconds(1.5f);
     }
     void Spawn_Meteor()
     {
@@ -211,8 +211,9 @@ public class Boss : MonoBehaviour
             Vector3 shotDirection = (player.transform.position - meteor_list[i].transform.position).normalized;
             float shotSpeed = 20f;
             meteor_list[i].GetComponent<Rigidbody>().velocity = shotDirection * shotSpeed;
-            yield return new WaitForSecondsRealtime(0.3f);
+            yield return new WaitForSeconds(0.3f);
         }
+
     }
 
     // 로켓펀치 패턴
@@ -221,17 +222,17 @@ public class Boss : MonoBehaviour
         isAtk = true;
         Debug.Log("Rocket Punch Pattern");
         Ready_Punch();
-        yield return new WaitForSecondsRealtime(2.0f);
+        yield return new WaitForSeconds(2.0f);
         StartCoroutine(Shot_Punch());
-        yield return new WaitForSecondsRealtime(2.0f);
+        yield return new WaitForSeconds(2.0f);
     }
     void Ready_Punch()
     {
         Vector3 bossPos = transform.position;
         Vector3 playerPos = player.transform.position;
         punch_list.Clear();
-        punch_list.Add(Instantiate(rocket_punch, new Vector3(bossPos.x + 20, 10, bossPos.z - 5), transform.rotation));
-        punch_list.Add(Instantiate(rocket_punch, new Vector3(bossPos.x - 20, 10, bossPos.z - 5), transform.rotation));
+        punch_list.Add(Instantiate(punch, new Vector3(bossPos.x + 20, 10, bossPos.z - 5), transform.rotation));
+        punch_list.Add(Instantiate(punch, new Vector3(bossPos.x - 20, 10, bossPos.z - 5), transform.rotation));
         warning_list.Add(Instantiate(warning, new Vector3(playerPos.x + 3, 0, playerPos.z), player.transform.rotation));
         warning_list.Add(Instantiate(warning, new Vector3(playerPos.x - 3, 0, playerPos.z), player.transform.rotation));
         for (int i = 0; i < warning_list.Count; i++)
@@ -243,30 +244,26 @@ public class Boss : MonoBehaviour
     {
         for (int i = 0; i < punch_list.Count; i++)
         {
-            Vector3 shotDirection = (player.transform.position - punch_list[i].transform.position).normalized;
+            Vector3 shotPos = warning_list[i].transform.position;
+            Vector3 shotDirection = (new Vector3(shotPos.x, 0, shotPos.z) - punch_list[i].transform.position).normalized;
             float shotSpeed = 50f;
             punch_list[i].GetComponent<Rigidbody>().velocity = shotDirection * shotSpeed;
-            yield return new WaitForSecondsRealtime(0.3f);
-        }
-        yield return new WaitForSecondsRealtime(0.5f);
-        for (int i = 0; i < warning_list.Count; i++)
-        {
-            Destroy(warning_list[i]);
-            yield return new WaitForSecondsRealtime(0.3f);
+            yield return new WaitForSeconds(0.3f);
         }
         warning_list.Clear();
     }
 
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         animator = GetComponent<Animator>();
+        player = GameManager.Instance.Player.gameObject;
         Start_Pillar();
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         Attack();
     }

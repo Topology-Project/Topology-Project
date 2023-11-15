@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4313640348750846687}
   - component: {fileID: 897054839326446970}
   - component: {fileID: 3140713004120269232}
+  - component: {fileID: 790826409979107926}
   m_Layer: 0
   m_Name: molding_floor_01_SM
   m_TagString: Untagged
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 188c4f304e98e1a43b0738bea8c0c91c, type: 2}
+  - {fileID: 2100000, guid: d44b7055fc45cb0409f057413982908b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &790826409979107926
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3501251457718829157}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3218456857505966540, guid: 503cd4bbd57927a4a8cb37b81c9d180f, type: 3}

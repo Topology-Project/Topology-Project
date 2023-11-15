@@ -23,7 +23,7 @@ public class Weapon : MonoBehaviour
     private ElementalEffectType elementalEffectType;
     private bool isExplosion;
 
-    private State baseDamage;
+    public State baseDamage;
     private State criticalX;
     private State luckyShot;
     private State magazine; //
@@ -134,7 +134,7 @@ public class Weapon : MonoBehaviour
         movementSpeed.ResetState(-0.1f, State.AddOper);
 
         inscriptions = GameManager.Instance.Inscriptions.GetRandomDatas(2);
-        foreach(Inscription.Data data in inscriptions) SetInscriprion(data);
+        foreach (Inscription.Data data in inscriptions) SetInscriprion(data);
 
 
         residualAmmunition = (int)stateModifier.GetState(StateType.Magazine);
@@ -155,7 +155,7 @@ public class Weapon : MonoBehaviour
     // 인장적용 (임시)
     private void SetInscriprion(Inscription.Data data)
     {
-        foreach(State state in data.states) 
+        foreach (State state in data.states)
         {
             stateModifier.AddHandler(state);
             GameManager.Instance.TriggerManager.AddTrigger(data.stackTrigger, state.StackUp);

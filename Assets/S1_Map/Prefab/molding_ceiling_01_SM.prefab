@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5675414333228163116}
   - component: {fileID: 8749584579934203785}
   - component: {fileID: 6811751166895348547}
+  - component: {fileID: -5304890906611755721}
   m_Layer: 0
   m_Name: molding_ceiling_01_SM
   m_TagString: Untagged
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2f77db46ac445454e80dc899725b3e19, type: 2}
+  - {fileID: 2100000, guid: 22ea2ddd5a8100d418366e4039e7fc98, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &-5304890906611755721
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5010483183734094486}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4622627796914853132, guid: 24e29a689645643448801b7cd0581433, type: 3}
