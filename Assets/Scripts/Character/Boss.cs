@@ -106,16 +106,24 @@ public class Boss : MonoBehaviour
     {
         LR.enabled = true;
 
+        Vector3 razerPoint = razer.transform.position;
+        Vector3 endPoint;
+
+        float maxDistance = 30f;
+        Vector3 playerDir = player.transform.position - razerPoint;
+
         RaycastHit hit;
+        if (Physics.Raycast(razerPoint, playerDir, out hit, maxDistance))
+        {
+            endPoint = hit.transform.position + Vector3.down;
+        }
+        else
+        {
+            endPoint = player.transform.position + Vector3.down;
+        }
 
-        Vector3 startPos = razer.transform.position;
-        // Vector3 endPos = player.transform.position + Vector3.down;
-        Vector3 endPos {
-
-        };
-
-        LR.SetPosition(0, startPos);
-        LR.SetPosition(1, endPos);
+        LR.SetPosition(0, razerPoint);
+        LR.SetPosition(1, endPoint);
     }
     void Destroy_Razer()
     {
