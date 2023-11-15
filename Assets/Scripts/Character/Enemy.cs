@@ -13,20 +13,6 @@ public class Enemy : Character
     public float UpdateTime = 3f;
     private float LastUpdate;
     public float UpdateRange = 10f;
-    public string enemyName;
-    public int maxHp;
-    public int nowHp;
-    public int atkDmg;
-    public int atkSpeed;
-
-    private void SetEnemyStatus(string _enemyName, int _maxHp, int _atkDmg, int _atkSpeed)
-    {
-        enemyName = _enemyName;
-        maxHp = _maxHp;
-        nowHp = _maxHp;
-        atkDmg = _atkDmg;
-        atkSpeed = _atkSpeed;
-    }
 
     public Bullet shoot;
     Image nowHpBar;
@@ -136,10 +122,6 @@ public class Enemy : Character
         base.Start();
         target = GameManager.Instance.Player.transform;
         nma = GetComponent<NavMeshAgent>();
-        if (name.Equals("monster"))
-        {
-            SetEnemyStatus("monster", 100, 10, 1);
-        }
 
         LastUpdate += UpdateTime;
     }
@@ -153,7 +135,6 @@ public class Enemy : Character
 
         if (healthPoint <= 0)
         {
-            nowHpBar.fillAmount = (float)nowHp / (float)maxHp;
             GameManager.StageManager.mapManager.EnemyDeath();
             Destroy(gameObject);
         }
