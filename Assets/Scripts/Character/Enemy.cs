@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Enemy : Character
 {
@@ -12,10 +13,12 @@ public class Enemy : Character
     public float UpdateTime = 3f;
     private float LastUpdate;
     public float UpdateRange = 10f;
-
+    public Image HP;
     private bool isFind = false;
 
     private Animator animator;
+
+    private
 
     void MoveEnemy()
     {
@@ -40,7 +43,7 @@ public class Enemy : Character
 
 
         //---------임시---------
-        if(isMove) animator.SetBool("isMove", true);
+        if (isMove) animator.SetBool("isMove", true);
         else animator.SetBool("isMove", false);
         //---------------------
     }
@@ -134,7 +137,6 @@ public class Enemy : Character
         target = GameManager.Instance.Player.transform;
         nma = GetComponent<NavMeshAgent>();
         LastUpdate += UpdateTime;
-
         animator = GetComponent<Animator>();
     }
 
@@ -162,7 +164,9 @@ public class Enemy : Character
             if (!parent.tag.Equals(gameObject.tag))
             {
                 GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyHit);
-                if(healthPoint <= 0)
+                HP.fillAmount = (float)healthPoint / (float)maxHealthPoint;
+                Debug.Log("나 체력 준다");
+                if (healthPoint <= 0)
                 {
                     GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyDie);
                     Destroy(gameObject);
