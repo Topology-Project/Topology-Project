@@ -1,33 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class Scrolls : MonoBehaviour
 {
     [SerializeField]
     private Scroll scroll;
-    // Start is called before the first frame update
+
     void Awake()
     {
-        foreach(Scroll.Data data in scroll.datas)
+        Assembly assembly = Assembly.GetExecutingAssembly();
+
+        foreach(Scroll.Data sc in scroll.datas)
         {
-            OperatorHandler operatorHandler = null;
-            switch(data.operType)
+            System.Type t = assembly.GetType(sc.name);
+            object obj = System.Activator.CreateInstance(t);
+
+            if(obj == null)
             {
-                case OperType.BaseOper:
-                operatorHandler = State.BaseOper;
-                break;
-                case OperType.AddOper:
-                operatorHandler = State.AddOper;
-                break;
-                case OperType.MulOper:
-                operatorHandler = State.MulOper;
-                break;
+                Debug.LogError("Scroll Load Erorr");
+                return;
             }
-            foreach(State state in data.states) 
-            {
-                state.operatorHandler = operatorHandler;
-            }
+
+            sc.sc = (Sc)(obj as Scroll);
+            Debug.Log(sc.sc);
         }
     }
 

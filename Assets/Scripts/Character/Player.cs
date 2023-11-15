@@ -53,9 +53,13 @@ public class Player : Character
     }
 
     // 인벤토리 스크롤 추가용 메서드 (임시)
-    public void AddInventory(Scroll scroll)
+    public void AddInventory(Scroll.Data scroll)
     {
         inventory.Add(scroll);
-        // stateModifier.AddHandler(scroll.state);
+        SetScroll(scroll);
+        foreach(State state in scroll.sc.GetState())
+            stateModifier.AddHandler(state);
     }
+
+    private void SetScroll(Scroll.Data data) => data.sc.Active();
 }

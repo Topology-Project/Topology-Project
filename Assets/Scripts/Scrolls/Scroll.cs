@@ -8,19 +8,13 @@ public class Scroll : ScriptableObject
     [System.Serializable]
     public class Data
     {
-        public Scroll ScrollType;
+        public ScrollType ScrollType;
 
         public Sprite sprite;
         public string name;
         public string info;
 
-        public PlayTriggerType stackTrigger;
-        public PlayTriggerType rateTrigger;
-
-        public OperatorHandler operatorHandler;
-
-        public List<State> states;
-        public OperType operType;
+        public Sc sc;
         
         public Data(Data data)
         {
@@ -28,11 +22,6 @@ public class Scroll : ScriptableObject
             sprite = data.sprite;
             name = data.name;
             info = data.info;
-            stackTrigger = data.stackTrigger;
-            rateTrigger = data.rateTrigger;
-            operatorHandler = data.operatorHandler;
-            states = data.states;
-            operType = data.operType;
         }
     }
 
