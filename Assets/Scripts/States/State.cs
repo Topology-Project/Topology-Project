@@ -90,7 +90,7 @@ public class State
     // 배율 곱연산
     private void MulState(ref float baseVar, ref float sum, ref float mul)
     {
-        mul *= Value;
+        mul += Value;
     }
 
     /* 연산자 설정 용 메서드 (델리게이트) */

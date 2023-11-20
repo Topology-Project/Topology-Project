@@ -27,7 +27,9 @@ public class Scroll : ScriptableObject
 
     public static Scroll.Data Clone(Scroll.Data data)
     {
-        return new Scroll.Data(data);
+        Scroll.Data temp = new Scroll.Data(data);
+        temp.sc = data.sc.Clone();
+        return temp;
     }
     
     public Data[] datas;

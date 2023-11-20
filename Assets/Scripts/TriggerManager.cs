@@ -10,6 +10,8 @@ public class TriggerManager : MonoBehaviour
     private event PlayTrigger enemyHit;
     private event PlayTrigger enemyDie;
     private event PlayTrigger roomClear;
+    private event PlayTrigger playerShot;
+    private event PlayTrigger reload;
 
     private void Awake()
     {
@@ -18,6 +20,8 @@ public class TriggerManager : MonoBehaviour
         keyValuePairs.Add(PlayTriggerType.EnemyHit, enemyHit);
         keyValuePairs.Add(PlayTriggerType.EnemyDie, enemyDie);
         keyValuePairs.Add(PlayTriggerType.RoomClear, roomClear);
+        keyValuePairs.Add(PlayTriggerType.PlayerShot, playerShot);
+        keyValuePairs.Add(PlayTriggerType.Reload, reload);
     }
 
     // Start is called before the first frame update

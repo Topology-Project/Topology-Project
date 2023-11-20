@@ -56,10 +56,8 @@ public class Player : Character
     public void AddInventory(Scroll.Data scroll)
     {
         inventory.Add(scroll);
-        SetScroll(scroll);
+        scroll.sc.Active();
         foreach(State state in scroll.sc.GetState())
             stateModifier.AddHandler(state);
     }
-
-    private void SetScroll(Scroll.Data data) => data.sc.Active();
 }

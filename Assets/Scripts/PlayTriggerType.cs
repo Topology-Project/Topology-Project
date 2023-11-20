@@ -7,7 +7,7 @@ public enum PlayTriggerType
     None,
     
     Reload,
-    playerShot, EnemyShot,
+    PlayerShot, EnemyShot,
 
     PlayerHit, EnemyHit,
     PlayerDie, EnemyDie,

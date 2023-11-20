@@ -15,16 +15,9 @@ public class Scrolls : MonoBehaviour
         foreach(Scroll.Data sc in scroll.datas)
         {
             System.Type t = assembly.GetType(sc.name);
-            object obj = System.Activator.CreateInstance(t);
-
-            if(obj == null)
-            {
-                Debug.LogError("Scroll Load Erorr");
-                return;
-            }
-
-            sc.sc = (Sc)(obj as Scroll);
-            Debug.Log(sc.sc);
+            Sc obj = (System.Activator.CreateInstance(t) as Sc).CreateSc();
+            obj.Awake();
+            sc.sc = obj;
         }
     }
 
@@ -35,7 +28,6 @@ public class Scrolls : MonoBehaviour
         {
             int rnd = UnityEngine.Random.Range(0, scroll.datas.Length);
             datas[i] = Scroll.Clone(scroll.datas[rnd]);
-            Debug.Log(datas[i].info);
         }
         return datas;
     }

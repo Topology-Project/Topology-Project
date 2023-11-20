@@ -22,7 +22,7 @@ MonoBehaviour:
       stateValue: 0.4
       stack: 1
       rate: 1
-    operType: 1
+    operType: 0
   - inscriptionType: 0
     info: "\uC7A5\uD0C4 \uC218 60% \uC99D\uAC00"
     stackTrigger: 0

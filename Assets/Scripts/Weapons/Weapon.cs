@@ -222,6 +222,7 @@ public class Weapon : MonoBehaviour
             if (fireType == FireType.Single || fireType == FireType.Bust) isFireready = false;
             StartCoroutine(FireReady());
             residualAmmunition--;
+            if(parent.tag.Equals("Player")) GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.PlayerShot);
             // Debug.Log(residualAmmunition + "/" + character.GetModifier().GetState(StateType.Magazine));
         }
         if (residualAmmunition <= 0)
@@ -263,6 +264,7 @@ public class Weapon : MonoBehaviour
         else temp = magazineAmmo;
         residualAmmunition += temp;
         characterInterface.SetAmmo(ammunitionType, -temp);
+        if(parent.tag.Equals("Player")) GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.Reload);
         isReload = false;
     }
 
