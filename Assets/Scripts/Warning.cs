@@ -4,20 +4,11 @@ using UnityEngine;
 
 public class Warning : MonoBehaviour
 {
-    public bool isDestroy = false;
-
-    public void OnDestroy()
+    private void OnTriggerEnter(Collider obj)
     {
-        isDestroy = true;
-        Debug.Log(isDestroy);
-        // if ()
+        if (obj.gameObject.CompareTag("Rocket_Punch"))
+        {
+            Destroy(gameObject);
+        }
     }
-
-    // private void OnCollisionEnter(Collision obj)
-    // {
-    //     if (obj.gameObject.CompareTag("Rocket_Punch"))
-    //     {
-    //         Destroy(gameObject);
-    //     }
-    // }
 }

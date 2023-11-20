@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy : Character
 {
-    [SerializeField] public Transform target;
-    NavMeshAgent nma;
+    [SerializeField] private GameObject player;
+    private NavMeshAgent nma;
 
     public float UpdateTime = 3f;
     private float LastUpdate;
@@ -15,16 +14,16 @@ public class Enemy : Character
 
     private bool isFind = false;
 
-    void MoveEnemy()
+    private void MoveEnemy()
     {
         if (isFind == true)
         {
-            // Debug.Log("나 거기로 간다 플레이어야");
-            nma.SetDestination(target.position);
+            Debug.Log("플레이어에게 이동");
+            nma.SetDestination(player.transform.position);
         }
         else
         {
-            // Debug.Log("나 딴데로 간다");
+            Debug.Log("랜덤 위치로 이동");
             LastUpdate += Time.deltaTime;
             if (LastUpdate >= UpdateTime)
             {
@@ -36,7 +35,7 @@ public class Enemy : Character
         }
     }
 
-    Vector3 GetRandomPosOnNM()
+    private Vector3 GetRandomPosOnNM()
     {
         Vector3 RandomDirection = Random.insideUnitSphere * UpdateRange;
         RandomDirection += transform.position;
@@ -53,7 +52,7 @@ public class Enemy : Character
     }
 
     // 플레이어 찾기
-    void FindTarget()
+    private void FindPlayer()
     {
         Vector3 rayStart = transform.position;
         Vector3 rayDir = transform.forward;
@@ -79,12 +78,12 @@ public class Enemy : Character
 
         // 에너미 중심 원형 범위 전개
         RaycastHit[] hits = Physics.SphereCastAll(rayStart, sphereRadius, rayDir, 0f);
-
         foreach (RaycastHit hit in hits)
         {
-            if (hit.transform.CompareTag("Player"))
+            Debug.Log("foreach");
+            if (hit.transform.gameObject.CompareTag("Player"))
             {
-
+                Debug.Log("first if");
                 // hit의 방향벡터값 계산
                 Vector3 hitDir = (hit.transform.position - rayStart).normalized;
                 float hitRad = Mathf.Acos(Vector3.Dot(rayDir, hitDir));
@@ -95,20 +94,34 @@ public class Enemy : Character
                 // 시야각 계산
                 if (hitDeg >= leftDeg && hitDeg <= rightDeg)
                 {
-                    //Debug.Log("플레이어 찾았다 ^^");
+                    Debug.Log("플레이어 발견");
                     isFind = true;
-                    break;
+
+                    RaycastHit hitObj;
+                    if (Physics.Raycast(rayStart, hitDir, out hitObj, 10f))
+                    {
+                        if (!hitObj.transform.CompareTag("Player"))
+                        {
+                            Debug.Log("오브젝트에 가려짐, 플레이어에게 근접 접근 시도");
+                            nma.stoppingDistance = 2f;
+                        }
+                        else
+                        {
+                            Debug.Log("플레이어가 바로 보임, 원거리 몹일 경우 값 증가시킬 것");
+                            nma.stoppingDistance = 2f;
+                        }
+                        break;
+                    }
                 }
                 else
                 {
-                    //Debug.Log("플레이어 범위 안엔 있는데 눈앞이 아님");
-                    break;
+                    Debug.Log("플레이어가 범위 안엔 있으나 눈 앞에 없음");
+                    isFind = false;
                 }
             }
             else
             {
-                //Debug.Log("플레이어 어딨노");
-                // isFind = false;
+                Debug.Log("플레이어를 찾을 수 없음.");
             }
         }
     }
@@ -118,8 +131,9 @@ public class Enemy : Character
     {
         base.Start();
 
-        target = GameManager.Instance.Player.transform;
+        player = GameManager.Instance.Player.gameObject;
         nma = GetComponent<NavMeshAgent>();
+        nma.stoppingDistance = 2f;
         LastUpdate += UpdateTime;
     }
 
@@ -128,7 +142,7 @@ public class Enemy : Character
     protected override void Update()
     {
         MoveEnemy();
-        FindTarget();
+        FindPlayer();
 
         if (healthPoint <= 0)
         {
@@ -137,10 +151,10 @@ public class Enemy : Character
         }
     }
 
-    protected override void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider obj)
     {
-        base.OnTriggerEnter(other);
-        if (other.tag.Equals("Bullet"))
+        base.OnTriggerEnter(obj);
+        if (obj.gameObject.CompareTag("Bullet"))
         {
             GameManager.Instance.TriggerManager.onTrigger(PlayTriggerType.EnemyHit);
         }

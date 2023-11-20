@@ -1,55 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.FullSerializer;
-using UnityEditor;
 using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
     private GameObject player;
 
+    private Animator animator;
+
+    private float WaitT = 0f;
+    private float MaxWaitT = 5f;
+
+    private bool isAtk = true;
+
     public GameObject warning;
-    List<GameObject> warning_list = new List<GameObject>();
+    private List<GameObject> warning_list = new List<GameObject>();
 
     public GameObject razer;
     private LineRenderer LR;
+    private bool isRazer = false;
 
     public GameObject pillar;
-    List<GameObject> pillar_list = new List<GameObject>();
+    private List<GameObject> pillar_list = new List<GameObject>();
 
     public GameObject meteor;
-    List<GameObject> meteor_list = new List<GameObject>();
+    private List<GameObject> meteor_list = new List<GameObject>();
 
     public GameObject punch;
-    List<GameObject> punch_list = new List<GameObject>();
-
-    Animator animator;
-
-    float WaitT = 0f;
-    float MaxWaitT = 8f;
-
-    public bool isAtk = true;
-    bool isRazer = false;
+    private List<GameObject> punch_list = new List<GameObject>();
 
     // 공격 시작 메소드
-    void Attack()
+    private void Attack()
     {
-        if (!isAtk && animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f)
+        if (!isAtk)
         {
-            switch (GetRandomPattern())
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f)
             {
-                case "Razer":
-                    StartCoroutine(Razer());
-                    break;
-                case "Stone_Pillar":
-                    // StartCoroutine(Stone_Pillar());
-                    break;
-                case "Meteor":
-                    // StartCoroutine(Meteor());
-                    break;
-                case "Rocket_Punch":
-                    // StartCoroutine(Rocket_Punch());
-                    break;
+                switch (GetRandomPattern())
+                {
+                    case "Razer":
+                        StartCoroutine(Razer());
+                        break;
+                    case "Stone_Pillar":
+                        StartCoroutine(Stone_Pillar());
+                        break;
+                    case "Meteor":
+                        StartCoroutine(Meteor());
+                        break;
+                    case "Rocket_Punch":
+                        StartCoroutine(Rocket_Punch());
+                        break;
+                }
             }
         }
         else
@@ -57,12 +58,18 @@ public class Boss : MonoBehaviour
             Waiting();
         }
     }
-    // 대기 메소드
-    public void Waiting()
+
+    // 랜덤 패턴 값 가져오기
+    private string GetRandomPattern()
     {
-        Debug.Log("Wait Boss");
+        string[] boss_Patterns = { "Razer", "Stone_Pillar", "Meteor", "Rocket_Punch" };
+        int value = Random.Range(0, boss_Patterns.Length);
+        return boss_Patterns[value];
+    }
 
-
+    // 대기 메소드
+    private void Waiting()
+    {
         if (WaitT < MaxWaitT)
         {
             WaitT += Time.deltaTime;
@@ -74,66 +81,49 @@ public class Boss : MonoBehaviour
         }
     }
 
-    // 랜덤 패턴 값 가져오기
-    string GetRandomPattern()
-    {
-        string[] boss_Patterns = { "Razer", "Stone_Pillar", "Meteor", "Rocket_Punch" };
-        int value = Random.Range(0, boss_Patterns.Length);
-        return boss_Patterns[value];
-    }
-
     // 레이저 패턴
-    IEnumerator Razer()
+    private IEnumerator Razer()
     {
         isAtk = true;
-        Debug.Log("Razer Pattern");
-        // 레이저 준비
-        yield return new WaitForSecondsRealtime(1f);
+        animator.SetBool("isRazer", true);
+        yield return new WaitForSecondsRealtime(1.5f);
         isRazer = true;
-        Debug.Log(isRazer);
         yield return new WaitForSecondsRealtime(2.0f);
         isRazer = false;
-        Debug.Log(isRazer);
+        Destroy_Razer();
+        animator.SetBool("isRazer", false);
     }
-    void Setting_Razer()
+    private void Setup_Razer()
     {
         LR = razer.GetComponent<LineRenderer>();
         LR.positionCount = 2;
         LR.startWidth = 1f;
         LR.endWidth = 1f;
     }
-    void Shot_Razer()
+    private void Shot_Razer()
     {
         LR.enabled = true;
 
         Vector3 razerPoint = razer.transform.position;
-        Vector3 endPoint;
-
-        float maxDistance = 30f;
-        Vector3 playerDir = player.transform.position - razerPoint;
+        Vector3 endPoint = player.transform.position + Vector3.down;
 
         RaycastHit hit;
-        if (Physics.Raycast(razerPoint, playerDir, out hit, maxDistance))
+        if (Physics.Linecast(razerPoint, endPoint, out hit))
         {
             endPoint = hit.transform.position + Vector3.down;
-        }
-        else
-        {
-            endPoint = player.transform.position + Vector3.down;
         }
 
         LR.SetPosition(0, razerPoint);
         LR.SetPosition(1, endPoint);
     }
-    void Destroy_Razer()
+    private void Destroy_Razer()
     {
         LR.enabled = false;
     }
 
     // 돌기둥 패턴
-    IEnumerator Stone_Pillar()
+    private IEnumerator Stone_Pillar()
     {
-        // Debug.Log("Stone Pillar Pattern");
         isAtk = true;
         animator.SetBool("isSlam", true);
         Warning_Destroy_Pillar();
@@ -148,10 +138,8 @@ public class Boss : MonoBehaviour
         yield return new WaitForSecondsRealtime(2.0f);
         animator.SetBool("isSummon", false);
     }
-
-    void Warning_Build_Pillar()
+    private void Warning_Build_Pillar()
     {
-        // Debug.Log("Warning_Build_Pillar");
         for (float x = 0; x <= 75; x += 7.5f)
         {
             for (float z = 0; z <= 20; z += 10)
@@ -170,9 +158,8 @@ public class Boss : MonoBehaviour
             }
         }
     }
-    void Build_Pillar()
+    private void Build_Pillar()
     {
-        // Debug.Log("Build_Pillar");
         for (int i = 0; i < warning_list.Count; i++)
         {
             pillar_list.Add(Instantiate(pillar, warning_list[i].transform.position, warning_list[i].transform.rotation));
@@ -180,7 +167,7 @@ public class Boss : MonoBehaviour
         }
         warning_list.Clear();
     }
-    void Warning_Destroy_Pillar()
+    private void Warning_Destroy_Pillar()
     {
         // Debug.Log("Warning_Destroy_Pillar");
         for (int i = 0; i < pillar_list.Count; i++)
@@ -192,7 +179,7 @@ public class Boss : MonoBehaviour
             }
         }
     }
-    void Destroy_Pillar()
+    private void Destroy_Pillar()
     {
         // Debug.Log("Destroy_Pillar");
         for (int i = 0; i < pillar_list.Count; i++)
@@ -203,7 +190,7 @@ public class Boss : MonoBehaviour
         pillar_list.Clear();
         warning_list.Clear();
     }
-    void Start_Pillar()
+    private void Setup_Pillar()
     {
         for (float x = 0; x <= 75; x += 7.5f)
         {
@@ -225,10 +212,9 @@ public class Boss : MonoBehaviour
     }
 
     // 메테오 패턴
-    IEnumerator Meteor()
+    private IEnumerator Meteor()
     {
         isAtk = true;
-        // Debug.Log("Meteor Pattern");
         animator.SetBool("isMeteor", true);
         Spawn_Meteor();
         yield return new WaitForSecondsRealtime(1.0f);
@@ -237,7 +223,7 @@ public class Boss : MonoBehaviour
         animator.SetBool("isMeteor", false);
         yield return new WaitForSecondsRealtime(1.5f);
     }
-    void Spawn_Meteor()
+    private void Spawn_Meteor()
     {
         meteor_list.Clear();
 
@@ -248,7 +234,7 @@ public class Boss : MonoBehaviour
             meteor_list.Add(Instantiate(meteor, gameObject.transform.position + new Vector3(randomX + i, randomY, 0), gameObject.transform.rotation));
         }
     }
-    IEnumerator Drop_Meteor()
+    private IEnumerator Drop_Meteor()
     {
         for (int i = 0; i < meteor_list.Count; i++)
         {
@@ -261,16 +247,15 @@ public class Boss : MonoBehaviour
     }
 
     // 로켓펀치 패턴
-    IEnumerator Rocket_Punch()
+    private IEnumerator Rocket_Punch()
     {
         isAtk = true;
-        // Debug.Log("Rocket Punch Pattern");
         Ready_Punch();
         yield return new WaitForSecondsRealtime(2.0f);
         StartCoroutine(Shot_Punch());
         yield return new WaitForSecondsRealtime(2.0f);
     }
-    void Ready_Punch()
+    private void Ready_Punch()
     {
         Vector3 bossPos = transform.position;
         Vector3 playerPos = player.transform.position;
@@ -284,7 +269,7 @@ public class Boss : MonoBehaviour
             warning_list[i].transform.localScale = new Vector3(2, warning_list[i].transform.localScale.y, 2);
         }
     }
-    IEnumerator Shot_Punch()
+    private IEnumerator Shot_Punch()
     {
         for (int i = 0; i < punch_list.Count; i++)
         {
@@ -303,8 +288,8 @@ public class Boss : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         player = GameManager.Instance.Player.gameObject;
-        Start_Pillar();
-        Setting_Razer();
+        Setup_Pillar();
+        Setup_Razer();
     }
 
     // Update is called once per frame
@@ -313,12 +298,7 @@ public class Boss : MonoBehaviour
         Attack();
         if (isRazer)
         {
-            Debug.Log("sssss");
             Shot_Razer();
-        }
-        else
-        {
-            Destroy_Razer();
         }
     }
 }
