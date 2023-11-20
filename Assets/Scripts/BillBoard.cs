@@ -13,6 +13,6 @@ public class BillBoard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(transform.position + cam.rotation * Vector3.back, cam.rotation * Vector3.up);
+        transform.LookAt(transform.position + cam.rotation * Vector3.forward, cam.rotation * Vector3.up);
     }
 }
