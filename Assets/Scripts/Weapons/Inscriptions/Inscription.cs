@@ -19,7 +19,19 @@ public class Inscription : ScriptableObject
 
         public List<State> states;
         public OperType operType;
-        
+
+        // public Data(InscriptionType inscriptionType, string info,
+        //  PlayTriggerType stackTrigger, PlayTriggerType rateTrigger, 
+        //  OperatorHandler operatorHandler, List<State> states, OperType operType)
+        // {
+        //     this.inscriptionType = inscriptionType;
+        //     this.info = info;
+        //     this.stackTrigger = stackTrigger;
+        //     this.rateTrigger = rateTrigger;
+        //     this.operatorHandler = operatorHandler;
+        //     this.states = states;
+        //     this.operType = operType;
+        // }
         public Data(Data data)
         {
             inscriptionType = data.inscriptionType;

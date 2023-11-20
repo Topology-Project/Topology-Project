@@ -6,9 +6,6 @@ public enum PlayTriggerType
 {
     None,
     
-    Reload,
-    playerShot, EnemyShot,
-
     PlayerHit, EnemyHit,
     PlayerDie, EnemyDie,
 

@@ -6,10 +6,6 @@ public class Rocket_Punch : MonoBehaviour
 {
     private void OnCollisionEnter(Collision obj)
     {
-        // if (obj.gameObject.CompareTag("Player") || obj.gameObject.CompareTag("Warning"))
-        // {
-        //     Destroy(gameObject);
-        // }
         if (obj.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
@@ -19,7 +15,6 @@ public class Rocket_Punch : MonoBehaviour
     {
         if (obj.gameObject.CompareTag("Warning"))
         {
-            Destroy(obj.gameObject);
             Destroy(gameObject);
         }
     }

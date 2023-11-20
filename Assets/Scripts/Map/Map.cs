@@ -32,7 +32,7 @@ public class Map : MonoBehaviour
             isRoomSet = true;
             foreach(Transform sp in enemySpawnPoints)
             {
-                GameObject go = Resources.Load("prefabs/Enemy/moster") as GameObject;
+                GameObject go = Resources.Load("prefabs/Enemy/Enemy") as GameObject;
                 Instantiate(go, sp);
                 enemyCount++;
             }
