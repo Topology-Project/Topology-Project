@@ -52,6 +52,12 @@ public class GameManager : MonoBehaviour
         get { if (inscriptions == null) Init(); return inscriptions; }
         private set { inscriptions = value; }
     }
+    private Scrolls scrolls;
+    public Scrolls Scrolls
+    {
+        get { if (scrolls == null) Init(); return scrolls; }
+        private set { scrolls = value; }
+    }
 
     void Awake()
     {
@@ -138,6 +144,22 @@ public class GameManager : MonoBehaviour
             }
 
             instance.inscriptions = go.GetComponent<Inscriptions>();
+            DontDestroyOnLoad(go.gameObject);
+        }
+        if (instance.scrolls == null)
+        {
+            GameObject go = GameObject.Find("Scrolls");
+
+            if (go == null)
+            {
+                go = new GameObject { name = "Scrolls" };
+            }
+            if (go.GetComponent<Scrolls>() == null)
+            {
+                go.AddComponent<Scrolls>();
+            }
+
+            instance.scrolls = go.GetComponent<Scrolls>();
             DontDestroyOnLoad(go.gameObject);
         }
     }

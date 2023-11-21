@@ -18,12 +18,12 @@ public class Enemy : Character
     {
         if (isFind)
         {
-            Debug.Log("플레이어에게 이동");
+            // Debug.Log("플레이어에게 이동");
             nma.SetDestination(player.transform.position);
         }
         else
         {
-            Debug.Log("랜덤 위치로 이동");
+            // Debug.Log("랜덤 위치로 이동");
             LastUpdate += Time.deltaTime;
             if (LastUpdate >= UpdateTime)
             {
@@ -90,7 +90,7 @@ public class Enemy : Character
                 // 시야각 계산
                 if (hitDeg >= leftDeg && hitDeg <= rightDeg)
                 {
-                    Debug.Log("플레이어 발견");
+                    // Debug.Log("플레이어 발견");
                     isFind = true;
 
                     RaycastHit hitObj;
@@ -98,12 +98,12 @@ public class Enemy : Character
                     {
                         if (!hitObj.transform.CompareTag("Player"))
                         {
-                            Debug.Log("오브젝트에 가려짐, 플레이어에게 근접 접근 시도");
+                            // Debug.Log("오브젝트에 가려짐, 플레이어에게 근접 접근 시도");
                             nma.stoppingDistance = 2f;
                         }
                         else
                         {
-                            Debug.Log("플레이어가 바로 보임, 원거리 몹일 경우 값 증가시킬 것");
+                            // Debug.Log("플레이어가 바로 보임, 원거리 몹일 경우 값 증가시킬 것");
                             nma.stoppingDistance = 2f;
                         }
                         break;
@@ -111,12 +111,12 @@ public class Enemy : Character
                 }
                 else
                 {
-                    Debug.Log("플레이어가 범위 안엔 있으나 눈 앞에 없음");
+                    // Debug.Log("플레이어가 범위 안엔 있으나 눈 앞에 없음");
                 }
             }
             else
             {
-                Debug.Log("플레이어를 찾을 수 없음.");
+                // Debug.Log("플레이어를 찾을 수 없음.");
             }
         }
     }

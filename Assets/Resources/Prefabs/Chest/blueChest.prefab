@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 6284840477781161858}
   - component: {fileID: 5811294098650492885}
   - component: {fileID: 7288201272890165040}
-  - component: {fileID: 907774468999436816}
+  - component: {fileID: 2865800431778046664}
   m_Layer: 9
   m_Name: Scroll
   m_TagString: Scroll
@@ -211,7 +211,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &907774468999436816
+--- !u!114 &2865800431778046664
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -220,9 +220,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8260002101766227911}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 134ab4eb25bfa204a8193b12829d63a0, type: 3}
+  m_Script: {fileID: 11500000, guid: c3e1fc58427c96f4f93553b5f9107c7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateType: 4
-  value: 10
-  stack: 1
