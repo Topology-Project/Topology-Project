@@ -4,26 +4,35 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager instance;
-    public static GameManager Instance
+    private static GameManager instance; // 게임매니저 인스턴스
+    public static GameManager Instance // 게임매니저의 모든 객체 접근 시
+                                       // GameManager.Instance로 접근 권장
     {
         get { if (instance == null) Init(); return instance; }
         private set { instance = value; }
     }
     private static InputManager inputManager;
-    public static InputManager InpuManager
+    public InputManager InpuManager
     {
         get { if (inputManager == null) Init(); return inputManager; }
         private set { inputManager = value; }
     }
     private static StageManager stageManager;
-    public static StageManager StageManager
+    public StageManager StageManager
     {
         get { if (stageManager == null) Init(); return stageManager; }
         private set { stageManager = value; }
     }
+    
+    private static TriggerManager triggerManager;
+    public TriggerManager TriggerManager
+    {
+        get { if (triggerManager == null) Init(); return triggerManager; }
+        private set { triggerManager = value; }
+    }
+    
 
-    private Player player;
+    private Player player; // GameManager.Instance.Player로 플레이어 객체 접근 가능
     public Player Player
     {
         get { if (player == null) Init(); return player; }
@@ -37,11 +46,26 @@ public class GameManager : MonoBehaviour
         private set { mainCamera = value; }
     }
 
-    void Start()
+    private Inscriptions inscriptions;
+    public Inscriptions Inscriptions
+    {
+        get { if (inscriptions == null) Init(); return inscriptions; }
+        private set { inscriptions = value; }
+    }
+    private Scrolls scrolls;
+    public Scrolls Scrolls
+    {
+        get { if (scrolls == null) Init(); return scrolls; }
+        private set { scrolls = value; }
+    }
+
+    void Awake()
     {
         Init();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
-    static void Init()
+    static void Init() // 매니저 객체 초기화 메서드
     {
         if (instance == null)
         {
@@ -63,11 +87,16 @@ public class GameManager : MonoBehaviour
             {
                 go.AddComponent<StageManager>();
             }
+            if (go.GetComponent<TriggerManager>() == null)
+            {
+                go.AddComponent<TriggerManager>();
+            }
 
             instance = go.GetComponent<GameManager>();
             DontDestroyOnLoad(go.gameObject);
             inputManager = go.GetComponent<InputManager>();
             stageManager = go.GetComponent<StageManager>();
+            triggerManager = go.GetComponent<TriggerManager>();
         }
         if (instance.player == null)
         {
@@ -99,6 +128,38 @@ public class GameManager : MonoBehaviour
             }
 
             instance.mainCamera = go.GetComponent<PlayerCamera>();
+            DontDestroyOnLoad(go.gameObject);
+        }
+        if (instance.inscriptions == null)
+        {
+            GameObject go = GameObject.Find("Inscriptions");
+
+            if (go == null)
+            {
+                go = new GameObject { name = "Inscriptions" };
+            }
+            if (go.GetComponent<Inscriptions>() == null)
+            {
+                go.AddComponent<Inscriptions>();
+            }
+
+            instance.inscriptions = go.GetComponent<Inscriptions>();
+            DontDestroyOnLoad(go.gameObject);
+        }
+        if (instance.scrolls == null)
+        {
+            GameObject go = GameObject.Find("Scrolls");
+
+            if (go == null)
+            {
+                go = new GameObject { name = "Scrolls" };
+            }
+            if (go.GetComponent<Scrolls>() == null)
+            {
+                go.AddComponent<Scrolls>();
+            }
+
+            instance.scrolls = go.GetComponent<Scrolls>();
             DontDestroyOnLoad(go.gameObject);
         }
     }

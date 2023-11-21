@@ -1,25 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEditor;
 
-public class Scroll : MonoBehaviour
+[CreateAssetMenu(fileName = "Scroll", menuName = "ScriptableObject/Scroll")]
+public class Scroll : ScriptableObject
 {
-    public State state { get; private set; }
-    public StateType stateType;
-    public float value;
-    public int stack;
-    public OperatorHandler operatorHandler = State.BaseOper;
-
-    void Start()
+    [System.Serializable]
+    public class Data
     {
-        state = new(stateType, value, stack, operatorHandler);
+        public ScrollType ScrollType;
+
+        public Sprite sprite;
+        public string name;
+        public string info;
+
+        public Sc sc;
+        
+        public Data(Data data)
+        {
+            ScrollType = data.ScrollType;
+            sprite = data.sprite;
+            name = data.name;
+            info = data.info;
+        }
     }
 
-    public void GetState(Player player)
+    public static Scroll.Data Clone(Scroll.Data data)
     {
-        player.AddInventory(this);
-        Destroy(gameObject);
+        Scroll.Data temp = new Scroll.Data(data);
+        temp.sc = data.sc.Clone();
+        return temp;
     }
+    
+    public Data[] datas;
 }

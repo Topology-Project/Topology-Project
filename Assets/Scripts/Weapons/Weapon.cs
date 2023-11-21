@@ -60,37 +60,28 @@ public class Weapon : MonoBehaviour
     }
     public GameObject bullet;
     private StateModifier stateModifier = new();
+    Inscription.Data[] inscriptions = new Inscription.Data[2];
 
     void Awake()
     {
-        //bullet = Resources.Load("Bullet") as GameObject;
-        ammunitionType = AmmunitionType.Nomal;
-        weaponType = WeaponType.Pistol;
-        fireType = FireType.Single;
-        elementalEffectType = ElementalEffectType.None;
-        isExplosion = false;
-
-        baseDamage = new State(StateType.BaseDamage, 145);
-        criticalX = new State(StateType.CriticalX, 2);
-        luckyShot = new State(StateType.LuckyShot, 1);
-        magazine = new State(StateType.Magazine, 9);
-        projectiles = new State(StateType.Projectiles, 1);
-        projectileSpeed = new State(StateType.ProjectileSpeed, 60);
-        rateOfFire = new State(StateType.RateOfFire, 30);
-        reloadTime = new State(StateType.ReloadTime, 1.35f);
-        upgrade = new State(StateType.WPNUpgrade, 1);
-        accuracy = new State(StateType.Accuracy, 1.2f);
-        stability = new State(StateType.Stability, 5f);
-        baseDMGIncrease = new State(StateType.BaseDMGIncrease, 1);
-        explosionRange = new State(StateType.ExplosionRange, 0);
-        explosionDMGIncrease = new State(StateType.ExplosionDMGIncrease, 1);
-        elementalRate = new State(StateType.ElementalRate, 0);
-        elementalDMGIncrease = new State(StateType.ElementalDMGIncrease, 1);
-        range = new State(StateType.Range, 20);
-
-        movementSpeed = new State(StateType.MovementSpeed, -0.1f, 1, State.AddOper);
-
-        residualAmmunition = (int)magazine.Value;
+        baseDamage = new State(StateType.BaseDamage);
+        criticalX = new State(StateType.CriticalX);
+        luckyShot = new State(StateType.LuckyShot);
+        magazine = new State(StateType.Magazine);
+        projectiles = new State(StateType.Projectiles);
+        projectileSpeed = new State(StateType.ProjectileSpeed);
+        rateOfFire = new State(StateType.RateOfFire);
+        reloadTime = new State(StateType.ReloadTime);
+        upgrade = new State(StateType.WPNUpgrade);
+        accuracy = new State(StateType.Accuracy);
+        stability = new State(StateType.Stability);
+        baseDMGIncrease = new State(StateType.BaseDMGIncrease);
+        explosionRange = new State(StateType.ExplosionRange);
+        explosionDMGIncrease = new State(StateType.ExplosionDMGIncrease);
+        elementalRate = new State(StateType.ElementalRate);
+        elementalDMGIncrease = new State(StateType.ElementalDMGIncrease);
+        range = new State(StateType.Range);
+        movementSpeed = new State(StateType.Range);
 
         stateModifier.AddHandler(baseDamage);
         stateModifier.AddHandler(criticalX);
@@ -113,8 +104,45 @@ public class Weapon : MonoBehaviour
         stateModifier.AddHandler(movementSpeed);
     }
 
+    void Start()
+    {
+        //bullet = Resources.Load("Bullet") as GameObject;
+        ammunitionType = AmmunitionType.Nomal;
+        weaponType = WeaponType.Pistol;
+        fireType = FireType.Single;
+        elementalEffectType = ElementalEffectType.None;
+        isExplosion = false;
+
+        baseDamage.ResetState(145);
+        criticalX.ResetState(2);
+        luckyShot.ResetState(1);
+        magazine.ResetState(9);
+        projectiles.ResetState(1);
+        projectileSpeed.ResetState(60);
+        rateOfFire.ResetState(30);
+        reloadTime.ResetState(1.35f);
+        upgrade.ResetState(1);
+        accuracy.ResetState(1.2f);
+        stability.ResetState(5f);
+        baseDMGIncrease.ResetState(1);
+        explosionRange.ResetState(0);
+        explosionDMGIncrease.ResetState(1);
+        elementalRate.ResetState(0);
+        elementalDMGIncrease.ResetState(1);
+        range.ResetState(20);
+
+        movementSpeed.ResetState(-0.1f, State.AddOper);
+
+        inscriptions = GameManager.Instance.Inscriptions.GetRandomDatas(2);
+        foreach(Inscription.Data data in inscriptions) SetInscriprion(data);
+
+
+        residualAmmunition = (int)stateModifier.GetState(StateType.Magazine);
+    }
+
     private void Update()
     {
+        // 총기 안정성 회복
         if (sumAccuracy > 0) sumAccuracy -= accuracy * 0.1f * Time.deltaTime;
         sumAccuracy = Math.Clamp(sumAccuracy, 0, accuracy);
     }
@@ -124,6 +152,18 @@ public class Weapon : MonoBehaviour
         return stateModifier;
     }
 
+    // 인장적용 (임시)
+    private void SetInscriprion(Inscription.Data data)
+    {
+        foreach(State state in data.states) 
+        {
+            stateModifier.AddHandler(state);
+            GameManager.Instance.TriggerManager.AddTrigger(data.stackTrigger, state.StackUp);
+            GameManager.Instance.TriggerManager.AddTrigger(data.rateTrigger, state.RateUp);
+        }
+    }
+
+    // 총기 장착(임시)
     public void OnWeapon(Character character)
     {
         isFire = false;
@@ -132,6 +172,8 @@ public class Weapon : MonoBehaviour
         this.character = character;
         parent = character.gameObject;
     }
+
+    // 총기 해제(임시)
     public void OffWeapon()
     {
         this.character = null;
@@ -142,29 +184,35 @@ public class Weapon : MonoBehaviour
     private bool isFireready = true;
     private bool isReload = false;
     private float sumAccuracy = 0;
+
+    // 좌클릭 메서드
     public void Fire1(Transform transform)
     {
         if (!isReload && !isFire && isFireready && residualAmmunition > 0)
         {
+            // 투사체 갯수 설정
+            // ex) 1.3 = 1 (70%) or 2 (30%)
             int pj = (int)(character.GetModifier().GetState(StateType.Projectiles) % 1 > UnityEngine.Random.Range(0f, 1f) ?
                         character.GetModifier().GetState(StateType.Projectiles) + 1 : character.GetModifier().GetState(StateType.Projectiles));
-            for (int i = 0; i < pj; i++)
+            for (int i = 0; i < pj; i++) // 투사체 개수만큼 반복
             {
-                var xError = GetRandomNormalDistribution(0f, sumAccuracy);
-                var yError = GetRandomNormalDistribution(0f, sumAccuracy);
+                var xError = GetRandomNormalDistribution(0f, sumAccuracy); // 탄퍼짐
+                var yError = GetRandomNormalDistribution(0f, sumAccuracy); // 탄퍼짐
                 Quaternion fireDirection = new();
                 if (parent.tag.Equals("Player"))
                 {
+                    // 플레이어 카메라 반동
                     PlayerCamera playerCamera = GameManager.Instance.MainCamera.GetComponent<PlayerCamera>();
                     fireDirection = playerCamera.transform.rotation;
                     playerCamera.SetStability(stability);
                 }
 
-                sumAccuracy += sumAccuracy > accuracy ? 0 : accuracy * 0.1f;
+                sumAccuracy += sumAccuracy > accuracy ? 0 : accuracy * 0.1f; // 안정성 감소 (탄퍼짐 증가)
 
                 fireDirection = Quaternion.AngleAxis(yError, Vector3.up) * fireDirection;
                 fireDirection = Quaternion.AngleAxis(xError, Vector3.right) * fireDirection;
 
+                // bullet인스턴스 생성 및 초기화 (임시)
                 GameObject b = Instantiate(bullet, transform.position, fireDirection);
                 b.GetComponent<Bullet>().Set(parent,
                     character.GetModifier().GetState(StateType.ProjectileSpeed),
@@ -174,15 +222,19 @@ public class Weapon : MonoBehaviour
             if (fireType == FireType.Single || fireType == FireType.Bust) isFireready = false;
             StartCoroutine(FireReady());
             residualAmmunition--;
+            if(parent.tag.Equals("Player")) GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.PlayerShot);
             // Debug.Log(residualAmmunition + "/" + character.GetModifier().GetState(StateType.Magazine));
         }
         if (residualAmmunition <= 0)
         {
+            // 잔탄 소진 시 재장전
             // Debug.Log("need load");
             Reload();
         }
         if (Input.GetButtonUp("Fire1")) isFireready = true;
     }
+
+    // 차탄 사격 딜레이 용
     IEnumerator FireReady()
     {
         float time = 1f / character.GetModifier().GetState(StateType.RateOfFire);
@@ -190,6 +242,7 @@ public class Weapon : MonoBehaviour
         isFire = false;
     }
 
+    // 재장전 메서드
     public void Reload()
     {
         if (isReload ||
@@ -199,6 +252,7 @@ public class Weapon : MonoBehaviour
         isReload = true;
         StartCoroutine(Reloading());
     }
+    // 장전 딜레이 용 코루틴
     IEnumerator Reloading()
     {
         yield return new WaitForSeconds(character.GetModifier().GetState(StateType.ReloadTime));
@@ -210,6 +264,7 @@ public class Weapon : MonoBehaviour
         else temp = magazineAmmo;
         residualAmmunition += temp;
         characterInterface.SetAmmo(ammunitionType, -temp);
+        if(parent.tag.Equals("Player")) GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.Reload);
         isReload = false;
     }
 

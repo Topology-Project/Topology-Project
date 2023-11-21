@@ -1,15 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour, CharacterInterface
 {
-    protected ProtectionType armorType;
-    protected State maxHealthPoint;
-    protected State maxProtectionPoint;
+    /* ------------- 기본 스탯 -------------- */
+    protected ProtectionType armorType; // 보호막, 장갑
+    protected State maxHealthPoint; // 최대 체력
+    protected State maxProtectionPoint; // 최대 보호막
 
-    protected State movement;
-    protected State dashSpeed;
+    protected State movement; // 플레이어 속도
+    protected State dashSpeed; // 대시 속도
     protected State dashDuration;
     protected State dashCooltime;
 
@@ -23,8 +25,9 @@ public class Character : MonoBehaviour, CharacterInterface
     protected int largeAmmo;
     protected int specialAmmo;
 
-    protected float healthPoint;
-    protected float protectionPoint;
+    protected float healthPoint; // 현재 체력
+    protected float protectionPoint; // 현재 보호막
+    /* ------------------------------------------- */
 
     protected StateModifier stateModifier = new();
     protected ArrayList effects = new();
@@ -34,26 +37,15 @@ public class Character : MonoBehaviour, CharacterInterface
 
     protected virtual void Awake()
     {
-        armorType = ProtectionType.Shield;
-        maxHealthPoint = new State(StateType.MaxHealthPoint, 8000);
-        maxProtectionPoint = new State(StateType.MaxProtectionPoint, 80);
+        maxHealthPoint = new State(StateType.MaxHealthPoint);
+        maxProtectionPoint = new State(StateType.MaxProtectionPoint);
 
-        movement = new State(StateType.MovementSpeed, 8);
-        dashSpeed = new State(StateType.DashSpeed, 2);
-        dashDuration = new State(StateType.DashDuration, 0.5f);
-        dashCooltime = new State(StateType.DashCooltime, 3);
+        movement = new State(StateType.MovementSpeed);
+        dashSpeed = new State(StateType.DashSpeed);
+        dashDuration = new State(StateType.DashDuration);
+        dashCooltime = new State(StateType.DashCooltime);
 
-        ammoRate = new State(StateType.AmmoRate, 1);
-
-        maxInfiniteAmmo = new Ammunition(AmmunitionType.Infinite, 999999);
-        maxNomalAmmo = new Ammunition(AmmunitionType.Nomal, 300);
-        maxLargeAmmo = new Ammunition(AmmunitionType.Large, 200);
-        maxSpecialAmmo = new Ammunition(AmmunitionType.Special, 100);
-
-        infiniteAmmo = maxInfiniteAmmo.Ammo;
-        nomalAmmo = maxNomalAmmo.Ammo;
-        largeAmmo = maxLargeAmmo.Ammo;
-        specialAmmo = maxSpecialAmmo.Ammo;
+        ammoRate = new State(StateType.AmmoRate);
 
         stateModifier.AddHandler(maxHealthPoint);
         stateModifier.AddHandler(maxProtectionPoint);
@@ -69,8 +61,31 @@ public class Character : MonoBehaviour, CharacterInterface
     protected virtual void Start()
     {
         rig = gameObject.GetComponent<Rigidbody>();
-        stateModifier.AddHandler(weapon.GetModifier());
+
+        armorType = ProtectionType.Shield;
+
+        maxHealthPoint.ResetState(100000);
+        maxProtectionPoint.ResetState(80);
+
+        movement.ResetState(8);
+        dashSpeed.ResetState(2);
+        dashDuration.ResetState(0.5f);
+        dashCooltime.ResetState(3);
+
+        ammoRate.ResetState(1);
+
+        maxInfiniteAmmo = new Ammunition(AmmunitionType.Infinite, 999999999);
+        maxNomalAmmo = new Ammunition(AmmunitionType.Nomal, 300);
+        maxLargeAmmo = new Ammunition(AmmunitionType.Large, 200);
+        maxSpecialAmmo = new Ammunition(AmmunitionType.Special, 100);
+
+        infiniteAmmo = maxInfiniteAmmo.Ammo;
+        nomalAmmo = maxNomalAmmo.Ammo;
+        largeAmmo = maxLargeAmmo.Ammo;
+        specialAmmo = maxSpecialAmmo.Ammo;
+
         weapon.OnWeapon(this);
+        stateModifier.AddHandler(weapon.GetModifier());
         isDashReady = true;
 
         healthPoint = maxHealthPoint;
@@ -90,6 +105,8 @@ public class Character : MonoBehaviour, CharacterInterface
     }
     protected bool isDash;
     private bool isDashReady;
+
+    // 대시 메서드
     public void Dash()
     {
         if (!isDashReady) return;
@@ -109,18 +126,23 @@ public class Character : MonoBehaviour, CharacterInterface
         isDashReady = true;
     }
 
+    // 캐릭터 축 회전 메서드
     public virtual void Angle(Vector3 dir)
     {
         transform.localEulerAngles += new Vector3(0, dir.y, 0);
     }
 
+    // 좌클릭 메서드
     public virtual void Fire1(Transform transfrom) => weapon.Fire1(transform);
-    public void Reload() => weapon.Reload();
 
+    // 재장전 메서드
+    public void Reload() => weapon.Reload();
+    // 모디파이어 반환 메서드
     public StateModifier GetModifier()
     {
         return this.stateModifier;
     }
+    // 잔탄량 반환 메서드
     public int GetAmmo(AmmunitionType ammunitionType)
     {
         if (ammunitionType == AmmunitionType.Infinite) return infiniteAmmo;
@@ -129,6 +151,7 @@ public class Character : MonoBehaviour, CharacterInterface
         else if (ammunitionType == AmmunitionType.Special) return specialAmmo;
         return 0;
     }
+    // 잔탄량 설정 메서드
     public void SetAmmo(AmmunitionType ammunitionType, int ammo)
     {
         if (ammunitionType == AmmunitionType.Infinite) return;
@@ -137,12 +160,16 @@ public class Character : MonoBehaviour, CharacterInterface
         else if (ammunitionType == AmmunitionType.Special) specialAmmo += ammo;
     }
 
+    // 체력 설정 메서드
     private void HPCalc(float hp) => healthPoint = hp;
+    // 체력 설정 (감소)
     private void Damage(float hp) => HPCalc(healthPoint - hp);
+    // 체력 설정 (증가)
     private void Heal(float hp) => HPCalc(healthPoint + hp);
+    // 대미지 계산 메서드
     public float DamageCalc(StateModifier stateModifier)
     {
-        int lsh = (int)(stateModifier.GetState(StateType.LuckyShot) % 1 > Random.Range(0f, 1f) ?
+        int lsh = (int)(stateModifier.GetState(StateType.LuckyShot) % 1 > UnityEngine.Random.Range(0f, 1f) ?
                     stateModifier.GetState(StateType.LuckyShot) + 1 : stateModifier.GetState(StateType.LuckyShot));
         float damage = stateModifier.GetState(StateType.BaseDamage)
                     * stateModifier.GetState(StateType.WPNUpgrade)
@@ -152,24 +179,28 @@ public class Character : MonoBehaviour, CharacterInterface
                     * lsh
                     * stateModifier.GetState(StateType.CriticalX);
 
-        // Debug.Log("Damage : " + stateModifier.GetState(StateType.BaseDamage)
-        //             + "*" + stateModifier.GetState(StateType.WPNUpgrade)
-        //             + "*" + stateModifier.GetState(StateType.BaseDMGIncrease)
-        //             + "*" + stateModifier.GetState(StateType.ExplosionDMGIncrease)
-        //             + "*" + stateModifier.GetState(StateType.ElementalDMGIncrease)
-        //             + "*" + lsh
-        //             + "*" + stateModifier.GetState(StateType.CriticalX)
-        //             + "=" + damage);
+        Debug.Log("Damage : " + stateModifier.GetState(StateType.BaseDamage)
+                    + "*" + stateModifier.GetState(StateType.WPNUpgrade)
+                    + "*" + stateModifier.GetState(StateType.BaseDMGIncrease)
+                    + "*" + stateModifier.GetState(StateType.ExplosionDMGIncrease)
+                    + "*" + stateModifier.GetState(StateType.ElementalDMGIncrease)
+                    + "*" + lsh
+                    + "*" + stateModifier.GetState(StateType.CriticalX)
+                    + "=" + damage);
         Damage(damage);
         return damage;
     }
 
-    void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Bullet"))
+        if (other.tag.Equals("Bullet"))
         {
+            // 부모의 모디파이어 객체를 가져옴
             GameObject parent = other.GetComponent<Bullet>().parent;
-            if (!parent.tag.Equals(gameObject.tag)) DamageCalc(parent.GetComponent<CharacterInterface>().GetModifier());
+            if (!parent.tag.Equals(gameObject.tag))
+            {
+                DamageCalc(parent.GetComponent<CharacterInterface>().GetModifier());
+            }
         }
     }
 }
