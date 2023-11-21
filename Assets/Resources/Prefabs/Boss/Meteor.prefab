@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2179541188398422441}
   - component: {fileID: 2179541188398422442}
   - component: {fileID: 2179541188398422443}
-  - component: {fileID: -4349019935217719168}
-  - component: {fileID: 1631791044554972718}
+  - component: {fileID: 1817671498992130787}
+  - component: {fileID: -2370249631040607918}
   m_Layer: 0
   m_Name: Meteor
   m_TagString: Untagged
@@ -99,7 +99,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &-4349019935217719168
+--- !u!54 &1817671498992130787
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1631791044554972718
+--- !u!114 &-2370249631040607918
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -31,7 +31,7 @@ public class Player : Character
 
     public override void Move(Vector3 dir) // 플레이어 position 이동 메서드
     {
-        if(isDash) dir *= stateModifier.GetState(StateType.DashSpeed);
+        if (isDash) dir *= stateModifier.GetState(StateType.DashSpeed);
         Vector3 temp = transform.position + transform.TransformDirection(dir) * stateModifier.GetState(StateType.MovementSpeed) * Time.deltaTime;
         temp = new Vector3(temp.x, transform.position.y, temp.z);
         rig.MovePosition(temp);
@@ -45,17 +45,19 @@ public class Player : Character
     // 점프 메서드
     public void Jump()
     {
-        if(!isJump)
+        if (!isJump)
         {
             isJump = true;
             rig.AddForce(Vector3.up * 4, ForceMode.VelocityChange);
-        }        
+        }
     }
 
     // 인벤토리 스크롤 추가용 메서드 (임시)
-    public void AddInventory(Scroll scroll)
+    public void AddInventory(Scroll.Data scroll)
     {
         inventory.Add(scroll);
-        stateModifier.AddHandler(scroll.state);
+        scroll.sc.Active();
+        foreach(State state in scroll.sc.GetState())
+            stateModifier.AddHandler(state);
     }
 }

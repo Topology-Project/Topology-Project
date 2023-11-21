@@ -7,14 +7,27 @@ public class Bullet : MonoBehaviour
     public GameObject parent { get; private set; }
     private float speed; // 투사체 속도
     private float range; // 최대 사거리
+    private float time; // 최대 사거리
     private Vector3 startPos; // 발사 위치
 
-    public void Set(GameObject parent, float speed, float range)
+    public void Set(GameObject parent, float speed, float range, float time=5)
     {
         this.parent = parent;
         this.speed = speed;
         startPos = parent.transform.position;
         this.range = range;
+        this.time = time;
+    }
+
+    IEnumerator Deily()
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(gameObject);
+    }
+
+    private void Start()
+    {
+        StartCoroutine(Deily());
     }
 
     // Update is called once per frame

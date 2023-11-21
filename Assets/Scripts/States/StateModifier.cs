@@ -69,19 +69,21 @@ public class StateModifier
     {
         float baseVar = 0;
         float sum = 0;
-        float mul = 1;
+        float mul = 0;
         modifier[stateType](ref baseVar, ref sum, ref mul);
-        // Debug.Log(baseVar+","+sum+","+mul+","+(baseVar + ((baseVar==0 ? 1 : baseVar) * sum)) * mul);
-        return new State(stateType, (baseVar + ((baseVar==0 ? 1 : baseVar) * sum)) * mul);
+        if(stateType == StateType.CriticalX) Debug.Log(stateType.ToString() + " : " + baseVar+","+sum+","+mul+","+(baseVar + ((baseVar==0 ? 1 : baseVar) * sum)) * mul);
+        return new State(stateType, (baseVar + (baseVar*sum)) * (1+mul));
     }
 
     // 스탯 핸들러 추가 메서드
     public void AddHandler(State state)
     {
+        // StateHandler<State> += void (ref float baseVar, ref float sum, ref float mul)
         modifier[state.stateType] += state.operatorHandler(state);
     }
     public void AddHandler(StateModifier stateModifier)
     {
+        DelHandler(stateModifier);
         foreach(var handler in stateModifier.modifier)
         {
             modifier[handler.Key] += handler.Value;
@@ -100,4 +102,11 @@ public class StateModifier
             modifier[handler.Key] -= handler.Value;
         }
     }
+
+    // private static bool CheckDelegateHasMethod(StateHandler<State> @delegate)
+    // {
+    //     return @delegate?.GetInvocationList()
+    //             .Where(d => d.Method == method.Method)
+    //             .Count() > 0;
+    // }
 }

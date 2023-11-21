@@ -169,7 +169,6 @@ public class Boss : MonoBehaviour
     }
     private void Warning_Destroy_Pillar()
     {
-        // Debug.Log("Warning_Destroy_Pillar");
         for (int i = 0; i < pillar_list.Count; i++)
         {
             warning_list.Add(Instantiate(warning, pillar_list[i].transform.position, pillar_list[i].transform.rotation));
@@ -181,7 +180,6 @@ public class Boss : MonoBehaviour
     }
     private void Destroy_Pillar()
     {
-        // Debug.Log("Destroy_Pillar");
         for (int i = 0; i < pillar_list.Count; i++)
         {
             Destroy(pillar_list[i]);

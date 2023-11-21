@@ -4,6 +4,11 @@ using UnityEngine;
 
 public enum PlayTriggerType
 {
+    None,
+    
+    Reload,
+    PlayerShot, EnemyShot,
+
     PlayerHit, EnemyHit,
     PlayerDie, EnemyDie,
 

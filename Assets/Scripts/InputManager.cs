@@ -19,11 +19,10 @@ public class InputManager : MonoBehaviour
         playerCamera = GameManager.Instance.MainCamera;
         m_camera = playerCamera.GetComponent<Camera>();
 
-        layerMask = (1<<LayerMask.NameToLayer("Wall"))|
-                    (1<<LayerMask.NameToLayer("WarpPoint"))|
-                    (1<<LayerMask.NameToLayer("Enemy"))|
-                    (1<<LayerMask.NameToLayer("Item"))|
-                    (1<<LayerMask.NameToLayer("Chest"));
+        layerMask = (1 << LayerMask.NameToLayer("WarpPoint")) |
+                    (1 << LayerMask.NameToLayer("Enemy")) |
+                    (1 << LayerMask.NameToLayer("Item")) |
+                    (1 << LayerMask.NameToLayer("Chest"));
     }
     // Update is called once per frame
     private void Update()
@@ -37,28 +36,28 @@ public class InputManager : MonoBehaviour
         player.Angle(playerCamera.transform.localEulerAngles);
         playerCamera.SetDir(lookDir);
 
-        if(Input.GetButtonDown("Dash")) player.Dash();
-        if(Input.GetButtonDown("Jump")) player.Jump();
-        if(Input.GetButton("Fire1")) player.Fire1(playerCamera.transform);
-        if(Input.GetButtonUp("Fire1")) player.Fire1(playerCamera.transform);
-        if(Input.GetButtonDown("Reload")) player.Reload();
+        if (Input.GetButtonDown("Dash")) player.Dash();
+        if (Input.GetButtonDown("Jump")) player.Jump();
+        if (Input.GetButton("Fire1")) player.Fire1(playerCamera.transform);
+        if (Input.GetButtonUp("Fire1")) player.Fire1(playerCamera.transform);
+        if (Input.GetButtonDown("Reload")) player.Reload();
 
         RaycastHit raycastHit;
-        if(Input.GetButtonDown("Interaction") && Physics.Raycast(rayOrigin, rayDir, out raycastHit, 5f, layerMask))
+        if (Input.GetButtonDown("Interaction") && Physics.Raycast(rayOrigin, rayDir, out raycastHit, 5f, layerMask))
         {
-            if(raycastHit.collider.transform.tag.Equals("Scroll"))
+            if (raycastHit.collider.transform.tag.Equals("Scroll"))
             {
-                raycastHit.collider.GetComponent<Scroll>().GetState(player);
+                player.AddInventory(raycastHit.collider.GetComponent<ScrollObject>().GetData());
             }
-            else if(raycastHit.collider.transform.tag.Equals("Weapon"))
+            else if (raycastHit.collider.transform.tag.Equals("Weapon"))
             {
                 raycastHit.collider.GetComponent<Weapon>();
             }
-            else if(raycastHit.collider.transform.tag.Equals("Warp"))
+            else if (raycastHit.collider.transform.tag.Equals("Warp"))
             {
                 raycastHit.collider.GetComponent<WarpPoint>().Warp();
             }
-            else if(raycastHit.collider.transform.tag.Equals("Chest"))
+            else if (raycastHit.collider.transform.tag.Equals("Chest"))
             {
                 raycastHit.collider.GetComponent<Chest>().BoxOpen();
             }

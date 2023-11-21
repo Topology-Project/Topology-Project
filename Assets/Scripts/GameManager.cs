@@ -46,9 +46,24 @@ public class GameManager : MonoBehaviour
         private set { mainCamera = value; }
     }
 
-    void Start()
+    private Inscriptions inscriptions;
+    public Inscriptions Inscriptions
+    {
+        get { if (inscriptions == null) Init(); return inscriptions; }
+        private set { inscriptions = value; }
+    }
+    private Scrolls scrolls;
+    public Scrolls Scrolls
+    {
+        get { if (scrolls == null) Init(); return scrolls; }
+        private set { scrolls = value; }
+    }
+
+    void Awake()
     {
         Init();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
     static void Init() // 매니저 객체 초기화 메서드
     {
@@ -113,6 +128,38 @@ public class GameManager : MonoBehaviour
             }
 
             instance.mainCamera = go.GetComponent<PlayerCamera>();
+            DontDestroyOnLoad(go.gameObject);
+        }
+        if (instance.inscriptions == null)
+        {
+            GameObject go = GameObject.Find("Inscriptions");
+
+            if (go == null)
+            {
+                go = new GameObject { name = "Inscriptions" };
+            }
+            if (go.GetComponent<Inscriptions>() == null)
+            {
+                go.AddComponent<Inscriptions>();
+            }
+
+            instance.inscriptions = go.GetComponent<Inscriptions>();
+            DontDestroyOnLoad(go.gameObject);
+        }
+        if (instance.scrolls == null)
+        {
+            GameObject go = GameObject.Find("Scrolls");
+
+            if (go == null)
+            {
+                go = new GameObject { name = "Scrolls" };
+            }
+            if (go.GetComponent<Scrolls>() == null)
+            {
+                go.AddComponent<Scrolls>();
+            }
+
+            instance.scrolls = go.GetComponent<Scrolls>();
             DontDestroyOnLoad(go.gameObject);
         }
     }
