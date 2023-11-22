@@ -92,8 +92,8 @@ public class Character : MonoBehaviour, CharacterInterface
 
         armorType = ProtectionType.Shield;
 
-        maxHealthPoint.ResetState(30);
-        maxProtectionPoint.ResetState(80);
+        maxHealthPoint.ResetState(1000);
+        maxProtectionPoint.ResetState(800);
 
         movement.ResetState(8);
         dashSpeed.ResetState(2);
@@ -228,6 +228,7 @@ public class Character : MonoBehaviour, CharacterInterface
             if (!parent.tag.Equals(gameObject.tag))
             {
                 DamageCalc(parent.GetComponent<CharacterInterface>().GetModifier());
+                Debug.Log(healthPoint + " / " + protectionPoint);
             }
         }
     }
