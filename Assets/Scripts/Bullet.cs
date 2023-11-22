@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public GameObject parent { get; private set; }
-    private float speed; // 투사체 속도
-    private float range; // 최대 사거리
-    private float time; // 최대 사거리
-    private Vector3 startPos; // 발사 위치
+    public GameObject parent { get; protected set; }
+    protected float speed; // 투사체 속도
+    protected float range; // 최대 사거리
+    protected float time; // 최대 사거리
+    protected Vector3 startPos; // 발사 위치
 
     public void Set(GameObject parent, float speed, float range, float time=5)
     {
@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         StartCoroutine(Deily());
     }
