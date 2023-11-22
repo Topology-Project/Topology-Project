@@ -15,9 +15,9 @@ public class HpFillAmount : MonoBehaviour
             if (!parent.tag.Equals(gameObject.tag))
             {
                 GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyHit);
-                HP.fillAmount = (float)healthPoint / (float)maxHealthPoint;
+                //P_HP.fillAmount = (float)healthPoint / (float)maxHealthPoint;
                 Debug.Log("나 체력 준다");
-                if (healthPoint <= 0)
+                // if (healthPoint <= 0)
                 {
                     GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyDie);
                     Destroy(gameObject);
