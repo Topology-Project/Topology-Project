@@ -15,7 +15,6 @@ public class Character : MonoBehaviour, CharacterInterface
             return maxHealthPoint;
         }
     }
-
     protected State maxProtectionPoint; // 최대 보호막
     public float MaxProtectionPoint
     {
