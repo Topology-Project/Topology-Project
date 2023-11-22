@@ -8,7 +8,21 @@ public class Character : MonoBehaviour, CharacterInterface
     /* ------------- 기본 스탯 -------------- */
     protected ProtectionType armorType; // 보호막, 장갑
     protected State maxHealthPoint; // 최대 체력
+    public float MaxHealthPoint
+    {
+        get
+        {
+            return maxHealthPoint;
+        }
+    }
     protected State maxProtectionPoint; // 최대 보호막
+    public float MaxProtectionPoint
+    {
+        get
+        {
+            return maxProtectionPoint;
+        }
+    }
 
     protected State movement; // 플레이어 속도
     protected State dashSpeed; // 대시 속도
@@ -26,7 +40,21 @@ public class Character : MonoBehaviour, CharacterInterface
     protected int specialAmmo;
 
     protected float healthPoint; // 현재 체력
+    public float HealthPoint
+    {
+        get
+        {
+            return healthPoint;
+        }
+    }
     protected float protectionPoint; // 현재 보호막
+    public float ProtectionPoint
+    {
+        get
+        {
+            return protectionPoint;
+        }
+    }
     /* ------------------------------------------- */
 
     protected StateModifier stateModifier = new();
