@@ -93,8 +93,8 @@ public class Character : MonoBehaviour, CharacterInterface
 
         armorType = ProtectionType.Shield;
 
-        maxHealthPoint.ResetState(3000);
-        maxProtectionPoint.ResetState(8000);
+        maxHealthPoint.ResetState(300);
+        maxProtectionPoint.ResetState(800);
 
         movement.ResetState(8);
         dashSpeed.ResetState(2);
@@ -197,7 +197,11 @@ public class Character : MonoBehaviour, CharacterInterface
     private void Damage(float damage)
     {
         PtCalc(protectionPoint - damage); // 
-        if(protectionPoint < 0) HPCalc(healthPoint + protectionPoint);
+        if(protectionPoint < 0)
+        {
+            HPCalc(healthPoint + protectionPoint);
+            protectionPoint = 0;
+        }
     }
     // 체력 설정 (증가)
     private void Heal(float hp) => HPCalc(healthPoint + hp);
@@ -235,6 +239,7 @@ public class Character : MonoBehaviour, CharacterInterface
             if (!parent.tag.Equals(gameObject.tag))
             {
                 DamageCalc(parent.GetComponent<CharacterInterface>().GetModifier());
+                Debug.Log(protectionPoint + " / " + healthPoint);
             }
         }
     }
