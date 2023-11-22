@@ -8,16 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
-    path: Assets/Scenes/Boss_map.unity
-    guid: da9ed749687b750439ecd245a27b3e08
-  - enabled: 0
-    path: Assets/Scenes/s1_1030map.unity
-    guid: 4b7193ad8431af34780cf6cea0a35a88
   - enabled: 1
     path: Assets/Scenes/s1_1105map.unity
     guid: 7d8321c8541dbbf4a99670cbedbf6c35
   - enabled: 1
     path: Assets/Scenes/Boss_map.unity
-    guid: e7579e68dfafdee47b1cc53b561086ba
+    guid: da9ed749687b750439ecd245a27b3e08
   m_configObjects: {}

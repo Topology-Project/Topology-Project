@@ -8,7 +8,22 @@ public class Character : MonoBehaviour, CharacterInterface
     /* ------------- 기본 스탯 -------------- */
     protected ProtectionType armorType; // 보호막, 장갑
     protected State maxHealthPoint; // 최대 체력
+    public float MaxHealthPoint
+    {
+        get
+        {
+            return maxHealthPoint;
+        }
+    }
+
     protected State maxProtectionPoint; // 최대 보호막
+    public float MaxProtectionPoint
+    {
+        get
+        {
+            return maxProtectionPoint;
+        }
+    }
 
     protected State movement; // 플레이어 속도
     protected State dashSpeed; // 대시 속도
@@ -26,12 +41,27 @@ public class Character : MonoBehaviour, CharacterInterface
     protected int specialAmmo;
 
     protected float healthPoint; // 현재 체력
+    public float HealthPoint
+    {
+        get
+        {
+            return healthPoint;
+        }
+    }
     protected float protectionPoint; // 현재 보호막
+    public float ProtectionPoint
+    {
+        get
+        {
+            return protectionPoint;
+        }
+    }
     /* ------------------------------------------- */
 
     protected StateModifier stateModifier = new();
     protected ArrayList effects = new();
     public Weapon weapon;
+    protected Protection protection;
 
     protected Rigidbody rig;
 
@@ -64,8 +94,8 @@ public class Character : MonoBehaviour, CharacterInterface
 
         armorType = ProtectionType.Shield;
 
-        maxHealthPoint.ResetState(30);
-        maxProtectionPoint.ResetState( 80);
+        maxHealthPoint.ResetState(3000);
+        maxProtectionPoint.ResetState(8000);
 
         movement.ResetState(8);
         dashSpeed.ResetState(2);
@@ -162,8 +192,14 @@ public class Character : MonoBehaviour, CharacterInterface
 
     // 체력 설정 메서드
     private void HPCalc(float hp) => healthPoint = hp;
-    // 체력 설정 (감소)
-    private void Damage(float hp) => HPCalc(healthPoint - hp);
+    // 
+    private void PtCalc(float pt) => protectionPoint = pt;
+    // 데미지관련
+    private void Damage(float damage)
+    {
+        PtCalc(protectionPoint - damage); // 
+        if(protectionPoint < 0) HPCalc(healthPoint + protectionPoint);
+    }
     // 체력 설정 (증가)
     private void Heal(float hp) => HPCalc(healthPoint + hp);
     // 대미지 계산 메서드
