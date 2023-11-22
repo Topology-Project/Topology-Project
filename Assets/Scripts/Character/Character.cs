@@ -60,6 +60,7 @@ public class Character : MonoBehaviour, CharacterInterface
     protected StateModifier stateModifier = new();
     protected ArrayList effects = new();
     public Weapon weapon;
+    protected Protection protection;
 
     protected Rigidbody rig;
 
@@ -92,7 +93,7 @@ public class Character : MonoBehaviour, CharacterInterface
 
         armorType = ProtectionType.Shield;
 
-        maxHealthPoint.ResetState(1000);
+        maxHealthPoint.ResetState(300);
         maxProtectionPoint.ResetState(800);
 
         movement.ResetState(8);
@@ -190,8 +191,18 @@ public class Character : MonoBehaviour, CharacterInterface
 
     // 체력 설정 메서드
     private void HPCalc(float hp) => healthPoint = hp;
-    // 체력 설정 (감소)
-    private void Damage(float hp) => HPCalc(healthPoint - hp);
+    // 
+    private void PtCalc(float pt) => protectionPoint = pt;
+    // 데미지관련
+    private void Damage(float damage)
+    {
+        PtCalc(protectionPoint - damage); // 
+        if (protectionPoint < 0)
+        {
+            HPCalc(healthPoint + protectionPoint);
+            protectionPoint = 0;
+        }
+    }
     // 체력 설정 (증가)
     private void Heal(float hp) => HPCalc(healthPoint + hp);
     // 대미지 계산 메서드
@@ -228,7 +239,7 @@ public class Character : MonoBehaviour, CharacterInterface
             if (!parent.tag.Equals(gameObject.tag))
             {
                 DamageCalc(parent.GetComponent<CharacterInterface>().GetModifier());
-                Debug.Log(healthPoint + " / " + protectionPoint);
+                Debug.Log(protectionPoint + " / " + healthPoint);
             }
         }
     }

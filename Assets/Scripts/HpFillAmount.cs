@@ -20,13 +20,11 @@ public class HpFillAmount : MonoBehaviour
             if (!parent.tag.Equals(gameObject.tag))
             {
                 GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyHit);
-                Pro.fillAmount = (float)protectionPoint / (float)maxProtectionPoint;
+                Player player = GameManager.Instance.Player;
+                //  Pro.fillAmount = (float)Player.ProtectionPoint / (float)MaxProtectionPoint;
                 Debug.Log("보호막 줄어듬");
-                if (protectionPoint <= 0)
-                {
-                    HP.fillAmount = (float)healthPoint / (float)maxHealthPoint;
-                    Debug.Log("나 체력 준다");
-                }
+                //  HP.fillAmount = (float)Player.HealthPoint / (float)Player.MaxHealthPoint;
+                Debug.Log("나 체력 준다");
                 if (healthPoint <= 0)
                 {
                     GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyDie);
