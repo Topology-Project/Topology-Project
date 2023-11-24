@@ -28,8 +28,8 @@ public class Sc_Bluff : Sc
     }
     public override void Awake()
     {
-        states = new State[1];
-        states[0] = new State(StateType.CriticalX, 0.25f, State.MulOper, 0);
+        // states = new State[1];
+        // states[0] = new State(StateType.CriticalX, 0.25f, State.MulOper, 0);
     }
     public override Sc Clone()
     {
