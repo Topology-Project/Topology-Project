@@ -2,19 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rocket_Punch : MonoBehaviour
+public class Rocket_Punch : Bullet
 {
-    private void OnCollisionEnter(Collision obj)
-    {
-        if (obj.gameObject.CompareTag("Player"))
-        {
-            Destroy(gameObject);
-        }
-    }
-    private void OnTriggerEnter(Collider obj)
+    protected override void OnTriggerEnter(Collider obj)
     {
         if (obj.gameObject.CompareTag("Warning"))
         {
+            obj.GetComponent<Warning>().DestroyWarning();
             Destroy(gameObject);
         }
     }

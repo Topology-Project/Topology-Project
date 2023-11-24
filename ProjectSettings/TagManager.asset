@@ -12,6 +12,7 @@ TagManager:
   - Warp
   - Chest
   - Warning
+  - Pillar
   layers:
   - Default
   - TransparentFX

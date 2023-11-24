@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Enemy : Character
 {
     [SerializeField] private GameObject player;
-    private NavMeshAgent nma;
+    protected NavMeshAgent nma;
 
     public float UpdateTime = 3f;
     private float LastUpdate;
@@ -138,24 +138,5 @@ public class Enemy : Character
     {
         MoveEnemy();
         FindPlayer();
-    }
-
-    protected override void OnTriggerEnter(Collider other)
-    {
-        base.OnTriggerEnter(other);
-        if (other.tag.Equals("Bullet"))
-        {
-            // 부모의 모디파이어 객체를 가져옴
-            GameObject parent = other.GetComponent<Bullet>().parent;
-            if (!parent.tag.Equals(gameObject.tag))
-            {
-                GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyHit);
-                if (healthPoint <= 0)
-                {
-                    GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyDie);
-                    Destroy(gameObject);
-                }
-            }
-        }
     }
 }

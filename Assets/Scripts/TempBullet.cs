@@ -14,7 +14,8 @@ public class TempBullet : Bullet
         this.range = 9999;
         this.time = 9999;
     }
-    void OnTriggerEnter(Collider other)
+
+    protected override void OnTriggerEnter(Collider other)
     {
         if(!other.gameObject.tag.Equals(parent.tag))
         {

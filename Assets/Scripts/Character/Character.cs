@@ -97,8 +97,8 @@ public class Character : MonoBehaviour, CharacterInterface
         maxProtectionPoint.ResetState(800);
 
         movement.ResetState(8);
-        dashSpeed.ResetState(2);
-        dashDuration.ResetState(0.5f);
+        dashSpeed.ResetState(1.7f);
+        dashDuration.ResetState(0.3f);
         dashCooltime.ResetState(3);
 
         ammoRate.ResetState(1);
@@ -239,7 +239,7 @@ public class Character : MonoBehaviour, CharacterInterface
             if (!parent.tag.Equals(gameObject.tag))
             {
                 DamageCalc(parent.GetComponent<CharacterInterface>().GetModifier());
-                Debug.Log(protectionPoint + " / " + healthPoint);
+                Debug.Log(gameObject.tag + " : " + protectionPoint + " / " + healthPoint);
             }
         }
     }

@@ -71,7 +71,7 @@ public class StateModifier
         float sum = 0;
         float mul = 0;
         modifier[stateType](ref baseVar, ref sum, ref mul);
-        if(stateType == StateType.CriticalX) Debug.Log(stateType.ToString() + " : " + baseVar+","+sum+","+mul+","+(baseVar + ((baseVar==0 ? 1 : baseVar) * sum)) * mul);
+        // if(stateType == StateType.CriticalX) Debug.Log(stateType.ToString() + " : " + baseVar+","+sum+","+mul+","+(baseVar + ((baseVar==0 ? 1 : baseVar) * sum)) * mul);
         return new State(stateType, (baseVar + (baseVar*sum)) * (1+mul));
     }
 
