@@ -36,3 +36,14 @@ MonoBehaviour:
       stack: 0
       rate: 1
     operType: 2
+  - ScrollType: 0
+    sprite: {fileID: 21300000, guid: b4513b381a2cfb840963f73e7e40dee0, type: 3}
+    name: Sc_BerserkSoul
+    info: "\uC783\uC740 \uC0DD\uBA85\uB825 1%\uB2F9 \uB7ED\uD0A4\uC0F7\uC774 0.5%\uC529
+      \uC99D\uAC00\uD55C\uB2E4"
+    states:
+    - stateType: 3
+      stateValue: 0.5
+      stack: 0
+      rate: 1
+    operType: 0
