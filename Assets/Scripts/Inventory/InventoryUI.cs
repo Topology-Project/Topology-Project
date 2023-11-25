@@ -5,21 +5,37 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
+    Inventory inven;
     public GameObject inventoryPanel;
-    public GameObject AimUI;
+    public GameObject UICanvas;
     public Text BulletText;
     private bool activeInventory = false;
-    private bool activeAim = true;
+    private bool Canvas = true;
     Player player;
     Weapon weapon;
+    public Slot[] slots;
+    public Transform slotHolder;
 
     private void Start()
     {
+        inven = Inventory.instance;
+        slots = slotHolder.GetComponentsInChildren<Slot>();
+        inven.onSlotCountChange += SlotChange;
         player = GameManager.Instance.Player;
         weapon = player.weapon;
         int a = player.GetAmmo(weapon.AmmunitionType);
         int b = weapon.ResidualAmmunition;
         BulletText.text = b + " / " + a;
+    }
+    private void SlotChange(int val)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (i < inven.SlotCnt)
+                slots[i].GetComponent<Button>().interactable = true;
+            else
+                slots[i].GetComponent<Button>().interactable = false;
+        }
     }
     private void Update()
     {
@@ -29,14 +45,18 @@ public class InventoryUI : MonoBehaviour
         int b = weapon.ResidualAmmunition;
         BulletText.text = b + " / " + a;
     }
+    public void AddSlot()
+    {
+        inven.SlotCnt++;
+    }
     private void InventoryOnOff()
     {
         if (Input.GetKey(KeyCode.Tab))
         {
             activeInventory = true;
             inventoryPanel.SetActive(true);
-            activeAim = false;
-            AimUI.SetActive(false);
+            Canvas = false;
+            UICanvas.SetActive(false);
         }
         else
         {
@@ -44,8 +64,8 @@ public class InventoryUI : MonoBehaviour
             {
                 activeInventory = false;
                 inventoryPanel.SetActive(false);
-                activeAim = true;
-                AimUI.SetActive(true);
+                Canvas = true;
+                UICanvas.SetActive(true);
             }
         }
     }
