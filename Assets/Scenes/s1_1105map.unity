@@ -11916,9 +11916,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 72673035880415127, guid: ef799f7b5b1d0c2458cd2f311516f57f, type: 3}
+      propertyPath: doors.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 72673035880415127, guid: ef799f7b5b1d0c2458cd2f311516f57f, type: 3}
+      propertyPath: doors.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 72673035880415127, guid: ef799f7b5b1d0c2458cd2f311516f57f, type: 3}
+      propertyPath: nextMaps.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 72673035880415127, guid: ef799f7b5b1d0c2458cd2f311516f57f, type: 3}
       propertyPath: nextMaps.Array.data[0]
       value: 
       objectReference: {fileID: 2121394843}
+    - target: {fileID: 72673035880415127, guid: ef799f7b5b1d0c2458cd2f311516f57f, type: 3}
+      propertyPath: nextMaps.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef799f7b5b1d0c2458cd2f311516f57f, type: 3}
 --- !u!114 &858759452 stripped
@@ -19265,9 +19281,29 @@ PrefabInstance:
       value: S1_R1
       objectReference: {fileID: 0}
     - target: {fileID: 3732581544113657319, guid: bfbe31f010fe116459b8d2d530b65c84, type: 3}
+      propertyPath: doors.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3732581544113657319, guid: bfbe31f010fe116459b8d2d530b65c84, type: 3}
+      propertyPath: doors.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3732581544113657319, guid: bfbe31f010fe116459b8d2d530b65c84, type: 3}
+      propertyPath: doors.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3732581544113657319, guid: bfbe31f010fe116459b8d2d530b65c84, type: 3}
+      propertyPath: nextMaps.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3732581544113657319, guid: bfbe31f010fe116459b8d2d530b65c84, type: 3}
       propertyPath: nextMaps.Array.data[0]
       value: 
       objectReference: {fileID: 2121394843}
+    - target: {fileID: 3732581544113657319, guid: bfbe31f010fe116459b8d2d530b65c84, type: 3}
+      propertyPath: nextMaps.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbe31f010fe116459b8d2d530b65c84, type: 3}
 --- !u!114 &1452818381 stripped

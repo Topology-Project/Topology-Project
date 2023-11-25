@@ -122,6 +122,10 @@ public class Enemy : Character
     }
 
     // Start is called before the first frame update
+    protected override void Awake()
+    {
+        base.Awake();
+    }
     protected override void Start()
     {
         base.Start();
@@ -138,5 +142,10 @@ public class Enemy : Character
     {
         MoveEnemy();
         FindPlayer();
+        if(healthPoint <= 0)
+        {
+            GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyDie);
+            Destroy(gameObject);
+        }
     }
 }

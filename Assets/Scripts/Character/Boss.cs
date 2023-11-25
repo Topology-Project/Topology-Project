@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ExitGames.Client.Photon.StructWrapping;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Boss : Enemy
 {
@@ -199,15 +200,16 @@ public class Boss : Enemy
             {
                 float randomX = Random.Range(-3.0f, 3.0f) - 32.5f;
                 float randomZ = Random.Range(-3.0f, 3.0f) - 35;
-
+                GameObject go = null;
                 if (x % 15 == 0 && z != 10)
                 {
-                    pillar_list.Add(Instantiate(pillar, new Vector3(x + randomX, 0, z + randomZ), transform.rotation));
+                    pillar_list.Add(go = Instantiate(pillar, new Vector3(x + randomX, 0, z + randomZ), transform.rotation));
                 }
                 else if (x % 15 == 7.5f && z == 10)
                 {
-                    pillar_list.Add(Instantiate(pillar, new Vector3(x + randomX, 0, z + randomZ), transform.rotation));
+                    pillar_list.Add(go = Instantiate(pillar, new Vector3(x + randomX, 0, z + randomZ), transform.rotation));
                 }
+                if(go != null) SceneManager.MoveGameObjectToScene(go, SceneManager.GetSceneAt(1));
             }
         }
     }
@@ -288,7 +290,10 @@ public class Boss : Enemy
         warning_list.Clear();
     }
 
-
+    protected override void Awake()
+    {
+        base.Awake();
+    }
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -296,6 +301,10 @@ public class Boss : Enemy
         stateModifier.AddHandler(weapon.GetModifier());
         animator = GetComponent<Animator>();
         player = GameManager.Instance.Player.gameObject;
+        maxHealthPoint.ResetState(3000);
+        maxProtectionPoint.ResetState(8000);
+        healthPoint = maxHealthPoint;
+        protectionPoint = maxProtectionPoint;
         Setup_Pillar();
         Setup_Razer();
     }
@@ -308,6 +317,7 @@ public class Boss : Enemy
         {
             Shot_Razer();
         }
+        if(healthPoint <= 0) Destroy(gameObject);
     }
 
     protected override void OnTriggerEnter(Collider other)

@@ -70,7 +70,7 @@ public class MapManager : MonoBehaviour
         playerCamera = GameManager.Instance.MainCamera.gameObject;
 
         PlayerSpawn(); // 플레이어 워프
-        EnterRoom(); // 방 셋팅
+        // EnterRoom(); // 방 셋팅
     }
 
 
@@ -89,6 +89,7 @@ public class MapManager : MonoBehaviour
         // 방 클릭어 시 셋팅 (임시)
         activeMap[activeMapIdx++].ChestUnlock();
         activeMap[activeMapIdx].DoorActive(true);
+        Debug.Log("room clear");
     }
 
     // 플레이어 워프
@@ -98,11 +99,13 @@ public class MapManager : MonoBehaviour
         player.transform.rotation = activeMap[activeMapIdx].playerSpawnPoint.rotation;
         playerCamera.transform.position = activeMap[activeMapIdx].playerSpawnPoint.position;
         playerCamera.transform.rotation = activeMap[activeMapIdx].playerSpawnPoint.rotation;
+        playerCamera.GetComponent<PlayerCamera>().SetDirForce(activeMap[activeMapIdx].playerSpawnPoint.rotation);
     } 
 
     // 방 셋팅 용 메서드
     public void EnterRoom()
     {
         activeMap[activeMapIdx].RoomSet();
+        Debug.Log("room set");
     }
 }

@@ -14,6 +14,11 @@ public class PlayerCamera : MonoBehaviour
     {
         this.dir = dir;
     }
+    public void SetDirForce(Quaternion dir)
+    {
+        transform.rotation = dir;
+        tempVector = dir.eulerAngles;
+    }
     // 카메라 반동값 설정 메서드
     public void SetStability(float stability)
     {
