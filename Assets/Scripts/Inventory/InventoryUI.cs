@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -44,7 +46,15 @@ public class InventoryUI : MonoBehaviour
         int a = player.GetAmmo(weapon.AmmunitionType);
         int b = weapon.ResidualAmmunition;
         BulletText.text = b + " / " + a;
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+
+            }
+        }
     }
+
     public void AddSlot()
     {
         inven.SlotCnt++;
