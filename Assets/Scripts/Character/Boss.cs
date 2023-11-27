@@ -312,12 +312,19 @@ public class Boss : Enemy
     // Update is called once per frame
     protected override void Update()
     {
-        Attack();
-        if (isRazer)
-        {
-            Shot_Razer();
+        if(isAlive)
+        {            
+            Attack();
+            if (isRazer)
+            {
+                Shot_Razer();
+            }
+            if(healthPoint <= 0)
+            {
+                isAlive = false;
+                Destroy(gameObject, 1f);
+            }
         }
-        if(healthPoint <= 0) Destroy(gameObject);
     }
 
     protected override void OnTriggerEnter(Collider other)

@@ -38,5 +38,5 @@ public class Sc_BerserkSoul : Sc
         return temp;
     }
 
-    void HPCheck() => states[0].stack = 100 - (int)(player.MaxHealthPoint / player.HealthPoint);
+    void HPCheck() => states[0].stack = 100 - (int)((player.HealthPoint / player.MaxHealthPoint) * 100);
 }

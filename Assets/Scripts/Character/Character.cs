@@ -206,7 +206,7 @@ public class Character : MonoBehaviour, CharacterInterface
     // 체력 설정 (증가)
     private void Heal(float hp) => HPCalc(healthPoint + hp);
     // 대미지 계산 메서드
-    public float DamageCalc(StateModifier stateModifier)
+    public virtual float DamageCalc(StateModifier stateModifier)
     {
         int lsh = (int)(stateModifier.GetState(StateType.LuckyShot) % 1 > UnityEngine.Random.Range(0f, 1f) ?
                     stateModifier.GetState(StateType.LuckyShot) + 1 : stateModifier.GetState(StateType.LuckyShot));

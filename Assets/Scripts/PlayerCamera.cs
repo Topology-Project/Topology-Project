@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
+    public GameObject playerArm;
     private Player player;
     private Vector3 dir;
     private Vector3 stability;
@@ -61,6 +62,10 @@ public class PlayerCamera : MonoBehaviour
         transform.localEulerAngles -= temp;
         tempVector += temp * 0.2f;
 
+        /// 플레이어 암
+        playerArm.transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, playerArm.transform.localEulerAngles.y, playerArm.transform.localEulerAngles.z);
+        /// 플레이어 암
+
         float x = transform.localEulerAngles.x>180 ? transform.localEulerAngles.x- 360 : transform.localEulerAngles.x;
         transform.localEulerAngles = new Vector3(Math.Clamp(x, -85, 85), transform.localEulerAngles.y, transform.localEulerAngles.z);
     }
@@ -68,6 +73,9 @@ public class PlayerCamera : MonoBehaviour
     private void LateUpdate()
     {
         transform.position = player.transform.position;
+
+        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
+        tempVector = new Vector3(tempVector.x, tempVector.y, 0);
     }
 
     // rotation 값 보정 용 메서드

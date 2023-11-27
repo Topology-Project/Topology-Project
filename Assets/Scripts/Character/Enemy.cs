@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : Character
 {
+    public GameObject damageText;
     [SerializeField] private GameObject player;
     protected NavMeshAgent nma;
 
@@ -13,6 +14,7 @@ public class Enemy : Character
     public float UpdateRange = 10f;
 
     private bool isFind = false;
+    protected bool isAlive = true;
 
     private void MoveEnemy()
     {
@@ -121,6 +123,19 @@ public class Enemy : Character
         }
     }
 
+    public override float DamageCalc(StateModifier stateModifier)
+    {
+        if(isAlive)
+        {
+            float temp = base.DamageCalc(stateModifier);
+            Transform cv = GetComponentInChildren<Canvas>().transform;
+            GameObject go = Instantiate(damageText, transform.position + Vector3.up + transform.TransformDirection(Vector3.forward), Quaternion.identity, cv);
+            go.GetComponent<DamageText>().SetDamageText((int) temp);
+            return temp;
+        }
+        return 0;
+    }
+
     // Start is called before the first frame update
     protected override void Awake()
     {
@@ -140,12 +155,16 @@ public class Enemy : Character
     // Update is called once per frame
     protected override void Update()
     {
-        MoveEnemy();
-        FindPlayer();
-        if(healthPoint <= 0)
+        if(isAlive)
         {
-            GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyDie);
-            Destroy(gameObject);
+            MoveEnemy();
+            FindPlayer();
+            if(healthPoint <= 0)
+            {
+                GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyDie);
+                isAlive = false;
+                Destroy(gameObject, 1f);
+            }
         }
     }
 }

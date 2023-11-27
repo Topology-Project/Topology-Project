@@ -1479,6 +1479,10 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 1996364691}
+    - target: {fileID: 2023623020105265951, guid: de430488dcfbdb84a90fc5e6aa02fdf7, type: 3}
+      propertyPath: damageText
+      value: 
+      objectReference: {fileID: 714182798890711746, guid: bdec24355415d2040a06a548a8988381, type: 3}
     - target: {fileID: 2253170589607999443, guid: de430488dcfbdb84a90fc5e6aa02fdf7, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -1551,7 +1555,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 5247670096519213119, guid: de430488dcfbdb84a90fc5e6aa02fdf7, type: 3}
+    - target: {fileID: 0}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: f726e3f83c9309c4189d85047ae55169, type: 2}
@@ -1663,10 +1667,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 5247670096519213119, guid: de430488dcfbdb84a90fc5e6aa02fdf7, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de430488dcfbdb84a90fc5e6aa02fdf7, type: 3}
 --- !u!1 &166254371
 GameObject:
@@ -5418,6 +5419,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5717813798629140281, guid: de430488dcfbdb84a90fc5e6aa02fdf7, type: 3}
   m_PrefabInstance: {fileID: 155338151}
   m_PrefabAsset: {fileID: 0}
+--- !u!136 &649977577
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649977570}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &650581926
 GameObject:
   m_ObjectHideFlags: 0
@@ -14796,6 +14811,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 6914196085505591941, guid: 6411e7a547269c744a5d9aed2df35aef, type: 3}
+  weaponController: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!4 &1996364692
 Transform:
   m_ObjectHideFlags: 0
