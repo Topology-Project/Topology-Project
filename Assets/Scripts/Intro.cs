@@ -10,7 +10,7 @@ public class Intro : MonoBehaviour
 
     public void Start_Btn()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Start");
     }
     public void Quit_Btn()
     {

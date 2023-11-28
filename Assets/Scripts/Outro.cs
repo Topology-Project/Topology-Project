@@ -7,6 +7,17 @@ using UnityEngine.UI;
 
 public class Outro : MonoBehaviour
 {
+    private int stageIdx = GameManager.Instance.StageManager.stageIdx;
+    // 최대대미지
+    private int scroll_cnt = GameManager.Instance.Player.scroll_cnt;
+
+
+
+
+
+
+
+
     private bool isResult;
 
     public Text T_result;

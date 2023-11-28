@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class StageManager : MonoBehaviour
 {
     private string[] stageNames;
-    private int stageIdx;
+    public int stageIdx { get; }
 
     public MapManager mapManager { get; private set; }
 

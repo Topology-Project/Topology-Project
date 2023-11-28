@@ -15,7 +15,7 @@ public class Scroll : ScriptableObject
         public string info;
 
         public Sc sc;
-        
+
         public Data(Data data)
         {
             ScrollType = data.ScrollType;
@@ -31,6 +31,6 @@ public class Scroll : ScriptableObject
         temp.sc = data.sc.Clone();
         return temp;
     }
-    
+
     public Data[] datas;
 }
