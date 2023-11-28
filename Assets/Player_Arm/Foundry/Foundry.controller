@@ -46,7 +46,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1827226128182048838, guid: 8ea36b4534c8d044f84da3597af7de82, type: 3}
+  m_Motion: {fileID: 1827226128182048838, guid: 8ea36b4534c8d044f84da3597af7de82,
+    type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -61,7 +62,7 @@ AnimatorState:
   m_PrefabAsset: {fileID: 0}
   m_Name: Foundry@Fire
   m_Speed: 1
-  m_CycleOffset: 0.7
+  m_CycleOffset: 0
   m_Transitions:
   - {fileID: 2586968602538266806}
   - {fileID: -3959955042212689204}
@@ -74,7 +75,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1827226128182048838, guid: 2fbe744863ac63943b6e5e01c486eb19, type: 3}
+  m_Motion: {fileID: 1827226128182048838, guid: 2fbe744863ac63943b6e5e01c486eb19,
+    type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -102,7 +104,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1827226128182048838, guid: 4831229351dccdb438738c498c679279, type: 3}
+  m_Motion: {fileID: 1827226128182048838, guid: 4831229351dccdb438738c498c679279,
+    type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -127,8 +130,8 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
-  m_ExitTime: 0.25
-  m_HasExitTime: 0
+  m_ExitTime: 0.6875
+  m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -299,7 +302,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1827226128182048838, guid: 239cae0cd1cb46545af2e25e1a87c852, type: 3}
+  m_Motion: {fileID: 1827226128182048838, guid: 239cae0cd1cb46545af2e25e1a87c852,
+    type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: Walk
