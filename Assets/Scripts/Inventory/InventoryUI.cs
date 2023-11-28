@@ -4,72 +4,36 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
+using System.Linq;
+using Unity.VisualScripting;
 
 public class InventoryUI : MonoBehaviour
 {
     Inventory inven;
-    public GameObject inventoryPanel;
-    public GameObject UICanvas;
-    public Text BulletText;
-    private bool activeInventory = false;
-    private bool Canvas = true;
+    public GameObject slotObg;
     Player player;
     Weapon weapon;
-    public Slot[] slots;
+    public List<Slot> slots;
     public Transform slotHolder;
 
     private void Start()
     {
         inven = Inventory.instance;
-        slots = slotHolder.GetComponentsInChildren<Slot>();
-        inven.onSlotCountChange += SlotChange;
+        slots = slotHolder.GetComponentsInChildren<Slot>().ToList();
+        inven.onSlotCountAdd += AddSlot;
+        inven.onSlotCountDel += DelSlot;
         player = GameManager.Instance.Player;
-        weapon = player.weapon;
-        int a = player.GetAmmo(weapon.AmmunitionType);
-        int b = weapon.ResidualAmmunition;
-        BulletText.text = b + " / " + a;
     }
-    private void SlotChange(int val)
+    public void AddSlot(Slot var)
     {
-        for (int i = 0; i < slots.Length; i++)
-        {
-            if (i < inven.SlotCnt)
-                slots[i].GetComponent<Button>().interactable = true;
-            else
-                slots[i].GetComponent<Button>().interactable = false;
-        }
+        Slot go = Instantiate(slotObg, slotHolder).GetComponent<Slot>();
+        // go.data = var;
+        slots.Add(go);
     }
-    private void Update()
+    public void DelSlot(Slot var)
     {
-        InventoryOnOff();
-        weapon = player.weapon;
-        int a = player.GetAmmo(weapon.AmmunitionType);
-        int b = weapon.ResidualAmmunition;
-        BulletText.text = b + " / " + a;
-    }
-
-    public void AddSlot()
-    {
-        inven.SlotCnt++;
-    }
-    private void InventoryOnOff()
-    {
-        if (Input.GetKey(KeyCode.Tab))
-        {
-            activeInventory = true;
-            inventoryPanel.SetActive(true);
-            Canvas = false;
-            UICanvas.SetActive(false);
-        }
-        else
-        {
-            if (activeInventory)
-            {
-                activeInventory = false;
-                inventoryPanel.SetActive(false);
-                Canvas = true;
-                UICanvas.SetActive(true);
-            }
-        }
+        int idx = slots.IndexOf(new Slot());
+        Destroy(slots[idx].gameObject, 0.1f);
+        slots.RemoveAt(idx);
     }
 }

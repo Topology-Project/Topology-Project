@@ -12,12 +12,30 @@ public class Scrolls : MonoBehaviour
     {
         Assembly assembly = Assembly.GetExecutingAssembly();
 
-        foreach(Scroll.Data sc in scroll.datas)
+        foreach(Scroll.Data sd in scroll.datas)
         {
-            System.Type t = assembly.GetType(sc.name);
+            System.Type t = assembly.GetType(sd.name);
             Sc obj = (System.Activator.CreateInstance(t) as Sc).CreateSc();
+            OperatorHandler operatorHandler = null;
+            switch(sd.operType)
+            {
+                case OperType.BaseOper:
+                operatorHandler = State.BaseOper;
+                break;
+                case OperType.AddOper:
+                operatorHandler = State.AddOper;
+                break;
+                case OperType.MulOper:
+                operatorHandler = State.MulOper;
+                break;
+            }
+            foreach(State state in sd.states) 
+            {
+                state.operatorHandler = operatorHandler;
+            }
+            obj.SetState(sd.states); 
             obj.Awake();
-            sc.sc = obj;
+            sd.sc = obj;
         }
     }
 

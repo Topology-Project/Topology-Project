@@ -31,8 +31,8 @@ public class Sc_Perfect_Sixth : Sc
     }
     public override void Awake()
     {
-        states = new State[1];
-        states[0] = new State(StateType.CriticalX, 0.8f, State.BaseOper, 0);
+        // states = new State[1];
+        // states[0] = new State(StateType.CriticalX, 0.8f, State.BaseOper, 0);
     }
     public override Sc Clone()
     {
