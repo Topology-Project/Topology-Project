@@ -16,20 +16,21 @@ public class Inventory : MonoBehaviour
         instance = this;
     }
     #endregion
-    public delegate void OnSlotCountChange(int val); //대리자 정의
-    public OnSlotCountChange onSlotCountChange; // 대리자 인스턴스화
+    public delegate void OnSlotCountChange(Slot val); //대리자 정의
+    public OnSlotCountChange onSlotCountAdd; // 대리자 인스턴스화
+    public OnSlotCountChange onSlotCountDel; // 대리자 인스턴스화
     private int slotCnt;
     public int SlotCnt
     {
         get => slotCnt;
         set
         {
+            int temp = slotCnt;
             slotCnt = value;
-            onSlotCountChange.Invoke(slotCnt);
         }
     }
     void Start()
     {
-        SlotCnt = 6;
+        // SlotCnt = 20;
     }
 }
