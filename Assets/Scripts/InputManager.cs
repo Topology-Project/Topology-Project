@@ -65,7 +65,7 @@ public class InputManager : MonoBehaviour
                 }
             }
         }
-
+        else playerCamera.SetDir(Vector3.zero);
     }
     private void FixedUpdate()
     {

@@ -7,7 +7,7 @@ public class Player : Character
 {
     private Camera playerCamera;
     private bool isJump;
-    private ArrayList inventory = new();
+    public List<Scroll.Data> inventory = new();
     protected override void Awake()
     {
         base.Awake();
@@ -57,6 +57,7 @@ public class Player : Character
     {
         inventory.Add(scroll);
         scroll.sc.Active();
+        Inventory.instance.SlotCnt = inventory.Count;
         foreach(State state in scroll.sc.GetState())
             stateModifier.AddHandler(state);
     }
