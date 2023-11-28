@@ -59,6 +59,10 @@ public class GameManager : MonoBehaviour
         private set { scrolls = value; }
     }
 
+
+    private bool isPlay = false;
+    public bool IsPlay { get; set; }
+
     void Awake()
     {
         Init();

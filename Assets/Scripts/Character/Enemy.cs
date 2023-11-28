@@ -5,14 +5,16 @@ using UnityEngine.AI;
 
 public class Enemy : Character
 {
+    public GameObject damageText;
     [SerializeField] private GameObject player;
-    private NavMeshAgent nma;
+    protected NavMeshAgent nma;
 
     public float UpdateTime = 3f;
     private float LastUpdate;
     public float UpdateRange = 10f;
 
     private bool isFind = false;
+    protected bool isAlive = true;
 
     private void MoveEnemy()
     {
@@ -121,7 +123,24 @@ public class Enemy : Character
         }
     }
 
+    public override float DamageCalc(StateModifier stateModifier)
+    {
+        if(isAlive)
+        {
+            float temp = base.DamageCalc(stateModifier);
+            Transform cv = GetComponentInChildren<Canvas>().transform;
+            GameObject go = Instantiate(damageText, transform.position + Vector3.up + transform.TransformDirection(Vector3.forward), Quaternion.identity, cv);
+            go.GetComponent<DamageText>().SetDamageText((int) temp);
+            return temp;
+        }
+        return 0;
+    }
+
     // Start is called before the first frame update
+    protected override void Awake()
+    {
+        base.Awake();
+    }
     protected override void Start()
     {
         base.Start();
@@ -136,25 +155,15 @@ public class Enemy : Character
     // Update is called once per frame
     protected override void Update()
     {
-        MoveEnemy();
-        FindPlayer();
-    }
-
-    protected override void OnTriggerEnter(Collider other)
-    {
-        base.OnTriggerEnter(other);
-        if (other.tag.Equals("Bullet"))
+        if(isAlive)
         {
-            // 부모의 모디파이어 객체를 가져옴
-            GameObject parent = other.GetComponent<Bullet>().parent;
-            if (!parent.tag.Equals(gameObject.tag))
+            MoveEnemy();
+            FindPlayer();
+            if(healthPoint <= 0)
             {
-                GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyHit);
-                if (healthPoint <= 0)
-                {
-                    GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyDie);
-                    Destroy(gameObject);
-                }
+                GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyDie);
+                isAlive = false;
+                Destroy(gameObject, 1f);
             }
         }
     }

@@ -28,7 +28,7 @@ public class Player : Character
 
     protected override void Update()
     {
-        base.Update();
+        // base.Update();
     }
 
     void OnCollisionEnter(Collision collision)

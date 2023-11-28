@@ -14,6 +14,9 @@ public class Scroll : ScriptableObject
         public string name;
         public string info;
 
+        public State[] states;
+        public OperType operType;
+
         public Sc sc;
 
         public Data(Data data)
@@ -22,6 +25,8 @@ public class Scroll : ScriptableObject
             sprite = data.sprite;
             name = data.name;
             info = data.info;
+            states = data.states;
+            operType = data.operType;
         }
     }
 

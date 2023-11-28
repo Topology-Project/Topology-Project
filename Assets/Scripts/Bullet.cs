@@ -6,7 +6,9 @@ public class Bullet : MonoBehaviour
 {
     public GameObject parent { get; protected set; }
     protected float speed; // 투사체 속도
+    [SerializeField]
     protected float range; // 최대 사거리
+    [SerializeField]
     protected float time; // 최대 사거리
     protected Vector3 startPos; // 발사 위치
 
@@ -28,6 +30,7 @@ public class Bullet : MonoBehaviour
     protected virtual void Start()
     {
         StartCoroutine(Deily());
+        // Debug.Log(gameObject.ToString() + "(" + parent.gameObject.tag + ")");  
     }
 
     // Update is called once per frame
@@ -37,13 +40,12 @@ public class Bullet : MonoBehaviour
         if(Vector3.Distance(startPos, transform.position) >= range) Destroy(gameObject); // 최대 사거리 도달 시 객체 삭제
     }
 
-    void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
-        if(!other.gameObject.tag.Equals(parent.tag))
+        if(!other.tag.Equals(parent.tag) && (other.tag.Equals("Player") || other.tag.Equals("Enemy")))
         {
             // 상대 객체 트리거 시 자신 객체 삭제
             Destroy(gameObject);
         }
-
     }
 }

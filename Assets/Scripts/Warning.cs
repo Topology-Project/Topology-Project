@@ -4,11 +4,5 @@ using UnityEngine;
 
 public class Warning : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider obj)
-    {
-        if (obj.gameObject.CompareTag("Rocket_Punch"))
-        {
-            Destroy(gameObject);
-        }
-    }
+    public void DestroyWarning() => Destroy(gameObject);
 }

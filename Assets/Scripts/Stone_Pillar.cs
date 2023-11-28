@@ -13,4 +13,5 @@ public class Stone_Pillar : MonoBehaviour
         }
 
     }
+    public void DestroyPillar() => gameObject.SetActive(false);
 }

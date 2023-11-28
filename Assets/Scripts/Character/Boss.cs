@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using ExitGames.Client.Photon.StructWrapping;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Boss : MonoBehaviour
+public class Boss : Enemy
 {
     private GameObject player;
 
@@ -100,6 +102,7 @@ public class Boss : MonoBehaviour
         LR.startWidth = 1f;
         LR.endWidth = 1f;
     }
+    RaycastHit hit;
     private void Shot_Razer()
     {
         LR.enabled = true;
@@ -107,7 +110,6 @@ public class Boss : MonoBehaviour
         Vector3 razerPoint = razer.transform.position;
         Vector3 endPoint = player.transform.position + Vector3.down;
 
-        RaycastHit hit;
         if (Physics.Linecast(razerPoint, endPoint, out hit))
         {
             endPoint = hit.transform.position + Vector3.down;
@@ -118,6 +120,8 @@ public class Boss : MonoBehaviour
     }
     private void Destroy_Razer()
     {
+        if(hit.transform.tag.Equals("Player")) hit.transform.GetComponent<Player>().DamageCalc(stateModifier);
+        else if(hit.transform.tag.Equals("Pillar")) hit.transform.GetComponent<Stone_Pillar>().DestroyPillar();
         LR.enabled = false;
     }
 
@@ -196,15 +200,16 @@ public class Boss : MonoBehaviour
             {
                 float randomX = Random.Range(-3.0f, 3.0f) - 32.5f;
                 float randomZ = Random.Range(-3.0f, 3.0f) - 35;
-
+                GameObject go = null;
                 if (x % 15 == 0 && z != 10)
                 {
-                    pillar_list.Add(Instantiate(pillar, new Vector3(x + randomX, 0, z + randomZ), transform.rotation));
+                    pillar_list.Add(go = Instantiate(pillar, new Vector3(x + randomX, 0, z + randomZ), transform.rotation));
                 }
                 else if (x % 15 == 7.5f && z == 10)
                 {
-                    pillar_list.Add(Instantiate(pillar, new Vector3(x + randomX, 0, z + randomZ), transform.rotation));
+                    pillar_list.Add(go = Instantiate(pillar, new Vector3(x + randomX, 0, z + randomZ), transform.rotation));
                 }
+                if(go != null) SceneManager.MoveGameObjectToScene(go, SceneManager.GetSceneAt(1));
             }
         }
     }
@@ -229,7 +234,9 @@ public class Boss : MonoBehaviour
         {
             float randomX = Random.Range(-3.0f, 3.0f) - 20;
             float randomY = Random.Range(25f, 30f);
-            meteor_list.Add(Instantiate(meteor, gameObject.transform.position + new Vector3(randomX + i, randomY, 0), gameObject.transform.rotation));
+            GameObject go = null;
+            meteor_list.Add(go = Instantiate(meteor, gameObject.transform.position + new Vector3(randomX + i, randomY, 0), gameObject.transform.rotation));
+            go.GetComponent<Meteor>().Set(gameObject, 0, 100, 100);
         }
     }
     private IEnumerator Drop_Meteor()
@@ -258,8 +265,11 @@ public class Boss : MonoBehaviour
         Vector3 bossPos = transform.position;
         Vector3 playerPos = player.transform.position;
         punch_list.Clear();
-        punch_list.Add(Instantiate(punch, new Vector3(bossPos.x + 20, 10, bossPos.z - 5), transform.rotation));
-        punch_list.Add(Instantiate(punch, new Vector3(bossPos.x - 20, 10, bossPos.z - 5), transform.rotation));
+        GameObject go = null;
+        punch_list.Add(go = Instantiate(punch, new Vector3(bossPos.x + 20, 10, bossPos.z - 5), transform.rotation));
+        go.GetComponent<Rocket_Punch>().Set(gameObject, 0, 100, 100);
+        punch_list.Add(go = Instantiate(punch, new Vector3(bossPos.x - 20, 10, bossPos.z - 5), transform.rotation));
+        go.GetComponent<Rocket_Punch>().Set(gameObject, 0, 100, 100);
         warning_list.Add(Instantiate(warning, new Vector3(playerPos.x + 3, 0, playerPos.z), player.transform.rotation));
         warning_list.Add(Instantiate(warning, new Vector3(playerPos.x - 3, 0, playerPos.z), player.transform.rotation));
         for (int i = 0; i < warning_list.Count; i++)
@@ -280,23 +290,45 @@ public class Boss : MonoBehaviour
         warning_list.Clear();
     }
 
-
-    // Start is called before the first frame update
-    public void Start()
+    protected override void Awake()
     {
+        base.Awake();
+    }
+    // Start is called before the first frame update
+    protected override void Start()
+    {
+        weapon.OnWeapon(this);
+        stateModifier.AddHandler(weapon.GetModifier());
         animator = GetComponent<Animator>();
         player = GameManager.Instance.Player.gameObject;
+        maxHealthPoint.ResetState(3000);
+        maxProtectionPoint.ResetState(8000);
+        healthPoint = maxHealthPoint;
+        protectionPoint = maxProtectionPoint;
         Setup_Pillar();
         Setup_Razer();
     }
 
     // Update is called once per frame
-    public void Update()
+    protected override void Update()
     {
-        Attack();
-        if (isRazer)
-        {
-            Shot_Razer();
+        if(isAlive)
+        {            
+            Attack();
+            if (isRazer)
+            {
+                Shot_Razer();
+            }
+            if(healthPoint <= 0)
+            {
+                isAlive = false;
+                Destroy(gameObject, 1f);
+            }
         }
+    }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
     }
 }

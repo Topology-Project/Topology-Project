@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 8037694697635310889}
   - component: {fileID: 7000869248087046028}
   - component: {fileID: 1843085075082882210}
-  - component: {fileID: 8539344713994474189}
   - component: {fileID: 2698394016991906856}
+  - component: {fileID: 8539344713994474189}
   m_Layer: 0
   m_Name: Rocket_Punch
-  m_TagString: Rocket_Punch
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,20 +97,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8539344713994474189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8496826032363928231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95b7fc38d292aba4a9fc1aef6c84d79d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Size: {x: 1, y: 0.3, z: 0.3}
+  m_Center: {x: 0, y: 0.2, z: -0.35}
 --- !u!54 &2698394016991906856
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -127,3 +115,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8539344713994474189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8496826032363928231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95b7fc38d292aba4a9fc1aef6c84d79d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 0
+  time: 0

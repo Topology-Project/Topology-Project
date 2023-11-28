@@ -33,3 +33,32 @@ MonoBehaviour:
       stack: 1
       rate: 1
     operType: 1
+  - inscriptionType: 0
+    info: "\uB7ED\uD0A4\uC0F7 \uD655\uB960 40% \uC99D\uAC00, \uC5F0\uC0AC\uB825 10%
+      \uAC10\uC18C"
+    stackTrigger: 0
+    rateTrigger: 0
+    states:
+    - stateType: 3
+      stateValue: 0.4
+      stack: 1
+      rate: 1
+    - stateType: 7
+      stateValue: -0.1
+      stack: 1
+      rate: 1
+    operType: 1
+  - inscriptionType: 0
+    info: "\uC720\uD6A8 \uC0AC\uAC70\uB9AC\uC640 \uBA85\uC911\uB960 2\uBC30 \uC99D\uAC00"
+    stackTrigger: 0
+    rateTrigger: 0
+    states:
+    - stateType: 16
+      stateValue: 1
+      stack: 1
+      rate: 1
+    - stateType: 9
+      stateValue: 1
+      stack: 1
+      rate: 1
+    operType: 2
