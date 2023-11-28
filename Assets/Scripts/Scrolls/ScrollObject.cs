@@ -8,7 +8,6 @@ public class ScrollObject : MonoBehaviour
 
     public Scroll.Data GetData()
     {
-        Debug.Log(data.info);
         Destroy(gameObject);
         return data;
     }
