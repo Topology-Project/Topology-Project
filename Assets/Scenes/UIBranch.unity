@@ -13909,8 +13909,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 965230151}
-  AimUI: {fileID: 1797818490}
+  UICanvas: {fileID: 1797818490}
   BulletText: {fileID: 1969533449}
+  slots: []
+  slotHolder: {fileID: 0}
 --- !u!114 &1458584524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17803,8 +17805,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 1458584522}
-  AimUI: {fileID: 1797818490}
+  UICanvas: {fileID: 0}
   BulletText: {fileID: 1969533449}
+  slots: []
+  slotHolder: {fileID: 0}
 --- !u!114 &1797818492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19888,7 +19892,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.9, y: 0.14}
   m_AnchorMax: {x: 0.988, y: 0.238}
-  m_AnchoredPosition: {x: -0.2999878, y: 0}
+  m_AnchoredPosition: {x: -0.30004883, y: 0}
   m_SizeDelta: {x: -0.2999878, y: 0}
   m_Pivot: {x: 1, y: 0}
 --- !u!1001 &1971156466
