@@ -22,15 +22,16 @@ public class StageManager : MonoBehaviour
             "s1_1106map", "s1_1106map", "s1_1106map", "s1_1106map",
             "Boss_map"
         };
+        SceneLoad(stageNames[stageIdx]);
+        // SceneLoad("SampleScene");
     }
 
     private void Start()
     {
-        SceneLoad("SampleScene");
     }
     private void FixedUpdate()
     {
-        if(GameManager.Instance.IsPlay) playTime += Time.fixedDeltaTime;
+        if (GameManager.Instance.IsPlay) playTime += Time.fixedDeltaTime;
     }
 
     AsyncOperation op;
@@ -40,7 +41,7 @@ public class StageManager : MonoBehaviour
         op = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         GameManager.Instance.IsPlay = false;
         op.allowSceneActivation = false;
-        if(action != null) op.completed += action;
+        if (action != null) op.completed += action;
         StartCoroutine(UnloadingScene());
     }
     IEnumerator UnloadingScene()
@@ -54,16 +55,17 @@ public class StageManager : MonoBehaviour
         GameManager.Instance.IsPlay = true;
         op.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync("Loading");
-        if(mapManager != null) mapManager.EnterRoom();
+        if (mapManager != null) mapManager.EnterRoom();
     }
-    
+
     // 다음 스테이지 로드 및 맵메니저 탐색
     public void NextStageLoad()
     {
         if (stageIdx < stageNames.Length)
         {
             mapManager = null;
-            SceneLoad(stageNames[stageIdx++], (x) => {
+            SceneLoad(stageNames[stageIdx++], (x) =>
+            {
                 mapManager = FindObjectOfType<MapManager>();
             });
         }

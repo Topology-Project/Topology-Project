@@ -396,6 +396,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2976464717660973400, guid: 2478895df193a6645833cadd8f55a63f, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 2976464717660973401, guid: 2478895df193a6645833cadd8f55a63f, type: 3}
       propertyPath: weaponController
       value: 

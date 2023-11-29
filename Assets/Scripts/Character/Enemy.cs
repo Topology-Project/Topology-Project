@@ -14,14 +14,18 @@ public class Enemy : Character
     public float UpdateRange = 10f;
 
     private bool isFind = false;
+    private bool isAtk = false;
     protected bool isAlive = true;
 
     private void MoveEnemy()
     {
         if (isFind)
         {
-            // Debug.Log("플레이어에게 이동");
-            nma.SetDestination(player.transform.position);
+            if (!isAtk)
+            {
+                // Debug.Log("플레이어에게 이동");
+                nma.SetDestination(player.transform.position);
+            }
         }
         else
         {
@@ -71,7 +75,7 @@ public class Enemy : Character
         float rightRad = Mathf.Acos(Vector3.Dot(rayDir, rightDir));
         float rightDeg = Mathf.Rad2Deg * rightRad;
 
-
+        float dist = Vector3.Distance(player.transform.position, transform.position);
 
         // 레이저 디버그 (씬에서만 보임)
         Debug.DrawRay(rayStart, rayDir * sphereRadius, Color.red);
@@ -89,24 +93,37 @@ public class Enemy : Character
                 float hitRad = Mathf.Acos(Vector3.Dot(rayDir, hitDir));
                 float hitDeg = Mathf.Rad2Deg * hitRad;
 
-                // 시야각 계산
+                // 범위 안에 플레이어가 있고, 공격 중이 아닐 때 플레이어를 바라보도록 설정
+                if (!isAtk)
+                {
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(hitDir), Time.deltaTime * 2.5f);
+                }
+
+                // 플레이어가 적의 시야각 내부일 때
                 if (hitDeg >= leftDeg && hitDeg <= rightDeg)
                 {
                     // Debug.Log("플레이어 발견");
                     isFind = true;
 
                     RaycastHit hitObj;
-                    if (Physics.Raycast(rayStart, hitDir, out hitObj, 10f))
+                    if (Physics.Linecast(rayStart, hit.transform.position, out hitObj))
                     {
                         if (!hitObj.transform.CompareTag("Player"))
                         {
+                            // 오브젝트
                             // Debug.Log("오브젝트에 가려짐, 플레이어에게 근접 접근 시도");
-                            nma.stoppingDistance = 2f;
+                            nma.stoppingDistance = 0;
                         }
                         else
                         {
                             // Debug.Log("플레이어가 바로 보임, 원거리 몹일 경우 값 증가시킬 것");
                             nma.stoppingDistance = 2f;
+
+                            // 공격 코드
+                            if (dist <= 3.5f && !isAtk)
+                            {
+                                StartCoroutine(Attack());
+                            }
                         }
                         break;
                     }
@@ -115,22 +132,34 @@ public class Enemy : Character
                 {
                     // Debug.Log("플레이어가 범위 안엔 있으나 눈 앞에 없음");
                 }
+
             }
             else
             {
                 // Debug.Log("플레이어를 찾을 수 없음.");
+                if (dist >= sphereRadius) isFind = false;
             }
         }
     }
 
+    // Enemy 공격 패턴
+    IEnumerator Attack()
+    {
+        isAtk = true;
+        Debug.Log("atk start");
+        yield return new WaitForSecondsRealtime(3f);
+        Debug.Log("atk end");
+        isAtk = false;
+    }
+
     public override float DamageCalc(StateModifier stateModifier)
     {
-        if(isAlive)
+        if (isAlive)
         {
             float temp = base.DamageCalc(stateModifier);
             Transform cv = GetComponentInChildren<Canvas>().transform;
             GameObject go = Instantiate(damageText, transform.position + Vector3.up + transform.TransformDirection(Vector3.forward), Quaternion.identity, cv);
-            go.GetComponent<DamageText>().SetDamageText((int) temp);
+            go.GetComponent<DamageText>().SetDamageText((int)temp);
             return temp;
         }
         return 0;
@@ -155,11 +184,11 @@ public class Enemy : Character
     // Update is called once per frame
     protected override void Update()
     {
-        if(isAlive)
+        if (isAlive)
         {
             MoveEnemy();
             FindPlayer();
-            if(healthPoint <= 0)
+            if (healthPoint <= 0)
             {
                 GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyDie);
                 isAlive = false;
