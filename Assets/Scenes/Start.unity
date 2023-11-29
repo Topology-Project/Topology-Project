@@ -285,9 +285,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 634441923}
     - target: {fileID: 6519400399214029441, guid: 296572f401e388244b3669e9612245ac, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519400399214029441, guid: 296572f401e388244b3669e9612245ac, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 933eb79494f4c524d98dae8d38d786e7, type: 3}
+      objectReference: {fileID: 21300000, guid: 7249a4cfa6ea0f947ab8db2285d0d892, type: 3}
+    - target: {fileID: 6519400399214029441, guid: 296572f401e388244b3669e9612245ac, type: 3}
+      propertyPath: m_Maskable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519400399214029441, guid: 296572f401e388244b3669e9612245ac, type: 3}
+      propertyPath: m_FillCenter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519400399214029441, guid: 296572f401e388244b3669e9612245ac, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 2.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6519400399377065679, guid: 296572f401e388244b3669e9612245ac, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -309,9 +325,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: af0eb45911df23547918ff47cf047c91, type: 3}
     m_RemovedComponents:
-    - {fileID: 6519400398869791738, guid: 296572f401e388244b3669e9612245ac, type: 3}
-    - {fileID: 6519400398869791739, guid: 296572f401e388244b3669e9612245ac, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
     - {fileID: 6519400398869791740, guid: 296572f401e388244b3669e9612245ac, type: 3}
+    - {fileID: 6519400398869791739, guid: 296572f401e388244b3669e9612245ac, type: 3}
+    - {fileID: 6519400398869791738, guid: 296572f401e388244b3669e9612245ac, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 296572f401e388244b3669e9612245ac, type: 3}
 --- !u!4 &601275831 stripped
 Transform:
@@ -432,6 +450,10 @@ PrefabInstance:
       propertyPath: BulletText
       value: 
       objectReference: {fileID: 1199135247}
+    - target: {fileID: 4840673430297824605, guid: de8053e8b86e32948b61aa22c3b7e696, type: 3}
+      propertyPath: slotObg
+      value: 
+      objectReference: {fileID: 3447578004336053837, guid: 18ac4e5757b61ff4badf4e60e468d1d2, type: 3}
     - target: {fileID: 4840673430297824606, guid: de8053e8b86e32948b61aa22c3b7e696, type: 3}
       propertyPath: m_Pivot.x
       value: 0

@@ -58,6 +58,12 @@ public class GameManager : MonoBehaviour
         get { if (scrolls == null) Init(); return scrolls; }
         private set { scrolls = value; }
     }
+    private static Inventory inventory;
+    public static Inventory Inventory
+    {
+        get { if (inventory == null) Init(); return inventory; }
+        private set { inventory = value; }
+    }
 
 
     private bool isPlay = false;
@@ -95,12 +101,17 @@ public class GameManager : MonoBehaviour
             {
                 go.AddComponent<TriggerManager>();
             }
+            if (go.GetComponent<Inventory>() == null)
+            {
+                go.AddComponent<Inventory>();
+            }
 
             instance = go.GetComponent<GameManager>();
             DontDestroyOnLoad(go.gameObject);
             inputManager = go.GetComponent<InputManager>();
             stageManager = go.GetComponent<StageManager>();
             triggerManager = go.GetComponent<TriggerManager>();
+            inventory = go.GetComponent<Inventory>();
         }
         if (instance.player == null)
         {
