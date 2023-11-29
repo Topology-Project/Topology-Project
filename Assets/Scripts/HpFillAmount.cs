@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class HpFillAmount : MonoBehaviour
 {
     public Image HP;
+    public Image HP_Back;
     public Image Pro;
+    public Image Pro_Back;
     public float healthPoint { get; set; }
     public float maxHealthPoint { get; set; }
     public float protectionPoint { get; set; }
