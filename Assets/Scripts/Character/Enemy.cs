@@ -199,8 +199,8 @@ public class Enemy : Character
             if (!parent.tag.Equals(gameObject.tag))
             {
                 GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyHit);
-                HP.fillAmount = (float)healthPoint / (float)maxHealthPoint;
-                Debug.Log("fillamount : " + HP.fillAmount + "(" + healthPoint + " / " + maxHealthPoint + ")");
+                // HP.fillAmount = (float)healthPoint / (float)maxHealthPoint;
+                // Debug.Log("fillamount : " + HP.fillAmount + "(" + healthPoint + " / " + maxHealthPoint + ")");
                 Debug.Log("나 체력 준다");
                 if (healthPoint <= 0)
                 {

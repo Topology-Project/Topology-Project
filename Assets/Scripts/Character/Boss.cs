@@ -28,7 +28,7 @@ public class Boss : Enemy
     public GameObject meteor;
     private List<GameObject> meteor_list = new List<GameObject>();
 
-    public GameObject punch;
+    public GameObject[] punch;
     private List<GameObject> punch_list = new List<GameObject>();
 
     // 공격 시작 메소드
@@ -120,8 +120,8 @@ public class Boss : Enemy
     }
     private void Destroy_Razer()
     {
-        if(hit.transform.tag.Equals("Player")) hit.transform.GetComponent<Player>().DamageCalc(stateModifier);
-        else if(hit.transform.tag.Equals("Pillar")) hit.transform.GetComponent<Stone_Pillar>().DestroyPillar();
+        if (hit.transform.tag.Equals("Player")) hit.transform.GetComponent<Player>().DamageCalc(stateModifier);
+        else if (hit.transform.tag.Equals("Pillar")) hit.transform.GetComponent<Stone_Pillar>().DestroyPillar();
         LR.enabled = false;
     }
 
@@ -209,7 +209,7 @@ public class Boss : Enemy
                 {
                     pillar_list.Add(go = Instantiate(pillar, new Vector3(x + randomX, 0, z + randomZ), transform.rotation));
                 }
-                if(go != null) SceneManager.MoveGameObjectToScene(go, SceneManager.GetSceneAt(1));
+                if (go != null) SceneManager.MoveGameObjectToScene(go, SceneManager.GetSceneAt(1));
             }
         }
     }
@@ -266,9 +266,9 @@ public class Boss : Enemy
         Vector3 playerPos = player.transform.position;
         punch_list.Clear();
         GameObject go = null;
-        punch_list.Add(go = Instantiate(punch, new Vector3(bossPos.x + 20, 10, bossPos.z - 5), transform.rotation));
+        punch_list.Add(go = Instantiate(punch[0], new Vector3(bossPos.x + 20, 10, bossPos.z - 5), transform.rotation));
         go.GetComponent<Rocket_Punch>().Set(gameObject, 0, 100, 100);
-        punch_list.Add(go = Instantiate(punch, new Vector3(bossPos.x - 20, 10, bossPos.z - 5), transform.rotation));
+        punch_list.Add(go = Instantiate(punch[1], new Vector3(bossPos.x - 20, 10, bossPos.z - 5), transform.rotation));
         go.GetComponent<Rocket_Punch>().Set(gameObject, 0, 100, 100);
         warning_list.Add(Instantiate(warning, new Vector3(playerPos.x + 3, 0, playerPos.z), player.transform.rotation));
         warning_list.Add(Instantiate(warning, new Vector3(playerPos.x - 3, 0, playerPos.z), player.transform.rotation));
@@ -312,14 +312,14 @@ public class Boss : Enemy
     // Update is called once per frame
     protected override void Update()
     {
-        if(isAlive)
-        {            
+        if (isAlive)
+        {
             Attack();
             if (isRazer)
             {
                 Shot_Razer();
             }
-            if(healthPoint <= 0)
+            if (healthPoint <= 0)
             {
                 isAlive = false;
                 Destroy(gameObject, 1f);

@@ -22,12 +22,12 @@ public class StageManager : MonoBehaviour
             "s1_1106map", "s1_1106map", "s1_1106map", "s1_1106map",
             "Boss_map"
         };
-        SceneLoad(stageNames[stageIdx]);
         // SceneLoad("SampleScene");
     }
 
     private void Start()
     {
+        NextStageLoad();
     }
     private void FixedUpdate()
     {

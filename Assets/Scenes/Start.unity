@@ -419,7 +419,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2976464717660973400, guid: 2478895df193a6645833cadd8f55a63f, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2976464717660973401, guid: 2478895df193a6645833cadd8f55a63f, type: 3}
       propertyPath: weaponController
@@ -445,7 +445,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: {fileID: 1655311508}
+  HP_Back: {fileID: 0}
   Pro: {fileID: 2071725940}
+  Pro_Back: {fileID: 0}
 --- !u!1 &973261088 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4840673430297824611, guid: de8053e8b86e32948b61aa22c3b7e696, type: 3}
@@ -786,7 +788,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: {fileID: 1655311508}
+  HP_Back: {fileID: 0}
   Pro: {fileID: 2071725940}
+  Pro_Back: {fileID: 0}
 --- !u!1 &1072085212
 GameObject:
   m_ObjectHideFlags: 0

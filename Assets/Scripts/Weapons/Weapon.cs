@@ -224,7 +224,8 @@ public class Weapon : MonoBehaviour
                 fireDirection = Quaternion.AngleAxis(xError, Vector3.right) * fireDirection;
 
                 // bullet인스턴스 생성 및 초기화 (임시)
-                GameObject b = Instantiate(bullet, transform.position + transform.TransformDirection(Vector3.forward), fireDirection);
+                GameObject b = Instantiate(bullet, transform.position, fireDirection);
+                // GameObject b = Instantiate(bullet, transform.position + transform.TransformDirection(Vector3.forward), fireDirection);
                 b.GetComponent<Bullet>().Set(parent,
                     character.GetModifier().GetState(StateType.ProjectileSpeed),
                     character.GetModifier().GetState(StateType.Range));
