@@ -44,11 +44,11 @@ public class PlayerCamera : MonoBehaviour
         transform.localEulerAngles += dir;
 
         Vector3 temp;
-        if(stability.x >= 0.01f || stability.y >= 0.01f)
+        if (stability.x >= 0.01f || stability.y >= 0.01f)
         {
             // 반동값 반영
             stability -= dir;
-            temp = Vector3.Slerp(Vector3.zero, stability, 30f*Time.deltaTime);
+            temp = Vector3.Slerp(Vector3.zero, stability, 30f * Time.deltaTime);
             // 반동값 회복
             transform.localEulerAngles -= temp;
             tempVector -= temp;
@@ -56,9 +56,9 @@ public class PlayerCamera : MonoBehaviour
         }
         tempVector += dir;
         tempVector = Rotation(tempVector);
-        
+
         // 카메라 rotation 보정
-        temp = Vector3.Slerp(Vector3.zero, Over180(Rotation(transform.localEulerAngles-tempVector)), 3f*Time.deltaTime);
+        temp = Vector3.Slerp(Vector3.zero, Over180(Rotation(transform.localEulerAngles - tempVector)), 3f * Time.deltaTime);
         transform.localEulerAngles -= temp;
         tempVector += temp * 0.2f;
 
@@ -66,7 +66,7 @@ public class PlayerCamera : MonoBehaviour
         playerArm.transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, playerArm.transform.localEulerAngles.y, playerArm.transform.localEulerAngles.z);
         /// 플레이어 암
 
-        float x = transform.localEulerAngles.x>180 ? transform.localEulerAngles.x- 360 : transform.localEulerAngles.x;
+        float x = transform.localEulerAngles.x > 180 ? transform.localEulerAngles.x - 360 : transform.localEulerAngles.x;
         transform.localEulerAngles = new Vector3(Math.Clamp(x, -85, 85), transform.localEulerAngles.y, transform.localEulerAngles.z);
     }
 

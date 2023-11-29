@@ -30,7 +30,7 @@ public class InventoryUI : MonoBehaviour
     }
     public void AddSlot(int cnt)
     {
-        for(int i=0; i<cnt; i++)
+        for (int i = 0; i < cnt; i++)
         {
             Slot go = Instantiate(slotObg, slotHolder).GetComponent<Slot>();
             slots.Add(go);
@@ -44,9 +44,9 @@ public class InventoryUI : MonoBehaviour
 
     public void SetSlots(int a)
     {
-        for(int i=0; i<slots.Count; i++)
+        for (int i = 0; i < slots.Count; i++)
         {
-            if(player.inventory.Count <= i) break;
+            if (player.inventory.Count <= i) break;
             slots[i].SetData(player.inventory[i]);
         }
     }
