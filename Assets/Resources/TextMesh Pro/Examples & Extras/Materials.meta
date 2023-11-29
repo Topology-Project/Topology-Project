@@ -1,9 +1,22 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<<< HEAD:Assets/Resources/TextMesh Pro/Examples & Extras/Materials.meta
 guid: beda8cf635a30bd4ca99c56e395b7135
 folderAsset: yes
 timeCreated: 1436068007
+========
+guid: 731f1baa9d144a9897cb1d341c2092b8
+folderAsset: yes
+timeCreated: 1442040525
+>>>>>>>> PlayerController:Assets/TextMesh Pro/Resources/Fonts & Materials.meta
 licenseType: Pro
 DefaultImporter:
+=======
+guid: 057c1abf388dcc7479e7676b0d652ec2
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+>>>>>>> PlayerController
   userData: 
   assetBundleName: 
   assetBundleVariant: 

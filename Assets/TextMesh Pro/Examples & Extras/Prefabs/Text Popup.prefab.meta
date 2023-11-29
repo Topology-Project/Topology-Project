@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Photon/PhotonUnityNetworking/Demos/DemoSlotRacer/Prefabs/SlotCar_A.prefab.meta
+guid: 4910a004464ca4efa808af20d2eb1e15
+timeCreated: 1505307421
+========
+guid: b06f0e6c1dfa4356ac918da1bb32c603
+timeCreated: 1435130987
+>>>>>>>> PlayerController:Assets/TextMesh Pro/Examples & Extras/Prefabs/Text Popup.prefab.meta
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

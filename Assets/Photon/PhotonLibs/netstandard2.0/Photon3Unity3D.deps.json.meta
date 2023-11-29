@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Photon/PhotonLibs/netstandard2.0/Photon3Unity3D.deps.json.meta
 guid: a966b98b651e18748abf2829786b5899
+========
+guid: 381dcb09d5029d14897e55f98031fca5
+>>>>>>>> PlayerController:Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt.meta
 TextScriptImporter:
   externalObjects: {}
   userData: 

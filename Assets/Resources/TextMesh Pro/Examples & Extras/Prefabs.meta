@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/TextMesh Pro/Examples & Extras/Prefabs.meta
 guid: 0c6b89f29179fee4b91538eaf0183bfe
 folderAsset: yes
 timeCreated: 1436068007
+========
+guid: 4aecb92fff08436c8303b10eab8da368
+folderAsset: yes
+timeCreated: 1441876950
+>>>>>>>> PlayerController:Assets/TextMesh Pro/Resources/Style Sheets.meta
 licenseType: Pro
 DefaultImporter:
   userData: 

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Weapons/Inscriptions/Inscriptions.asset.meta
 guid: f73596300aa4ff44f885a532d3a91ecc
+========
+guid: ddd079f9883a9754fba979afea2b1e83
+>>>>>>>> PlayerController:Assets/TextMesh Pro/Fonts/GangwonGyoUk SDF.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 496cd81c6ff824845af8fd111341c0de
+=======
+guid: feae0b9e3ddecd04384f15da3d2808c6
+>>>>>>> PlayerController
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -78,6 +82,21 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+<<<<<<< HEAD
+=======
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+>>>>>>> PlayerController
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0

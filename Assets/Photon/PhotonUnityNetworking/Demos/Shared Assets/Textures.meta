@@ -1,7 +1,18 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<<< HEAD:Assets/Photon/PhotonUnityNetworking/Demos/Shared Assets/Textures.meta
+guid: 15ea5c1da8ad3e14490043dddecfa93d
+========
+guid: b8fffc43e3e50674e971d47c073367c0
+>>>>>>>> PlayerController:Assets/Photon/PhotonUnityNetworking/Demos/DemoSlotRacer/Kenney Assets/Racing Kit/Models/Textures.meta
+folderAsset: yes
+DefaultImporter:
+=======
 guid: 15ea5c1da8ad3e14490043dddecfa93d
 folderAsset: yes
 DefaultImporter:
+  externalObjects: {}
+>>>>>>> PlayerController
   userData: 
   assetBundleName: 
   assetBundleVariant: 

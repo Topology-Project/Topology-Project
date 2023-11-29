@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/TextMesh Pro/Shaders.meta
 guid: afb4263bd5b82ac44aee6fc3fe8f8eda
+========
+guid: e9f693669af91aa45ad615fc681ed29f
+>>>>>>>> PlayerController:Assets/TextMesh Pro/Shaders.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

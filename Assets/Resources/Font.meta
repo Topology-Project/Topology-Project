@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 10674232cc12ecf40aba488d48252590
+=======
+guid: 6508398ebaf5c884e82a1fb4ba9711a8
+>>>>>>> PlayerController
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

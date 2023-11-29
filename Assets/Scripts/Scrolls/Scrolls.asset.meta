@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Scrolls/Scrolls.asset.meta
 guid: 1fcfe336cc5a79144a042638d2708a20
+========
+guid: f73596300aa4ff44f885a532d3a91ecc
+>>>>>>>> PlayerController:Assets/Scripts/Weapons/Inscriptions/Inscriptions.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000

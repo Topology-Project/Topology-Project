@@ -1,9 +1,24 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<<< HEAD:Assets/Resources/TextMesh Pro/Examples & Extras/Resources.meta
 guid: b3a93c7ca3d732243a67f8099f2d1236
+========
+guid: 5808953df7a24274a851aa6dee52d30e
+>>>>>>>> PlayerController:Assets/TextMesh Pro/Examples & Extras/Materials.meta
 folderAsset: yes
 timeCreated: 1436068007
 licenseType: Pro
 DefaultImporter:
+=======
+<<<<<<<< HEAD:Assets/Photon/PhotonUnityNetworking/Resources.meta
+guid: 0d344a625a31610439dbcee6b95d450d
+========
+guid: 92cbe3801fdcd38428a555ede90ac5c7
+>>>>>>>> PlayerController:Assets/Resources/TextMesh Pro/Examples & Extras/Resources.meta
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+>>>>>>> PlayerController
   userData: 
   assetBundleName: 
   assetBundleVariant: 

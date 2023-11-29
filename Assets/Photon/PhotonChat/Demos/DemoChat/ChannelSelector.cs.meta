@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Photon/PhotonChat/Demos/DemoChat/ChannelSelector.cs.meta
 guid: 48caa72710147fc4f9389b0b5ec6137d
+========
+guid: 8ef7be1c625941f7ba8ed7cc71718c0d
+>>>>>>>> PlayerController:Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs.meta
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []

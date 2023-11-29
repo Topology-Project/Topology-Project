@@ -23,14 +23,12 @@ public class GameManager : MonoBehaviour
         get { if (stageManager == null) Init(); return stageManager; }
         private set { stageManager = value; }
     }
-
     private static TriggerManager triggerManager;
     public TriggerManager TriggerManager
     {
         get { if (triggerManager == null) Init(); return triggerManager; }
         private set { triggerManager = value; }
     }
-
 
     private Player player; // GameManager.Instance.Player로 플레이어 객체 접근 가능
     public Player Player
@@ -74,10 +72,6 @@ public class GameManager : MonoBehaviour
         Init();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-    }
-    private void Update()
-    {
-        Debug.Log(player);
     }
     static void Init() // 매니저 객체 초기화 메서드
     {

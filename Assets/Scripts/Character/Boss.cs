@@ -319,16 +319,16 @@ public class Boss : Enemy
             {
                 Shot_Razer();
             }
-            if (healthPoint <= 0)
-            {
-                isAlive = false;
-                Destroy(gameObject, 1f);
-            }
         }
     }
 
     protected override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
+        if (healthPoint <= 0)
+        {
+            isAlive = false;
+            Destroy(gameObject, 1f);
+        }
     }
 }

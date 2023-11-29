@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/UI.meta
 guid: 8b863b844e8608a47b741a65eb7734a8
+========
+guid: 48885f62a55f6784dae2d273e6e00531
+>>>>>>>> PlayerController:Assets/UI.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

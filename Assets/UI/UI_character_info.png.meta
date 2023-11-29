@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 7d02cec7b5993834b9e26d57c92750f1
+=======
+<<<<<<<< HEAD:Assets/Scripts/Scrolls/Bluff.png.meta
+guid: 69e14889dcbd82d429847f34ba6f94d8
+========
+guid: 25b220edd0cb01545b8a3a403e741b72
+>>>>>>>> PlayerController:Assets/UI/UI_character_info.png.meta
+>>>>>>> PlayerController
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -78,6 +86,21 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+<<<<<<< HEAD
+=======
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+>>>>>>> PlayerController
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/Prefabs/Boss/boss_obj_stone.prefab.meta
 guid: f833cad2df02490438b37ca275d351dc
+========
+guid: 57e8121fd3832e643baa715c7933b87d
+>>>>>>>> PlayerController:Assets/Resources/Prefabs/Boss/Warning.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

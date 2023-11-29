@@ -1,9 +1,14 @@
 fileFormatVersion: 2
 guid: 5be0f48c310a256419f65a4919c8ea94
 folderAsset: yes
+<<<<<<< HEAD
 timeCreated: 1521730220
 licenseType: Store
 DefaultImporter:
+=======
+DefaultImporter:
+  externalObjects: {}
+>>>>>>> PlayerController
   userData: 
   assetBundleName: 
   assetBundleVariant: 

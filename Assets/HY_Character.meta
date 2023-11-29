@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/HY_Character.meta
 guid: 5d830ceddaf7ac54484af3ea29e32f65
+========
+guid: 10674232cc12ecf40aba488d48252590
+>>>>>>>> PlayerController:Assets/Font.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

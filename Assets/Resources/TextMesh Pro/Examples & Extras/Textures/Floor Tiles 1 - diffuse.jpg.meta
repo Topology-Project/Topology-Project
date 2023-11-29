@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/TextMesh Pro/Examples & Extras/Textures/Floor Tiles 1 - diffuse.jpg.meta
 guid: 9a2e0c8126ff36f4ebe513e8259360dc
+========
+guid: 85ac55597b97403c82fc6601a93cf241
+>>>>>>>> PlayerController:Assets/TextMesh Pro/Examples & Extras/Textures/Floor Tiles 1 - diffuse.jpg.meta
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2

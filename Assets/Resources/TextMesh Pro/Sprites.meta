@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/TextMesh Pro/Sprites.meta
 guid: 3219fde2931ba964eb75ed279703e451
+========
+guid: cf88f7f45947fce43aece510bff3df94
+>>>>>>>> PlayerController:Assets/Photon/PhotonUnityNetworking/Demos/DemoHub/Sprites.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

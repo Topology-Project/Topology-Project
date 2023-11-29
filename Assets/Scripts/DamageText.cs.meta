@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/DamageText.cs.meta
 guid: 294df0020423abb4888793213e1e3459
+========
+guid: af14189e7e1ca1244b39060c5954b8db
+>>>>>>>> PlayerController:Assets/Scripts/Inventory/Inventory.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

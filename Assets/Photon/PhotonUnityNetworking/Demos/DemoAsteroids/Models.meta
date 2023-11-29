@@ -1,8 +1,21 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<<< HEAD:Assets/Photon/PhotonUnityNetworking/Demos/DemoAsteroids/Models.meta
 guid: ffc8b1d9f846b0f4d9e60bafe6e61a83
+========
+guid: 936c39e82305d734a8b9d5b1dd50ed71
+>>>>>>>> PlayerController:Assets/Photon/PhotonUnityNetworking/Demos/DemoSlotRacer/Kenney Assets/Racing Kit/Models.meta
 folderAsset: yes
 timeCreated: 1505213276
 licenseType: Store
+=======
+<<<<<<<< HEAD:Assets/Photon/PhotonUnityNetworking/Demos/Shared Assets/Models.meta
+guid: 5fa329cda4378e445abea9a25d5c7ffe
+========
+guid: ffc8b1d9f846b0f4d9e60bafe6e61a83
+>>>>>>>> PlayerController:Assets/Photon/PhotonUnityNetworking/Demos/DemoAsteroids/Models.meta
+folderAsset: yes
+>>>>>>> PlayerController
 DefaultImporter:
   userData: 
   assetBundleName: 

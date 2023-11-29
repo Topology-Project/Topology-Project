@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 2fad663566f37d749a735a4a1be10a23
+=======
+guid: 18ac4e5757b61ff4badf4e60e468d1d2
+>>>>>>> PlayerController
 PrefabImporter:
   externalObjects: {}
   userData: 

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Photon/PhotonChat/Demos/DemoChat/ChatGui.cs.meta
+guid: 02d148d0890b2d44dbdf7f1c1b39a499
+========
+guid: 4f19c7f94c794c5097d8bd11e39c750d
+>>>>>>>> PlayerController:Assets/TextMesh Pro/Examples & Extras/Scripts/ObjectSpin.cs.meta
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

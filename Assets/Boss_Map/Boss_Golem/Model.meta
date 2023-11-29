@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Boss_Map/Model.meta
+guid: 22e8bad1e7f43c84a8ed70acd1312943
+========
+guid: 6d2108703db8faf438cc81ec00717ab0
+>>>>>>>> PlayerController:Assets/Boss_Map/Boss_Golem/Model.meta
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

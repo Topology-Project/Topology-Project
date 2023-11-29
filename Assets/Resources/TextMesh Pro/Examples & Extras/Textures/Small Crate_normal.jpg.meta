@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/TextMesh Pro/Examples & Extras/Textures/Small Crate_normal.jpg.meta
 guid: ca68edd088864e4499d4714ea706e30f
+========
+guid: 8878a782f4334ecbbcf683b3ac780966
+>>>>>>>> PlayerController:Assets/TextMesh Pro/Examples & Extras/Textures/Small Crate_normal.jpg.meta
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}

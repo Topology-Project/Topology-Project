@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/TextMesh Pro/Examples & Extras/Textures/Small Crate_diffuse.jpg.meta
 guid: 97ae481087d4d924b8a7548554d79d0f
+========
+guid: 602cb87b6a29443b8636370ea0751574
+>>>>>>>> PlayerController:Assets/TextMesh Pro/Examples & Extras/Textures/Small Crate_diffuse.jpg.meta
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}

@@ -1,8 +1,17 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: eb89ce1e7485b214d8f27d2f3901474c
 folderAsset: yes
 timeCreated: 1505213271
 licenseType: Store
+=======
+<<<<<<<< HEAD:Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Materials.meta
+guid: 1c9c717351b4c854d907ad85549efdd1
+========
+guid: eb89ce1e7485b214d8f27d2f3901474c
+>>>>>>>> PlayerController:Assets/Photon/PhotonUnityNetworking/Demos/DemoAsteroids/Materials.meta
+folderAsset: yes
+>>>>>>> PlayerController
 DefaultImporter:
   userData: 
   assetBundleName: 

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/TextMesh Pro/Examples & Extras/Textures/Text Overflow - Linked Text UI Screenshot.png.meta
 guid: 4dd3bb97f043a8a4bbcfb7d18a4719c2
+========
+guid: c76d18757a194d618355f05f815cb0a1
+>>>>>>>> PlayerController:Assets/TextMesh Pro/Examples & Extras/Textures/Text Overflow - Linked Text UI Screenshot.png.meta
 timeCreated: 1480388035
 licenseType: Pro
 TextureImporter:

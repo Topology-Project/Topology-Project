@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/S1_Map/Model/molding_floor/molding_floor_01_SM.fbx.meta
 guid: 503cd4bbd57927a4a8cb37b81c9d180f
 ModelImporter:
   serializedVersion: 21300
@@ -11,6 +12,15 @@ ModelImporter:
     second: {fileID: 2100000, guid: 188c4f304e98e1a43b0738bea8c0c91c, type: 2}
   materials:
     materialImportMode: 1
+========
+guid: 94330fd7dc728d647b25e6a29cbf3016
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+>>>>>>>> PlayerController:Assets/monster/animation/monster@idle.fbx.meta
     materialName: 0
     materialSearch: 1
     materialLocation: 1

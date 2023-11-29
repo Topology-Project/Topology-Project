@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/Prefabs/Boss/boss_obj_stone.fbx.meta
 guid: 152a4f3957b48d042a5391f1dbf58662
+========
+guid: f1ea979bd8e2576438003dd07f6e2759
+>>>>>>>> PlayerController:Assets/monster/animation/monster@attack_idle.fbx.meta
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []

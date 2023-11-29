@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Character/Boss.cs.meta
 guid: 0aad96e795c6b054a9e9a36096cb45a2
+========
+guid: 7b084f56494ec5144813a0324e973137
+>>>>>>>> PlayerController:Assets/Scripts/Inventory/OnOff.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

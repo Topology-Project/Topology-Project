@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/TextMesh Pro/Examples & Extras/Textures/Wipe Pattern - Radial Double.psd.meta
 guid: 01275ec37d5710f4fbfecff7ee19ad47
+========
+guid: 7631f4eff8f74ed38eb3eb9db17134e1
+>>>>>>>> PlayerController:Assets/TextMesh Pro/Examples & Extras/Textures/Wipe Pattern - Radial Double.psd.meta
 timeCreated: 1464390110
 licenseType: Pro
 TextureImporter:

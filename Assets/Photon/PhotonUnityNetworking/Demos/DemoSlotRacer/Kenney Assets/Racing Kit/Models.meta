@@ -1,7 +1,17 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 936c39e82305d734a8b9d5b1dd50ed71
 folderAsset: yes
 timeCreated: 1505306496
+=======
+<<<<<<<< HEAD:Assets/Photon/PhotonUnityNetworking/Demos/DemoAsteroids/Models.meta
+guid: ffc8b1d9f846b0f4d9e60bafe6e61a83
+========
+guid: 936c39e82305d734a8b9d5b1dd50ed71
+>>>>>>>> PlayerController:Assets/Photon/PhotonUnityNetworking/Demos/DemoSlotRacer/Kenney Assets/Racing Kit/Models.meta
+folderAsset: yes
+timeCreated: 1505213276
+>>>>>>> PlayerController
 licenseType: Store
 DefaultImporter:
   userData: 

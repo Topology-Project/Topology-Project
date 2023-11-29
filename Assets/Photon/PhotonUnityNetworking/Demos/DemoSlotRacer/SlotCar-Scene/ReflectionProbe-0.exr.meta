@@ -1,5 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Photon/PhotonUnityNetworking/Demos/DemoSlotRacer/SlotCar-Scene/ReflectionProbe-0.exr.meta
 guid: ca2a72e1727404226a9166460e788ac7
+========
+guid: ed4b4b58372278944882de723229d470
+timeCreated: 1539296375
+licenseType: Store
+>>>>>>>> PlayerController:Assets/Plugins/BitmapFontImporter/Examples/font3/font3_0.png.meta
 TextureImporter:
   fileIDToRecycleName:
     8900000: generatedCubemap
@@ -7,8 +13,8 @@ TextureImporter:
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
-    sRGBTexture: 1
+    enableMipMap: 0
+    sRGBTexture: 0
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
@@ -50,8 +56,13 @@ TextureImporter:
   alphaUsage: 1
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
+<<<<<<<< HEAD:Assets/Photon/PhotonUnityNetworking/Demos/DemoSlotRacer/SlotCar-Scene/ReflectionProbe-0.exr.meta
   textureType: 0
   textureShape: 2
+========
+  textureType: 2
+  textureShape: 1
+>>>>>>>> PlayerController:Assets/Plugins/BitmapFontImporter/Examples/font3/font3_0.png.meta
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0

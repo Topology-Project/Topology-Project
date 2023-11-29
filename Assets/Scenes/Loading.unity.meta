@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/Loading.unity.meta
 guid: 2ce1533ad7d554345b1faffdf543985b
+========
+guid: 57424cb4647df7e4cbf253547c93d72f
+>>>>>>>> PlayerController:Assets/Scenes/SampleScene.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

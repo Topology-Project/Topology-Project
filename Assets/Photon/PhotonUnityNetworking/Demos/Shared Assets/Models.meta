@@ -1,7 +1,18 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<<< HEAD:Assets/Photon/PhotonUnityNetworking/Demos/Shared Assets/Models.meta
+guid: 5fa329cda4378e445abea9a25d5c7ffe
+========
+guid: ffc8b1d9f846b0f4d9e60bafe6e61a83
+>>>>>>>> PlayerController:Assets/Photon/PhotonUnityNetworking/Demos/DemoAsteroids/Models.meta
+folderAsset: yes
+DefaultImporter:
+=======
 guid: 5fa329cda4378e445abea9a25d5c7ffe
 folderAsset: yes
 DefaultImporter:
+  externalObjects: {}
+>>>>>>> PlayerController
   userData: 
   assetBundleName: 
   assetBundleVariant: 

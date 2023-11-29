@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/Outro.unity.meta
 guid: 038afddc70ecf91498bbef2a91f98248
+========
+guid: c48a8b913ed97d94eae4943110a386f6
+>>>>>>>> PlayerController:Assets/Scenes/UI.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

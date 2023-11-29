@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/TextMesh Pro/Examples & Extras/Textures/Gradient Diagonal (Color).jpg.meta
 guid: 14154fd66cd851c44a471941955a9473
+========
+guid: 2ce5c55e85304b819a1826ecbc839aa5
+>>>>>>>> PlayerController:Assets/TextMesh Pro/Examples & Extras/Textures/Gradient Diagonal (Color).jpg.meta
 timeCreated: 1430290669
 licenseType: Store
 TextureImporter:

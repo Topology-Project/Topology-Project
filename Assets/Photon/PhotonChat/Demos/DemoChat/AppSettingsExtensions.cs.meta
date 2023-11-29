@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Photon/PhotonChat/Demos/DemoChat/AppSettingsExtensions.cs.meta
 guid: 4fcf4818ecc9abf4e9b7e0c37af9b851
+========
+guid: 0aad96e795c6b054a9e9a36096cb45a2
+>>>>>>>> PlayerController:Assets/Scripts/Character/Boss.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

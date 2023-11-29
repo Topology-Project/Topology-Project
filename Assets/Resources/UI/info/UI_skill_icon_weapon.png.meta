@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/UI/info/UI_skill_icon_weapon.png.meta
 guid: f1bdeb32705c37e44a71cb3f0c06d024
+========
+guid: bf000167ed883b548837b27c44bffb6c
+>>>>>>>> PlayerController:Assets/UI/UI_cooltimeBox.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

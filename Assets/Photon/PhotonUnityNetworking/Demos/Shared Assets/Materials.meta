@@ -1,7 +1,18 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<<< HEAD:Assets/Photon/PhotonUnityNetworking/Demos/Shared Assets/Materials.meta
+guid: 12e34119f8e2e904c9e1e637277bb7eb
+========
+guid: 26fec7636ebd7ae43a99e2c187ed6500
+>>>>>>>> PlayerController:Assets/Photon/PhotonUnityNetworking/Demos/DemoProcedural/Materials.meta
+folderAsset: yes
+DefaultImporter:
+=======
 guid: 12e34119f8e2e904c9e1e637277bb7eb
 folderAsset: yes
 DefaultImporter:
+  externalObjects: {}
+>>>>>>> PlayerController
   userData: 
   assetBundleName: 
   assetBundleVariant: 

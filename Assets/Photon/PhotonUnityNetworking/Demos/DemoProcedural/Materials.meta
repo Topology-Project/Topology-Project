@@ -1,8 +1,17 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 26fec7636ebd7ae43a99e2c187ed6500
 folderAsset: yes
 timeCreated: 1524052388
 licenseType: Store
+=======
+<<<<<<<< HEAD:Assets/Photon/PhotonUnityNetworking/Demos/Shared Assets/Materials.meta
+guid: 12e34119f8e2e904c9e1e637277bb7eb
+========
+guid: 26fec7636ebd7ae43a99e2c187ed6500
+>>>>>>>> PlayerController:Assets/Photon/PhotonUnityNetworking/Demos/DemoProcedural/Materials.meta
+folderAsset: yes
+>>>>>>> PlayerController
 DefaultImporter:
   userData: 
   assetBundleName: 

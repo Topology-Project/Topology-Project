@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Photon/PhotonChat/Demos/Common/OnStartDelete.cs.meta
+guid: 0b1cdd4de66f84fa1af4cb197e5d901d
+timeCreated: 1538396603
+========
+guid: a5e425f36d8be144dae659bdf510bc3c
+timeCreated: 1520851072
+>>>>>>>> PlayerController:Assets/Plugins/BitmapFontImporter/Editor/FntParse.cs.meta
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

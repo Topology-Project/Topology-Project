@@ -1,11 +1,15 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/S1_Map/Model/molding_ceiling/molding_ceiling_01_SM.fbx.meta
 guid: 24e29a689645643448801b7cd0581433
+========
+guid: 1534b44a6456b1846911babefa820f93
+>>>>>>>> PlayerController:Assets/monster/animation/monster@attack_attack.fbx.meta
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
   externalObjects: {}
   materials:
-    materialImportMode: 1
+    materialImportMode: 2
     materialName: 0
     materialSearch: 1
     materialLocation: 1

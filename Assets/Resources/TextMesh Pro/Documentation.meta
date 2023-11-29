@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/TextMesh Pro/Documentation.meta
 guid: 245a36043fefdfc46922115cbed429ec
+========
+guid: 8e7e8f5a82a3a134e91c54efd2274ea9
+>>>>>>>> PlayerController:Assets/TextMesh Pro/Documentation.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

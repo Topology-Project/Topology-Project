@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/TextMesh Pro/Examples & Extras/Textures/Wipe Pattern - Diagonal.psd.meta
 guid: 02133ee4990f1034d90d1a13e91ad9a3
+========
+guid: ed5290d8df18488780e2996b9b882f01
+>>>>>>>> PlayerController:Assets/TextMesh Pro/Examples & Extras/Textures/Wipe Pattern - Diagonal.psd.meta
 timeCreated: 1464392250
 licenseType: Pro
 TextureImporter:

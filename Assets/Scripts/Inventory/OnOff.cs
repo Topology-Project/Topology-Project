@@ -27,12 +27,12 @@ public class OnOff : MonoBehaviour
         if (targetUI.activeSelf)
         {
             targetUI.SetActive(false);
-            GameManager.Instance.IsPlay = true;
+            // GameManager.Instance.IsPlay = true;
         }
         else
         {
             targetUI.SetActive(true);
-            GameManager.Instance.IsPlay = false;
+            // GameManager.Instance.IsPlay = false;
         }
     }
 }

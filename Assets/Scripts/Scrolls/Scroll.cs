@@ -36,6 +36,5 @@ public class Scroll : ScriptableObject
         temp.sc = data.sc.Clone();
         return temp;
     }
-
     public Data[] datas;
 }

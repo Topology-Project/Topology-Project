@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Photon/PhotonUnityNetworking/Demos/DemoAsteroids/Scripts.meta
 guid: 3ae075de96c44c449ad885c6e84ffb5c
 folderAsset: yes
 timeCreated: 1505219105
+========
+guid: 8e7e002b8a490734aa9fc186b9a423e5
+folderAsset: yes
+timeCreated: 1462352496
+>>>>>>>> PlayerController:Assets/Plugins/BitmapFontImporter/Examples/Font1.meta
 licenseType: Store
 DefaultImporter:
   userData: 

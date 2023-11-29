@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Photon/PhotonChat/Code/changes-chat.txt.meta
 guid: e5c3dda6f11fe7845989297c8a603dc2
+========
+guid: 73a79399807f4e8388c2cbb5494681ca
+timeCreated: 1484172033
+licenseType: Pro
+>>>>>>>> PlayerController:Assets/TextMesh Pro/Examples & Extras/Fonts/Anton OFL.txt.meta
 TextScriptImporter:
-  externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 

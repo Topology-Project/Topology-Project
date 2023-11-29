@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Photon/PhotonUnityNetworking/Demos/WebRpcImplementationExample.cs.meta
 guid: e5c26fb35dbf64c4eb0d1f24f1a853e9
+========
+guid: 5608f48637ff2ed4d9a086ac235ed150
+>>>>>>>> PlayerController:Assets/Scripts/HpFillAmount.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Photon/PhotonRealtime/Code/Unity/Editor.meta
 guid: a02814c0303a60f488813e6111993aaa
+========
+guid: c74e8b3ace2888640b210aa1e1ab7dcb
+>>>>>>>> PlayerController:Assets/Toon/Editor.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

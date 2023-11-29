@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/HY_Character/Animator/FemaleSoldierAction.controller.meta
 guid: 63dcf093d04d96342a9049727a6de299
+========
+guid: e6b9b44320f4448d9d5e0ee634259966
+>>>>>>>> PlayerController:Assets/TextMesh Pro/Examples & Extras/Materials/Crate - Surface Shader Scene.mat.meta
 NativeFormatImporter:
   userData: 
   assetBundleName: 

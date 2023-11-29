@@ -1,7 +1,18 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: e14293cef01c2f742a605d63babcb803
 folderAsset: yes
 DefaultImporter:
+=======
+<<<<<<<< HEAD:Assets/Photon/PhotonChat/Demos/DemoChat/Editor.meta
+guid: c33037d6755b1134db073d59feb6f7d9
+========
+guid: e14293cef01c2f742a605d63babcb803
+>>>>>>>> PlayerController:Assets/Photon/PhotonUnityNetworking/Code/Editor.meta
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+>>>>>>> PlayerController
   userData: 
   assetBundleName: 
   assetBundleVariant: 

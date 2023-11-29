@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Photon/PhotonLibs/netstandard2.0/Photon3Unity3D.xml.meta
 guid: 7015e500cd5b71244af56448dfb59804
+========
+guid: fade42e8bc714b018fac513c043d323b
+timeCreated: 1425440388
+licenseType: Store
+>>>>>>>> PlayerController:Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt.meta
 TextScriptImporter:
-  externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
