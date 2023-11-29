@@ -11,7 +11,7 @@ public class LoadingManager : MonoBehaviour
 
     private int stageIdx;
     public int StageIdx
-    { 
+    {
         get
         {
             return stageIdx;
@@ -19,8 +19,8 @@ public class LoadingManager : MonoBehaviour
         set
         {
             stageIdx = value;
-            
-            stageImg.fillAmount = UnityEngine.Mathf.Floor(((float)stageIdx+1) / 6 * 100) / 100;
+
+            stageImg.fillAmount = UnityEngine.Mathf.Floor(((float)stageIdx + 1) / 6 * 100) / 100;
         }
     }
 
