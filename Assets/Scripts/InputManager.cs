@@ -27,7 +27,7 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if(GameManager.Instance.IsPlay)
+        if (GameManager.Instance.IsPlay)
         {
             Vector3 rayOrigin = m_camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
             Vector3 rayDir = m_camera.transform.forward;
@@ -69,7 +69,7 @@ public class InputManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(GameManager.Instance.IsPlay)
+        if (GameManager.Instance.IsPlay)
         {
             player.Move(moveDir.normalized);
         }
