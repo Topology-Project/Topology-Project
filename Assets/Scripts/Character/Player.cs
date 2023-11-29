@@ -57,7 +57,7 @@ public class Player : Character
     {
         inventory.Add(scroll);
         scroll.sc.Active();
-        Inventory.instance.SlotCnt = inventory.Count;
+        GameManager.Inventory.SlotCnt = inventory.Count;
         foreach(State state in scroll.sc.GetState())
             stateModifier.AddHandler(state);
     }
