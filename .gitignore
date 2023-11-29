@@ -21,6 +21,7 @@
 /Assets/Material/
 /Assets/Plugins/
 /Assets/Boss_Golem/
+/Assets/Photon/
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
@@ -63,7 +64,7 @@ ExportedObj/
 *.pdb.meta
 *.mdb.meta
 *.fnt.meta
-*.png.meta
+# *.png.meta
 *.ttf.meta
 *.fbx.meta
 *.mat.meta
