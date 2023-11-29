@@ -197,7 +197,7 @@ public class Character : MonoBehaviour, CharacterInterface
     private void Damage(float damage)
     {
         PtCalc(protectionPoint - damage); // 
-        if(protectionPoint < 0)
+        if (protectionPoint < 0)
         {
             HPCalc(healthPoint + protectionPoint);
             protectionPoint = 0;

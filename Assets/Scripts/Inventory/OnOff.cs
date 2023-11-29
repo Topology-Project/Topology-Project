@@ -24,12 +24,12 @@ public class OnOff : MonoBehaviour
     }
     private void InventoryOnOff()
     {
-        if(targetUI.activeSelf)
+        if (targetUI.activeSelf)
         {
             targetUI.SetActive(false);
             GameManager.Instance.IsPlay = true;
         }
-        else 
+        else
         {
             targetUI.SetActive(true);
             GameManager.Instance.IsPlay = false;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Enemy : Character
 {
@@ -15,6 +16,7 @@ public class Enemy : Character
 
     private bool isFind = false;
     protected bool isAlive = true;
+    public Image HP;
 
     private void MoveEnemy()
     {
@@ -125,12 +127,12 @@ public class Enemy : Character
 
     public override float DamageCalc(StateModifier stateModifier)
     {
-        if(isAlive)
+        if (isAlive)
         {
             float temp = base.DamageCalc(stateModifier);
             Transform cv = GetComponentInChildren<Canvas>().transform;
             GameObject go = Instantiate(damageText, transform.position + Vector3.up + transform.TransformDirection(Vector3.forward), Quaternion.identity, cv);
-            go.GetComponent<DamageText>().SetDamageText((int) temp);
+            go.GetComponent<DamageText>().SetDamageText((int)temp);
             return temp;
         }
         return 0;
@@ -155,15 +157,31 @@ public class Enemy : Character
     // Update is called once per frame
     protected override void Update()
     {
-        if(isAlive)
+        if (isAlive)
         {
             MoveEnemy();
             FindPlayer();
-            if(healthPoint <= 0)
+        }
+    }
+    protected override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+        if (other.tag.Equals("Bullet"))
+        {
+            // 부모의 모디파이어 객체를 가져옴
+            GameObject parent = other.GetComponent<Bullet>().parent;
+            if (!parent.tag.Equals(gameObject.tag))
             {
-                GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyDie);
-                isAlive = false;
-                Destroy(gameObject, 1f);
+                GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyHit);
+                HP.fillAmount = (float)healthPoint / (float)maxHealthPoint;
+                Debug.Log("fillamount : " + HP.fillAmount + "(" + healthPoint + " / " + maxHealthPoint + ")");
+                Debug.Log("나 체력 준다");
+                if (healthPoint <= 0)
+                {
+                    GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyDie);
+                    isAlive = false;
+                    Destroy(gameObject, 1.2f);
+                }
             }
         }
     }
