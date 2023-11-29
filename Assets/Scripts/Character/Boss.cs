@@ -120,8 +120,8 @@ public class Boss : Enemy
     }
     private void Destroy_Razer()
     {
-        if(hit.transform.tag.Equals("Player")) hit.transform.GetComponent<Player>().DamageCalc(stateModifier);
-        else if(hit.transform.tag.Equals("Pillar")) hit.transform.GetComponent<Stone_Pillar>().DestroyPillar();
+        if (hit.transform.tag.Equals("Player")) hit.transform.GetComponent<Player>().DamageCalc(stateModifier);
+        else if (hit.transform.tag.Equals("Pillar")) hit.transform.GetComponent<Stone_Pillar>().DestroyPillar();
         LR.enabled = false;
     }
 
@@ -209,7 +209,7 @@ public class Boss : Enemy
                 {
                     pillar_list.Add(go = Instantiate(pillar, new Vector3(x + randomX, 0, z + randomZ), transform.rotation));
                 }
-                if(go != null) SceneManager.MoveGameObjectToScene(go, SceneManager.GetSceneAt(1));
+                if (go != null) SceneManager.MoveGameObjectToScene(go, SceneManager.GetSceneAt(1));
             }
         }
     }
@@ -302,7 +302,7 @@ public class Boss : Enemy
         animator = GetComponent<Animator>();
         player = GameManager.Instance.Player.gameObject;
         maxHealthPoint.ResetState(3000);
-        maxProtectionPoint.ResetState(8000);
+        // maxProtectionPoint.ResetState(8000);
         healthPoint = maxHealthPoint;
         protectionPoint = maxProtectionPoint;
         Setup_Pillar();
@@ -312,14 +312,14 @@ public class Boss : Enemy
     // Update is called once per frame
     protected override void Update()
     {
-        if(isAlive)
-        {            
+        if (isAlive)
+        {
             Attack();
             if (isRazer)
             {
                 Shot_Razer();
             }
-            if(healthPoint <= 0)
+            if (healthPoint <= 0)
             {
                 isAlive = false;
                 Destroy(gameObject, 1f);

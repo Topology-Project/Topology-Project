@@ -15,6 +15,7 @@ public class InventoryUI : MonoBehaviour
     Weapon weapon;
     public List<Slot> slots;
     public Transform slotHolder;
+    public GameObject targetUI;
 
     private void Awake()
     {
@@ -49,5 +50,10 @@ public class InventoryUI : MonoBehaviour
             if (player.inventory.Count <= i) break;
             slots[i].SetData(player.inventory[i]);
         }
+    }
+    void Update()
+    {
+        if (targetUI.activeSelf) GameManager.Instance.IsPlay = false;
+        else GameManager.Instance.IsPlay = true;
     }
 }

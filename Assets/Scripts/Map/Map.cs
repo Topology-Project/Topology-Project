@@ -25,18 +25,18 @@ public class Map : MonoBehaviour
     // 플레이어 진입 시 방 셋팅 용
     public void RoomSet()
     {
-        if(!isRoomSet)
+        if (!isRoomSet)
         {
             // 적스포너 당 하나 씩 적 인스턴스 생성 & enemyCount + 1
             // 문 워프 트리거 작동
             isRoomSet = true;
-            foreach(Transform sp in enemySpawnPoints)
+            foreach (Transform sp in enemySpawnPoints)
             {
-                GameObject go = Resources.Load("prefabs/Enemy/Enemy") as GameObject;
+                GameObject go = Resources.Load("prefabs/Enemy/moster") as GameObject;
                 Instantiate(go, sp);
                 enemyCount++;
             }
-            foreach(Door door in doors) door.DTSet();
+            foreach (Door door in doors) door.DTSet();
             GameManager.Instance.TriggerManager.AddTrigger(PlayTriggerType.EnemyDie, EnemyDecount); // 적이 죽을 때마다 작동되도록 트리거 설정
             GameManager.Instance.TriggerManager.AddTrigger(PlayTriggerType.EnemyDie, RoomClear); // 적이 죽을 때마다 작동되도록 트리거 설정
             DoorActive(false);
@@ -49,7 +49,7 @@ public class Map : MonoBehaviour
     // 방 클리어 시 작동
     public void RoomClear()
     {
-        if(isRoomSet && enemyCount <= 0)
+        if (isRoomSet && enemyCount <= 0)
         {
             DoorActive(true);
             GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.RoomClear); // 클리어 트리거
@@ -62,38 +62,38 @@ public class Map : MonoBehaviour
     public void DoorActive(bool b)
     {
         int i = 0;
-        if(GetIdx(prevMap, out i)) doors[i].IsOpen = b;
-        if(GetIdx(nextMap, out i)) doors[i].IsOpen = b;
+        if (GetIdx(prevMap, out i)) doors[i].IsOpen = b;
+        if (GetIdx(nextMap, out i)) doors[i].IsOpen = b;
     }
 
     // 상자 언락 메서드
     public void ChestUnlock()
     {
         int i = 0;
-        if(GetIdx(nextMap, out i)) doors[i].ChestUnlock();
+        if (GetIdx(nextMap, out i)) doors[i].ChestUnlock();
     }
 
     // 상자 셋팅 메서드
     public void ChestSet()
     {
         int i = 0;
-        if(GetIdx(nextMap, out i)) doors[i].ChestSet();
+        if (GetIdx(nextMap, out i)) doors[i].ChestSet();
     }
 
     // 방문 워프 셋팅 용 메서드
     public void WarpSet()
     {
         int i = 0;
-        if(GetIdx(nextMap, out i)) doors[i].WarpSet();
+        if (GetIdx(nextMap, out i)) doors[i].WarpSet();
     }
 
     // 방 문 찾기용 메서드 (임시)
-    public bool GetIdx(Map map, out int idx) 
+    public bool GetIdx(Map map, out int idx)
     {
         int i;
-        for(i=0; i<nextMaps.Length; i++)
+        for (i = 0; i < nextMaps.Length; i++)
         {
-            if(nextMaps[i] == map) 
+            if (nextMaps[i] == map)
             {
                 idx = i;
                 return true;
