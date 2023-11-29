@@ -369,6 +369,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1075477885831886959, guid: 2478895df193a6645833cadd8f55a63f, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2976464717570720172, guid: 2478895df193a6645833cadd8f55a63f, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -413,9 +417,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2976464717570720211, guid: 2478895df193a6645833cadd8f55a63f, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -8023502626317150225, guid: ba5843026c243054db14e4d127a0c9fb, type: 3}
     - target: {fileID: 2976464717570720214, guid: 2478895df193a6645833cadd8f55a63f, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976464717570720214, guid: 2478895df193a6645833cadd8f55a63f, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976464717660973400, guid: 2478895df193a6645833cadd8f55a63f, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2976464717660973400, guid: 2478895df193a6645833cadd8f55a63f, type: 3}
       propertyPath: m_TagString
@@ -463,7 +479,7 @@ PrefabInstance:
     - target: {fileID: 4840673428472152168, guid: de8053e8b86e32948b61aa22c3b7e696, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: ddd079f9883a9754fba979afea2b1e83, type: 2}
+      objectReference: {fileID: 11400000, guid: ba9c6be06793d7e46b11090ec21c2822, type: 2}
     - target: {fileID: 4840673428472152168, guid: de8053e8b86e32948b61aa22c3b7e696, type: 3}
       propertyPath: m_sharedMaterial
       value: 
@@ -475,7 +491,7 @@ PrefabInstance:
     - target: {fileID: 4840673428797110337, guid: de8053e8b86e32948b61aa22c3b7e696, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: ddd079f9883a9754fba979afea2b1e83, type: 2}
+      objectReference: {fileID: 11400000, guid: ba9c6be06793d7e46b11090ec21c2822, type: 2}
     - target: {fileID: 4840673428797110337, guid: de8053e8b86e32948b61aa22c3b7e696, type: 3}
       propertyPath: m_sharedMaterial
       value: 
@@ -1091,6 +1107,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1613792914140526321, guid: a1ed5a2d6f9f3814384cbc50ae49393b, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1934860799828357452, guid: a1ed5a2d6f9f3814384cbc50ae49393b, type: 3}
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}

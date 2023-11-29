@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public GameObject parent { get; protected set; }
+    public GameObject particle;
     protected float speed; // 투사체 속도
     [SerializeField]
     protected float range; // 최대 사거리
@@ -44,6 +45,7 @@ public class Bullet : MonoBehaviour
     {
         if(!other.tag.Equals(parent.tag) && (other.tag.Equals("Player") || other.tag.Equals("Enemy")))
         {
+            Destroy(Instantiate(particle, transform.position, Quaternion.identity), 1.5f);
             // 상대 객체 트리거 시 자신 객체 삭제
             Destroy(gameObject);
         }

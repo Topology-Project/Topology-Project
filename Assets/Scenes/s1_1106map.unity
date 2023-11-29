@@ -12033,6 +12033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef7be6bed9a0a364492defd165d1d0e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rootType: 1
   maps:
   - {fileID: 1986033319}
   - {fileID: 1080180597}

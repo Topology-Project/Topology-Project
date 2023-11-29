@@ -202,7 +202,7 @@ public class Enemy : Character
                 // HP.fillAmount = (float)healthPoint / (float)maxHealthPoint;
                 // Debug.Log("fillamount : " + HP.fillAmount + "(" + healthPoint + " / " + maxHealthPoint + ")");
                 Debug.Log("나 체력 준다");
-                if (healthPoint <= 0)
+                if (healthPoint <= 0 && isAlive)
                 {
                     GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyDie);
                     isAlive = false;

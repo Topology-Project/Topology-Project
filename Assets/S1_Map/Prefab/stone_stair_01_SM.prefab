@@ -1,10 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
-<<<<<<<< HEAD:Assets/S1_Map/Prefab/stone_stair_01_SM.prefab
 --- !u!1 &8600894387201777072
-========
---- !u!1 &4747017361091983746
->>>>>>>> PlayerController:Assets/Resources/Prefabs/Boss/boss_obj_stone.prefab
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12,82 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<<< HEAD:Assets/S1_Map/Prefab/stone_stair_01_SM.prefab
   - component: {fileID: 8941707174025905930}
   - component: {fileID: 5456261418299902127}
   - component: {fileID: 7808256110900526181}
   m_Layer: 0
   m_Name: stone_stair_01_SM
   m_TagString: Untagged
-========
-  - component: {fileID: 5380424480899179320}
-  - component: {fileID: 9008536373669440669}
-  - component: {fileID: 6548294690650740823}
-  - component: {fileID: 5906239568278397830}
-  - component: {fileID: 3940166768056067028}
-  m_Layer: 0
-  m_Name: boss_obj_stone
-  m_TagString: Pillar
->>>>>>>> PlayerController:Assets/Resources/Prefabs/Boss/boss_obj_stone.prefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<<< HEAD:Assets/S1_Map/Prefab/stone_stair_01_SM.prefab
 --- !u!4 &8941707174025905930
-========
---- !u!4 &5380424480899179320
->>>>>>>> PlayerController:Assets/Resources/Prefabs/Boss/boss_obj_stone.prefab
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<<< HEAD:Assets/S1_Map/Prefab/stone_stair_01_SM.prefab
   m_GameObject: {fileID: 8600894387201777072}
   m_LocalRotation: {x: -0.0000000059624403, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.894643, y: 0.894643, z: 0.894643}
-========
-  m_GameObject: {fileID: 4747017361091983746}
-  m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.062354, y: 0, z: -3.2477396}
-  m_LocalScale: {x: 1, y: 1, z: 1}
->>>>>>>> PlayerController:Assets/Resources/Prefabs/Boss/boss_obj_stone.prefab
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<<< HEAD:Assets/S1_Map/Prefab/stone_stair_01_SM.prefab
 --- !u!33 &5456261418299902127
-========
---- !u!33 &9008536373669440669
->>>>>>>> PlayerController:Assets/Resources/Prefabs/Boss/boss_obj_stone.prefab
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<<< HEAD:Assets/S1_Map/Prefab/stone_stair_01_SM.prefab
   m_GameObject: {fileID: 8600894387201777072}
   m_Mesh: {fileID: -317749909081104430, guid: 6a25dd3f2c9706642a94b272e8bef222, type: 3}
 --- !u!23 &7808256110900526181
-========
-  m_GameObject: {fileID: 4747017361091983746}
-  m_Mesh: {fileID: -5491780849873737984, guid: 152a4f3957b48d042a5391f1dbf58662, type: 3}
---- !u!23 &6548294690650740823
->>>>>>>> PlayerController:Assets/Resources/Prefabs/Boss/boss_obj_stone.prefab
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<<< HEAD:Assets/S1_Map/Prefab/stone_stair_01_SM.prefab
   m_GameObject: {fileID: 8600894387201777072}
-========
-  m_GameObject: {fileID: 4747017361091983746}
->>>>>>>> PlayerController:Assets/Resources/Prefabs/Boss/boss_obj_stone.prefab
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -101,11 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-<<<<<<<< HEAD:Assets/S1_Map/Prefab/stone_stair_01_SM.prefab
   - {fileID: 2100000, guid: 2047f0a28493f5f4e955cdcb18119be9, type: 2}
-========
-  - {fileID: 239378781582670930, guid: 152a4f3957b48d042a5391f1dbf58662, type: 3}
->>>>>>>> PlayerController:Assets/Resources/Prefabs/Boss/boss_obj_stone.prefab
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,32 +83,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
-<<<<<<<< HEAD:Assets/S1_Map/Prefab/stone_stair_01_SM.prefab
-========
---- !u!64 &5906239568278397830
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4747017361091983746}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5491780849873737984, guid: 152a4f3957b48d042a5391f1dbf58662, type: 3}
---- !u!114 &3940166768056067028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4747017361091983746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f538f3e021728d44585041d6d79484bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
->>>>>>>> PlayerController:Assets/Resources/Prefabs/Boss/boss_obj_stone.prefab

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
+    public enum RootType { Fixed, Random }
+    public RootType rootType;
     public Map[] maps; // 스테이지 내 방 목록
 
     public int round; // 스테이지 진행 방 갯수(방 갯수 -1 까지만)
@@ -19,6 +21,35 @@ public class MapManager : MonoBehaviour
         // 스테이지 방 루트 설정
         activeMap = new Map[++round];
         Stack<Map> mapStack = new();
+
+        if(rootType == RootType.Random) RandomRoot(mapStack);
+        else if(rootType == RootType.Fixed) FixedRoot(mapStack);
+
+        Map next = null;
+        for(int i=activeMap.Length-1; i>=0; i--)
+        {
+            activeMap[i] = mapStack.Pop();
+            activeMap[i].nextMap = next;
+            next = activeMap[i];
+            if(mapStack.Count > 0) activeMap[i].prevMap = mapStack.Peek();
+            if(i == activeMap.Length-2) activeMap[i].WarpSet(); // 마지막 방 문 워프 설정
+            if(i == activeMap.Length-2) activeMap[i].ChestSet(); // 마지막 방 클리어 보상 상자 설정
+        }
+
+        GameManager.Instance.TriggerManager.AddTrigger(PlayTriggerType.RoomClear, ClearRoom);
+
+        player = GameManager.Instance.Player.gameObject;
+        playerCamera = GameManager.Instance.MainCamera.gameObject;
+
+        PlayerSpawn(); // 플레이어 워프
+        // EnterRoom(); // 방 셋팅
+    }
+    private void FixedRoot(Stack<Map> mapStack)
+    {
+        foreach(Map map in maps) mapStack.Push(map);
+    }
+    private void RandomRoot(Stack<Map> mapStack)
+    {
         Dictionary<Map, int?> keyValuePairs = new();
         int random = Random.Range(0, maps.Length);
         mapStack.Push(maps[random]);
@@ -52,27 +83,7 @@ public class MapManager : MonoBehaviour
                 }
             }
         }
-
-        Map next = null;
-        for(int i=activeMap.Length-1; i>=0; i--)
-        {
-            activeMap[i] = mapStack.Pop();
-            activeMap[i].nextMap = next;
-            next = activeMap[i];
-            if(mapStack.Count > 0) activeMap[i].prevMap = mapStack.Peek();
-            if(i == activeMap.Length-2) activeMap[i].WarpSet(); // 마지막 방 문 워프 설정
-            if(i == activeMap.Length-2) activeMap[i].ChestSet(); // 마지막 방 클리어 보상 상자 설정
-        }
-
-        GameManager.Instance.TriggerManager.AddTrigger(PlayTriggerType.RoomClear, ClearRoom);
-
-        player = GameManager.Instance.Player.gameObject;
-        playerCamera = GameManager.Instance.MainCamera.gameObject;
-
-        PlayerSpawn(); // 플레이어 워프
-        // EnterRoom(); // 방 셋팅
     }
-
 
     // Update is called once per frame
     private void Update()

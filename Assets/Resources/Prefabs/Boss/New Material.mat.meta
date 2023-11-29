@@ -1,15 +1,8 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Resources/Prefabs/Boss/New Material.mat.meta
 guid: a723a54daa21d0d4dbd5e41d2af23000
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
-========
-guid: 44a431e9c74a1cb438c6896376878bb8
-NativeFormatImporter:
-  externalObjects: {}
-  mainObjectFileID: 9100000
->>>>>>>> PlayerController:Assets/Boss_Map/Boss_Golem/Animation/Boss_Animation.controller.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 

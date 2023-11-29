@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-<<<<<<< HEAD
 using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
@@ -17,10 +16,4 @@ public class Slot : MonoBehaviour
         image.gameObject.SetActive(true);
         if(data == null) image.gameObject.SetActive(false);
     }
-=======
-
-public class Slot : MonoBehaviour
-{
-    public Scroll.Data data;
->>>>>>> PlayerController
 }

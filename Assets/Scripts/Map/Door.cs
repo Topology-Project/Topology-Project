@@ -36,8 +36,11 @@ public class Door : MonoBehaviour
     // 상자 셋팅 메서드
     public void ChestSet()
     {
-        chest.SetActive(true);
-        chest.GetComponent<Chest>().isOpen = false;
+        if(chest != null) 
+        {
+            chest.SetActive(true);
+            chest.GetComponent<Chest>().isOpen = false;
+        }
     }
 
     // 워프용 게이트로 전환

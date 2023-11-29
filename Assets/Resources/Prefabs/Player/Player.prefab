@@ -139,7 +139,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2976464717570720214}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -8023502626317150225, guid: 0fecb3c75180d234fa2370fa9271ca92, type: 3}
 --- !u!23 &2976464717570720210
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -160,7 +160,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d6864733054328548bdc653fb1b22232, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -225,6 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 2976464717660973401}
+  inventory: []
 --- !u!1 &2976464717660973400
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,3 +271,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 6914196085505591941, guid: 6411e7a547269c744a5d9aed2df35aef, type: 3}
+  weaponController: {fileID: 0}
+  animator: {fileID: 0}

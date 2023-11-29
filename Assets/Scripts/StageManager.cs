@@ -68,6 +68,10 @@ public class StageManager : MonoBehaviour
                 mapManager = FindObjectOfType<MapManager>();
             });
         }
-        else stageIdx = 0;
+        else
+        {
+            stageIdx = 0;
+            SceneLoad("Outro");
+        }
     }
 }

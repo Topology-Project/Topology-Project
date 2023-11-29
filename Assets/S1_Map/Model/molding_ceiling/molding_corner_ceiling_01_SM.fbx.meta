@@ -1,5 +1,4 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/S1_Map/Model/molding_ceiling/molding_corner_ceiling_01_SM.fbx.meta
 guid: bc9148bffb9b05a429f397c4f32026a7
 ModelImporter:
   serializedVersion: 21300
@@ -12,15 +11,6 @@ ModelImporter:
     second: {fileID: 2100000, guid: 6ad512237107b7a48b0a8063e82530c0, type: 2}
   materials:
     materialImportMode: 1
-========
-guid: 137257d3cf9bf724db4237f2745969b2
-ModelImporter:
-  serializedVersion: 21300
-  internalIDToNameTable: []
-  externalObjects: {}
-  materials:
-    materialImportMode: 2
->>>>>>>> PlayerController:Assets/monster/animation/monster@die.fbx.meta
     materialName: 0
     materialSearch: 1
     materialLocation: 1

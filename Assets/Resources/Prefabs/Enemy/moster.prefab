@@ -682,6 +682,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 6914196085505591941, guid: 6411e7a547269c744a5d9aed2df35aef, type: 3}
+  weaponController: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!1 &4506588948218841318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,9 +1207,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 4506588948126201600}
-  target: {fileID: 0}
+  damageText: {fileID: 714182798890711746, guid: bdec24355415d2040a06a548a8988381, type: 3}
+  player: {fileID: 0}
   UpdateTime: 3
   UpdateRange: 10
+  HP: {fileID: 4506588947018511350}
 --- !u!195 &4506588946779648624
 NavMeshAgent:
   m_ObjectHideFlags: 0

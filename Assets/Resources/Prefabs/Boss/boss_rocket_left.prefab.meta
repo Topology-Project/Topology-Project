@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Resources/Prefabs/Boss/boss_rocket_left.prefab.meta
 guid: 56ee1396743708b45b6ac83b0aa8f492
-========
-guid: f833cad2df02490438b37ca275d351dc
->>>>>>>> PlayerController:Assets/Resources/Prefabs/Boss/boss_obj_stone.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
