@@ -11,6 +11,7 @@ public class Player_Animation_Controller : MonoBehaviour
     {
         Anim_Arm = Arm.GetComponent<Animator>();
         Anim_Gun = Gun.GetComponent<Animator>();
+        DontDestroyOnLoad(gameObject);
     }
 
     void Update()
