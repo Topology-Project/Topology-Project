@@ -5,22 +5,27 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor.SceneManagement;
 
 public class Outro : MonoBehaviour
 {
-    public TMP_Text T_result;
-    private string result;
-    private bool isResult;
-    private bool isResult_test
-    {
-        get => isResult;
-        set
-        {
-            isResult = value;
-            if (isResult) result = "도전 성공";
-            else result = "도전 실패";
-        }
-    }
+    // public TMP_Text T_result;
+    // private string result;
+    // private bool isResult;
+    // private bool isResult_test
+    // {
+    //     get => isResult;
+    //     set
+    //     {
+    //         isResult = value;
+    //         if (isResult) result = "도전 성공";
+    //         else result = "도전 실패";
+    //     }
+    // }
+
+    public Canvas[] result;
+
+    public TMP_Text T_credit;
 
     public TMP_Text T_stage;
     private string stage;
@@ -48,7 +53,7 @@ public class Outro : MonoBehaviour
     }
 
     public TMP_Text T_playTime;
-    private string playTime = "12분 34초"; // 걸린 시간
+    private float playTime = GameManager.Instance.StageManager.playTime; // 걸린 시간
 
     public TMP_Text T_dmg;
 
@@ -72,12 +77,12 @@ public class Outro : MonoBehaviour
     {
         StageName();
 
-        isResult = true;
-
-        T_result.text = result;
+        result[0].gameObject.SetActive(true);
+        result[1].gameObject.SetActive(false);
+        result[2].gameObject.SetActive(false);
 
         T_stage.text = stage;
-        T_playTime.text = playTime;
+        T_playTime.text = playTime.ToString() + "초";
 
         T_dmg.text = "DMG";
         T_dmg_value.text = dmg_value;
@@ -95,9 +100,12 @@ public class Outro : MonoBehaviour
 
     private void Credit_Btn()
     {
-        isResult = false;
 
-        T_result.text = "C r e d i t";
+        // T_result.text = "C r e d i t";
+
+        result[0].gameObject.SetActive(false);
+        result[1].gameObject.SetActive(false);
+        result[2].gameObject.SetActive(true);
 
         T_stage.text = "TEAM 2";
         T_playTime.text = "TOPOLOGY";
