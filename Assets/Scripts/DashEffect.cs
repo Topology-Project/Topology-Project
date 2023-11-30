@@ -8,7 +8,7 @@ public class DashEffect : MonoBehaviour
     public GameObject D_effect;
     public GameObject Character;
 
-    void start()
+    void Start()
     {
         D_effect.SetActive(false);
     }
