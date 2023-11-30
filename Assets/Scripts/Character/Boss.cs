@@ -302,7 +302,7 @@ public class Boss : Enemy
         animator = GetComponent<Animator>();
         player = GameManager.Instance.Player.gameObject;
         maxHealthPoint.ResetState(3000);
-        maxProtectionPoint.ResetState(8000);
+        // maxProtectionPoint.ResetState(8000);
         healthPoint = maxHealthPoint;
         protectionPoint = maxProtectionPoint;
         Setup_Pillar();

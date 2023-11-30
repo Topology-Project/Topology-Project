@@ -384,8 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e57e82041cf8dba408399d12301be569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 2855241252938704184}
-  isDash: 0
+  weapon: {fileID: 8239637129425002171}
   damageText: {fileID: 714182798890711746, guid: bdec24355415d2040a06a548a8988381, type: 3}
   player: {fileID: 0}
   UpdateTime: 3
@@ -1060,7 +1059,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8239637129425002172}
-  - component: {fileID: 2855241252938704184}
+  - component: {fileID: 8239637129425002171}
   m_Layer: 7
   m_Name: Weapon
   m_TagString: Untagged
@@ -1083,7 +1082,7 @@ Transform:
   m_Father: {fileID: 4395745281214162870}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2855241252938704184
+--- !u!114 &8239637129425002171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1092,7 +1091,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8239637129425002170}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df584bb4f0b812248913104af0ac58b0, type: 3}
+  m_Script: {fileID: 11500000, guid: eced355b9be4ce0419724cb268631e53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 6914196085505591941, guid: 6411e7a547269c744a5d9aed2df35aef, type: 3}

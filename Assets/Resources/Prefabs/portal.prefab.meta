@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/Prefabs/portal.prefab.meta
 guid: d8c634c7e29fcf2478ab166fb445198a
+========
+guid: a3e2320d9a00a7d4695a666c4bc1bb6f
+>>>>>>>> finalUI:Assets/Scripts/Inventory/Canvas1 1.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

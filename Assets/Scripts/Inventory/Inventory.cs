@@ -25,11 +25,11 @@ public class Inventory : MonoBehaviour
         get => slotCnt;
         set
         {
-            if(slotCnt < value)
+            if (slotCnt < value)
             {
                 int temp = slotCnt;
                 slotCnt = value;
-                onSlotCountAdd.Invoke(slotCnt-temp);
+                onSlotCountAdd.Invoke(slotCnt - temp);
             }
             onSlot.Invoke(0);
         }
