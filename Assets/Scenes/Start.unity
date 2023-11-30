@@ -293,6 +293,10 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3808809132444072644, guid: a3e2320d9a00a7d4695a666c4bc1bb6f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6994262259940516603, guid: a3e2320d9a00a7d4695a666c4bc1bb6f, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
@@ -542,6 +546,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerArm: {fileID: 70035249}
+--- !u!1 &1046611291 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2687759596850940478, guid: a3e2320d9a00a7d4695a666c4bc1bb6f, type: 3}
+  m_PrefabInstance: {fileID: 614988953}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1046611292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046611291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0b465bdc589c14c9c380c97b1411c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  D_effect: {fileID: 1699347119}
+  Character: {fileID: 852528856}
 --- !u!1 &1072085212
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,6 +653,11 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3154488647573674322, guid: f402e8e1dc599a848bb5d4e321bd6a1c, type: 3}
   m_PrefabInstance: {fileID: 2122941811}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1699347119 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3808809132444072644, guid: a3e2320d9a00a7d4695a666c4bc1bb6f, type: 3}
+  m_PrefabInstance: {fileID: 614988953}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1894133123
 GameObject:
