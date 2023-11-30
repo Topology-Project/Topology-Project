@@ -24,21 +24,56 @@ public class Weapon : MonoBehaviour
     protected bool isExplosion;
 
     protected State baseDamage;
+    public float BaseDamage
+    {
+        get
+        {
+            return stateModifier.GetState(StateType.BaseDamage);
+        }
+    }
     protected State criticalX;
+    public float CriticalX
+    {
+        get
+        {
+            return stateModifier.GetState(StateType.CriticalX);
+        }
+    }
     protected State luckyShot;
     protected State magazine; //
+    public float Magazine
+    {
+        get
+        {
+            return stateModifier.GetState(StateType.Magazine);
+        }
+    }
     protected State projectiles;
     protected State projectileSpeed;
     protected State rateOfFire;
+    public float RateOfFire
+    {
+        get
+        {
+            return stateModifier.GetState(StateType.RateOfFire);
+        }
+    }
     protected State reloadTime;
     public float ReloadTime
     {
         get
         {
-            return reloadTime;
+            return stateModifier.GetState(StateType.ReloadTime);
         }
     }
     protected State upgrade;
+    public float Upgrade
+    {
+        get
+        {
+            return stateModifier.GetState(StateType.WPNUpgrade);
+        }
+    }
     protected State accuracy;
     protected State stability;
     protected State baseDMGIncrease;
@@ -70,6 +105,13 @@ public class Weapon : MonoBehaviour
     public Animator animator;
     private StateModifier stateModifier = new();
     Inscription.Data[] inscriptions = new Inscription.Data[2];
+    public Inscription.Data[] Inscriptions
+    {
+        get
+        {
+            return inscriptions;
+        }
+    }
 
     protected virtual void Awake()
     {
