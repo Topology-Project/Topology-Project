@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: "39095_trail_11"
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: "ENABLE_DISSOLVE_AMOUNT ENABLE_SOFT_PARTICLE"
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _DissolveEdgeTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DissolveNoise:
+        m_Texture: {fileID: 2800000, guid: e73292d20c814a53aa6a31c23f2c7380, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: f46f304ca08b41c7aa73db9fc44bedf8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 2800000, guid: fbb31330ad5a45b889fc472b4b2719f9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - EnableFullScreen: 0
+    - Vector1_C6372F: 0
+    - _Cull: 0
+    - _DestBlendMode: 1
+    - _DissolveAmount: 0.01
+    - _DissolveEdgeWidth: 0.012
+    - _EnableAlphaToDissolve: 1
+    - _EnableFog: 0
+    - _EnableSoftParticle: 1
+    - _MaskTexUVXSpeed: 0
+    - _MaskTexUVYSpeed: 0
+    - _SoftPower: 1
+    - _SoftRatio: 200
+    - _SourceBlendMode: 5
+    - _UVXSpeed: 0
+    - _UVYSpeed: 0
+    - _ZTest: 4
+    - _ZZWrite: 0
+    m_Colors:
+    - _DissolveEdgeAlbedo: {r: 0, g: 1, b: 0.1391485, a: 1}
+    - _MainColor: {r: 2.118547, g: 2.118547, b: 2.118547, a: 1}
+    - _MainTexTilingAndOffset: {r: 0.6, g: 1, b: 0, a: 0}
+    - _MaskTexTilingAndOffset: {r: 1, g: 1, b: 0, a: 0}
+    - _ParticleTextureTilingAndOffset: {r: 1, g: 1, b: 0, a: 0}

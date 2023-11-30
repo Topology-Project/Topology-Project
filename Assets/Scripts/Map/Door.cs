@@ -31,7 +31,13 @@ public class Door : MonoBehaviour
     public void DTSet() => doorTrig.isSet = true;
 
     // 상자 언락
-    public void ChestUnlock() => chest.GetComponent<Chest>().isOpen = true;
+    public void ChestUnlock()
+    {
+        if(chest != null) 
+        {
+            chest.GetComponent<Chest>().isOpen = true;
+        }
+    }
 
     // 상자 셋팅 메서드
     public void ChestSet()

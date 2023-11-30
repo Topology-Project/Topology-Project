@@ -200,7 +200,7 @@ public class Weapon : MonoBehaviour
         if (!isReload && !isFire && isFireready && residualAmmunition > 0)
         {
             // if(animator.GetCurrentAnimatorStateInfo(0).IsName("idle") || animator.GetCurrentAnimatorStateInfo(0).IsName("idle")) animator.GetCurrentAnimatorStateInfo(0).
-            weaponController.Fire1();
+            if(!weaponController.IsUnityNull()) weaponController.Fire1();
             // 투사체 갯수 설정
             // ex) 1.3 = 1 (70%) or 2 (30%)
             int pj = (int)(character.GetModifier().GetState(StateType.Projectiles) % 1 > UnityEngine.Random.Range(0f, 1f) ?
@@ -267,7 +267,7 @@ public class Weapon : MonoBehaviour
     // 장전 딜레이 용 코루틴
     IEnumerator Reloading()
     {
-        weaponController.Reload();
+        if(!weaponController.IsUnityNull()) weaponController.Reload();
         yield return new WaitForSeconds(character.GetModifier().GetState(StateType.ReloadTime));
         CharacterInterface characterInterface = parent.GetComponent<CharacterInterface>();
         int maxAmmo = characterInterface.GetAmmo(ammunitionType);

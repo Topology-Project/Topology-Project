@@ -39,15 +39,15 @@ public class TriggerManager : MonoBehaviour
     // 트리거 작동 메서드
     public void OnTrigger(PlayTriggerType playTriggerType)
     {
-        try
-        {
-            if(playTriggerType == PlayTriggerType.None) return;
-            if(keyValuePairs[playTriggerType] != null) keyValuePairs[playTriggerType]();
-        }
-        catch
-        {
-            Debug.LogError(playTriggerType.ToString() + " ERROR");
-        }
+        if(playTriggerType == PlayTriggerType.None) return;
+        if(keyValuePairs[playTriggerType] != null) keyValuePairs[playTriggerType]();
+        // try
+        // {
+        // }
+        // catch
+        // {
+        //     Debug.LogError(playTriggerType.ToString() + " ERROR");
+        // }
     }
     // 트리거 추가 메서드
     public void AddTrigger(PlayTriggerType playTriggerType, PlayTrigger playTrigger)

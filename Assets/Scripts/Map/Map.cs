@@ -51,6 +51,7 @@ public class Map : MonoBehaviour
     {
         if (isRoomSet && enemyCount <= 0)
         {
+            Debug.Log("roomclear");
             DoorActive(true);
             GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.RoomClear); // 클리어 트리거
             GameManager.Instance.TriggerManager.DelTrigger(PlayTriggerType.EnemyDie, EnemyDecount); // 트리거 설정해제

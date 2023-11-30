@@ -55,7 +55,11 @@ public class StageManager : MonoBehaviour
         GameManager.Instance.IsPlay = true;
         op.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync("Loading");
-        if (mapManager != null) mapManager.EnterRoom();
+        if (mapManager != null) 
+        {
+            mapManager.EnterRoom();
+            stageIdx++;
+        }
     }
 
     // 다음 스테이지 로드 및 맵메니저 탐색
@@ -64,7 +68,7 @@ public class StageManager : MonoBehaviour
         if (stageIdx < stageNames.Length)
         {
             mapManager = null;
-            SceneLoad(stageNames[stageIdx++], (x) =>
+            SceneLoad(stageNames[stageIdx], (x) =>
             {
                 mapManager = FindObjectOfType<MapManager>();
             });

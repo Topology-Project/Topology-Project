@@ -204,8 +204,9 @@ public class Enemy : Character
                 Debug.Log("나 체력 준다");
                 if (healthPoint <= 0 && isAlive)
                 {
-                    GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyDie);
                     isAlive = false;
+                    Debug.Log("enemy die / " + isAlive);
+                    GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyDie);
                     Destroy(gameObject, 1.2f);
                 }
             }

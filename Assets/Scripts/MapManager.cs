@@ -19,7 +19,7 @@ public class MapManager : MonoBehaviour
     void Start()
     {
         // 스테이지 방 루트 설정
-        activeMap = new Map[++round];
+        activeMap = new Map[round];
         Stack<Map> mapStack = new();
 
         if(rootType == RootType.Random) RandomRoot(mapStack);
@@ -32,10 +32,14 @@ public class MapManager : MonoBehaviour
             activeMap[i].nextMap = next;
             next = activeMap[i];
             if(mapStack.Count > 0) activeMap[i].prevMap = mapStack.Peek();
-            if(i == activeMap.Length-2) activeMap[i].WarpSet(); // 마지막 방 문 워프 설정
-            if(i == activeMap.Length-2) activeMap[i].ChestSet(); // 마지막 방 클리어 보상 상자 설정
+            if(i == activeMap.Length-1) 
+            {
+                activeMap[i].WarpSet(); // 마지막 방 문 워프 설정
+                activeMap[i].ChestSet(); // 마지막 방 클리어 보상 상자 설정
+                Debug.Log(activeMap[i].name);
+            }
         }
-
+        
         GameManager.Instance.TriggerManager.AddTrigger(PlayTriggerType.RoomClear, ClearRoom);
 
         player = GameManager.Instance.Player.gameObject;
@@ -98,8 +102,8 @@ public class MapManager : MonoBehaviour
     private void ClearRoom()
     {
         // 방 클릭어 시 셋팅 (임시)
-        activeMap[activeMapIdx++].ChestUnlock();
-        activeMap[activeMapIdx].DoorActive(true);
+        activeMap[activeMapIdx].ChestUnlock();
+        activeMap[activeMapIdx++].DoorActive(true);
         Debug.Log("room clear");
     }
 
@@ -118,5 +122,6 @@ public class MapManager : MonoBehaviour
     {
         activeMap[activeMapIdx].RoomSet();
         Debug.Log("room set");
+        if(activeMap[activeMapIdx].enemyCount <= 0) GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.RoomClear);
     }
 }

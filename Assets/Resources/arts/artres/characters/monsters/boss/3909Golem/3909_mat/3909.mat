@@ -1,0 +1,171 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 3909
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ValidKeywords:
+  - _EMISSION
+  - _METALLICGLOSSMAP
+  m_InvalidKeywords:
+  - ENABLE_DIR_DISSOLVE
+  - ENABLE_DISSOLVE
+  - _METALLICSPECGLOSSMAP
+  - _OCCLUSIONMAP
+  m_LightmapFlags: 2
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - HideOutLine
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AnimationMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _AnimationTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _AnimationTex2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DirChangeTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DissolveEdgeTex:
+        m_Texture: {fileID: 2800000, guid: d8872f14ae514d2f90d99e38554bf204, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DissolveNoise:
+        m_Texture: {fileID: 2800000, guid: 12f9197a3cff42b896d706fa0fd2f6dd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 2800000, guid: 95adbe09b89f4a64817ee6b900924d93, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FresnelAniTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FresnelMap1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FresnelMap2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 5d10696b7e22492d8e82032f7fdd0b15, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 2800000, guid: 95adbe09b89f4a64817ee6b900924d93, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 2800000, guid: 95adbe09b89f4a64817ee6b900924d93, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaClip: 0
+    - _AnimationBlendFunc: 0
+    - _AnimationRatio: 1
+    - _Blend: 0
+    - _BumpScale: 1
+    - _Cull: 0
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DirChange: 0
+    - _DissolveAmount: 0
+    - _DissolveBand: 0.3
+    - _DissolveEdgeWidth: 0.005
+    - _DitherClip: 0
+    - _DitherScale: 0
+    - _DstBlend: 0
+    - _ENABLE_DISSOLVE: 1
+    - _ENABLE_HIDE_OUTLINE: 0
+    - _ENABLE_OUTLINE: 1
+    - _ENABLE_UV_ANIMATION: 0
+    - _EdgeRatio: 0
+    - _EnableDirectionalDissolve: 1
+    - _EnableShield: 0
+    - _EnableSmoothFresnel: 0
+    - _FresnelAniRatio: 1
+    - _FresnelScale1: 1
+    - _FresnelScale2: 1
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _InfluenceByViewDis: 0
+    - _MainLightIntensity: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 0.5
+    - _OutLineRef: 65
+    - _OutlineWidth: 0.25
+    - _Parallax: 0.02
+    - _ReceiveShadows: 1
+    - _ReflectionRatio: 1
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _StencilZfail: 0
+    - _Surface: 0
+    - _UVSec: 0
+    - _Use2UV: 0
+    - _WorkflowMode: 1
+    - _ZWrite: 1
+    m_Colors:
+    - _AnimationColor: {r: 1, g: 1, b: 1, a: 1}
+    - _AnimationDir: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DirChangeColor: {r: 1, g: 1, b: 1, a: 1}
+    - _DissolveEdgeAlbedo: {r: 0, g: 6.52549, b: 23.96863, a: 1}
+    - _DissolveEnd: {r: 0, g: 0, b: 0, a: 1}
+    - _DissolveStart: {r: -40, g: 5, b: -8.3, a: 1}
+    - _EdgeColor: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissionColor: {r: 1.8301884, g: 1.8301884, b: 1.8301884, a: 1}
+    - _FresnelAniDir: {r: 0, g: 0.2, b: 0, a: 1}
+    - _HideOutlineColor: {r: 1, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OverlayColor: {r: 0, g: 0, b: 0, a: 0}
+    - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  m_BuildTextureStacks: []

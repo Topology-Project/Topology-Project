@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: "Boss_3901_uv_2"
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: "ENABLE_ALPHA2DISSOLVE _ENABLEALPHATODISSOLVE_ON"
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _DissolveEdgeTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DissolveNoise:
+        m_Texture: {fileID: 2800000, guid: aa6cf94f21344e2d84c312dcf2fb5c9a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: c2b104357ec4435db03fd3310e4fb8b2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Cull: 0
+    - _DestBlendMode: 10
+    - _DissolveAmount: 0
+    - _DissolveEdgeWidth: 0.1
+    - _EnableAlphaToDissolve: 0
+    - _EnableFog: 0
+    - _MaskTexUVXSpeed: 0
+    - _MaskTexUVYSpeed: 0
+    - _SourceBlendMode: 5
+    - _UVXSpeed: 0
+    - _UVYSpeed: -2
+    - _ZTest: 4
+    - _ZZWrite: 0
+    m_Colors:
+    - Color_5B3B7F39: {r: 1, g: 1, b: 1, a: 1}
+    - _DissolveEdgeAlbedo: {r: 1, g: 1, b: 1, a: 1}
+    - _DissolveNoiseTilingAndOffset: {r: 2, g: 1, b: 0, a: 0}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MainTexTilingAndOffset: {r: 1, g: 1, b: 0, a: 0}
+    - _mainColor: {r: 0, g: 5.07467E-05, b: 0.01960784, a: 1}

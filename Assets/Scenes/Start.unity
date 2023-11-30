@@ -184,6 +184,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas0
       objectReference: {fileID: 0}
+    - target: {fileID: 3154488646678757288, guid: f402e8e1dc599a848bb5d4e321bd6a1c, type: 3}
+      propertyPath: targetUI
+      value: 
+      objectReference: {fileID: 2034604454}
     - target: {fileID: 3154488646678757291, guid: f402e8e1dc599a848bb5d4e321bd6a1c, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -746,6 +750,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2034604454 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3154488647573674322, guid: f402e8e1dc599a848bb5d4e321bd6a1c, type: 3}
+  m_PrefabInstance: {fileID: 287241355}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2060208923
 GameObject:
   m_ObjectHideFlags: 0

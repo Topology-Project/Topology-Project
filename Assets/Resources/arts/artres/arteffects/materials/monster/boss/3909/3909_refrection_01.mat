@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: "3909_refrection_01"
+  m_Shader: {fileID: 10767, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: "ENABLE_SOFT_PARTICLE"
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _RefrectMask:
+        m_Texture: {fileID: 2800000, guid: 23af3d8fc347425dbc573036d3078627, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Cull: 0
+    - _DestBlendMode: 10
+    - _DissolveAmount: 0
+    - _DissolveEdgeWidth: 0.18
+    - _EnableAlphaToDissolve: 0
+    - _EnableSoftParticle: 1
+    - _RefractAngle: 0
+    - _RefractScale: 0.2
+    - _RefractionScale: 0.5
+    - _SoftPower: 1
+    - _SoftRatio: 100
+    - _SourceBlendMode: 5
+    - _UVSpeedX: 0
+    - _UVSpeedY: 0
+    - _ZTest: 4
+    - _ZZWrite: 0
+    m_Colors:
+    - _DissolveEdgeAlbedo: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+    - _MainColor: {r: 0.8603976, g: 0.8603976, b: 0.8603976, a: 0.5882353}
+    - _ParticleTextureTilingAndOffset: {r: 1, g: 1, b: 0, a: 0}
