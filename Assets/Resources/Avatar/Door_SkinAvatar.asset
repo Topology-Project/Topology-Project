@@ -1,0 +1,183 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!90 &9000000
+Avatar:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: "Door_SkinAvatar"
+  m_AvatarSize: 1396
+  m_Avatar:
+    serializedVersion: 3
+    m_AvatarSkeleton:
+      data:
+        m_Node:
+        - m_ParentId: -1
+          m_AxesId: -1
+        - m_ParentId: 0
+          m_AxesId: -1
+        - m_ParentId: 0
+          m_AxesId: -1
+        - m_ParentId: 0
+          m_AxesId: -1
+        - m_ParentId: 0
+          m_AxesId: -1
+        - m_ParentId: 0
+          m_AxesId: -1
+        - m_ParentId: 5
+          m_AxesId: -1
+        - m_ParentId: 5
+          m_AxesId: -1
+        - m_ParentId: 7
+          m_AxesId: -1
+        m_ID: 000000002bae0cd2f62a069e2b3abcd8075bb23617b5697aedf4ef99c195e17778d054eb
+        m_AxesArray: []
+    m_AvatarSkeletonPose:
+      data:
+        m_X:
+        - t: {x: 0, y: 0, z: 0}
+          q: {x: 0, y: 0, z: 0, w: 1}
+          s: {x: 1, y: 1, z: 1}
+        - t: {x: 0, y: 0, z: 0}
+          q: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+          s: {x: 1, y: 1, z: 1}
+        - t: {x: 0, y: 0, z: 0}
+          q: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+          s: {x: 1, y: 1, z: 1}
+        - t: {x: -0.6200418, y: 3.342124, z: 1.229878}
+          q: {x: -0.6419683, y: -0.2964403, z: -0.2964403, w: 0.6419683}
+          s: {x: 1, y: 1, z: 1}
+        - t: {x: -0.4562678, y: 3.342127, z: -1.499061}
+          q: {x: -0.3162397, y: 0.6324496, z: 0.6324496, w: 0.3162397}
+          s: {x: 1, y: 1, z: 1}
+        - t: {x: -2.256192E-10, y: 0, z: 0}
+          q: {x: -0.5, y: 0.5, z: -0.5, w: 0.5}
+          s: {x: 1, y: 1, z: 1}
+        - t: {x: -3.252707, y: 2.82549, z: -0.3590182}
+          q: {x: 0.02030462, y: -0.02030458, z: 0.7068152, w: 0.7068151}
+          s: {x: 1, y: 1, z: 1}
+        - t: {x: -3.300228, y: -2.552861, z: -0.571224}
+          q: {x: 5.760117E-08, y: -6.603331E-08, z: -0.7071066, w: 0.7071069}
+          s: {x: 1, y: 1, z: 1}
+        - t: {x: -2.533951, y: 0, z: -7.629394E-08}
+          q: {x: 7.105427E-15, y: 4.588519E-16, z: 8.742279E-08, w: 1}
+          s: {x: 1, y: 1, z: 1}
+    m_DefaultPose:
+      data:
+        m_X:
+        - t: {x: 0, y: 0, z: 0}
+          q: {x: 0, y: 0, z: 0, w: 1}
+          s: {x: 1, y: 1, z: 1}
+        - t: {x: 0, y: 0, z: 0}
+          q: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+          s: {x: 1, y: 1, z: 1}
+        - t: {x: 0, y: 0, z: 0}
+          q: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+          s: {x: 1, y: 1, z: 1}
+        - t: {x: -0.6200418, y: 3.342124, z: 1.229878}
+          q: {x: -0.6419683, y: -0.2964403, z: -0.2964403, w: 0.6419683}
+          s: {x: 1, y: 1, z: 1}
+        - t: {x: -0.4562678, y: 3.342127, z: -1.499061}
+          q: {x: -0.3162397, y: 0.6324496, z: 0.6324496, w: 0.3162397}
+          s: {x: 1, y: 1, z: 1}
+        - t: {x: -2.256192E-10, y: 0, z: 0}
+          q: {x: -0.5, y: 0.5, z: -0.5, w: 0.5}
+          s: {x: 1, y: 1, z: 1}
+        - t: {x: -3.252707, y: 2.82549, z: -0.3590182}
+          q: {x: 0.02030462, y: -0.02030458, z: 0.7068152, w: 0.7068151}
+          s: {x: 1, y: 1, z: 1}
+        - t: {x: -3.300228, y: -2.552861, z: -0.571224}
+          q: {x: 5.760117E-08, y: -6.603331E-08, z: -0.7071066, w: 0.7071069}
+          s: {x: 1, y: 1, z: 1}
+        - t: {x: -2.533951, y: 0, z: -7.629394E-08}
+          q: {x: 7.105427E-15, y: 4.588519E-16, z: 8.742279E-08, w: 1}
+          s: {x: 1, y: 1, z: 1}
+    m_SkeletonNameIDArray: 000000002bae0cd2f62a069e2b3abcd8075bb23617b5697ac97a5dd9e51b53375f4a5aae
+    m_Human:
+      data:
+        serializedVersion: 2
+        m_RootX:
+          t: {x: 0, y: 0, z: 0}
+          q: {x: 0, y: 0, z: 0, w: 1}
+          s: {x: 1, y: 1, z: 1}
+        m_Skeleton:
+          data:
+            m_Node:
+            m_ID: 
+            m_AxesArray:
+        m_SkeletonPose:
+          data:
+            m_X:
+        m_LeftHand:
+          data:
+            m_HandBoneIndex: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+        m_RightHand:
+          data:
+            m_HandBoneIndex: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+        m_Handles:
+        m_ColliderArray: []
+        m_HumanBoneIndex: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+        m_HumanBoneMass:
+        - 0.1454546
+        - 0.1212121
+        - 0.1212121
+        - 0.04848485
+        - 0.04848485
+        - 0.009696971
+        - 0.009696971
+        - 0.03030303
+        - 0.1454546
+        - 0.1454546
+        - 0.01212121
+        - 0.04848485
+        - 0.006060607
+        - 0.006060607
+        - 0.02424243
+        - 0.02424243
+        - 0.01818182
+        - 0.01818182
+        - 0.006060607
+        - 0.006060607
+        - 0.002424243
+        - 0.002424243
+        - 0
+        - 0
+        - 0
+        m_ColliderIndex: 
+        m_Scale: 1
+        m_ArmTwist: 0.5
+        m_ForeArmTwist: 0.5
+        m_UpperLegTwist: 0.5
+        m_LegTwist: 0.5
+        m_ArmStretch: 0.05
+        m_LegStretch: 0.05
+        m_FeetSpacing: 0
+        m_HasLeftHand: 0
+        m_HasRightHand: 0
+        m_HasTDoF: 0
+    m_HumanSkeletonIndexArray: 
+    m_HumanSkeletonReverseIndexArray: 
+    m_RootMotionBoneIndex: -1
+    m_RootMotionBoneX:
+      t: {x: 0, y: 0, z: 0}
+      q: {x: 0, y: 0, z: 0, w: 1}
+      s: {x: 1, y: 1, z: 1}
+    m_RootMotionSkeleton:
+      data:
+        m_Node:
+        m_ID: 
+        m_AxesArray: []
+    m_RootMotionSkeletonPose:
+      data:
+        m_X:
+    m_RootMotionSkeletonIndexArray: 
+  m_TOS:
+    0: 
+    917658375: 对象003
+    2011272641: Door_Root/Bone001
+    2053747991: Door_Root
+    2582639853: Door_Root/Bone003
+    2651204342: ??×y×?
+    3524046379: ×t×ü
+    3636214315: 对象001
+    3948204152: Door_Root/Bone001/Bone002
