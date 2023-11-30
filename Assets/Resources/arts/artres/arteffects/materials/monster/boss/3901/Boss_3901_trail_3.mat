@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: "Boss_3901_trail_3"
+  m_Shader: {fileID: 10767, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _RefrectMask:
+        m_Texture: {fileID: 2800000, guid: 67632b5cc9d046b7b10c54df0fd6e68d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _MaskTexUVXSpeed: 0
+    - _MaskTexUVYSpeed: 0
+    - _ObjSpeedX: 0
+    - _ObjSpeedY: 0
+    - _ObjSpeedZ: 0
+    - _RefractAngle: 0
+    - _RefractScale: 0.01
+    - _RefrectScale: 0.02
+    - _UVSpeedX: 1
+    - _UVSpeedY: 0
+    - _UVXSpeed: -1
+    - _UVYSpeed: 1
+    m_Colors:
+    - _MainColor: {r: 2, g: 2, b: 2, a: 1}
+    - _MainTexTilingAndOffset: {r: 0.15, g: 0.3, b: 0, a: 0}
+    - _MaskTexTilingAndOffset: {r: 1, g: 1, b: 0, a: 0}
