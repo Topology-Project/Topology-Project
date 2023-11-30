@@ -61,4 +61,5 @@ public class TriggerManager : MonoBehaviour
         if(playTriggerType == PlayTriggerType.None) return;
         keyValuePairs[playTriggerType] -= playTrigger;
     }
+    public void ClearTrigger(PlayTriggerType playTriggerType) => keyValuePairs[playTriggerType] = null;
 }

@@ -116,7 +116,7 @@ public class Enemy : Character
                         else
                         {
                             // Debug.Log("플레이어가 바로 보임, 원거리 몹일 경우 값 증가시킬 것");
-                            nma.stoppingDistance = 2f;
+                            nma.stoppingDistance = 20f;
 
                             // 공격 코드
                             if (dist <= 3.5f && !isAtk)
@@ -147,6 +147,11 @@ public class Enemy : Character
         isAtk = true;
         Debug.Log("atk start");
         yield return new WaitForSecondsRealtime(3f);
+        Fire1(transform);
+        yield return new WaitForSecondsRealtime(0.2f);
+        Fire1(transform);
+        yield return new WaitForSecondsRealtime(0.2f);
+        Fire1(transform);
         Debug.Log("atk end");
         isAtk = false;
     }
@@ -205,7 +210,7 @@ public class Enemy : Character
                 if (healthPoint <= 0 && isAlive)
                 {
                     isAlive = false;
-                    Debug.Log("enemy die / " + isAlive);
+                    // Debug.Log("enemy die / " + isAlive);
                     GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyDie);
                     Destroy(gameObject, 1.2f);
                 }

@@ -49,9 +49,9 @@ public class Boss : Enemy
                     case "Meteor":
                         StartCoroutine(Meteor());
                         break;
-                    case "Rocket_Punch":
-                        StartCoroutine(Rocket_Punch());
-                        break;
+                    // case "Rocket_Punch":
+                    //     StartCoroutine(Rocket_Punch());
+                    //     break;
                 }
             }
         }
@@ -325,10 +325,5 @@ public class Boss : Enemy
     protected override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
-        if (healthPoint <= 0)
-        {
-            isAlive = false;
-            Destroy(gameObject, 1f);
-        }
     }
 }

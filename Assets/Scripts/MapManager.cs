@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MapManager : MonoBehaviour
@@ -34,9 +35,8 @@ public class MapManager : MonoBehaviour
             if(mapStack.Count > 0) activeMap[i].prevMap = mapStack.Peek();
             if(i == activeMap.Length-1) 
             {
-                activeMap[i].WarpSet(); // 마지막 방 문 워프 설정
-                activeMap[i].ChestSet(); // 마지막 방 클리어 보상 상자 설정
-                Debug.Log(activeMap[i].name);
+                activeMap[i].WarpSet(round); // 마지막 방 문 워프 설정
+                // Debug.Log(activeMap[i].name);
             }
         }
         
@@ -54,38 +54,51 @@ public class MapManager : MonoBehaviour
     }
     private void RandomRoot(Stack<Map> mapStack)
     {
-        Dictionary<Map, int?> keyValuePairs = new();
-        int random = Random.Range(0, maps.Length);
-        mapStack.Push(maps[random]);
+        Dictionary<Map, bool> keyValuePairs = new();
+        int random = 0;
         
         while(mapStack.Count < round)
         {
+            if(mapStack.Count <= 0)
+            {
+                mapStack.Clear();
+                mapStack.Push(maps[Random.Range(0, maps.Length)]);
+            }
             Map peek = mapStack.Peek();
-            if(!keyValuePairs.ContainsKey(peek))
+            if(!keyValuePairs.ContainsKey(peek)) keyValuePairs.Add(peek, false);
+            if(!keyValuePairs[peek])
             {
-                keyValuePairs.Add(peek, 0);
-            }
-            if(keyValuePairs[peek] < 4)
-            {
-                keyValuePairs[peek]++;
+                keyValuePairs[peek] = true;
                 random = Random.Range(0, peek.doors.Length);
+                if(!peek.nextMaps[random].IsUnityNull() && keyValuePairs.ContainsKey(peek.nextMaps[random])) mapStack.Push(peek.nextMaps[random]);
+            }
+            else mapStack.Pop();
+            // Map peek = mapStack.Peek();
+            // if(!keyValuePairs.ContainsKey(peek))
+            // {
+            //     keyValuePairs.Add(peek, 0);
+            // }
+            // if(keyValuePairs[peek] < 4)
+            // {
+            //     keyValuePairs[peek]++;
+            //     random = Random.Range(0, peek.doors.Length);
 
-                peek = peek.nextMaps[random];
-                if(peek != null && !mapStack.Contains(peek)) 
-                {
-                    mapStack.Push(peek);
-                }
-            }
-            else
-            {
-                if(mapStack.Count > 0) mapStack.Pop();
-                if(mapStack.Count == 0) 
-                {
-                    random = Random.Range(0, maps.Length);
-                    mapStack.Push(maps[random]);
-                    keyValuePairs.Clear();
-                }
-            }
+            //     peek = peek.nextMaps[random];
+            //     if(peek != null && !mapStack.Contains(peek)) 
+            //     {
+            //         mapStack.Push(peek);
+            //     }
+            // }
+            // else
+            // {
+            //     if(mapStack.Count > 0) mapStack.Pop();
+            //     if(mapStack.Count == 0) 
+            //     {
+            //         random = Random.Range(0, maps.Length);
+            //         mapStack.Push(maps[random]);
+            //         keyValuePairs.Clear();
+            //     }
+            // }
         }
     }
 
@@ -97,14 +110,20 @@ public class MapManager : MonoBehaviour
 
     void OnDestroy()
     {
+        Debug.LogWarning(gameObject.scene.name);
         GameManager.Instance.TriggerManager.DelTrigger(PlayTriggerType.RoomClear, ClearRoom);
     }
     private void ClearRoom()
     {
         // 방 클릭어 시 셋팅 (임시)
         activeMap[activeMapIdx].ChestUnlock();
-        activeMap[activeMapIdx++].DoorActive(true);
-        Debug.Log("room clear");
+        activeMap[activeMapIdx].DoorActive(true);
+        activeMapIdx++;
+        if(activeMapIdx < activeMap.Length) 
+        {
+            activeMap[activeMapIdx].DoorActive(true);
+        }
+        // Debug.Log("room clear");
     }
 
     // 플레이어 워프
@@ -121,7 +140,7 @@ public class MapManager : MonoBehaviour
     public void EnterRoom()
     {
         activeMap[activeMapIdx].RoomSet();
-        Debug.Log("room set");
-        if(activeMap[activeMapIdx].enemyCount <= 0) GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.RoomClear);
+        // Debug.Log("room set");
+         activeMap[activeMapIdx].RoomClear();
     }
 }

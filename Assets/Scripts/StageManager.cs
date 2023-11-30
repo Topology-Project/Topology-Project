@@ -11,7 +11,16 @@ public class StageManager : MonoBehaviour
 
     public MapManager mapManager { get; private set; }
 
+    public bool gameClear;
     public float playTime;
+    private float maxDamage;
+    public float MaxDamage
+    {
+        set
+        {
+            if(maxDamage < value) maxDamage = value;
+        }
+    }
 
     private void Awake()
     {
@@ -27,6 +36,9 @@ public class StageManager : MonoBehaviour
 
     private void Start()
     {
+        gameClear = false;
+        playTime = 0;
+        maxDamage = 0;
         NextStageLoad();
     }
     private void FixedUpdate()
@@ -68,6 +80,7 @@ public class StageManager : MonoBehaviour
         if (stageIdx < stageNames.Length)
         {
             mapManager = null;
+            // GameManager.Instance.TriggerManager.ClearTrigger(PlayTriggerType.RoomClear);
             SceneLoad(stageNames[stageIdx], (x) =>
             {
                 mapManager = FindObjectOfType<MapManager>();
@@ -76,6 +89,7 @@ public class StageManager : MonoBehaviour
         else
         {
             stageIdx = 0;
+            gameClear = true;
             SceneLoad("Outro");
         }
     }

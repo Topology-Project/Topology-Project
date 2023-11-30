@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    private AmmunitionType ammunitionType;
+    protected AmmunitionType ammunitionType;
     public AmmunitionType AmmunitionType
     {
         get
@@ -18,19 +18,19 @@ public class Weapon : MonoBehaviour
             ammunitionType = value;
         }
     }
-    private WeaponType weaponType;
-    private FireType fireType;
-    private ElementalEffectType elementalEffectType;
-    private bool isExplosion;
+    protected WeaponType weaponType;
+    protected FireType fireType;
+    protected ElementalEffectType elementalEffectType;
+    protected bool isExplosion;
 
-    private State baseDamage;
-    private State criticalX;
-    private State luckyShot;
-    private State magazine; //
-    private State projectiles;
-    private State projectileSpeed;
-    private State rateOfFire;
-    private State reloadTime;
+    protected State baseDamage;
+    protected State criticalX;
+    protected State luckyShot;
+    protected State magazine; //
+    protected State projectiles;
+    protected State projectileSpeed;
+    protected State rateOfFire;
+    protected State reloadTime;
     public float ReloadTime
     {
         get
@@ -38,22 +38,22 @@ public class Weapon : MonoBehaviour
             return reloadTime;
         }
     }
-    private State upgrade;
-    private State accuracy;
-    private State stability;
-    private State baseDMGIncrease;
-    private State explosionRange;
-    private State explosionDMGIncrease;
-    private State elementalRate;
-    private State elementalDMGIncrease;
-    private State range;
+    protected State upgrade;
+    protected State accuracy;
+    protected State stability;
+    protected State baseDMGIncrease;
+    protected State explosionRange;
+    protected State explosionDMGIncrease;
+    protected State elementalRate;
+    protected State elementalDMGIncrease;
+    protected State range;
 
-    private State movementSpeed;
+    protected State movementSpeed;
 
 
-    private Character character;
-    private GameObject parent;
-    private int residualAmmunition;// 현재 탄창(좌)
+    protected Character character;
+    protected GameObject parent;
+    protected int residualAmmunition;// 현재 탄창(좌)
     public int ResidualAmmunition
     {
         get
@@ -71,7 +71,7 @@ public class Weapon : MonoBehaviour
     private StateModifier stateModifier = new();
     Inscription.Data[] inscriptions = new Inscription.Data[2];
 
-    void Awake()
+    protected virtual void Awake()
     {
         baseDamage = new State(StateType.BaseDamage);
         criticalX = new State(StateType.CriticalX);
@@ -113,7 +113,7 @@ public class Weapon : MonoBehaviour
         stateModifier.AddHandler(movementSpeed);
     }
 
-    void Start()
+    protected virtual void Start()
     {
         //bullet = Resources.Load("Bullet") as GameObject;
         ammunitionType = AmmunitionType.Nomal;
@@ -149,7 +149,7 @@ public class Weapon : MonoBehaviour
         residualAmmunition = (int)stateModifier.GetState(StateType.Magazine);
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         // 총기 안정성 회복
         if (sumAccuracy > 0) sumAccuracy -= accuracy * 0.1f * Time.deltaTime;
@@ -189,13 +189,13 @@ public class Weapon : MonoBehaviour
         parent = null;
     }
 
-    private bool isFire = false;
-    private bool isFireready = true;
-    private bool isReload = false;
-    private float sumAccuracy = 0;
+    protected bool isFire = false;
+    protected bool isFireready = true;
+    protected bool isReload = false;
+    protected float sumAccuracy = 0;
 
     // 좌클릭 메서드
-    public void Fire1(Transform transform)
+    public virtual void Fire1(Transform transform)
     {
         if (!isReload && !isFire && isFireready && residualAmmunition > 0)
         {
