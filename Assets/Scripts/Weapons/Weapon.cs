@@ -143,7 +143,7 @@ public class Weapon : MonoBehaviour
         movementSpeed.ResetState(-0.1f, State.AddOper);
 
         inscriptions = GameManager.Instance.Inscriptions.GetRandomDatas(2);
-        foreach(Inscription.Data data in inscriptions) SetInscriprion(data);
+        foreach (Inscription.Data data in inscriptions) SetInscriprion(data);
 
 
         residualAmmunition = (int)stateModifier.GetState(StateType.Magazine);
@@ -164,7 +164,7 @@ public class Weapon : MonoBehaviour
     // 인장적용 (임시)
     private void SetInscriprion(Inscription.Data data)
     {
-        foreach(State state in data.states) 
+        foreach (State state in data.states)
         {
             stateModifier.AddHandler(state);
             GameManager.Instance.TriggerManager.AddTrigger(data.stackTrigger, state.StackUp);
@@ -234,7 +234,7 @@ public class Weapon : MonoBehaviour
             if (fireType == FireType.Single || fireType == FireType.Bust) isFireready = false;
             StartCoroutine(FireReady());
             residualAmmunition--;
-            if(parent.tag.Equals("Player")) GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.PlayerShot);
+            if (parent.tag.Equals("Player")) GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.PlayerShot);
             // Debug.Log(residualAmmunition + "/" + character.GetModifier().GetState(StateType.Magazine));
         }
         if (residualAmmunition <= 0)
@@ -277,7 +277,7 @@ public class Weapon : MonoBehaviour
         else temp = magazineAmmo;
         residualAmmunition += temp;
         characterInterface.SetAmmo(ammunitionType, -temp);
-        if(parent.tag.Equals("Player")) GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.Reload);
+        if (parent.tag.Equals("Player")) GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.Reload);
         isReload = false;
     }
 

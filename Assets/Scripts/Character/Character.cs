@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -132,7 +133,7 @@ public class Character : MonoBehaviour, CharacterInterface
         Vector3 temp = transform.position + transform.TransformDirection(dir) * stateModifier.GetState(StateType.MovementSpeed) * Time.deltaTime;
         rig.MovePosition(temp);
     }
-    protected bool isDash;
+    public bool isDash;
     private bool isDashReady;
 
     // 대시 메서드
