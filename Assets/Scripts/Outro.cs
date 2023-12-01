@@ -141,7 +141,7 @@ public class Outro : MonoBehaviour
     public void Restart_Btn()
     {
         GameManager.Instance.MoveGameObjectToScene();
-        SceneManager.LoadSceneAsync("Loading", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Loading");
         var op = SceneManager.LoadSceneAsync("Intro", LoadSceneMode.Additive);
         op.completed += (x) => {
             SceneManager.UnloadSceneAsync("Loading");
