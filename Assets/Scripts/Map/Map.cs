@@ -79,8 +79,11 @@ public class Map : MonoBehaviour
         } 
         else
         {
-            while(nextMaps[i] == prevMap) i = Random.Range(0, nextMaps.Length);
-            doors[i].ChestUnlock();
+            if(nextMaps.Length > i)
+            {
+                while(nextMaps[i] == prevMap) i = Random.Range(0, nextMaps.Length);
+                doors[i].ChestUnlock();
+            }
         }
     }
 

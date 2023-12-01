@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Inscriptions
   m_EditorClassIdentifier: 
   datas:
-  - inscriptionType: 0
+  - inscriptionType: 2
     info: "\uCE58\uBA85\uD0C0 \uD53C\uD574 40% \uC99D\uAC00"
     stackTrigger: 0
     rateTrigger: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
       stack: 1
       rate: 1
     operType: 1
-  - inscriptionType: 0
+  - inscriptionType: 1
     info: "\uB7ED\uD0A4\uC0F7 \uD655\uB960 40% \uC99D\uAC00, \uC5F0\uC0AC\uB825 10%
       \uAC10\uC18C"
     stackTrigger: 0

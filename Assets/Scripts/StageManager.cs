@@ -39,7 +39,7 @@ public class StageManager : MonoBehaviour
         gameClear = false;
         playTime = 0;
         maxDamage = 0;
-        GameManager.Instance.TriggerManager.AddTrigger(PlayTriggerType.PlayerDie, OutroLoad);
+        GameManager.Instance.TriggerManager.AddTrigger(PlayTriggerType.PlayerDie, LoadOutro);
         NextStageLoad();
     }
     private void FixedUpdate()
@@ -89,9 +89,9 @@ public class StageManager : MonoBehaviour
         {
             stageIdx = 0;
             gameClear = true;
-            SceneLoad("Outro");
+            LoadOutro();
         }
     }
 
-    public void OutroLoad() => SceneLoad("Outro");
+    private void LoadOutro() => SceneLoad("Outro");
 }

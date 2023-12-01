@@ -140,14 +140,25 @@ public class Outro : MonoBehaviour
 
     public void Restart_Btn()
     {
-        SceneManager.LoadScene("intro");
+        SceneManager.LoadSceneAsync("Loading", LoadSceneMode.Additive);
+        var op = SceneManager.LoadSceneAsync("intro", LoadSceneMode.Additive);
+        op.completed += (x) => { 
+            SceneManager.UnloadSceneAsync("Loading");
+            SceneManager.UnloadSceneAsync("Outro");
+            Destroy(GameManager.Instance);
+            };
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        Result_Btn();
         GameManager.Instance.IsPlay = false;
+        playTime = GameManager.Instance.StageManager.playTime;
+        dmg_value = GameManager.Instance.StageManager.MaxDamage;
+        scroll_cnt = GameManager.Instance.Player.scroll_cnt;
+        stageIdx = GameManager.Instance.StageManager.StageIdx;
+        isResult = GameManager.Instance.StageManager.gameClear;
+        Result_Btn();
     }
 
     // Update is called once per frame

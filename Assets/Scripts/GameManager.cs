@@ -100,6 +100,10 @@ public class GameManager : MonoBehaviour
     {
         Init();
     }
+    void Start()
+    {
+        // if(gameObject != GameManager.Instance) Destroy(gameObject);
+    }
     static void Init() // 매니저 객체 초기화 메서드
     {
         if (instance == null)
@@ -212,5 +216,12 @@ public class GameManager : MonoBehaviour
             instance.scrolls = go.GetComponent<Scrolls>();
             DontDestroyOnLoad(go.gameObject);
         }
+    }
+
+    public GameObject[] gameObjects;
+
+    void OnDestroy()
+    {
+        foreach(GameObject go in gameObjects) Destroy(go);
     }
 }
