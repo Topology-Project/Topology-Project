@@ -392,7 +392,9 @@ MonoBehaviour:
   UpdateTime: 3
   UpdateRange: 10
   HP: {fileID: 8239637130130870377}
-  hitSound: {fileID: 8093644677745900586}
+  audioSource: {fileID: 8093644677745900586}
+  hitSound: {fileID: 8300000, guid: 7909744e1805e0e47a3c1151e6540c07, type: 3}
+  fireSound: {fileID: 8300000, guid: ca01f2f4b7bbf624685012a8b131edcd, type: 3}
 --- !u!136 &8239637128078482369
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1195,8 +1197,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 6914196085505591941, guid: 6411e7a547269c744a5d9aed2df35aef, type: 3}
   weaponController: {fileID: 0}
-  fire: {fileID: 0}
-  reload: {fileID: 0}
 --- !u!1 &8239637129533415773
 GameObject:
   m_ObjectHideFlags: 0
