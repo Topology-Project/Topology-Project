@@ -72,7 +72,13 @@ public class MapManager : MonoBehaviour
                 random = Random.Range(0, peek.doors.Length);
                 if(!peek.nextMaps[random].IsUnityNull() && keyValuePairs.ContainsKey(peek.nextMaps[random])) mapStack.Push(peek.nextMaps[random]);
             }
-            else mapStack.Pop();
+            else 
+            {
+                keyValuePairs[peek] = false;
+                mapStack.Pop();
+            }
+        }
+    }
             // Map peek = mapStack.Peek();
             // if(!keyValuePairs.ContainsKey(peek))
             // {
@@ -99,8 +105,6 @@ public class MapManager : MonoBehaviour
             //         keyValuePairs.Clear();
             //     }
             // }
-        }
-    }
 
     // Update is called once per frame
     private void Update()

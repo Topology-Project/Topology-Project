@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -220,8 +221,14 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] gameObjects;
 
-    void OnDestroy()
+    public void MoveGameObjectToScene()
     {
-        foreach(GameObject go in gameObjects) Destroy(go);
+        foreach(GameObject go in gameObjects) SceneManager.MoveGameObjectToScene(go, SceneManager.GetSceneAt(0));
     }
+
+    // void OnDestroy()
+    // {
+    //     Application.SetStackTraceLogType(LogType.Error, StackTraceLogType.Full);
+    //     foreach(GameObject go in gameObjects) if(go != null) Destroy(go);
+    // }
 }

@@ -20,7 +20,7 @@ public class StageManager : MonoBehaviour
         {
             if(maxDamage < value) maxDamage = value;
         }
-        get { return MaxDamage; }
+        get { return maxDamage; }
     }
 
     private void Awake()
