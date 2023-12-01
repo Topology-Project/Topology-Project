@@ -11,7 +11,7 @@ public class Outro : MonoBehaviour
 {
     // public TMP_Text T_result;
     // private string result;
-    // private bool isResult;
+    private bool isResult = GameManager.Instance.StageManager.gameClear;
     // private bool isResult_test
     // {
     //     get => isResult;
@@ -58,7 +58,7 @@ public class Outro : MonoBehaviour
     public TMP_Text T_dmg;
 
     public TMP_Text T_dmg_value;
-    private string dmg_value = "1234567890"; // 최대 대미지
+    private float dmg_value = GameManager.Instance.StageManager.MaxDamage; // 최대 대미지
 
     public TMP_Text T_weapon;
 
@@ -76,16 +76,17 @@ public class Outro : MonoBehaviour
     private void Result_Btn()
     {
         StageName();
-
-        result[0].gameObject.SetActive(true);
+        result[0].gameObject.SetActive(false);
         result[1].gameObject.SetActive(false);
+        if(isResult) result[0].gameObject.SetActive(true);
+        else result[1].gameObject.SetActive(true);
         result[2].gameObject.SetActive(false);
 
         T_stage.text = stage;
         T_playTime.text = playTime.ToString() + "초";
 
         T_dmg.text = "DMG";
-        T_dmg_value.text = dmg_value;
+        T_dmg_value.text = dmg_value.ToString();
 
         T_weapon.text = "Weapon";
         T_weapon_image.gameObject.SetActive(true);
@@ -139,18 +140,24 @@ public class Outro : MonoBehaviour
 
     public void Restart_Btn()
     {
-        SceneManager.LoadScene("intro");
+        GameManager.Instance.StageManager.SceneLoad("Intro");
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.Instance.IsPlay = false;
+        playTime = GameManager.Instance.StageManager.playTime;
+        dmg_value = GameManager.Instance.StageManager.MaxDamage;
+        scroll_cnt = GameManager.Instance.Player.scroll_cnt;
+        stageIdx = GameManager.Instance.StageManager.StageIdx;
+        isResult = GameManager.Instance.StageManager.gameClear;
         Result_Btn();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        GameManager.Instance.IsPlay = false;
     }
 }

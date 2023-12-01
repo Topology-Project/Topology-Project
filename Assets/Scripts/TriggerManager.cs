@@ -11,6 +11,8 @@ public class TriggerManager : MonoBehaviour
     private event PlayTrigger enemyDie;
     private event PlayTrigger roomClear;
     private event PlayTrigger playerShot;
+    private event PlayTrigger playerHit;
+    private event PlayTrigger playerDie;
     private event PlayTrigger reload;
 
     private void Awake()
@@ -21,6 +23,8 @@ public class TriggerManager : MonoBehaviour
         keyValuePairs.Add(PlayTriggerType.EnemyDie, enemyDie);
         keyValuePairs.Add(PlayTriggerType.RoomClear, roomClear);
         keyValuePairs.Add(PlayTriggerType.PlayerShot, playerShot);
+        keyValuePairs.Add(PlayTriggerType.PlayerHit, playerHit);
+        keyValuePairs.Add(PlayTriggerType.PlayerDie, playerDie);
         keyValuePairs.Add(PlayTriggerType.Reload, reload);
     }
 
@@ -41,13 +45,6 @@ public class TriggerManager : MonoBehaviour
     {
         if(playTriggerType == PlayTriggerType.None) return;
         if(keyValuePairs[playTriggerType] != null) keyValuePairs[playTriggerType]();
-        // try
-        // {
-        // }
-        // catch
-        // {
-        //     Debug.LogError(playTriggerType.ToString() + " ERROR");
-        // }
     }
     // 트리거 추가 메서드
     public void AddTrigger(PlayTriggerType playTriggerType, PlayTrigger playTrigger)

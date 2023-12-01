@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -62,6 +63,18 @@ public class GameManager : MonoBehaviour
         get { if (inventory == null) Init(); return inventory; }
         private set { inventory = value; }
     }
+    private static EventSystem eventSystem;
+    public static EventSystem EventSystem
+    {
+        get { if (eventSystem == null) Init(); return eventSystem; }
+        private set { eventSystem = value; }
+    }
+    private static StandaloneInputModule standaloneInputModule;
+    public static StandaloneInputModule StandaloneInputModule
+    {
+        get { if (standaloneInputModule == null) Init(); return standaloneInputModule; }
+        private set { standaloneInputModule = value; }
+    }
 
 
     private bool isPlay = false;
@@ -87,6 +100,10 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Init();
+    }
+    void Start()
+    {
+        // if(gameObject != GameManager.Instance) Destroy(gameObject);
     }
     static void Init() // 매니저 객체 초기화 메서드
     {
@@ -118,6 +135,14 @@ public class GameManager : MonoBehaviour
             {
                 go.AddComponent<Inventory>();
             }
+            if (go.GetComponent<EventSystem>() == null)
+            {
+                go.AddComponent<EventSystem>();
+            }
+            if (go.GetComponent<StandaloneInputModule>() == null)
+            {
+                go.AddComponent<StandaloneInputModule>();
+            }
 
             instance = go.GetComponent<GameManager>();
             DontDestroyOnLoad(go.gameObject);
@@ -125,6 +150,8 @@ public class GameManager : MonoBehaviour
             stageManager = go.GetComponent<StageManager>();
             triggerManager = go.GetComponent<TriggerManager>();
             inventory = go.GetComponent<Inventory>();
+            eventSystem = go.GetComponent<EventSystem>();
+            standaloneInputModule = go.GetComponent<StandaloneInputModule>();
         }
         if (instance.player == null)
         {
@@ -190,5 +217,12 @@ public class GameManager : MonoBehaviour
             instance.scrolls = go.GetComponent<Scrolls>();
             DontDestroyOnLoad(go.gameObject);
         }
+    }
+
+    public GameObject[] gameObjects;
+
+    void OnDestroy()
+    {
+        foreach(GameObject go in gameObjects) Destroy(go);
     }
 }

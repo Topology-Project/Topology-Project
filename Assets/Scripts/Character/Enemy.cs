@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -18,6 +19,7 @@ public class Enemy : Character
     private bool isAtk = false;
     protected bool isAlive = true;
     public Image HP;
+    public AudioSource hitSound;
 
     private void MoveEnemy()
     {
@@ -116,10 +118,10 @@ public class Enemy : Character
                         else
                         {
                             // Debug.Log("플레이어가 바로 보임, 원거리 몹일 경우 값 증가시킬 것");
-                            nma.stoppingDistance = 20f;
+                            nma.stoppingDistance = 10f;
 
                             // 공격 코드
-                            if (dist <= 3.5f && !isAtk)
+                            if (dist <= 10f && !isAtk)
                             {
                                 StartCoroutine(Attack());
                             }
@@ -199,6 +201,7 @@ public class Enemy : Character
         base.OnTriggerEnter(other);
         if (other.tag.Equals("Bullet"))
         {
+            if(!hitSound.IsUnityNull()) hitSound.Play();
             // 부모의 모디파이어 객체를 가져옴
             GameObject parent = other.GetComponent<Bullet>().parent;
             if (!parent.tag.Equals(gameObject.tag))

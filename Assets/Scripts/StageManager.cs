@@ -20,6 +20,7 @@ public class StageManager : MonoBehaviour
         {
             if (maxDamage < value) maxDamage = value;
         }
+        get { return MaxDamage; }
     }
 
     private void Awake()
@@ -32,7 +33,6 @@ public class StageManager : MonoBehaviour
             "Boss_Golem 1"
 
         };
-        // SceneLoad("SampleScene");
     }
 
     private void Start()
@@ -40,6 +40,7 @@ public class StageManager : MonoBehaviour
         gameClear = false;
         playTime = 0;
         maxDamage = 0;
+        GameManager.Instance.TriggerManager.AddTrigger(PlayTriggerType.PlayerDie, LoadOutro);
         NextStageLoad();
     }
     private void FixedUpdate()
@@ -47,17 +48,16 @@ public class StageManager : MonoBehaviour
         if (GameManager.Instance.IsPlay) playTime += Time.fixedDeltaTime;
     }
 
-    AsyncOperation op;
     public void SceneLoad(string sceneName, System.Action<AsyncOperation> action = null)
     {
         SceneManager.LoadScene("Loading");
-        op = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        AsyncOperation op = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         GameManager.Instance.IsPlay = false;
         op.allowSceneActivation = false;
         if (action != null) op.completed += action;
-        StartCoroutine(UnloadingScene());
+        StartCoroutine(UnloadingScene(op));
     }
-    IEnumerator UnloadingScene()
+    IEnumerator UnloadingScene(AsyncOperation op)
     {
         yield return null;
         // while(!op.isDone)
@@ -81,9 +81,8 @@ public class StageManager : MonoBehaviour
         if (stageIdx < stageNames.Length)
         {
             mapManager = null;
-            // GameManager.Instance.TriggerManager.ClearTrigger(PlayTriggerType.RoomClear);
-            SceneLoad(stageNames[stageIdx], (x) =>
-            {
+            
+            SceneLoad(stageNames[stageIdx], (x) => {
                 mapManager = FindObjectOfType<MapManager>();
             });
         }
@@ -91,7 +90,9 @@ public class StageManager : MonoBehaviour
         {
             stageIdx = 0;
             gameClear = true;
-            SceneLoad("Outro");
+            LoadOutro();
         }
     }
+
+    private void LoadOutro() => SceneLoad("Outro");
 }

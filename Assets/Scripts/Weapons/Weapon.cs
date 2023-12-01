@@ -102,7 +102,8 @@ public class Weapon : MonoBehaviour
     }
     public GameObject bullet;
     public Player_Animation_Controller weaponController;
-    public Animator animator;
+    public AudioSource fire;
+    public AudioSource reload;
     private StateModifier stateModifier = new();
     Inscription.Data[] inscriptions = new Inscription.Data[2];
     public Inscription.Data[] Inscriptions
@@ -241,8 +242,8 @@ public class Weapon : MonoBehaviour
     {
         if (!isReload && !isFire && isFireready && residualAmmunition > 0)
         {
-            // if(animator.GetCurrentAnimatorStateInfo(0).IsName("idle") || animator.GetCurrentAnimatorStateInfo(0).IsName("idle")) animator.GetCurrentAnimatorStateInfo(0).
             if(!weaponController.IsUnityNull()) weaponController.Fire1();
+            if(!fire.IsUnityNull()) fire.Play();
             // 투사체 갯수 설정
             // ex) 1.3 = 1 (70%) or 2 (30%)
             int pj = (int)(character.GetModifier().GetState(StateType.Projectiles) % 1 > UnityEngine.Random.Range(0f, 1f) ?
@@ -310,6 +311,7 @@ public class Weapon : MonoBehaviour
     IEnumerator Reloading()
     {
         if(!weaponController.IsUnityNull()) weaponController.Reload();
+        if(!reload.IsUnityNull()) reload.Play();
         yield return new WaitForSeconds(character.GetModifier().GetState(StateType.ReloadTime));
         CharacterInterface characterInterface = parent.GetComponent<CharacterInterface>();
         int maxAmmo = characterInterface.GetAmmo(ammunitionType);

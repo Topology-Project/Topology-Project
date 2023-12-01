@@ -8,7 +8,7 @@ public class Player : Character
     private Camera playerCamera;
     private bool isJump;
     public List<Scroll.Data> inventory = new();
-    public int scroll_cnt { get; }
+    public int scroll_cnt { get { return inventory.Count; } }
     protected override void Awake()
     {
         base.Awake();
@@ -61,5 +61,24 @@ public class Player : Character
         GameManager.Inventory.SlotCnt = inventory.Count;
         foreach (State state in scroll.sc.GetState())
             stateModifier.AddHandler(state);
+    }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+        if (other.tag.Equals("Bullet"))
+        {
+            // 부모의 모디파이어 객체를 가져옴
+            GameObject parent = other.GetComponent<Bullet>().parent;
+            if (!parent.tag.Equals(gameObject.tag))
+            {
+                GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.PlayerHit);
+                if (healthPoint <= 0 && GameManager.Instance.IsPlay)
+                {
+                    GameManager.Instance.IsPlay = false;
+                    GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.PlayerDie);
+                }
+            }
+        }
     }
 }
