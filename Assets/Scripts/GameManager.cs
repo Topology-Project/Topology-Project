@@ -65,13 +65,14 @@ public class GameManager : MonoBehaviour
 
 
     private bool isPlay = false;
-    public bool IsPlay { 
+    public bool IsPlay
+    {
         get { return isPlay; }
         set
         {
             isPlay = value;
-            if(isPlay)
-            {  
+            if (isPlay)
+            {
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
             }
@@ -81,7 +82,7 @@ public class GameManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Confined;
             }
         }
-        }
+    }
 
     void Awake()
     {

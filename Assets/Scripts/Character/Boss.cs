@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using ExitGames.Client.Photon.StructWrapping;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -49,9 +50,9 @@ public class Boss : Enemy
                     case "Meteor":
                         StartCoroutine(Meteor());
                         break;
-                    // case "Rocket_Punch":
-                    //     StartCoroutine(Rocket_Punch());
-                    //     break;
+                        // case "Rocket_Punch":
+                        //     StartCoroutine(Rocket_Punch());
+                        //     break;
                 }
             }
         }
@@ -87,13 +88,13 @@ public class Boss : Enemy
     private IEnumerator Razer()
     {
         isAtk = true;
-        animator.SetBool("isRazer", true);
+        animator.SetTrigger("LaserStart");
         yield return new WaitForSecondsRealtime(1.5f);
         isRazer = true;
         yield return new WaitForSecondsRealtime(2.0f);
         isRazer = false;
         Destroy_Razer();
-        animator.SetBool("isRazer", false);
+        animator.SetTrigger("LaserEnd");
     }
     private void Setup_Razer()
     {
@@ -129,18 +130,29 @@ public class Boss : Enemy
     private IEnumerator Stone_Pillar()
     {
         isAtk = true;
-        animator.SetBool("isSlam", true);
+        animator.SetTrigger("HitGround");
         Warning_Destroy_Pillar();
-        yield return new WaitForSecondsRealtime(1.4f);
-        Destroy_Pillar();
-        yield return new WaitForSecondsRealtime(0.5f);
-        animator.SetBool("isSlam", false);
-        animator.SetBool("isSummon", true);
+        while (true)
+        {
+            yield return null;
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("3909_Attack01 (1)") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+            {
+                Destroy_Pillar();
+                break;
+            }
+        }
+        yield return new WaitForSecondsRealtime(1f);
+        animator.SetTrigger("Summon");
         Warning_Build_Pillar();
-        yield return new WaitForSecondsRealtime(1.0f);
-        Build_Pillar();
-        yield return new WaitForSecondsRealtime(2.0f);
-        animator.SetBool("isSummon", false);
+        while (true)
+        {
+            yield return null;
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("3909_Attack01 (3)") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.35f)
+            {
+                Build_Pillar();
+                break;
+            }
+        }
     }
     private void Warning_Build_Pillar()
     {
@@ -218,13 +230,11 @@ public class Boss : Enemy
     private IEnumerator Meteor()
     {
         isAtk = true;
-        animator.SetBool("isMeteor", true);
+        animator.SetTrigger("FireStart");
         Spawn_Meteor();
-        yield return new WaitForSecondsRealtime(1.0f);
+        yield return new WaitForSecondsRealtime(2.0f);
         StartCoroutine(Drop_Meteor());
-        yield return new WaitForSecondsRealtime(0.5f);
-        animator.SetBool("isMeteor", false);
-        yield return new WaitForSecondsRealtime(1.5f);
+        animator.SetTrigger("FireEnd");
     }
     private void Spawn_Meteor()
     {
@@ -248,17 +258,18 @@ public class Boss : Enemy
             meteor_list[i].GetComponent<Rigidbody>().velocity = shotDirection * shotSpeed;
             yield return new WaitForSecondsRealtime(0.3f);
         }
-
     }
 
     // 로켓펀치 패턴
     private IEnumerator Rocket_Punch()
     {
         isAtk = true;
+        animator.SetTrigger("ArmFireStart");
         Ready_Punch();
         yield return new WaitForSecondsRealtime(2.0f);
         StartCoroutine(Shot_Punch());
         yield return new WaitForSecondsRealtime(2.0f);
+        animator.SetTrigger("ArmFireEnd");
     }
     private void Ready_Punch()
     {
@@ -284,6 +295,8 @@ public class Boss : Enemy
             Vector3 shotPos = warning_list[i].transform.position;
             Vector3 shotDirection = (new Vector3(shotPos.x, 0, shotPos.z) - punch_list[i].transform.position).normalized;
             float shotSpeed = 50f;
+            if (i == 0) animator.SetTrigger("ArmFireL");
+            else animator.SetTrigger("ArmFireR");
             punch_list[i].GetComponent<Rigidbody>().velocity = shotDirection * shotSpeed;
             yield return new WaitForSecondsRealtime(0.3f);
         }
