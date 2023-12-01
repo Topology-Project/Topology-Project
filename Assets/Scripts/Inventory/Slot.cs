@@ -14,7 +14,6 @@ public class Slot : MonoBehaviour, IPointerEnterHandler
 
     public void SetData(Scroll.Data data)
     {
-        Debug.Log(data.sprite);
         this.data = data;
         image.sprite = data.sprite;
         image.gameObject.SetActive(true);

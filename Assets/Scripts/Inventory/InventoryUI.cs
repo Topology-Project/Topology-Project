@@ -51,6 +51,7 @@ public class InventoryUI : MonoBehaviour
         {
             if (player.inventory.Count <= i) break;
             slots[i].SetData(player.inventory[i]);
+            slots[i].SetScrollUI(ScrollUI.GetComponent<ScrollUI>());
         }
     }
     void Update()
