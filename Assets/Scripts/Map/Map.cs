@@ -73,7 +73,15 @@ public class Map : MonoBehaviour
     public void ChestUnlock()
     {
         int i = 0;
-        if (GetIdx(nextMap, out i)) doors[i].ChestUnlock();
+        if (GetIdx(nextMap, out i))
+        {
+            doors[i].ChestUnlock();
+        } 
+        else
+        {
+            while(nextMaps[i] == prevMap) i = Random.Range(0, nextMaps.Length);
+            doors[i].ChestUnlock();
+        }
     }
 
     // 상자 셋팅 메서드

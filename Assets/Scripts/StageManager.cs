@@ -31,7 +31,6 @@ public class StageManager : MonoBehaviour
             "s1_1106map", "s1_1106map", "s1_1106map", "s1_1106map",
             "Boss_map"
         };
-        // SceneLoad("SampleScene");
     }
 
     private void Start()
@@ -39,6 +38,7 @@ public class StageManager : MonoBehaviour
         gameClear = false;
         playTime = 0;
         maxDamage = 0;
+        GameManager.Instance.TriggerManager.AddTrigger(PlayTriggerType.PlayerDie, OutroLoad);
         NextStageLoad();
     }
     private void FixedUpdate()
@@ -80,9 +80,8 @@ public class StageManager : MonoBehaviour
         if (stageIdx < stageNames.Length)
         {
             mapManager = null;
-            // GameManager.Instance.TriggerManager.ClearTrigger(PlayTriggerType.RoomClear);
-            SceneLoad(stageNames[stageIdx], (x) =>
-            {
+            
+            SceneLoad(stageNames[stageIdx], (x) => {
                 mapManager = FindObjectOfType<MapManager>();
             });
         }
@@ -93,4 +92,6 @@ public class StageManager : MonoBehaviour
             SceneLoad("Outro");
         }
     }
+
+    public void OutroLoad() => SceneLoad("Outro");
 }

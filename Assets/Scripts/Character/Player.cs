@@ -62,4 +62,23 @@ public class Player : Character
         foreach (State state in scroll.sc.GetState())
             stateModifier.AddHandler(state);
     }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+        if (other.tag.Equals("Bullet"))
+        {
+            // 부모의 모디파이어 객체를 가져옴
+            GameObject parent = other.GetComponent<Bullet>().parent;
+            if (!parent.tag.Equals(gameObject.tag))
+            {
+                GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.PlayerHit);
+                if (healthPoint <= 0 && GameManager.Instance.IsPlay)
+                {
+                    GameManager.Instance.IsPlay = false;
+                    GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.PlayerDie);
+                }
+            }
+        }
+    }
 }

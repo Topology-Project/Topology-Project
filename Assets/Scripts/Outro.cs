@@ -146,6 +146,7 @@ public class Outro : MonoBehaviour
     void Start()
     {
         Result_Btn();
+        GameManager.Instance.IsPlay = false;
     }
 
     // Update is called once per frame
