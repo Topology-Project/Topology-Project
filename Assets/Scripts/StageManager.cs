@@ -19,7 +19,7 @@ public class StageManager : MonoBehaviour
         stageIdx = 0;
         stageNames = new string[]
         {
-            //"s1_1106map", "s1_1106map", "s1_1106map", "s1_1106map",
+            "s1_1106map", "s1_1106map", "s1_1106map", "s1_1106map",
             "Boss_map"
         };
     }
