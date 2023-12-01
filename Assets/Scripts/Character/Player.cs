@@ -8,7 +8,7 @@ public class Player : Character
     private Camera playerCamera;
     private bool isJump;
     public List<Scroll.Data> inventory = new();
-    public int scroll_cnt { get; }
+    public int scroll_cnt { get { return inventory.Count; } }
     protected override void Awake()
     {
         base.Awake();

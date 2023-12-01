@@ -20,6 +20,7 @@ public class StageManager : MonoBehaviour
         {
             if(maxDamage < value) maxDamage = value;
         }
+        get { return MaxDamage; }
     }
 
     private void Awake()
@@ -46,17 +47,16 @@ public class StageManager : MonoBehaviour
         if (GameManager.Instance.IsPlay) playTime += Time.fixedDeltaTime;
     }
 
-    AsyncOperation op;
     public void SceneLoad(string sceneName, System.Action<AsyncOperation> action = null)
     {
         SceneManager.LoadScene("Loading");
-        op = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        AsyncOperation op = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         GameManager.Instance.IsPlay = false;
         op.allowSceneActivation = false;
         if (action != null) op.completed += action;
-        StartCoroutine(UnloadingScene());
+        StartCoroutine(UnloadingScene(op));
     }
-    IEnumerator UnloadingScene()
+    IEnumerator UnloadingScene(AsyncOperation op)
     {
         yield return null;
         // while(!op.isDone)
