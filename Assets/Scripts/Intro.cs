@@ -6,31 +6,34 @@ using UnityEngine.UI;
 
 public class Intro : MonoBehaviour
 {
-    public Image popup;
+    public GameObject[] scenes;
 
     public void Start_Btn()
     {
-        SceneManager.LoadScene("Start");
+        SceneManager.LoadScene("Loading");
+        SceneManager.LoadSceneAsync("Start", LoadSceneMode.Additive);
     }
-    public void Quit_Btn()
+    public void Quit_Btn(GameObject image)
     {
-        popup.gameObject.SetActive(true);
+        image.gameObject.SetActive(true);
     }
     public void Popup_Btn_Y()
     {
         Debug.Log("Quit");
         Application.Quit();
     }
-    public void Popup_Btn_N()
+    public void Popup_Btn_N(GameObject image)
     {
-        popup.gameObject.SetActive(false);
+        image.gameObject.SetActive(false);
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
-        popup.gameObject.SetActive(false);
+        int rnd = Random.Range(0, scenes.Length);
+        scenes[rnd].SetActive(true);
+        scenes[rnd].GetComponentInChildren<Camera>().enabled = true;
     }
 
     // Update is called once per frame
