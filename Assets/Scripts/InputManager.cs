@@ -25,6 +25,7 @@ public class InputManager : MonoBehaviour
                     (1 << LayerMask.NameToLayer("Chest"));
     }
     // Update is called once per frame
+    RaycastHit raycastHit;
     private void Update()
     {
         if (GameManager.Instance.IsPlay)
@@ -44,7 +45,6 @@ public class InputManager : MonoBehaviour
             if (Input.GetButtonUp("Fire1")) player.Fire1(playerCamera.transform);
             if (Input.GetButtonDown("Reload")) player.Reload();
 
-            RaycastHit raycastHit;
             if (Input.GetButtonDown("Interaction") && Physics.Raycast(rayOrigin, rayDir, out raycastHit, 5f, layerMask))
             {
                 if (raycastHit.collider.transform.tag.Equals("Scroll"))

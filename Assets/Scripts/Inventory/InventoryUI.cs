@@ -16,6 +16,8 @@ public class InventoryUI : MonoBehaviour
     public List<Slot> slots;
     public Transform slotHolder;
     public GameObject targetUI;
+    public GameObject ScrollUI;
+    public GameObject weaponUI;
 
     private void Awake()
     {
@@ -55,5 +57,22 @@ public class InventoryUI : MonoBehaviour
     {
         if (targetUI.activeSelf) GameManager.Instance.IsPlay = false;
         else GameManager.Instance.IsPlay = true;
+    }
+
+    public void SetUI(int i)
+    {
+        ScrollUI.SetActive(false);
+        weaponUI.SetActive(false);
+        switch(i)
+        {
+            case 0:
+            ScrollUI.SetActive(true);
+            break;
+            case 1:
+            weaponUI.SetActive(true);
+            break;
+            default:
+            break;
+        }
     }
 }

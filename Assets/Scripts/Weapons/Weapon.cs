@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    private AmmunitionType ammunitionType;
+    protected AmmunitionType ammunitionType;
     public AmmunitionType AmmunitionType
     {
         get
@@ -18,42 +18,77 @@ public class Weapon : MonoBehaviour
             ammunitionType = value;
         }
     }
-    private WeaponType weaponType;
-    private FireType fireType;
-    private ElementalEffectType elementalEffectType;
-    private bool isExplosion;
+    protected WeaponType weaponType;
+    protected FireType fireType;
+    protected ElementalEffectType elementalEffectType;
+    protected bool isExplosion;
 
-    private State baseDamage;
-    private State criticalX;
-    private State luckyShot;
-    private State magazine; //
-    private State projectiles;
-    private State projectileSpeed;
-    private State rateOfFire;
-    private State reloadTime;
+    protected State baseDamage;
+    public float BaseDamage
+    {
+        get
+        {
+            return stateModifier.GetState(StateType.BaseDamage);
+        }
+    }
+    protected State criticalX;
+    public float CriticalX
+    {
+        get
+        {
+            return stateModifier.GetState(StateType.CriticalX);
+        }
+    }
+    protected State luckyShot;
+    protected State magazine; //
+    public float Magazine
+    {
+        get
+        {
+            return stateModifier.GetState(StateType.Magazine);
+        }
+    }
+    protected State projectiles;
+    protected State projectileSpeed;
+    protected State rateOfFire;
+    public float RateOfFire
+    {
+        get
+        {
+            return stateModifier.GetState(StateType.RateOfFire);
+        }
+    }
+    protected State reloadTime;
     public float ReloadTime
     {
         get
         {
-            return reloadTime;
+            return stateModifier.GetState(StateType.ReloadTime);
         }
     }
-    private State upgrade;
-    private State accuracy;
-    private State stability;
-    private State baseDMGIncrease;
-    private State explosionRange;
-    private State explosionDMGIncrease;
-    private State elementalRate;
-    private State elementalDMGIncrease;
-    private State range;
+    protected State upgrade;
+    public float Upgrade
+    {
+        get
+        {
+            return stateModifier.GetState(StateType.WPNUpgrade);
+        }
+    }
+    protected State accuracy;
+    protected State stability;
+    protected State baseDMGIncrease;
+    protected State explosionRange;
+    protected State explosionDMGIncrease;
+    protected State elementalRate;
+    protected State elementalDMGIncrease;
+    protected State range;
 
-    private State movementSpeed;
+    protected State movementSpeed;
 
 
-    private Character character;
-    private GameObject parent;
-    private int residualAmmunition;// 현재 탄창(좌)
+    protected Character character;
+    protected GameObject parent;
+    protected int residualAmmunition;// 현재 탄창(좌)
     public int ResidualAmmunition
     {
         get
@@ -70,8 +105,15 @@ public class Weapon : MonoBehaviour
     public Animator animator;
     private StateModifier stateModifier = new();
     Inscription.Data[] inscriptions = new Inscription.Data[2];
+    public Inscription.Data[] Inscriptions
+    {
+        get
+        {
+            return inscriptions;
+        }
+    }
 
-    void Awake()
+    protected virtual void Awake()
     {
         baseDamage = new State(StateType.BaseDamage);
         criticalX = new State(StateType.CriticalX);
@@ -113,7 +155,7 @@ public class Weapon : MonoBehaviour
         stateModifier.AddHandler(movementSpeed);
     }
 
-    void Start()
+    protected virtual void Start()
     {
         //bullet = Resources.Load("Bullet") as GameObject;
         ammunitionType = AmmunitionType.Nomal;
@@ -149,7 +191,7 @@ public class Weapon : MonoBehaviour
         residualAmmunition = (int)stateModifier.GetState(StateType.Magazine);
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         // 총기 안정성 회복
         if (sumAccuracy > 0) sumAccuracy -= accuracy * 0.1f * Time.deltaTime;
@@ -189,18 +231,18 @@ public class Weapon : MonoBehaviour
         parent = null;
     }
 
-    private bool isFire = false;
-    private bool isFireready = true;
-    private bool isReload = false;
-    private float sumAccuracy = 0;
+    protected bool isFire = false;
+    protected bool isFireready = true;
+    protected bool isReload = false;
+    protected float sumAccuracy = 0;
 
     // 좌클릭 메서드
-    public void Fire1(Transform transform)
+    public virtual void Fire1(Transform transform)
     {
         if (!isReload && !isFire && isFireready && residualAmmunition > 0)
         {
             // if(animator.GetCurrentAnimatorStateInfo(0).IsName("idle") || animator.GetCurrentAnimatorStateInfo(0).IsName("idle")) animator.GetCurrentAnimatorStateInfo(0).
-            weaponController.Fire1();
+            if(!weaponController.IsUnityNull()) weaponController.Fire1();
             // 투사체 갯수 설정
             // ex) 1.3 = 1 (70%) or 2 (30%)
             int pj = (int)(character.GetModifier().GetState(StateType.Projectiles) % 1 > UnityEngine.Random.Range(0f, 1f) ?
@@ -267,7 +309,7 @@ public class Weapon : MonoBehaviour
     // 장전 딜레이 용 코루틴
     IEnumerator Reloading()
     {
-        weaponController.Reload();
+        if(!weaponController.IsUnityNull()) weaponController.Reload();
         yield return new WaitForSeconds(character.GetModifier().GetState(StateType.ReloadTime));
         CharacterInterface characterInterface = parent.GetComponent<CharacterInterface>();
         int maxAmmo = characterInterface.GetAmmo(ammunitionType);

@@ -19,7 +19,6 @@ public class Door : MonoBehaviour
         {
             open.SetActive(false);
             close.SetActive(false);
-
             isOpen = value;
 
             if(isOpen) open.SetActive(true);
@@ -31,7 +30,13 @@ public class Door : MonoBehaviour
     public void DTSet() => doorTrig.isSet = true;
 
     // 상자 언락
-    public void ChestUnlock() => chest.GetComponent<Chest>().isOpen = true;
+    public void ChestUnlock()
+    {
+        if(chest != null) 
+        {
+            chest.GetComponent<Chest>().isOpen = true;
+        }
+    }
 
     // 상자 셋팅 메서드
     public void ChestSet()
@@ -46,6 +51,7 @@ public class Door : MonoBehaviour
     // 워프용 게이트로 전환
     public void WarpSet()
     {
+        Debug.Log(transform.parent.name);
         trig.SetActive(false);
         warp.SetActive(true);
     }

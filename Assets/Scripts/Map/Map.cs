@@ -51,10 +51,11 @@ public class Map : MonoBehaviour
     {
         if (isRoomSet && enemyCount <= 0)
         {
+            // Debug.Log("roomclear / " + enemyCount);
             DoorActive(true);
-            GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.RoomClear); // 클리어 트리거
             GameManager.Instance.TriggerManager.DelTrigger(PlayTriggerType.EnemyDie, EnemyDecount); // 트리거 설정해제
             GameManager.Instance.TriggerManager.DelTrigger(PlayTriggerType.EnemyDie, RoomClear); // 트리거 설정해제
+            GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.RoomClear);
         }
     }
 
@@ -62,8 +63,10 @@ public class Map : MonoBehaviour
     public void DoorActive(bool b)
     {
         int i = 0;
-        if (GetIdx(prevMap, out i)) doors[i].IsOpen = b;
-        if (GetIdx(nextMap, out i)) doors[i].IsOpen = b;
+        GetIdx(prevMap, out i);
+        doors[i].IsOpen = b;
+        GetIdx(nextMap, out i);
+        doors[i].IsOpen = b;
     }
 
     // 상자 언락 메서드
@@ -74,17 +77,27 @@ public class Map : MonoBehaviour
     }
 
     // 상자 셋팅 메서드
-    public void ChestSet()
-    {
-        int i = 0;
-        if (GetIdx(nextMap, out i)) doors[i].ChestSet();
-    }
-
     // 방문 워프 셋팅 용 메서드
-    public void WarpSet()
+    public void WarpSet(int size)
     {
+        if(size <= 1)
+        {
+            doors[0].WarpSet();
+            doors[0].ChestSet();
+            return;
+        } 
         int i = 0;
-        if (GetIdx(nextMap, out i)) doors[i].WarpSet();
+        if (GetIdx(nextMap, out i))
+        {
+            doors[i].WarpSet();
+            doors[i].ChestSet();
+        } 
+        else
+        {
+            while(nextMaps[i] == prevMap) i = Random.Range(0, nextMaps.Length);
+            doors[i].WarpSet();
+            doors[i].ChestSet();
+        }
     }
 
     // 방 문 찾기용 메서드 (임시)
@@ -99,7 +112,7 @@ public class Map : MonoBehaviour
                 return true;
             }
         }
-        idx = 0;
+        idx = doors.Length-1;
         return false;
     }
 }
