@@ -32,7 +32,8 @@ public class Outro : MonoBehaviour
     private int stageIdx = GameManager.Instance.StageManager.StageIdx;
     private void StageName()
     {
-        switch (stageIdx)
+        int temp = stageIdx - 1;
+        switch (temp)
         {
             case 0:
                 stage = "스테이지 1-1";
@@ -47,7 +48,7 @@ public class Outro : MonoBehaviour
                 stage = "스테이지 1-4";
                 break;
             case 4:
-                stage = "스테이지 1-5";
+                stage = "보스 스테이지";
                 break;
         }
     }

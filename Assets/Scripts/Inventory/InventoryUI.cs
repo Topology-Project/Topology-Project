@@ -22,7 +22,6 @@ public class InventoryUI : MonoBehaviour
     private void Awake()
     {
         inven = GameManager.Inventory;
-        Debug.Log(inven);
         inven.onSlotCountAdd += AddSlot;
         inven.onSlot += SetSlots;
         player = GameManager.Instance.Player;
