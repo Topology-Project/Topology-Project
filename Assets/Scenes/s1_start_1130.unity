@@ -8198,7 +8198,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1791286704240321143}
-  - component: {fileID: 1791286706085816839}
   m_Layer: 0
   m_Name: EffectRoot
   m_TagString: 
@@ -36348,18 +36347,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 009533edcc354c2d02e5534e7f8299f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1791286706085816839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1791286704189987827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88a6b30f78686a0c7c1f914ccc0ebe7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!205 &1791286707612543309
