@@ -18,7 +18,7 @@ public class StageManager : MonoBehaviour
     {
         set
         {
-            if(maxDamage < value) maxDamage = value;
+            if (maxDamage < value) maxDamage = value;
         }
         get { return maxDamage; }
     }
@@ -29,8 +29,8 @@ public class StageManager : MonoBehaviour
         stageNames = new string[]
         {
             "s1_start_1130",
-            // "s1_1106map", "s1_1106map", "s1_1106map", "s1_1106map",
-            "Boss_map"
+            "s1_1106map", "s1_1106map", "s1_1106map", "s1_1106map",
+            "Boss_Golem 1"
         };
     }
 
@@ -67,7 +67,7 @@ public class StageManager : MonoBehaviour
         GameManager.Instance.IsPlay = true;
         op.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync("Loading");
-        if (mapManager != null) 
+        if (mapManager != null)
         {
             mapManager.EnterRoom();
             stageIdx++;
@@ -80,8 +80,9 @@ public class StageManager : MonoBehaviour
         if (stageIdx < stageNames.Length)
         {
             mapManager = null;
-            
-            SceneLoad(stageNames[stageIdx], (x) => {
+
+            SceneLoad(stageNames[stageIdx], (x) =>
+            {
                 mapManager = FindObjectOfType<MapManager>();
             });
         }
