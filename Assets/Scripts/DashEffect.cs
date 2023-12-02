@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class DashEffect : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class DashEffect : MonoBehaviour
         if (isDash == true)
         {
             D_effect.SetActive(true);
+            AudioSource D_Sound = GetComponent<AudioSource>();
+            D_Sound.Play();
+
         }
         else D_effect.SetActive(false);
     }

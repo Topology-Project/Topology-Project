@@ -19,7 +19,9 @@ public class Enemy : Character
     private bool isAtk = false;
     protected bool isAlive = true;
     public Image HP;
-    public AudioSource hitSound;
+    public AudioSource audioSource;
+    public AudioClip hitSound;
+    public AudioClip fireSound;
 
     private void MoveEnemy()
     {
@@ -148,8 +150,10 @@ public class Enemy : Character
     {
         isAtk = true;
         Debug.Log("atk start");
-        yield return new WaitForSecondsRealtime(3f);
+        yield return new WaitForSecondsRealtime(1f);
+        audioSource.clip = fireSound;
         Fire1(transform);
+        audioSource.Play();
         yield return new WaitForSecondsRealtime(0.2f);
         Fire1(transform);
         yield return new WaitForSecondsRealtime(0.2f);
@@ -180,6 +184,7 @@ public class Enemy : Character
     {
         base.Start();
 
+        maxHealthPoint.ResetState(3000f);
         player = GameManager.Instance.Player.gameObject;
         nma = GetComponent<NavMeshAgent>();
         nma.stoppingDistance = 2f;
@@ -201,13 +206,14 @@ public class Enemy : Character
         base.OnTriggerEnter(other);
         if (other.tag.Equals("Bullet"))
         {
-            if(!hitSound.IsUnityNull()) hitSound.Play();
             // 부모의 모디파이어 객체를 가져옴
             GameObject parent = other.GetComponent<Bullet>().parent;
             if (!parent.tag.Equals(gameObject.tag))
             {
+                audioSource.clip = hitSound;
+                audioSource.PlayOneShot(hitSound);
                 GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyHit);
-                // HP.fillAmount = (float)healthPoint / (float)maxHealthPoint;
+                HP.fillAmount = (float)healthPoint / (float)maxHealthPoint;
                 // Debug.Log("fillamount : " + HP.fillAmount + "(" + healthPoint + " / " + maxHealthPoint + ")");
                 Debug.Log("나 체력 준다");
                 if (healthPoint <= 0 && isAlive)

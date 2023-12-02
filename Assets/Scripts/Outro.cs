@@ -140,7 +140,13 @@ public class Outro : MonoBehaviour
 
     public void Restart_Btn()
     {
-        GameManager.Instance.StageManager.SceneLoad("Intro");
+        GameManager.Instance.MoveGameObjectToScene();
+        SceneManager.LoadScene("Loading");
+        var op = SceneManager.LoadSceneAsync("Intro", LoadSceneMode.Additive);
+        op.completed += (x) => {
+            SceneManager.UnloadSceneAsync("Loading");
+            SceneManager.UnloadSceneAsync("Outro");
+        };
     }
 
     // Start is called before the first frame update

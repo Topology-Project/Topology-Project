@@ -314,7 +314,7 @@ public class Boss : Enemy
         stateModifier.AddHandler(weapon.GetModifier());
         animator = GetComponent<Animator>();
         player = GameManager.Instance.Player.gameObject;
-        maxHealthPoint.ResetState(3000);
+        maxHealthPoint.ResetState(30000);
         // maxProtectionPoint.ResetState(8000);
         healthPoint = maxHealthPoint;
         protectionPoint = maxProtectionPoint;

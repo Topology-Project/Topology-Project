@@ -18,9 +18,9 @@ public class StageManager : MonoBehaviour
     {
         set
         {
-            if (maxDamage < value) maxDamage = value;
+            if(maxDamage < value) maxDamage = value;
         }
-        get { return MaxDamage; }
+        get { return maxDamage; }
     }
 
     private void Awake()
@@ -30,8 +30,7 @@ public class StageManager : MonoBehaviour
         {
             "s1_start_1130",
             // "s1_1106map", "s1_1106map", "s1_1106map", "s1_1106map",
-            "Boss_Golem 1"
-
+            "Boss_map"
         };
     }
 
@@ -68,7 +67,7 @@ public class StageManager : MonoBehaviour
         GameManager.Instance.IsPlay = true;
         op.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync("Loading");
-        if (mapManager != null)
+        if (mapManager != null) 
         {
             mapManager.EnterRoom();
             stageIdx++;
