@@ -18,6 +18,8 @@ public class Weapon : MonoBehaviour
             ammunitionType = value;
         }
     }
+
+    // Weapon 속성
     protected WeaponType weaponType;
     protected FireType fireType;
     protected ElementalEffectType elementalEffectType;
@@ -102,7 +104,10 @@ public class Weapon : MonoBehaviour
     }
     public GameObject bullet;
     public Player_Animation_Controller weaponController;
+    // 총기와 관련된 stateModifier 객체
     private StateModifier stateModifier = new();
+
+    // 기본적으로 무작위로 선택된 2개의 인장 데이터를 저장하는 배열
     Inscription.Data[] inscriptions = new Inscription.Data[2];
     public Inscription.Data[] Inscriptions
     {
@@ -114,6 +119,7 @@ public class Weapon : MonoBehaviour
 
     protected virtual void Awake()
     {
+        // 스텟과 속성 객체들을 초기화하고, modifier에 추가
         baseDamage = new State(StateType.BaseDamage);
         criticalX = new State(StateType.CriticalX);
         luckyShot = new State(StateType.LuckyShot);
@@ -156,6 +162,7 @@ public class Weapon : MonoBehaviour
 
     protected virtual void Start()
     {
+        // 총기 속성 초기화 및 잔탄 수 설정
         //bullet = Resources.Load("Bullet") as GameObject;
         ammunitionType = AmmunitionType.Nomal;
         weaponType = WeaponType.Pistol;
@@ -202,7 +209,7 @@ public class Weapon : MonoBehaviour
         return stateModifier;
     }
 
-    // 인장적용 (임시)
+    // 인장 적용 메서드
     private void SetInscriprion(Inscription.Data data)
     {
         foreach (State state in data.states)
@@ -230,23 +237,27 @@ public class Weapon : MonoBehaviour
         parent = null;
     }
 
+    // 발사와 재장전을 제어하는 플래그들
     protected bool isFire = false;
     protected bool isFireready = true;
     protected bool isReload = false;
     protected float sumAccuracy = 0;
 
-    // 좌클릭 메서드
+    // 좌클릭 발사 메서드
     public virtual void Fire1(Transform transform)
     {
+        // 발사 조건 확인 및 발사 처리
         if (!isReload && !isFire && isFireready && residualAmmunition > 0)
         {
             if(!weaponController.IsUnityNull()) weaponController.Fire1();
-            // if(!fire.IsUnityNull()) fire.Play();
+
             // 투사체 갯수 설정
             // ex) 1.3 = 1 (70%) or 2 (30%)
             int pj = (int)(character.GetModifier().GetState(StateType.Projectiles) % 1 > UnityEngine.Random.Range(0f, 1f) ?
                         character.GetModifier().GetState(StateType.Projectiles) + 1 : character.GetModifier().GetState(StateType.Projectiles));
-            for (int i = 0; i < pj; i++) // 투사체 개수만큼 반복
+
+            // 투사체 개수만큼 반복
+            for (int i = 0; i < pj; i++) 
             {
                 var xError = GetRandomNormalDistribution(0f, sumAccuracy); // 탄퍼짐
                 var yError = GetRandomNormalDistribution(0f, sumAccuracy); // 탄퍼짐
@@ -278,13 +289,11 @@ public class Weapon : MonoBehaviour
             if (parent.tag.Equals("Player")) GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.PlayerShot);
             // Debug.Log(residualAmmunition + "/" + character.GetModifier().GetState(StateType.Magazine));
         }
-        if (residualAmmunition <= 0)
-        {
-            // 잔탄 소진 시 재장전
-            // Debug.Log("need load");
-            Reload();
-        }
-        if (Input.GetButtonUp("Fire1")) isFireready = true;
+        // 잔탄이 다 떨어졌을 때 자동으로 재장전
+        if (residualAmmunition <= 0) Reload();
+
+        // 좌클릭 떼면 발사 가능 상태로 설정
+        // if (Input.GetButtonUp("Fire1")) isFireready = true;
     }
 
     // 차탄 사격 딜레이 용

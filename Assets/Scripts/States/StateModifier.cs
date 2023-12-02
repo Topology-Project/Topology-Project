@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class StateModifier
 {
+    // 스탯 연산용 델리게이트 딕셔너리
     private Dictionary<StateType, StateHandler<State>> modifier = new();
 
+    // 다양한 스탯에 대한 이벤트
     private event StateHandler<State> baseDamage;
     private event StateHandler<State> criticalX;
     private event StateHandler<State> luckyShot;
@@ -36,6 +38,7 @@ public class StateModifier
 
     public StateModifier()
     {
+        // 딕셔너리에 스탯 연산 이벤트 추가
         modifier.Add(StateType.BaseDamage, baseDamage);
         modifier.Add(StateType.CriticalX, criticalX);
         modifier.Add(StateType.LuckyShot, luckyShot);
@@ -70,19 +73,26 @@ public class StateModifier
         float baseVar = 0;
         float sum = 0;
         float mul = 0;
+
+        // 딕셔너리에서 해당 스탯의 연산 이벤트를 찾아 호출
         modifier[stateType](ref baseVar, ref sum, ref mul);
         // if(stateType == StateType.CriticalX) Debug.Log(stateType.ToString() + " : " + baseVar+","+sum+","+mul+","+(baseVar + ((baseVar==0 ? 1 : baseVar) * sum)) * mul);
+
+        // 스텟 객체 생성 및 반환
         return new State(stateType, (baseVar + (baseVar*sum)) * (1+mul));
     }
 
     // 스탯 핸들러 추가 메서드
     public void AddHandler(State state)
     {
+        // 해당 스탯의 연산 이벤트에 스탯의 연산 메서드 추가
         // StateHandler<State> += void (ref float baseVar, ref float sum, ref float mul)
         modifier[state.stateType] += state.operatorHandler(state);
     }
+    // 다른 StateModifier의 스탯 핸들러를 추가하는 메서드
     public void AddHandler(StateModifier stateModifier)
     {
+        // 이미 등록된 핸들러 제거 후 새로운 핸들러 추가
         DelHandler(stateModifier);
         foreach(var handler in stateModifier.modifier)
         {
@@ -93,10 +103,13 @@ public class StateModifier
     // 스탯 핸들러 제거 메서드
     public void DelHandler(State state)
     {
+        // 해당 스탯의 연산 이벤트에서 스탯의 연산 메서드 제거
         modifier[state.stateType] -= state.operatorHandler(state);
     }
+    // 다른 StateModifier의 스탯 핸들러를 제거하는 메서드
     public void DelHandler(StateModifier stateModifier)
     {
+        // 다른 StateModifier의 모든 연산 이벤트에서 연산 메서드 제거
         foreach(var handler in stateModifier.modifier)
         {
             modifier[handler.Key] -= handler.Value;
