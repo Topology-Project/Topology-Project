@@ -15,10 +15,6 @@ public class Map : MonoBehaviour
     public Transform[] enemySpawnPoints; // 적들 스폰 위치 설정
 
     public int enemyCount = 0; // 현재 방에 존재하는 적들 카운트
-    private void Start()
-    {
-
-    }
 
     private bool isRoomSet = false;
 
@@ -63,28 +59,15 @@ public class Map : MonoBehaviour
     public void DoorActive(bool b)
     {
         int i = 0;
-        GetIdx(prevMap, out i);
-        doors[i].IsOpen = b;
-        GetIdx(nextMap, out i);
-        doors[i].IsOpen = b;
+        if(GetIdx(prevMap, out i)) doors[i].IsOpen = b;
+        if(GetIdx(nextMap, out i)) doors[i].IsOpen = b;
     }
 
     // 상자 언락 메서드
     public void ChestUnlock()
     {
         int i = 0;
-        if (GetIdx(nextMap, out i))
-        {
-            doors[i].ChestUnlock();
-        } 
-        else
-        {
-            if(nextMaps.Length > i)
-            {
-                while(nextMaps[i] == prevMap) i = Random.Range(0, nextMaps.Length);
-                doors[i].ChestUnlock();
-            }
-        }
+        if (GetIdx(nextMap, out i)) doors[i].ChestUnlock();
     }
 
     // 상자 셋팅 메서드
@@ -98,24 +81,24 @@ public class Map : MonoBehaviour
             return;
         } 
         int i = 0;
-        if (GetIdx(nextMap, out i))
+        if(GetIdx(nextMap, out i))
         {
-            doors[i].WarpSet();
-            doors[i].ChestSet();
-        } 
-        else
-        {
-            while(nextMaps[i] == prevMap) i = Random.Range(0, nextMaps.Length);
             doors[i].WarpSet();
             doors[i].ChestSet();
         }
+        else 
+        {
+            while(prevMap == nextMaps[i]) i++;
+            doors[i].WarpSet();
+            doors[i].ChestSet();
+            nextMap = nextMaps[i];
+        } 
     }
 
     // 방 문 찾기용 메서드 (임시)
     public bool GetIdx(Map map, out int idx)
     {
-        int i;
-        for (i = 0; i < nextMaps.Length; i++)
+        for (int i = 0; i < nextMaps.Length; i++)
         {
             if (nextMaps[i] == map)
             {
@@ -123,7 +106,7 @@ public class Map : MonoBehaviour
                 return true;
             }
         }
-        idx = doors.Length-1;
+        idx = 0;
         return false;
     }
 }

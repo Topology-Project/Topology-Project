@@ -26,6 +26,11 @@ public class Door : MonoBehaviour
         }
     }
 
+    public void Awake()
+    {
+        open.SetActive(false);
+    }
+    
     // 도어트리거 셋팅
     public void DTSet() => doorTrig.isSet = true;
 
@@ -51,7 +56,7 @@ public class Door : MonoBehaviour
     // 워프용 게이트로 전환
     public void WarpSet()
     {
-        Debug.Log(transform.parent.name);
+        // Debug.Log(transform.parent.name);
         trig.SetActive(false);
         warp.SetActive(true);
     }

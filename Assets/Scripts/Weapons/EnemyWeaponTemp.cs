@@ -16,7 +16,7 @@ public class EnemyWeaponTemp : Weapon
 
     public override void Fire1(Transform transform)
     {
-        Debug.Log("Enemy Fire");
+        // Debug.Log("Enemy Fire");
         // bullet인스턴스 생성 및 초기화 (임시)
         GameObject b = Instantiate(bullet, transform.position + Vector3.up, transform.rotation);
         b.GetComponent<Bullet>().Set(parent,

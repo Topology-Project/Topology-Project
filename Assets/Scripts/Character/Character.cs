@@ -221,14 +221,14 @@ public class Character : MonoBehaviour, CharacterInterface
 
         if(tag.Equals("Enemy")) GameManager.Instance.StageManager.MaxDamage = damage;
 
-        Debug.Log("Damage : " + stateModifier.GetState(StateType.BaseDamage)
-                    + "*" + stateModifier.GetState(StateType.WPNUpgrade)
-                    + "*" + stateModifier.GetState(StateType.BaseDMGIncrease)
-                    + "*" + stateModifier.GetState(StateType.ExplosionDMGIncrease)
-                    + "*" + stateModifier.GetState(StateType.ElementalDMGIncrease)
-                    + "*" + lsh
-                    + "*" + stateModifier.GetState(StateType.CriticalX)
-                    + "=" + damage);
+        // Debug.Log("Damage : " + stateModifier.GetState(StateType.BaseDamage)
+        //             + "*" + stateModifier.GetState(StateType.WPNUpgrade)
+        //             + "*" + stateModifier.GetState(StateType.BaseDMGIncrease)
+        //             + "*" + stateModifier.GetState(StateType.ExplosionDMGIncrease)
+        //             + "*" + stateModifier.GetState(StateType.ElementalDMGIncrease)
+        //             + "*" + lsh
+        //             + "*" + stateModifier.GetState(StateType.CriticalX)
+        //             + "=" + damage);
         Damage(damage);
         return damage;
     }
@@ -242,7 +242,7 @@ public class Character : MonoBehaviour, CharacterInterface
             if (!parent.tag.Equals(gameObject.tag))
             {
                 DamageCalc(parent.GetComponent<CharacterInterface>().GetModifier());
-                Debug.Log(gameObject.tag + " : " + protectionPoint + " / " + healthPoint);
+                // Debug.Log(gameObject.tag + " : " + protectionPoint + " / " + healthPoint);
             }
         }
     }
