@@ -38,7 +38,7 @@ public class Inscriptions : MonoBehaviour
         {
             int rnd = UnityEngine.Random.Range(0, inscription.datas.Length);
             datas[i] = Inscription.Clone(inscription.datas[rnd]);
-            Debug.Log(datas[i].info);
+            // Debug.Log(datas[i].info);
         }
         return datas;
     }

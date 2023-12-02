@@ -56,7 +56,7 @@ public class Door : MonoBehaviour
     // 워프용 게이트로 전환
     public void WarpSet()
     {
-        Debug.Log(transform.parent.name);
+        // Debug.Log(transform.parent.name);
         trig.SetActive(false);
         warp.SetActive(true);
     }

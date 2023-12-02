@@ -149,7 +149,7 @@ public class Enemy : Character
     IEnumerator Attack()
     {
         isAtk = true;
-        Debug.Log("atk start");
+        // Debug.Log("atk start");
         yield return new WaitForSecondsRealtime(1f);
         audioSource.clip = fireSound;
         Fire1(transform);
@@ -158,7 +158,7 @@ public class Enemy : Character
         Fire1(transform);
         yield return new WaitForSecondsRealtime(0.2f);
         Fire1(transform);
-        Debug.Log("atk end");
+        // Debug.Log("atk end");
         isAtk = false;
     }
 
@@ -216,7 +216,7 @@ public class Enemy : Character
                 GameManager.Instance.TriggerManager.OnTrigger(PlayTriggerType.EnemyHit);
                 HP.fillAmount = (float)healthPoint / (float)maxHealthPoint;
                 // Debug.Log("fillamount : " + HP.fillAmount + "(" + healthPoint + " / " + maxHealthPoint + ")");
-                Debug.Log("나 체력 준다");
+                // Debug.Log("나 체력 준다");
                 if (healthPoint <= 0 && isAlive)
                 {
                     isAlive = false;
