@@ -30,7 +30,8 @@ public class StageManager : MonoBehaviour
         {
             "s1_start_1130",
             // "s1_1106map", "s1_1106map", "s1_1106map", "s1_1106map",
-            "Boss_map"
+            // "Boss_map"
+            "Boss_Golem 1"
         };
     }
 

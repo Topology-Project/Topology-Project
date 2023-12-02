@@ -37,22 +37,22 @@ public class Boss : Enemy
     {
         if (!isAtk)
         {
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f)
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("3909_Stand_InCombat") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f)
             {
                 switch (GetRandomPattern())
                 {
-                    case "Razer":
-                        StartCoroutine(Razer());
+                    // case "Razer":
+                    //     StartCoroutine(Razer());
+                    //     break;
+                    // case "Stone_Pillar":
+                    //     StartCoroutine(Stone_Pillar());
+                    //     break;
+                    // case "Meteor":
+                    //     StartCoroutine(Meteor());
+                    //     break;
+                    case "Rocket_Punch":
+                        StartCoroutine(Rocket_Punch());
                         break;
-                    case "Stone_Pillar":
-                        StartCoroutine(Stone_Pillar());
-                        break;
-                    case "Meteor":
-                        StartCoroutine(Meteor());
-                        break;
-                        // case "Rocket_Punch":
-                        //     StartCoroutine(Rocket_Punch());
-                        //     break;
                 }
             }
         }
@@ -135,8 +135,10 @@ public class Boss : Enemy
         while (true)
         {
             yield return null;
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("3909_Attack01 (1)") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("3909_Attack01 (2)") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+            // if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
             {
+        Debug.Log(animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
                 Destroy_Pillar();
                 break;
             }
