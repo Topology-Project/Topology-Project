@@ -26,6 +26,11 @@ public class Door : MonoBehaviour
         }
     }
 
+    public void Awake()
+    {
+        open.SetActive(false);
+    }
+    
     // 도어트리거 셋팅
     public void DTSet() => doorTrig.isSet = true;
 

@@ -184,7 +184,8 @@ public class Enemy : Character
     {
         base.Start();
 
-        maxHealthPoint.ResetState(3000f);
+        maxHealthPoint.ResetState(800f);
+        healthPoint = maxHealthPoint;
         player = GameManager.Instance.Player.gameObject;
         nma = GetComponent<NavMeshAgent>();
         nma.stoppingDistance = 2f;

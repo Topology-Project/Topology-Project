@@ -25208,7 +25208,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doors:
   - {fileID: 1620091922}
-  nextMaps: []
+  nextMaps:
+  - {fileID: 0}
   nextMap: {fileID: 0}
   prevMap: {fileID: 0}
   playerSpawnPoint: {fileID: 2069814195}
