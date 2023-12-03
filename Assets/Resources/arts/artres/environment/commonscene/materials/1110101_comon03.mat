@@ -166,11 +166,11 @@ Material:
     - M1HeightFogEnd: 0
     - M1HeightFogStart: 0
     - ViewFogPower: 0
-    - _1st2nd_Shades_Feather: 0.198
-    - _1st_ShadeColor_Feather: 0.225
-    - _1st_ShadeColor_Step: 0.542
-    - _2nd_ShadeColor_Feather: 0.198
-    - _2nd_ShadeColor_Step: 0.652
+    - _1st2nd_Shades_Feather: 0.218
+    - _1st_ShadeColor_Feather: 0.199
+    - _1st_ShadeColor_Step: 0.98
+    - _2nd_ShadeColor_Feather: 0.218
+    - _2nd_ShadeColor_Step: 0.68
     - _Add_Antipodean_RimLight: 0
     - _AlbedoEnhance: 1
     - _AlphaClip: 0
@@ -178,8 +178,8 @@ Material:
     - _AnimationRatio: 1
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
-    - _BaseColor_Step: 0.542
-    - _BaseShade_Feather: 0.225
+    - _BaseColor_Step: 0.98
+    - _BaseShade_Feather: 0.199
     - _Base_Speed: 0
     - _Blend: 0
     - _BlurLevelMatcap: 0
@@ -272,7 +272,7 @@ Material:
     - _Scroll_EmissiveU: 0
     - _Scroll_EmissiveV: 0
     - _Set_SystemShadowsToBase: 1
-    - _ShadeColor_Step: 0.652
+    - _ShadeColor_Step: 0.68
     - _ShadowMaskRatio: 0.53
     - _SmoothnessTextureChannel: 1
     - _SpecularHighlights: 1
@@ -298,14 +298,14 @@ Material:
     - _utsTechnique: 0
     - _utsVersion: 2.09
     m_Colors:
-    - _1st_ShadeColor: {r: 0.6320754, g: 0.5694642, b: 0.5694642, a: 1}
-    - _2nd_ShadeColor: {r: 0.21698111, g: 0.16478282, b: 0.21219495, a: 1}
+    - _1st_ShadeColor: {r: 0.6603774, g: 0.58873266, b: 0.58873266, a: 1}
+    - _2nd_ShadeColor: {r: 0.21568628, g: 0.16886114, b: 0.16470589, a: 1}
     - _Ambient: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
     - _AnimationColor: {r: 1, g: 1, b: 1, a: 1}
     - _AnimationDir: {r: 0, g: 0, b: 0, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BaseColor: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 1}
-    - _Color: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 1}
+    - _BaseColor: {r: 0.8342917, g: 0.8773585, b: 0.79872733, a: 1}
+    - _Color: {r: 0.8342917, g: 0.8773585, b: 0.79872733, a: 1}
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _DissolveEdgeAlbedo: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveEnd: {r: 0, g: 0, b: 0, a: 1}
