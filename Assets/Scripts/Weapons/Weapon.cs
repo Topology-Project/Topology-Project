@@ -293,7 +293,7 @@ public class Weapon : MonoBehaviour
         if (residualAmmunition <= 0) Reload();
 
         // 좌클릭 떼면 발사 가능 상태로 설정
-        // if (Input.GetButtonUp("Fire1")) isFireready = true;
+        if (Input.GetButtonUp("Fire1")) isFireready = true;
     }
 
     // 차탄 사격 딜레이 용
