@@ -63,16 +63,16 @@ public class InventoryUI : MonoBehaviour
     {
         ScrollUI.SetActive(false);
         weaponUI.SetActive(false);
-        switch(i)
+        switch (i)
         {
             case 0:
-            ScrollUI.SetActive(true);
-            break;
+                ScrollUI.SetActive(true);
+                break;
             case 1:
-            weaponUI.SetActive(true);
-            break;
+                weaponUI.SetActive(true);
+                break;
             default:
-            break;
+                break;
         }
     }
 }
