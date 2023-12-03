@@ -76,7 +76,7 @@ public class MapManager : MonoBehaviour
 
             // 현재 스택의 맨 위 맵을 가져옴
             Map peek = mapStack.Peek();
-            if(keyValuePairs.ContainsKey(peek)) Debug.Log(peek.name);
+            // if(keyValuePairs.ContainsKey(peek)) Debug.Log(peek.name);
 
             // 맵이 딕셔너리에 존재하지 않으면 추가하고 값을 false로 초기화
             if(!keyValuePairs.ContainsKey(peek)) keyValuePairs.Add(peek, false);
@@ -88,7 +88,7 @@ public class MapManager : MonoBehaviour
 
                 random = Random.Range(0, peek.doors.Length); // 현재 맵의 문 중 하나를 무작위로 선택
 
-                // 선택된 문이 다음 맵을 가지고 있고, 딕셔너리, 그 다음 맵이 스택에 존재하지 않으면 스택에 추가
+                // 선택된 문이 다음 맵을 가지고 있고,  그 다음 맵이 스택에 존재하지 않으면 스택에 추가
                 if(peek.nextMaps[random] != null && !mapStack.Contains(peek.nextMaps[random])) mapStack.Push(peek.nextMaps[random]);
 
             }
