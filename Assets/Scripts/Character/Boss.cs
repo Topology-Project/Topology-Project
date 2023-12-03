@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class Boss : Enemy
 {
-    private GameObject target;
-
     private Animator animator;
 
     private float WaitT = 0f;
@@ -21,6 +19,7 @@ public class Boss : Enemy
 
     public GameObject razer;
     private LineRenderer LR;
+    private RaycastHit hit;
     private bool isRazer = false;
 
     public GameObject pillar;
@@ -29,6 +28,7 @@ public class Boss : Enemy
     public GameObject meteor;
     private List<GameObject> meteor_list = new List<GameObject>();
 
+    public GameObject[] hand;
     public GameObject[] punch;
     private List<GameObject> punch_list = new List<GameObject>();
 
@@ -41,18 +41,18 @@ public class Boss : Enemy
             {
                 switch (GetRandomPattern())
                 {
-                    // case "Razer":
-                    //     StartCoroutine(Razer());
-                    //     break;
-                    // case "Stone_Pillar":
-                    //     StartCoroutine(Stone_Pillar());
-                    //     break;
-                    // case "Meteor":
-                    //     StartCoroutine(Meteor());
-                    //     break;
-                    case "Rocket_Punch":
-                        StartCoroutine(Rocket_Punch());
+                    case "Razer":
+                        StartCoroutine(Razer());
                         break;
+                        // case "Stone_Pillar":
+                        //     StartCoroutine(Stone_Pillar());
+                        //     break;
+                        // case "Meteor":
+                        //     StartCoroutine(Meteor());
+                        //     break;
+                        // case "Rocket_Punch":
+                        //     StartCoroutine(Rocket_Punch());
+                        //     break;
                 }
             }
         }
@@ -103,17 +103,19 @@ public class Boss : Enemy
         LR.startWidth = 1f;
         LR.endWidth = 1f;
     }
-    RaycastHit hit;
     private void Shot_Razer()
     {
         LR.enabled = true;
 
         Vector3 razerPoint = razer.transform.position;
-        Vector3 endPoint = target.transform.position + Vector3.down;
+        Vector3 endPoint = player.transform.position + Vector3.down;
 
         if (Physics.Linecast(razerPoint, endPoint, out hit))
         {
-            endPoint = hit.transform.position + Vector3.down;
+            if (hit.transform.CompareTag("Pillar"))
+            {
+                endPoint = hit.transform.position + Vector3.down;
+            }
         }
 
         LR.SetPosition(0, razerPoint);
@@ -138,7 +140,7 @@ public class Boss : Enemy
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("3909_Attack01 (2)") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
             // if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
             {
-        Debug.Log(animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+                Debug.Log(animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
                 Destroy_Pillar();
                 break;
             }
@@ -158,18 +160,18 @@ public class Boss : Enemy
     }
     private void Warning_Build_Pillar()
     {
-        for (float x = -30; x <= 20; x += 6f)
+        for (float x = 0; x <= 40; x += 5f)
         {
-            for (float z = -10; z <= 10; z += 10)
+            for (float z = 0; z <= 25; z += 12.5f)
             {
-                float randomX = Random.Range(-3.0f, 3.0f);
-                float randomZ = Random.Range(-3.0f, 3.0f);
+                float randomX = Random.Range(-3.0f, 3.0f) - 30f;
+                float randomZ = Random.Range(-2.0f, 2.0f) - 12.5f;
 
-                if (x % 12 == 0 && z != 0)
+                if (x % 10 == 0 && z != 12.5f)
                 {
                     warning_list.Add(Instantiate(warning, new Vector3(x + randomX, 0, z + randomZ), transform.rotation));
                 }
-                else if (x % 12 == 6f && z == 0)
+                else if (x % 10 != 0 && z == 12.5f)
                 {
                     warning_list.Add(Instantiate(warning, new Vector3(x + randomX, 0, z + randomZ), transform.rotation));
                 }
@@ -208,18 +210,18 @@ public class Boss : Enemy
     }
     private void Setup_Pillar()
     {
-        for (float x = -30; x <= 20; x += 6f)
+        for (float x = 0; x <= 40; x += 5f)
         {
-            for (float z = -10; z <= 10; z += 10)
+            for (float z = 0; z <= 25; z += 12.5f)
             {
-                float randomX = Random.Range(-3.0f, 3.0f);
-                float randomZ = Random.Range(-3.0f, 3.0f);
+                float randomX = Random.Range(-3.0f, 3.0f) - 30f;
+                float randomZ = Random.Range(-2.0f, 2.0f) - 12.5f;
                 GameObject go = null;
-                if (x % 12 == 0 && z != 0)
+                if (x % 10 == 0 && z != 12.5f)
                 {
                     pillar_list.Add(go = Instantiate(pillar, new Vector3(x + randomX, 0, z + randomZ), transform.rotation));
                 }
-                else if (x % 12 == 6f && z == 0)
+                else if (x % 10 != 0 && z == 12.5f)
                 {
                     pillar_list.Add(go = Instantiate(pillar, new Vector3(x + randomX, 0, z + randomZ), transform.rotation));
                 }
@@ -255,8 +257,8 @@ public class Boss : Enemy
     {
         for (int i = 0; i < meteor_list.Count; i++)
         {
-            Vector3 shotDirection = (target.transform.position - meteor_list[i].transform.position).normalized;
-            float shotSpeed = 20f;
+            Vector3 shotDirection = (player.transform.position - meteor_list[i].transform.position).normalized;
+            float shotSpeed = 40f;
             meteor_list[i].GetComponent<Rigidbody>().velocity = shotDirection * shotSpeed;
             yield return new WaitForSecondsRealtime(0.3f);
         }
@@ -270,24 +272,27 @@ public class Boss : Enemy
         Ready_Punch();
         yield return new WaitForSecondsRealtime(2.0f);
         StartCoroutine(Shot_Punch());
-        yield return new WaitForSecondsRealtime(2.0f);
+        yield return new WaitForSecondsRealtime(1.5f);
         animator.SetTrigger("ArmFireEnd");
     }
     private void Ready_Punch()
     {
-        Vector3 bossPos = transform.position;
-        Vector3 playerPos = target.transform.position;
+        Transform leftInfo = hand[0].transform;
+        Transform rightInfo = hand[1].transform;
+        Vector3 playerPos = player.transform.position;
         punch_list.Clear();
         GameObject go = null;
-        punch_list.Add(go = Instantiate(punch[0], new Vector3(bossPos.x + 20, 10, bossPos.z - 5), transform.rotation));
+        punch_list.Add(go = Instantiate(punch[0], leftInfo.position, leftInfo.rotation));
+        go.gameObject.SetActive(false);
         go.GetComponent<Rocket_Punch>().Set(gameObject, 0, 100, 100);
-        punch_list.Add(go = Instantiate(punch[1], new Vector3(bossPos.x - 20, 10, bossPos.z - 5), transform.rotation));
+        punch_list.Add(go = Instantiate(punch[1], rightInfo.position, rightInfo.rotation));
+        go.gameObject.SetActive(false);
         go.GetComponent<Rocket_Punch>().Set(gameObject, 0, 100, 100);
-        warning_list.Add(Instantiate(warning, new Vector3(playerPos.x + 3, 0, playerPos.z), target.transform.rotation));
-        warning_list.Add(Instantiate(warning, new Vector3(playerPos.x - 3, 0, playerPos.z), target.transform.rotation));
+        warning_list.Add(Instantiate(warning, new Vector3(playerPos.x + 7, 0, playerPos.z), player.transform.rotation));
+        warning_list.Add(Instantiate(warning, new Vector3(playerPos.x - 7, 0, playerPos.z), player.transform.rotation));
         for (int i = 0; i < warning_list.Count; i++)
         {
-            warning_list[i].transform.localScale = new Vector3(2, warning_list[i].transform.localScale.y, 2);
+            warning_list[i].transform.localScale = new Vector3(3, warning_list[i].transform.localScale.y, 3);
         }
     }
     private IEnumerator Shot_Punch()
@@ -296,9 +301,10 @@ public class Boss : Enemy
         {
             Vector3 shotPos = warning_list[i].transform.position;
             Vector3 shotDirection = (new Vector3(shotPos.x, 0, shotPos.z) - punch_list[i].transform.position).normalized;
-            float shotSpeed = 50f;
+            float shotSpeed = 75f;
             if (i == 0) animator.SetTrigger("ArmFireL");
             else animator.SetTrigger("ArmFireR");
+            punch_list[i].gameObject.SetActive(true);
             punch_list[i].GetComponent<Rigidbody>().velocity = shotDirection * shotSpeed;
             yield return new WaitForSecondsRealtime(0.3f);
         }
@@ -315,7 +321,7 @@ public class Boss : Enemy
         weapon.OnWeapon(this);
         stateModifier.AddHandler(weapon.GetModifier());
         animator = GetComponent<Animator>();
-        target = GameManager.Instance.Player.gameObject;
+        player = GameManager.Instance.Player.gameObject;
         maxHealthPoint.ResetState(30000);
         // maxProtectionPoint.ResetState(8000);
         healthPoint = maxHealthPoint;

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Enemy : Character
 {
     public GameObject damageText;
-    [SerializeField] private GameObject player;
+    [SerializeField] public GameObject player;
     protected NavMeshAgent nma;
 
     public float UpdateTime = 3f;
