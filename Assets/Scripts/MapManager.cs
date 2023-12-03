@@ -23,6 +23,7 @@ public class MapManager : MonoBehaviour
         activeMap = new Map[round];
         Stack<Map> mapStack = new();
 
+        // 루트 타입에 따라 방을 생성하는 로직 선택
         if(rootType == RootType.Random) RandomRoot(mapStack);
         else if(rootType == RootType.Fixed) FixedRoot(mapStack);
 
@@ -48,34 +49,49 @@ public class MapManager : MonoBehaviour
         PlayerSpawn(); // 플레이어 워프
         // EnterRoom(); // 방 셋팅
     }
+    // 고정된 루트를 사용하여 방을 스택에 추가
     private void FixedRoot(Stack<Map> mapStack)
     {
         foreach(Map map in maps) mapStack.Push(map);
     }
+    // 무작위 루트를 사용하여 방을 스택에 추가
     private void RandomRoot(Stack<Map> mapStack)
     {
+        // 각 맵과 해당 맵이 스택에 추가되었는지 여부를 저장하는 딕셔너리
         Dictionary<Map, bool> keyValuePairs = new();
         int random = 0;
         
+        // 원하는 방의 개수에 도달할 때까지 반복
         while(mapStack.Count < round)
         {
+            // 스택이 비어있을 때 초기화
             if(mapStack.Count <= 0)
             {
                 mapStack.Clear();
+                // maps 배열에서 무작위로 한 개의 맵을 스택에 추가
                 mapStack.Push(maps[Random.Range(0, maps.Length)]);
             }
+
+            // 현재 스택의 맨 위 맵을 가져옴
             Map peek = mapStack.Peek();
+
+            // 맵이 딕셔너리에 존재하지 않으면 추가하고 값을 false로 초기화
             if(!keyValuePairs.ContainsKey(peek)) keyValuePairs.Add(peek, false);
+
+            // 값이 false일 때 (맵을 추가할 수 있는 상태)
             if(!keyValuePairs[peek])
             {
-                keyValuePairs[peek] = true;
-                random = Random.Range(0, peek.doors.Length);
+                keyValuePairs[peek] = true; // 값을 true로 변경하여 현재 맵이 두 번 연속으로 추가되지 않도록 함
+                random = Random.Range(0, peek.doors.Length); // 현재 맵의 문 중 하나를 무작위로 선택
+
+                // 선택된 문이 다음 맵을 가지고 있고, 그 다음 맵이 딕셔너리에 존재하면 스택에 추가
                 if(!peek.nextMaps[random].IsUnityNull() && keyValuePairs.ContainsKey(peek.nextMaps[random])) mapStack.Push(peek.nextMaps[random]);
             }
+            // 값이 true일 때 (중복된 맵이 있는 상태)
             else 
             {
-                keyValuePairs[peek] = false;
-                mapStack.Pop();
+                keyValuePairs[peek] = false; // 값을 false로 변경하여 다음에도 다시 추가할 수 있도록 함
+                mapStack.Pop(); // 스택에서 현재 맵을 제거
             }
         }
     }

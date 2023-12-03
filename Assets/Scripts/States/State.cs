@@ -124,27 +124,34 @@ public class State
     //     else return false;
     // }
 
-    /* operator override */
+    /* 연산자 오버로드 */
+
+    // 스테이트 덧셈 연산
     public static float operator +(State s1, State s2)
     {
         return s1.Value + s2.Value;
     }
+    // 스테이트 곱셈 연산
     public static float operator *(State s1, State s2)
     {
         return s1.Value * s2.Value;
     }
+    // 정수와 스테이트 덧셈 연산
     public static float operator +(int i, State s2)
     {
         return i + s2.Value;
     }
+    // 스테이트와 실수 곱셈 연산
     public static float operator *(State s1, float f)
     {
         return s1.Value * f;
     }
+    // 문자열과 스테이트 덧셈 연산
     public static string operator +(string s, State s1)
     {
         return s + s1.Value;
     }
+    // 암묵적 형변환
     public static implicit operator float(State s1)
     {
         return s1.Value;

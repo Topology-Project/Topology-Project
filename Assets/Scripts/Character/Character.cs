@@ -127,6 +127,7 @@ public class Character : MonoBehaviour, CharacterInterface
 
     }
 
+    // 캐릭터 이동 메서드
     public virtual void Move(Vector3 dir)
     {
         if (isDash) dir *= stateModifier.GetState(StateType.DashSpeed);
@@ -167,11 +168,13 @@ public class Character : MonoBehaviour, CharacterInterface
 
     // 재장전 메서드
     public void Reload() => weapon.Reload();
+
     // 모디파이어 반환 메서드
     public StateModifier GetModifier()
     {
         return this.stateModifier;
     }
+    
     // 잔탄량 반환 메서드
     public int GetAmmo(AmmunitionType ammunitionType)
     {

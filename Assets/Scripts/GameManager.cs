@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager instance; // 게임매니저 인스턴스
-    public static GameManager Instance // 게임매니저의 모든 객체 접근 시
+    private static GameManager instance; // GameManager 클래스의 인스턴스를 저장하는 정적 변수
+    public static GameManager Instance // GameManager의 인스턴스에 접근하는 프로퍼티
                                        // GameManager.Instance로 접근 권장
     {
         get { if (instance == null) Init(); return instance; }
@@ -78,15 +78,14 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private bool isPlay = false;
-    public bool IsPlay
-    {
+    private bool isPlay = false; // 게임이 플레이 중인지 나타내는 변수
+    public bool IsPlay { 
         get { return isPlay; }
         set
         {
             isPlay = value;
-            if (isPlay)
-            {
+            if(isPlay)
+            {  
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
             }
@@ -96,7 +95,7 @@ public class GameManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Confined;
             }
         }
-    }
+        }
 
     void Awake()
     {
@@ -106,8 +105,9 @@ public class GameManager : MonoBehaviour
     {
         // if(gameObject != GameManager.Instance) Destroy(gameObject);
     }
-    static void Init() // 매니저 객체 초기화 메서드
+    static void Init() // GameManager와 관련된 매니저 및 객체 초기화 메서드
     {
+        // GameManager 인스턴스가 없을 경우에만 초기화
         if (instance == null)
         {
             GameObject go = GameObject.Find("Manager");
@@ -116,6 +116,7 @@ public class GameManager : MonoBehaviour
             {
                 go = new GameObject { name = "Manager" };
             }
+            // 필요한 컴포넌트들이 없을 경우 추가
             if (go.GetComponent<GameManager>() == null)
             {
                 go.AddComponent<GameManager>();
@@ -154,6 +155,7 @@ public class GameManager : MonoBehaviour
             eventSystem = go.GetComponent<EventSystem>();
             standaloneInputModule = go.GetComponent<StandaloneInputModule>();
         }
+        // 각각의 객체가 없을 경우 리소스에서 로드하여 추가
         if (instance.player == null)
         {
             GameObject go = GameObject.Find("Player");
@@ -220,10 +222,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public GameObject[] gameObjects;
+    public GameObject[] gameObjects; // 이동할 게임 오브젝트 배열
 
     public void MoveGameObjectToScene()
     {
+        // 게임 오브젝트 배열의 모든 게임 오브젝트를 첫 번째 씬으로 이동
         foreach(GameObject go in gameObjects) SceneManager.MoveGameObjectToScene(go, SceneManager.GetSceneAt(0));
     }
 

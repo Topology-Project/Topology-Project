@@ -5,10 +5,12 @@ using UnityEngine;
 public class Inscriptions : MonoBehaviour
 {
     [SerializeField]
+    // 인스펙터에서 지정할 인장 객체
     private Inscription inscription;
     // Start is called before the first frame update
     void Awake()
     {
+        // 각 데이터의 연산자 핸들러를 설정
         foreach(Inscription.Data data in inscription.datas)
         {
             OperatorHandler operatorHandler = null;
@@ -24,6 +26,8 @@ public class Inscriptions : MonoBehaviour
                 operatorHandler = State.MulOper;
                 break;
             }
+
+            // 각 상태의 연산자 핸들러를 설정
             foreach(State state in data.states) 
             {
                 state.operatorHandler = operatorHandler;
@@ -31,6 +35,7 @@ public class Inscriptions : MonoBehaviour
         }
     }
 
+    // 지정된 개수만큼 랜덤한 데이터를 반환하는 메서드
     public Inscription.Data[] GetRandomDatas(int amount)
     {
         Inscription.Data[] datas = new Inscription.Data[amount];

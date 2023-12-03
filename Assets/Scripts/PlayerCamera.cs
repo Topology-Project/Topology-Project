@@ -72,8 +72,10 @@ public class PlayerCamera : MonoBehaviour
 
     private void LateUpdate()
     {
+        // 플레이어 위치에 따라 카메라 위치 조정
         transform.position = player.transform.position;
 
+        // 카메라 각도 제한
         transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
         tempVector = new Vector3(tempVector.x, tempVector.y, 0);
     }
