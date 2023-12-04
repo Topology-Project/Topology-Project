@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3124136216581385843
 Transform:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3411488988694572700}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 2, y: 0, z: -4}
+  m_LocalPosition: {x: 1.5, y: 0, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -123,7 +123,7 @@ Transform:
   m_GameObject: {fileID: 6771569272346343280}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 297320962485957818}
@@ -262,7 +262,7 @@ Transform:
   m_GameObject: {fileID: 9021683988837625192}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3124136216581385843}
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   open: {fileID: 850052809107594810}
-  close: {fileID: 9130716505308853478}
+  close: {fileID: 6849191730745274812}
   trig: {fileID: 9021683988837625192}
   warp: {fileID: 3411488988694572700}
   chest: {fileID: 3155391152822755425}
@@ -408,11 +408,6 @@ PrefabInstance:
 --- !u!4 &3050787776358757578 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 11602868179550503, guid: 47c1a82537a950446a1cec8054be76fe, type: 3}
-  m_PrefabInstance: {fileID: 3062355313995838957}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &9130716505308853478 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6109548124072214795, guid: 47c1a82537a950446a1cec8054be76fe, type: 3}
   m_PrefabInstance: {fileID: 3062355313995838957}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6375268835856315625
