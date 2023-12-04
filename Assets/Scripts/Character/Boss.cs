@@ -44,15 +44,15 @@ public class Boss : Enemy
                     case "Razer":
                         StartCoroutine(Razer());
                         break;
-                        // case "Stone_Pillar":
-                        //     StartCoroutine(Stone_Pillar());
-                        //     break;
-                        // case "Meteor":
-                        //     StartCoroutine(Meteor());
-                        //     break;
-                        // case "Rocket_Punch":
-                        //     StartCoroutine(Rocket_Punch());
-                        //     break;
+                    case "Stone_Pillar":
+                        StartCoroutine(Stone_Pillar());
+                        break;
+                    case "Meteor":
+                        StartCoroutine(Meteor());
+                        break;
+                    case "Rocket_Punch":
+                        StartCoroutine(Rocket_Punch());
+                        break;
                 }
             }
         }
@@ -112,10 +112,10 @@ public class Boss : Enemy
 
         if (Physics.Linecast(razerPoint, endPoint, out hit, layerMask))
         {
-            if (hit.transform.CompareTag("Pillar"))
-            {
-                endPoint = hit.transform.position + Vector3.down;
-            }
+            // if (hit.transform.CompareTag("Pillar"))
+            // {
+            endPoint = hit.transform.position + Vector3.down;
+            // }
         }
 
         LR.SetPosition(0, razerPoint);
@@ -137,10 +137,9 @@ public class Boss : Enemy
         while (true)
         {
             yield return null;
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("3909_Attack01 (2)") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
-            // if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("3909_Attack01 (1)") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.75f)
             {
-                Debug.Log(animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+                // Debug.Log(animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
                 Destroy_Pillar();
                 break;
             }
@@ -315,7 +314,7 @@ public class Boss : Enemy
     protected override void Awake()
     {
         base.Awake();
-        layerMask = (1 << LayerMask.NameToLayer("BossObj")) | 
+        layerMask = (1 << LayerMask.NameToLayer("BossObj")) |
                     (1 << LayerMask.NameToLayer("Player"));
     }
     // Start is called before the first frame update
