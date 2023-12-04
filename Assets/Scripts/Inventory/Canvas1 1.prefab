@@ -627,9 +627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: {fileID: 2687759597017195527}
-  HP_Back: {fileID: 0}
   Pro: {fileID: 2687759595401333650}
-  Pro_Back: {fileID: 0}
 --- !u!114 &2117788304209226553
 MonoBehaviour:
   m_ObjectHideFlags: 0

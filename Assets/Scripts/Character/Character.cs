@@ -105,7 +105,7 @@ public class Character : MonoBehaviour, CharacterInterface
         ammoRate.ResetState(1);
 
         maxInfiniteAmmo = new Ammunition(AmmunitionType.Infinite, 999999999);
-        maxNomalAmmo = new Ammunition(AmmunitionType.Nomal, 300);
+        maxNomalAmmo = new Ammunition(AmmunitionType.Nomal, 3000);
         maxLargeAmmo = new Ammunition(AmmunitionType.Large, 200);
         maxSpecialAmmo = new Ammunition(AmmunitionType.Special, 100);
 

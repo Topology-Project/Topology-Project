@@ -79,8 +79,8 @@ public class Outro : MonoBehaviour
         StageName();
         result[0].gameObject.SetActive(false);
         result[1].gameObject.SetActive(false);
-        if(isResult) result[0].gameObject.SetActive(true);
-        else result[1].gameObject.SetActive(true);
+        if (isResult) result[0].gameObject.SetActive(true);//성공?
+        else result[1].gameObject.SetActive(true);//실패!
         result[2].gameObject.SetActive(false);
 
         T_stage.text = stage;
@@ -144,7 +144,8 @@ public class Outro : MonoBehaviour
         GameManager.Instance.MoveGameObjectToScene();
         SceneManager.LoadScene("Loading");
         var op = SceneManager.LoadSceneAsync("Intro", LoadSceneMode.Additive);
-        op.completed += (x) => {
+        op.completed += (x) =>
+        {
             SceneManager.UnloadSceneAsync("Loading");
             SceneManager.UnloadSceneAsync("Outro");
         };

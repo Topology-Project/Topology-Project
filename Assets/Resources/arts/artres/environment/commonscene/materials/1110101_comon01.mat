@@ -161,11 +161,11 @@ Material:
     - M1HeightFogEnd: 8.14
     - M1HeightFogStart: 21.52
     - ViewFogPower: 0
-    - _1st2nd_Shades_Feather: 0.076
+    - _1st2nd_Shades_Feather: 0.205
     - _1st_ShadeColor_Feather: 0.152
-    - _1st_ShadeColor_Step: 0.826
-    - _2nd_ShadeColor_Feather: 0.076
-    - _2nd_ShadeColor_Step: 0.728
+    - _1st_ShadeColor_Step: 0.813
+    - _2nd_ShadeColor_Feather: 0.205
+    - _2nd_ShadeColor_Step: 0.581
     - _Add_Antipodean_RimLight: 0
     - _AlbedoEnhance: 1
     - _AlphaClip: 0
@@ -173,7 +173,7 @@ Material:
     - _AnimationRatio: 1
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
-    - _BaseColor_Step: 0.826
+    - _BaseColor_Step: 0.813
     - _BaseShade_Feather: 0.152
     - _Base_Speed: 0
     - _Blend: 0
@@ -267,7 +267,7 @@ Material:
     - _Scroll_EmissiveU: 0
     - _Scroll_EmissiveV: 0
     - _Set_SystemShadowsToBase: 1
-    - _ShadeColor_Step: 0.728
+    - _ShadeColor_Step: 0.581
     - _ShadowMaskRatio: 0.38
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -293,14 +293,14 @@ Material:
     - _utsTechnique: 0
     - _utsVersion: 2.09
     m_Colors:
-    - _1st_ShadeColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
-    - _2nd_ShadeColor: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}
+    - _1st_ShadeColor: {r: 0.6698113, g: 0.58450514, b: 0.58450514, a: 1}
+    - _2nd_ShadeColor: {r: 0.35672492, g: 0.3539961, b: 0.4056604, a: 1}
     - _Ambient: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
     - _AnimationColor: {r: 1, g: 1, b: 1, a: 1}
     - _AnimationDir: {r: 0, g: 0, b: 0, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BaseColor: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 1}
-    - _Color: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 1}
+    - _BaseColor: {r: 0.8658075, g: 0.9245283, b: 0.8591136, a: 1}
+    - _Color: {r: 0.8658075, g: 0.9245283, b: 0.8591136, a: 1}
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _DissolveEdgeAlbedo: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveEnd: {r: 0, g: 0, b: 0, a: 1}

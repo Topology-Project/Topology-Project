@@ -18,6 +18,11 @@ public class Player : Character
     {
         base.Start();
         playerCamera = GameManager.Instance.MainCamera.GetComponent<Camera>();
+
+        maxHealthPoint.ResetState(3000);
+        healthPoint = maxHealthPoint;
+        maxProtectionPoint.ResetState(8000);
+        protectionPoint = maxProtectionPoint;
     }
 
     protected override void Update()

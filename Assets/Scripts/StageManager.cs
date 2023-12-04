@@ -18,7 +18,7 @@ public class StageManager : MonoBehaviour
     {
         set
         {
-            if (maxDamage < value) maxDamage = value;
+            if(maxDamage < value) maxDamage = value;
         }
         get { return maxDamage; }
     }
@@ -30,8 +30,8 @@ public class StageManager : MonoBehaviour
         stageNames = new string[]
         {
             "s1_start_1130",
-            // "s1_1106map", "s1_1106map", "s1_1106map", "s1_1106map",
-            "Boss_Golem 1"
+            "Stage_1_map", "Stage_1_map", "Stage_1_map", 
+            "Boss_map"
         };
     }
 
@@ -83,7 +83,7 @@ public class StageManager : MonoBehaviour
         SceneManager.UnloadSceneAsync("Loading");
 
         // 현재 맵 매니저가 존재하면 방 진입 및 스테이지 인덱스 증가
-        if (mapManager != null)
+        if (mapManager != null) 
         {
             mapManager.EnterRoom();
             stageIdx++;
@@ -99,8 +99,7 @@ public class StageManager : MonoBehaviour
             mapManager = null;
 
             // 다음 스테이지 씬을 로드하고, 맵 매니저를 찾는 콜백 등록
-            SceneLoad(stageNames[stageIdx], (x) =>
-            {
+            SceneLoad(stageNames[stageIdx], (x) => {
                 mapManager = FindObjectOfType<MapManager>();
             });
         }

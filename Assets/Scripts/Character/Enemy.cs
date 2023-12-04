@@ -150,7 +150,7 @@ public class Enemy : Character
     {
         isAtk = true;
         // Debug.Log("atk start");
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(2f);
         audioSource.clip = fireSound;
         Fire1(transform);
         audioSource.Play();
@@ -186,6 +186,8 @@ public class Enemy : Character
 
         maxHealthPoint.ResetState(800f);
         healthPoint = maxHealthPoint;
+        maxProtectionPoint.ResetState(0);
+        protectionPoint = maxProtectionPoint;
         player = GameManager.Instance.Player.gameObject;
         nma = GetComponent<NavMeshAgent>();
         nma.stoppingDistance = 2f;

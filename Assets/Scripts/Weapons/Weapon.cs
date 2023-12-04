@@ -176,7 +176,7 @@ public class Weapon : MonoBehaviour
         magazine.ResetState(9);
         projectiles.ResetState(1);
         projectileSpeed.ResetState(60);
-        rateOfFire.ResetState(30);
+        rateOfFire.ResetState(1.8f);
         reloadTime.ResetState(1.35f);
         upgrade.ResetState(1);
         accuracy.ResetState(1.2f);
@@ -246,8 +246,11 @@ public class Weapon : MonoBehaviour
     // 좌클릭 발사 메서드
     public virtual void Fire1(Transform transform)
     {
+        // 좌클릭 떼면 발사 가능 상태로 설정
+        // if (isFireready && !Input.GetButton("Fire1")) isFireready = true;
+
         // 발사 조건 확인 및 발사 처리
-        if (!isReload && !isFire && isFireready && residualAmmunition > 0)
+        if (!isReload && !isFire && residualAmmunition > 0)
         {
             if(!weaponController.IsUnityNull()) weaponController.Fire1();
 
@@ -277,7 +280,7 @@ public class Weapon : MonoBehaviour
 
                 // bullet인스턴스 생성 및 초기화 (임시)
                 // GameObject b = Instantiate(bullet, transform.position, fireDirection);
-                GameObject b = Instantiate(bullet, transform.position + transform.TransformDirection(Vector3.forward * 0.5f), fireDirection);
+                GameObject b = Instantiate(bullet, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.5f)), fireDirection);
                 b.GetComponent<Bullet>().Set(parent,
                     character.GetModifier().GetState(StateType.ProjectileSpeed),
                     character.GetModifier().GetState(StateType.Range));
@@ -292,8 +295,6 @@ public class Weapon : MonoBehaviour
         // 잔탄이 다 떨어졌을 때 자동으로 재장전
         if (residualAmmunition <= 0) Reload();
 
-        // 좌클릭 떼면 발사 가능 상태로 설정
-        // if (Input.GetButtonUp("Fire1")) isFireready = true;
     }
 
     // 차탄 사격 딜레이 용
