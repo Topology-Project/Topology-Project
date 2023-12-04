@@ -378,11 +378,11 @@ PrefabInstance:
     - target: {fileID: 2687759596850940454, guid: a3e2320d9a00a7d4695a666c4bc1bb6f, type: 3}
       propertyPath: soundWhenTrue
       value: 
-      objectReference: {fileID: 8300000, guid: 92f6c764f0860d64a8119a60cd8df793, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 2687759596850940454, guid: a3e2320d9a00a7d4695a666c4bc1bb6f, type: 3}
       propertyPath: soundWhenFalse
       value: 
-      objectReference: {fileID: 8300000, guid: db76fa156b19d5646b91b63c6a3c0bcd, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 2687759596850940454, guid: a3e2320d9a00a7d4695a666c4bc1bb6f, type: 3}
       propertyPath: arrAudio.Array.size
       value: 1
