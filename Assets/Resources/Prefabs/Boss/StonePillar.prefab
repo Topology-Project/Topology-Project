@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: -7812687952396116627}
   - component: {fileID: 2687530265092836996}
   - component: {fileID: 8243692344614285770}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: 39095_1
-  m_TagString: 
+  m_TagString: Pillar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,9 +107,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: -5564287728671085196}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: 39095_stonewarming
-  m_TagString: AOEEffect
+  m_TagString: Pillar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,9 +140,9 @@ GameObject:
   - component: {fileID: -819731915759368564}
   - component: {fileID: 5972952219191509716}
   - component: {fileID: 5310472123061430010}
-  m_Layer: 24
+  m_Layer: 11
   m_Name: 39095_StonePillar
-  m_TagString: 
+  m_TagString: Pillar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -204,9 +204,9 @@ GameObject:
   - component: {fileID: -8342213244069734388}
   - component: {fileID: 5656125982690956355}
   - component: {fileID: -187059003967152803}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: 39095_2
-  m_TagString: 
+  m_TagString: Pillar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -299,9 +299,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: -7471496890417233743}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: position
-  m_TagString: 
+  m_TagString: Pillar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -333,9 +333,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: -7693221296055157367}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Top
-  m_TagString: 
+  m_TagString: Pillar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -365,7 +365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9114674378410189353}
   - component: {fileID: -5438979374649376392}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: StonePillar
   m_TagString: Pillar
   m_Icon: {fileID: 0}
@@ -418,9 +418,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2782248716931583599}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CenterPoint
-  m_TagString: 
+  m_TagString: Pillar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -452,9 +452,9 @@ GameObject:
   - component: {fileID: -704843983734635281}
   - component: {fileID: -8042672243639893035}
   - component: {fileID: 4165710528878323838}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: 39095_4
-  m_TagString: 
+  m_TagString: Pillar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -536,9 +536,9 @@ GameObject:
   - component: {fileID: -1189874384464586587}
   - component: {fileID: -9214606336958131589}
   - component: {fileID: -9048964025372885761}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: 39095_3
-  m_TagString: 
+  m_TagString: Pillar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

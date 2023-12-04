@@ -108,9 +108,9 @@ public class Boss : Enemy
         LR.enabled = true;
 
         Vector3 razerPoint = razer.transform.position;
-        Vector3 endPoint = player.transform.position + Vector3.down;
+        Vector3 endPoint = player.transform.position + (Vector3.down * 0.5f);
 
-        if (Physics.Linecast(razerPoint, endPoint, out hit))
+        if (Physics.Linecast(razerPoint, endPoint, out hit, layerMask))
         {
             if (hit.transform.CompareTag("Pillar"))
             {
@@ -311,9 +311,12 @@ public class Boss : Enemy
         warning_list.Clear();
     }
 
+    LayerMask layerMask;
     protected override void Awake()
     {
         base.Awake();
+        layerMask = (1 << LayerMask.NameToLayer("BossObj")) | 
+                    (1 << LayerMask.NameToLayer("Player"));
     }
     // Start is called before the first frame update
     protected override void Start()
