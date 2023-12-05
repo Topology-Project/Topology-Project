@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8921951972178331598}
   m_Layer: 0
   m_Name: Bone023(mirrored)
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: -2983059319627863222}
   m_Layer: 0
   m_Name: 3909_13
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: -7094119925898033419}
   m_Layer: 0
   m_Name: Bip001 L Finger4Nub
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: -1670124902681790399}
   m_Layer: 0
   m_Name: Bip001 L Finger0Nub
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: -7515606673632043905}
   m_Layer: 0
   m_Name: Bip001 L UpperArm
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 4170978607256038872}
   m_Layer: 0
   m_Name: LeftHand
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -305,8 +305,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 8
-  m_Center: {x: -6, y: 0, z: 0}
+  m_Radius: 3
+  m_Center: {x: -12, y: 0, z: -2}
 --- !u!1 &-8000490873626537603
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,7 +318,7 @@ GameObject:
   - component: {fileID: -8295559735666231277}
   m_Layer: 0
   m_Name: Bip001 L Finger3Nub
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 5318903632987585814}
   m_Layer: 0
   m_Name: Bip001 L Finger41
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: -3424538781959788960}
   m_Layer: 0
   m_Name: Bip001 L Finger1Nub
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -413,7 +413,7 @@ GameObject:
   - component: {fileID: 3715087398538852120}
   m_Layer: 0
   m_Name: Bone015(mirrored)
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -445,7 +445,7 @@ GameObject:
   - component: {fileID: -8385266393678221193}
   m_Layer: 0
   m_Name: 3909_7
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -537,7 +537,7 @@ GameObject:
   - component: {fileID: -6151450458765282746}
   m_Layer: 0
   m_Name: Bone105
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -569,7 +569,7 @@ GameObject:
   - component: {fileID: -2276760321518427050}
   m_Layer: 0
   m_Name: Bone025(mirrored)
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -600,7 +600,7 @@ GameObject:
   - component: {fileID: -4558545274585297491}
   m_Layer: 0
   m_Name: Bip001 L Finger2Nub
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -631,7 +631,7 @@ GameObject:
   - component: {fileID: -3152077375863511025}
   m_Layer: 0
   m_Name: Bip001 L Clavicle
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -663,7 +663,7 @@ GameObject:
   - component: {fileID: 8285353947386743303}
   m_Layer: 0
   m_Name: Bip001 L Finger0
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -696,7 +696,7 @@ GameObject:
   - component: {fileID: 3107684069459097697}
   m_Layer: 0
   m_Name: Bip001 L Hand
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -733,7 +733,7 @@ GameObject:
   - component: {fileID: -7359732821922944914}
   m_Layer: 0
   m_Name: Bone092
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -765,7 +765,7 @@ GameObject:
   - component: {fileID: 9099653368161810533}
   m_Layer: 0
   m_Name: Bone103
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -797,7 +797,7 @@ GameObject:
   - component: {fileID: -6712644501366417114}
   m_Layer: 0
   m_Name: Bone086
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -829,7 +829,7 @@ GameObject:
   - component: {fileID: -7783086433479880729}
   m_Layer: 0
   m_Name: Bone009(mirrored)
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -861,7 +861,7 @@ GameObject:
   - component: {fileID: -4801031934334939437}
   m_Layer: 0
   m_Name: Bone091
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -893,7 +893,7 @@ GameObject:
   - component: {fileID: -8110924569366350311}
   m_Layer: 0
   m_Name: Bip001 L Finger31
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -926,7 +926,7 @@ GameObject:
   - component: {fileID: -8811012511645790472}
   m_Layer: 0
   m_Name: Bone008(mirrored)
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -958,7 +958,7 @@ GameObject:
   - component: {fileID: -2587734195868302513}
   m_Layer: 0
   m_Name: Bip001 Spine1
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -990,7 +990,7 @@ GameObject:
   - component: {fileID: -1025318974346217275}
   m_Layer: 0
   m_Name: Bip001 L Finger01
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1023,7 +1023,7 @@ GameObject:
   - component: {fileID: -4369941613900567510}
   m_Layer: 0
   m_Name: Bip001 L Forearm
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1058,7 +1058,7 @@ GameObject:
   - component: {fileID: 2026396800524683637}
   m_Layer: 0
   m_Name: Bip001 Pelvis
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1090,7 +1090,7 @@ GameObject:
   - component: {fileID: -9114175492511663070}
   m_Layer: 0
   m_Name: Bone027(mirrored)
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1121,7 +1121,7 @@ GameObject:
   - component: {fileID: 3057188280689418471}
   m_Layer: 0
   m_Name: Bip001 L Finger3
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1154,7 +1154,7 @@ GameObject:
   - component: {fileID: 3483376423864768343}
   m_Layer: 0
   m_Name: Bone004(mirrored)
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1185,7 +1185,7 @@ GameObject:
   - component: {fileID: -7625405950848885113}
   m_Layer: 0
   m_Name: Bone104
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1217,7 +1217,7 @@ GameObject:
   - component: {fileID: 2211740561864887454}
   m_Layer: 0
   m_Name: Bone013(mirrored)
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1248,7 +1248,7 @@ GameObject:
   - component: {fileID: -9087053495374648350}
   m_Layer: 0
   m_Name: Bip001 L Finger4
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1281,7 +1281,7 @@ GameObject:
   - component: {fileID: 7877809878725634358}
   m_Layer: 0
   m_Name: Bip001 L Finger1
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1314,7 +1314,7 @@ GameObject:
   - component: {fileID: 4686982339700379119}
   m_Layer: 0
   m_Name: Bone093
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1346,7 +1346,7 @@ GameObject:
   - component: {fileID: -5901219354399056344}
   m_Layer: 0
   m_Name: 3909_9
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1431,7 +1431,7 @@ GameObject:
   - component: {fileID: -3447589474833788619}
   m_Layer: 0
   m_Name: Bone005(mirrored)
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1462,7 +1462,7 @@ GameObject:
   - component: {fileID: 5569038487180013179}
   m_Layer: 0
   m_Name: Bone021(mirrored)
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1493,7 +1493,7 @@ GameObject:
   - component: {fileID: -6443276035299937634}
   m_Layer: 0
   m_Name: Bip001
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1525,7 +1525,7 @@ GameObject:
   - component: {fileID: 2539328298441535040}
   m_Layer: 0
   m_Name: Bone090
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1557,7 +1557,7 @@ GameObject:
   - component: {fileID: -4731645442276279508}
   m_Layer: 0
   m_Name: Bone088
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1589,7 +1589,7 @@ GameObject:
   - component: {fileID: -2142473388834009411}
   m_Layer: 0
   m_Name: Bone089
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1621,7 +1621,7 @@ GameObject:
   - component: {fileID: -213476428884037046}
   m_Layer: 0
   m_Name: Bip001 L Finger2
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1654,7 +1654,7 @@ GameObject:
   - component: {fileID: -108688844671552245}
   m_Layer: 0
   m_Name: Bone017(mirrored)
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1685,7 +1685,7 @@ GameObject:
   - component: {fileID: 3791824073258950849}
   m_Layer: 0
   m_Name: Bip001 L Finger11
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1718,7 +1718,7 @@ GameObject:
   - component: {fileID: -8613964332564109840}
   m_Layer: 0
   m_Name: Bip001 L Finger21
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1751,7 +1751,7 @@ GameObject:
   - component: {fileID: -2764466851715774946}
   m_Layer: 0
   m_Name: Bone011(mirrored)
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1782,7 +1782,7 @@ GameObject:
   - component: {fileID: -3678271291562310166}
   m_Layer: 0
   m_Name: Bone106
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1813,7 +1813,7 @@ GameObject:
   - component: {fileID: -7411190220029400563}
   m_Layer: 0
   m_Name: Bone010(mirrored)
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1844,7 +1844,7 @@ GameObject:
   - component: {fileID: -5708846984131327469}
   m_Layer: 0
   m_Name: Bip001 Spine
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1877,7 +1877,7 @@ GameObject:
   - component: {fileID: 3031620656194930263}
   m_Layer: 0
   m_Name: 3909_11
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1962,7 +1962,7 @@ GameObject:
   - component: {fileID: 1873674169878548741}
   m_Layer: 0
   m_Name: Bone019(mirrored)
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1993,7 +1993,7 @@ GameObject:
   - component: {fileID: 5065150909460670524}
   m_Layer: 0
   m_Name: Bone087
-  m_TagString: 
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

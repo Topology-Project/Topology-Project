@@ -520,6 +520,10 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 898642219}
+    - target: {fileID: 2976464717570720215, guid: 2478895df193a6645833cadd8f55a63f, type: 3}
+      propertyPath: hpFillAmount
+      value: 
+      objectReference: {fileID: 852528857}
     - target: {fileID: 2976464717660973400, guid: 2478895df193a6645833cadd8f55a63f, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -1498,7 +1502,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 903400064594715873, guid: 995e494ac9ab83d44919ff8fb3c70bdb, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 903400064594715873, guid: 995e494ac9ab83d44919ff8fb3c70bdb, type: 3}
       propertyPath: m_LocalPosition.x
