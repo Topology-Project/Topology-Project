@@ -78,7 +78,7 @@ public class StageManager : MonoBehaviour
         // }
 
         // 로딩 완료후 추가 대기
-        yield return new WaitForSecondsRealtime(0);
+        yield return new WaitForSecondsRealtime(1f);
 
         // 게임 플레이 중으로 전환하고 Loading 씬을 언로드
         GameManager.Instance.IsPlay = false;
