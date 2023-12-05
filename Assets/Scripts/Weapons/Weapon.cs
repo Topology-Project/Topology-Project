@@ -309,7 +309,7 @@ public class Weapon : MonoBehaviour
     public void Reload()
     {
         if (isReload ||
-        (int)character.GetModifier().GetState(StateType.Magazine) == residualAmmunition ||
+        (int)stateModifier.GetState(StateType.Magazine) == residualAmmunition ||
         parent.GetComponent<CharacterInterface>().GetAmmo(ammunitionType) <= 0) return;
 
         isReload = true;
@@ -322,7 +322,7 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(character.GetModifier().GetState(StateType.ReloadTime));
         CharacterInterface characterInterface = parent.GetComponent<CharacterInterface>();
         int maxAmmo = characterInterface.GetAmmo(ammunitionType);
-        int magazineAmmo = (int)character.GetModifier().GetState(StateType.Magazine) - residualAmmunition;
+        int magazineAmmo = (int)stateModifier.GetState(StateType.Magazine) - residualAmmunition;
         int temp = 0;
         if (magazineAmmo > maxAmmo) temp = maxAmmo;
         else temp = magazineAmmo;

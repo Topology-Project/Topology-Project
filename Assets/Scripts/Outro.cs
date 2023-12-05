@@ -166,7 +166,6 @@ public class Outro : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Instance.IsPlay = false;
         playTime = GameManager.Instance.StageManager.playTime;
         dmg_value = GameManager.Instance.StageManager.MaxDamage;
         scroll_cnt = GameManager.Instance.Player.scroll_cnt;
@@ -183,7 +182,6 @@ public class Outro : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameManager.Instance.IsPlay = false;
     }
     private void PlayAudio(AudioClip clip)
     {

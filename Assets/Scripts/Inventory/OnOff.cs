@@ -31,13 +31,11 @@ public class OnOff : MonoBehaviour
         {
             targetUI.SetActive(false);
             PlaySound(soundWhenFalse);
-            // GameManager.Instance.IsPlay = true;
         }
         else
         {
             targetUI.SetActive(true);
             PlaySound(soundWhenTrue);
-            // GameManager.Instance.IsPlay = false;
         }
     }
 

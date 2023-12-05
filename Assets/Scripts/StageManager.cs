@@ -29,8 +29,8 @@ public class StageManager : MonoBehaviour
         // 각 스테이지의 씬 이름을 초기화
         stageNames = new string[]
         {
-            "s1_start_1130",
-            //"Stage_1_map", "Stage_1_map", "Stage_1_map", 
+            // "s1_start_1130",
+            // "Stage_1_map", "Stage_1_map", "Stage_1_map", 
             "Boss_Golem 1"
         };
     }
@@ -54,19 +54,22 @@ public class StageManager : MonoBehaviour
     // 씬을 로드하는 메서드
     public void SceneLoad(string sceneName, System.Action<AsyncOperation> action = null)
     {
+        string s = SceneManager.GetActiveScene().name;
         // Loading 씬을 로드하고, 추가적인 로드 작업을 수행하는 비동기 작업을 반환
-        SceneManager.LoadScene("Loading");
-        AsyncOperation op = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        AsyncOperation loadingop = SceneManager.LoadSceneAsync("Loading", LoadSceneMode.Additive);
+        AsyncOperation op;
+        loadingop.completed += (x) =>{
+            SceneManager.UnloadSceneAsync(s);
+            op = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            // 완료된 경우 추가적인 액션 수행
+            if (action != null) op.completed += action;
+            op.completed += (x) => StartCoroutine(UnloadingScene());
+            // 로딩이 끝나면 씬 언로드 및 게임 플레이 상태로 전환
+        };
         GameManager.Instance.IsPlay = false; // 게임 플레이 중이 아님을 표시
-        op.allowSceneActivation = false; // 씬을 활성화하지 않음
 
-        // 완료된 경우 추가적인 액션 수행
-        if (action != null) op.completed += action;
-
-        // 로딩이 끝나면 씬 언로드 및 게임 플레이 상태로 전환
-        StartCoroutine(UnloadingScene(op));
     }
-    IEnumerator UnloadingScene(AsyncOperation op)
+    IEnumerator UnloadingScene()
     {
         yield return null;
         // while(!op.isDone)
@@ -78,8 +81,7 @@ public class StageManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(0);
 
         // 게임 플레이 중으로 전환하고 Loading 씬을 언로드
-        GameManager.Instance.IsPlay = true;
-        op.allowSceneActivation = true;
+        GameManager.Instance.IsPlay = false;
         SceneManager.UnloadSceneAsync("Loading");
 
         // 현재 맵 매니저가 존재하면 방 진입 및 스테이지 인덱스 증가
@@ -87,6 +89,7 @@ public class StageManager : MonoBehaviour
         {
             mapManager.EnterRoom();
             stageIdx++;
+            GameManager.Instance.IsPlay = true;
         }
     }
 

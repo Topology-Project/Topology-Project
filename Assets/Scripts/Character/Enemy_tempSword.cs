@@ -30,8 +30,7 @@ public class Enemy_tempSword : Character
         {
             // Debug.Log("플레이어에게 이동");
             nma.SetDestination(player.transform.position);
-
-            animator.SetTrigger("IsWarning");
+            animator.SetBool("Run", true);
         }
         else
         {
@@ -43,11 +42,10 @@ public class Enemy_tempSword : Character
                 Vector3 RandomPos = GetRandomPosOnNM();
                 nma.SetDestination(RandomPos);
                 LastUpdate = 0;
-
+                animator.SetBool("Run", true);
             }
         }
         
-        animator.SetBool("Run", true);
     }
 
     private Vector3 GetRandomPosOnNM()
@@ -114,6 +112,7 @@ public class Enemy_tempSword : Character
                     // Debug.Log("플레이어 발견");
                     isFind = true;
 
+
                     RaycastHit hitObj;
                     if (Physics.Linecast(rayStart, hit.transform.position, out hitObj))
                     {
@@ -156,11 +155,13 @@ public class Enemy_tempSword : Character
     {
         isAtk = true;
         // Debug.Log("atk start");
+        animator.SetTrigger("IsWarning");
         yield return new WaitForSecondsRealtime(2f);
+        animator.SetTrigger("Throw");
+        yield return new WaitForSecondsRealtime(0.5f);
         audioSource.clip = fireSound;
         Fire1(transform);
         audioSource.Play();
-        animator.SetTrigger("Throw");
         // Debug.Log("atk end");
         isAtk = false;
     }

@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
         get { return isPlay; }
         set
         {
-            isPlay = value;
+            instance.isPlay = value;
             if(isPlay)
             {  
                 Cursor.visible = false;
