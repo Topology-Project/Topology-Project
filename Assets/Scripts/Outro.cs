@@ -28,6 +28,10 @@ public class Outro : MonoBehaviour
     public TMP_Text T_credit;
 
     public TMP_Text T_stage;
+    public AudioClip successClip;
+    public AudioClip failureClip;
+
+    private AudioSource audioSource;
     private string stage;
     private int stageIdx = GameManager.Instance.StageManager.StageIdx;
     private void StageName()
@@ -79,8 +83,18 @@ public class Outro : MonoBehaviour
         StageName();
         result[0].gameObject.SetActive(false);
         result[1].gameObject.SetActive(false);
-        if (isResult) result[0].gameObject.SetActive(true);//성공?
-        else result[1].gameObject.SetActive(true);//실패!
+        if (isResult)
+        {
+            result[0].gameObject.SetActive(true);
+            PlayAudio(successClip); // 성공 사운드 재생
+            Invoke("PlaySuccessAudio", 3.0f);
+        }
+        else
+        {
+            result[1].gameObject.SetActive(true);
+            PlayAudio(failureClip); // 실패 사운드 재생
+            Invoke("PlayfailureClip", 3.0f);
+        }
         result[2].gameObject.SetActive(false);
 
         T_stage.text = stage;
@@ -160,6 +174,11 @@ public class Outro : MonoBehaviour
         scroll_cnt = GameManager.Instance.Player.scroll_cnt;
         stageIdx = GameManager.Instance.StageManager.StageIdx;
         isResult = GameManager.Instance.StageManager.gameClear;
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
         Result_Btn();
     }
 
@@ -167,5 +186,10 @@ public class Outro : MonoBehaviour
     void Update()
     {
         GameManager.Instance.IsPlay = false;
+    }
+    private void PlayAudio(AudioClip clip)
+    {
+        audioSource.clip = clip;
+        audioSource.PlayOneShot(clip);
     }
 }

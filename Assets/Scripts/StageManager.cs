@@ -30,7 +30,7 @@ public class StageManager : MonoBehaviour
         stageNames = new string[]
         {
             "s1_start_1130",
-            "Stage_1_map", "Stage_1_map", "Stage_1_map", 
+            //"Stage_1_map", "Stage_1_map", "Stage_1_map", 
             "Boss_Golem 1"
         };
     }
@@ -75,7 +75,7 @@ public class StageManager : MonoBehaviour
         // }
 
         // 로딩 완료후 추가 대기
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(0);
 
         // 게임 플레이 중으로 전환하고 Loading 씬을 언로드
         GameManager.Instance.IsPlay = true;
