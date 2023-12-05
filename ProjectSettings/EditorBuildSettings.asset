@@ -24,6 +24,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Stage_1_map.unity
     guid: 8cbbe33182384ff4e9aee52814f5249a
   - enabled: 1
-    path: Assets/Scenes/Boss_map.unity
-    guid: da9ed749687b750439ecd245a27b3e08
+    path: Assets/Scenes/Boss_Golem 1.unity
+    guid: 1455c158b8e0e8349969624de869e390
   m_configObjects: {}

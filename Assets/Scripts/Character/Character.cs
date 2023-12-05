@@ -174,7 +174,7 @@ public class Character : MonoBehaviour, CharacterInterface
     {
         return this.stateModifier;
     }
-    
+
     // 잔탄량 반환 메서드
     public int GetAmmo(AmmunitionType ammunitionType)
     {
@@ -198,7 +198,7 @@ public class Character : MonoBehaviour, CharacterInterface
     // 
     private void PtCalc(float pt) => protectionPoint = pt;
     // 데미지관련
-    private void Damage(float damage)
+    protected void Damage(float damage)
     {
         PtCalc(protectionPoint - damage); // 
         if (protectionPoint < 0)
@@ -222,16 +222,16 @@ public class Character : MonoBehaviour, CharacterInterface
                     * lsh
                     * stateModifier.GetState(StateType.CriticalX);
 
-        if(tag.Equals("Enemy")) GameManager.Instance.StageManager.MaxDamage = damage;
+        if (tag.Equals("Enemy")) GameManager.Instance.StageManager.MaxDamage = damage;
 
-        // Debug.Log("Damage : " + stateModifier.GetState(StateType.BaseDamage)
-        //             + "*" + stateModifier.GetState(StateType.WPNUpgrade)
-        //             + "*" + stateModifier.GetState(StateType.BaseDMGIncrease)
-        //             + "*" + stateModifier.GetState(StateType.ExplosionDMGIncrease)
-        //             + "*" + stateModifier.GetState(StateType.ElementalDMGIncrease)
-        //             + "*" + lsh
-        //             + "*" + stateModifier.GetState(StateType.CriticalX)
-        //             + "=" + damage);
+        Debug.Log("Damage : " + stateModifier.GetState(StateType.BaseDamage)
+                    + "*" + stateModifier.GetState(StateType.WPNUpgrade)
+                    + "*" + stateModifier.GetState(StateType.BaseDMGIncrease)
+                    + "*" + stateModifier.GetState(StateType.ExplosionDMGIncrease)
+                    + "*" + stateModifier.GetState(StateType.ElementalDMGIncrease)
+                    + "*" + lsh
+                    + "*" + stateModifier.GetState(StateType.CriticalX)
+                    + "=" + damage);
         Damage(damage);
         return damage;
     }

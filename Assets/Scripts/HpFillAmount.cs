@@ -12,6 +12,15 @@ public class HpFillAmount : MonoBehaviour
     public float protectionPoint { get; set; }
     public float maxProtectionPoint { get; set; }
 
+    public void Temp()
+    {
+        Player player = GameManager.Instance.Player;
+        Pro.fillAmount = (float)player.ProtectionPoint / (float)player.MaxProtectionPoint;
+        Debug.Log("보호막 줄어듬");
+        HP.fillAmount = (float)player.HealthPoint / (float)player.MaxHealthPoint;
+        Debug.Log("나 체력 준다");
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("Bullet"))
