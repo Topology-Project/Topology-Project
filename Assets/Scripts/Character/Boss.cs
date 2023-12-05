@@ -107,7 +107,7 @@ public class Boss : Enemy
     {
         LR.enabled = true;
 
-        Vector3 razerPoint = razer.transform.position;
+        Vector3 razerPoint = razer.transform.position + Vector3.down;
         Vector3 endPoint = player.transform.position + (Vector3.down * 0.5f);
 
         if (Physics.Linecast(razerPoint, endPoint, out hit, layerMask))
@@ -123,7 +123,12 @@ public class Boss : Enemy
     }
     private void Destroy_Razer()
     {
-        if (hit.transform.tag.Equals("Player")) hit.transform.GetComponent<Player>().DamageCalc(stateModifier);
+        Debug.Log("123");
+        if (hit.transform.tag.Equals("Player"))
+        {
+            Debug.Log("1231321");
+            hit.transform.GetComponent<Player>().DamageCalc(stateModifier);
+        }
         else if (hit.transform.tag.Equals("Pillar")) hit.transform.GetComponent<Stone_Pillar>().DestroyPillar();
         LR.enabled = false;
     }

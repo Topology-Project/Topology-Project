@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player : Character
 {
+    public HpFillAmount hpFillAmount;
     private Camera playerCamera;
     private bool isJump;
     public List<Scroll.Data> inventory = new();
@@ -66,6 +67,22 @@ public class Player : Character
         GameManager.Inventory.SlotCnt = inventory.Count;
         foreach (State state in scroll.sc.GetState())
             stateModifier.AddHandler(state);
+    }
+
+    public override float DamageCalc(StateModifier stateModifier)
+    {
+        int lsh = (int)(stateModifier.GetState(StateType.LuckyShot) % 1 > UnityEngine.Random.Range(0f, 1f) ?
+                    stateModifier.GetState(StateType.LuckyShot) + 1 : stateModifier.GetState(StateType.LuckyShot));
+        float damage = stateModifier.GetState(StateType.BaseDamage)
+                    * stateModifier.GetState(StateType.WPNUpgrade)
+                    * stateModifier.GetState(StateType.BaseDMGIncrease)
+                    * stateModifier.GetState(StateType.ExplosionDMGIncrease)
+                    * stateModifier.GetState(StateType.ElementalDMGIncrease)
+                    * lsh
+                    * stateModifier.GetState(StateType.CriticalX);
+        Damage(damage);
+        hpFillAmount.Temp();
+        return damage;
     }
 
     protected override void OnTriggerEnter(Collider other)
