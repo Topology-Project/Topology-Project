@@ -87,13 +87,11 @@ public class Outro : MonoBehaviour
         {
             result[0].gameObject.SetActive(true);
             PlayAudio(successClip); // 성공 사운드 재생
-            Invoke("PlaySuccessAudio", 3.0f);
         }
         else
         {
             result[1].gameObject.SetActive(true);
             PlayAudio(failureClip); // 실패 사운드 재생
-            Invoke("PlayfailureClip", 3.0f);
         }
         result[2].gameObject.SetActive(false);
 
