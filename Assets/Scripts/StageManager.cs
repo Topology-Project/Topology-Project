@@ -111,7 +111,6 @@ public class StageManager : MonoBehaviour
         // 모든 스테이지를 클리어한 경우, 게임 클리어 플래그를 설정하고 Outro 씬 로드
         else
         {
-            stageIdx = 0;
             gameClear = true;
             LoadOutro();
         }

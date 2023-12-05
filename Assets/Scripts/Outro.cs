@@ -169,7 +169,7 @@ public class Outro : MonoBehaviour
         playTime = GameManager.Instance.StageManager.playTime;
         dmg_value = GameManager.Instance.StageManager.MaxDamage;
         scroll_cnt = GameManager.Instance.Player.scroll_cnt;
-        stageIdx = GameManager.Instance.StageManager.StageIdx;
+        // stageIdx = GameManager.Instance.StageManager.StageIdx;
         isResult = GameManager.Instance.StageManager.gameClear;
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
