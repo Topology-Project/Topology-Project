@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
-using UnityEditor.SceneManagement;
+// using UnityEngine.SceneManagement;
 
 public class Outro : MonoBehaviour
 {

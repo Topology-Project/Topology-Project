@@ -55,11 +55,7 @@ public class InventoryUI : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            if (targetUI.activeSelf) GameManager.Instance.IsPlay = true;
-            else GameManager.Instance.IsPlay = false;
-        }
+        
     }
 
     public void SetUI(int i)
