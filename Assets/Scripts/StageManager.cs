@@ -29,8 +29,8 @@ public class StageManager : MonoBehaviour
         // 각 스테이지의 씬 이름을 초기화
         stageNames = new string[]
         {
-            // "s1_start_1130",
-            // "Stage_1_map", "Stage_1_map", "Stage_1_map", 
+            "s1_start_1130",
+            "Stage_1_map", "Stage_1_map", "Stage_1_map", 
             "Boss_Golem 1"
         };
     }
