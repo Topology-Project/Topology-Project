@@ -9,19 +9,7 @@ using UnityEditor.SceneManagement;
 
 public class Outro : MonoBehaviour
 {
-    // public TMP_Text T_result;
-    // private string result;
     private bool isResult = GameManager.Instance.StageManager.gameClear;
-    // private bool isResult_test
-    // {
-    //     get => isResult;
-    //     set
-    //     {
-    //         isResult = value;
-    //         if (isResult) result = "도전 성공";
-    //         else result = "도전 실패";
-    //     }
-    // }
 
     public Canvas[] result;
 
@@ -32,30 +20,30 @@ public class Outro : MonoBehaviour
     public AudioClip failureClip;
 
     private AudioSource audioSource;
-    private string stage;
-    private int stageIdx = GameManager.Instance.StageManager.StageIdx;
-    private void StageName()
-    {
-        int temp = stageIdx - 1;
-        switch (temp)
-        {
-            case 0:
-                stage = "스테이지 1-1";
-                break;
-            case 1:
-                stage = "스테이지 1-2";
-                break;
-            case 2:
-                stage = "스테이지 1-3";
-                break;
-            case 3:
-                stage = "스테이지 1-4";
-                break;
-            case 4:
-                stage = "보스 스테이지";
-                break;
-        }
-    }
+    private string stage = "Play Time"; // 시간 상 스테이지 이름 출력에서 걸린 시간으로 변경
+    // private int stageIdx = GameManager.Instance.StageManager.StageIdx;
+    // private void StageName()
+    // {
+    //     int temp = stageIdx - 1;
+    //     switch (temp)
+    //     {
+    //         case 0:
+    //             stage = "스테이지 1-1";
+    //             break;
+    //         case 1:
+    //             stage = "스테이지 1-2";
+    //             break;
+    //         case 2:
+    //             stage = "스테이지 1-3";
+    //             break;
+    //         case 3:
+    //             stage = "스테이지 1-4";
+    //             break;
+    //         case 4:
+    //             stage = "보스 스테이지";
+    //             break;
+    //     }
+    // }
 
     public TMP_Text T_playTime;
     private float playTime = GameManager.Instance.StageManager.playTime; // 걸린 시간
@@ -80,7 +68,8 @@ public class Outro : MonoBehaviour
 
     private void Result_Btn()
     {
-        StageName();
+        // StageName();
+
         result[0].gameObject.SetActive(false);
         result[1].gameObject.SetActive(false);
         if (isResult)
@@ -105,7 +94,7 @@ public class Outro : MonoBehaviour
         T_weapon_image.gameObject.SetActive(true);
         T_devMember.gameObject.SetActive(false);
 
-        T_scroll.text = "스크롤 획득량";
+        T_scroll.text = "Scroll Count";
         T_scroll_cnt.text = scroll_cnt.ToString();
 
         T_btn.text = "C r e d i t";
@@ -169,7 +158,7 @@ public class Outro : MonoBehaviour
         playTime = GameManager.Instance.StageManager.playTime;
         dmg_value = GameManager.Instance.StageManager.MaxDamage;
         scroll_cnt = GameManager.Instance.Player.scroll_cnt;
-        stageIdx = GameManager.Instance.StageManager.StageIdx;
+        // stageIdx = GameManager.Instance.StageManager.StageIdx;
         isResult = GameManager.Instance.StageManager.gameClear;
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
