@@ -30,7 +30,7 @@ public class StageManager : MonoBehaviour
         stageNames = new string[]
         {
             "s1_start_1130",
-            "Stage_1_map", "Stage_1_map", "Stage_1_map", 
+            "Stage_1_map", "Stage_1_map", "Stage_1_map",
             "Boss_Golem 1"
         };
     }
@@ -54,12 +54,13 @@ public class StageManager : MonoBehaviour
     // 씬을 로드하는 메서드
     public void SceneLoad(string sceneName, System.Action<AsyncOperation> action = null)
     {
-        if(SceneManager.GetSceneAt(0).name == "Start") SceneManager.UnloadSceneAsync("Start");
+        if (SceneManager.GetSceneAt(0).name == "Start") SceneManager.UnloadSceneAsync("Start");
         string s = SceneManager.GetActiveScene().name;
         // Loading 씬을 로드하고, 추가적인 로드 작업을 수행하는 비동기 작업을 반환
         AsyncOperation loadingop = SceneManager.LoadSceneAsync("Loading", LoadSceneMode.Additive);
         AsyncOperation op;
-        loadingop.completed += (x) =>{
+        loadingop.completed += (x) =>
+        {
             SceneManager.UnloadSceneAsync(s);
             op = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
             // 완료된 경우 추가적인 액션 수행
