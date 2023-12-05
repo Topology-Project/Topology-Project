@@ -11,7 +11,8 @@ public class Intro : MonoBehaviour
     public void Start_Btn()
     {
         SceneManager.LoadScene("Loading");
-        SceneManager.LoadSceneAsync("Start", LoadSceneMode.Additive);
+        var op = SceneManager.LoadSceneAsync("Start", LoadSceneMode.Additive);
+        op.completed += (x) => SceneManager.UnloadSceneAsync("Loading");
     }
     public void Quit_Btn(GameObject image)
     {
